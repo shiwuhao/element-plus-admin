@@ -1,0 +1,16 @@
+{
+  "id": "1804572",
+  "name": "element-admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "element后台",
+  "glyphs": [
+    {
+      "icon_id": "6086712",
+      "name": "更多",
+      "font_class": "more-vertical",
+      "unicode": "e6de",
+      "unicode_decimal": 59102
+    }
+  ]
+}

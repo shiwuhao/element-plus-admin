@@ -1,0 +1,71 @@
+@import "./variables.scss";
+@import "./flex.scss";
+@import "./sidebar.scss";
+
+.el-drawer__container div, .el-drawer__header span:focus {
+  outline: 0;
+}
+.el-card__header{
+  padding: 10px 20px !important;
+  font-size: 14px;
+}
+
+body {
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+}
+
+.icon-setting-wrap {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background: #F2F6FC;
+  }
+
+  i {
+    display: block;
+    font-size: 20px;
+    padding: 0 10px;
+  }
+}
+.top-menu-layout .icon-setting-wrap{
+  color: white;;
+  &:hover {
+    background: #606266;
+  }
+}

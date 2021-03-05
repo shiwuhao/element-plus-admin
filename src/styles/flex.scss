@@ -1,0 +1,103 @@
+// 左对齐
+/*.swh-example {
+   主轴方向
+  // row:水平,左
+  // row-reverse:水平，右
+  // column:垂直,上
+  // column-reverse:垂直，下
+  flex-direction: row;
+  // 主轴对齐方式
+  // flex-start:左对齐
+  // flex-end:右对齐
+  // center:居中
+  // space-between:两端对齐，间隔相等
+  // space-around:每个项目两侧的间隔相等:
+  justify-content: flex-start;
+  // 交叉轴对齐方式
+  // 交叉轴对齐方式
+  // flex-start:交叉轴的起点对齐。
+  // flex-end:交叉轴的终点对齐
+  // center: 交叉轴的中点对齐
+  // baseline:项目的第一行文字的基线对齐
+  // stretch:如果项目未设置高度或设为auto，将占满整个容器的高度
+  align-items: stretch;
+  // 多根轴线的对齐方式 如果项目只有一根轴线，该属性不起作用
+  // flex-start：与交叉轴的起点对齐
+  // flex-end：与交叉轴的终点对齐
+  // center：与交叉轴的中点对齐
+  // space-between：与交叉轴两端对齐，轴线之间的间隔平均分布
+  // space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍
+  // stretch（默认值）：轴线占满整个交叉轴
+  align-content: stretch;
+  // 换行方式
+  // nowrap:不换行
+  // wrap:换行，第一行在上方
+  // wrap-reverse:换行，第一行在下方
+  flex-wrap: nowrap;
+}*/
+
+
+// 水平左对齐
+.flex-row-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+// 水平右对齐
+.flex-row-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// 水平居中
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+// 水平两端对齐
+.flex-row-justify {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+// 垂直顶部对齐
+.flex-col-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+// 垂直底部
+.flex-col-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// 垂直居中
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// 垂直两端对齐
+.flex-col-justify {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
