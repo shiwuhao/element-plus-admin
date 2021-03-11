@@ -6,9 +6,10 @@
   </router-view>
 </template>
 <script>
+import {defineComponent} from 'vue'
 import {mapGetters} from 'vuex'
 
-export default {
+export default defineComponent({
   name: 'Main',
   computed: {
     ...mapGetters(['cachedViews']),
@@ -16,5 +17,5 @@ export default {
       return this.$route.path
     }
   },
-};
+});
 </script>

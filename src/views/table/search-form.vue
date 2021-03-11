@@ -1,16 +1,12 @@
 <template>
   <div>
     <el-card class="box-card">
-      <div slot="header" class="card-header">基本使用</div>
+      <template #header>
+        <div class="card-header">基本使用</div>
+      </template>
       <el-form :inline="true" :model="config" label-position="right" label-width="100px" class="demo-form-inline">
         <el-form-item label="显示label">
           <el-switch v-model="config.showLabel"></el-switch>
-        </el-form-item>
-        <el-form-item label="图标按钮">
-          <el-switch v-model="config.iconButton"></el-switch>
-        </el-form-item>
-        <el-form-item label="可清空">
-          <el-switch v-model="config.clearable"></el-switch>
         </el-form-item>
         <el-form-item label="尺寸">
           <el-radio-group v-model="config.size" size="mini">
@@ -25,28 +21,33 @@
       </el-form>
       <query-form :options="options1"
                   :label="config.showLabel"
-                  :iconButton="config.iconButton"
+                  :advanced-length="4"
                   :size="config.size"
-                  :label-width="`${config.labelWidth}px`"
-                  :clearable="config.clearable"
+                  :label-width="config.showLabel ? `${config.labelWidth}px` : 0"
                   @search="form1 = $event"
                   @reset="form1 = {}"></query-form>
       <pre><code>{{ form1 }}</code></pre>
     </el-card>
     <el-card class="box-card">
-      <div slot="header" class="card-header">自定义插槽</div>
+      <template #header>
+        <div class="card-header">自定义插槽</div>
+      </template>
       <query-form :options="options2" @search="search" @reset="reset">
-        <el-form-item slot="custom-slot" style="margin-bottom: 2px;margin-top:2px;">
-          <el-input v-model="customSlot" placeholder="我是自定义插槽渲染的"/>
-        </el-form-item>
-        <template slot="button">
+        <template #custom-slot>
+          <el-form-item style="margin-bottom: 2px;margin-top:2px;">
+            <el-input v-model="customSlot" placeholder="我是自定义插槽渲染的"/>
+          </el-form-item>
+        </template>
+        <template #button>
           <el-button type="primary">下载</el-button>
         </template>
       </query-form>
       <pre><code>{{ form2 }}</code></pre>
     </el-card>
     <el-card class="box-card">
-      <div slot="header" class="card-header">双向绑定</div>
+      <template #header>
+        <div class="card-header">双向绑定</div>
+      </template>
       <query-form v-model="form3" :options="options3"></query-form>
       <pre><code>{{ form3 }}</code></pre>
     </el-card>
@@ -226,12 +227,14 @@
           {
             type: 'input',
             key: 'input',
-            label: '基础表单',
+            label:'基础表单',
+            placeholder: '请填写基础表单',
           },
           {
             type: 'select',
             key: 'single-select',
             label: '单选下拉框单',
+            placeholder: '请选择单选下拉框单',
             options: [
               {value: '选项1', label: '黄金糕'},
               {value: '选项2', label: '双皮奶'},

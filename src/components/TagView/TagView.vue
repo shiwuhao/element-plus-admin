@@ -3,7 +3,7 @@
     <scroll-panel class="scroll-container" ref="scrollPane">
       <el-tag
         class="tag-item"
-        ref="tag"
+        :ref="setTagRef"
         v-for="item in visitedViews"
         :key="item.path"
         :route="item"
@@ -84,7 +84,8 @@
     data() {
       return {
         selectedTag: {},
-        affixTags: []
+        affixTags: [],
+        tagRefs:[],
       }
     },
     computed: {
@@ -100,7 +101,13 @@
       this.initTagViews();
       this.addTagView()
     },
+    beforeUpdate() {
+      this.tagRefs = []
+    },
     methods: {
+      setTagRef(el){
+        if (el) this.tagRefs.push(el);
+      },
       // 初始化标签视图
       initTagViews() {
         const affixTags = this.affixTags = this.filterAffixTags(this.routes);
@@ -135,6 +142,7 @@
       },
       // 过滤需要固定的标签
       filterAffixTags(routes, basePath = '/') {
+        console.log('routes',routes);
         let tags = [];
         routes.forEach(route => {
           if (route.meta && route.meta.affix) {
@@ -202,7 +210,7 @@
       },
       // 移动到当前路由所在标签也面
       moveToCurrentTagView() {
-        const tags = this.$refs.tag;
+        const tags = this.tagRefs;
         console.log(tags);
         this.$nextTick(() => {
           for (const tag of tags) {

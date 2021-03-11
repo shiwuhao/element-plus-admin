@@ -29,7 +29,8 @@
         const $container = this.$refs.scrollContainer.$el
         const $containerWidth = $container.offsetWidth
         const $scrollWrapper = this.scrollWrapper
-        const tagList = this.$parent.$refs.tag
+        // const tagList = this.$parent.$refs.tag
+        const tagList = this.$parent.tagRefs
 
         let firstTag = null
         let lastTag = null

@@ -1,10 +1,12 @@
 <template>
   <el-card title="系统配置">
-    <div slot="header">{{ cardTitle}}</div>
+    <template #header>
+      <div>{{ cardTitle}}</div>
+    </template>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="用户管理" name="first">
         <el-row>
-          <el-col span="12">
+          <el-col :span="12">
             <AutoForm label :options="options"></AutoForm>
           </el-col>
         </el-row>

@@ -5,15 +5,15 @@
            :label="label"
            :label-width="label ? labelWidth : ''"
            label-position="top"
-           @submit.native.prevent="handleSubmit"
-           @keyup.enter.native="handleSubmit">
+           @submit.prevent="handleSubmit"
+           @keyup.enter="handleSubmit">
     <template v-for="(item,index) in options">
       <el-form-item v-if="!item.slot"
                     :key="index"
                     :label="label ? item.label : ''"
                     :label-width="label ? item.labelWidth : ''"
                     :prop="item.key">
-        <span slot="label">{{  item.label }}({{ item.placeholder }})</span>
+        <template #label>{{ item.label }}({{ item.placeholder }})</template>
         <el-input v-if="item.type === 'input'"
                   v-model="form[item.key]"
                   :placeholder="item.placeholder || item.label"
@@ -77,78 +77,78 @@
 </template>
 
 <script>
-  export default {
-    name: 'AutoForm',
-    model: {
-      prop: 'value',
-      event: 'change',
+export default {
+  name: 'AutoForm',
+  model: {
+    prop: 'value',
+    event: 'change',
+  },
+  props: {
+    value: Object,
+    size: {
+      type: String,
+      default: 'small',
     },
-    props: {
-      value: Object,
-      size: {
-        type: String,
-        default: 'small',
-      },
-      label: {
-        type: Boolean,
-        default: false,
-      },
-      labelWidth: {
-        type: String,
-        default: '100px',
-      },
-      width: {
-        type: String,
-        default: '100%',
-      },
-      iconButton: {
-        type: Boolean,
-        default: false,
-      },
-      clearable: {
-        type: Boolean,
-        default: false,
-      },
-      advancedLength: {
-        type: Number,
-        default: 3,
-      },
-      options: Array,
+    label: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        datePickerTypes: ['year', 'month', 'date', 'dates', 'week', 'datetime', 'datetimerange', 'daterange', 'monthrange'],
-        advanced: false,
-        form: {},
-      }
+    labelWidth: {
+      type: String,
+      default: '100px',
     },
-    watch: {
-      form: function (newVal) {
-        this.$emit('change', newVal);
-      }
+    width: {
+      type: String,
+      default: '100%',
     },
-    methods: {
-      handleSearch() {
-        this.$emit('search', {...this.form});
-      },
-      handleReset(formName) {
-        this.$refs[formName].resetFields();
-        this.$emit('reset');
-      },
-      handleSubmit() {
-        this.handleSearch();
-      },
-      // 高级搜索
-      toggleAdvanced() {
-        this.advanced = !this.advanced;
-      }
+    iconButton: {
+      type: Boolean,
+      default: false,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
+    advancedLength: {
+      type: Number,
+      default: 3,
+    },
+    options: Array,
+  },
+  data() {
+    return {
+      datePickerTypes: ['year', 'month', 'date', 'dates', 'week', 'datetime', 'datetimerange', 'daterange', 'monthrange'],
+      advanced: false,
+      form: {},
+    }
+  },
+  watch: {
+    form: function (newVal) {
+      this.$emit('change', newVal);
+    }
+  },
+  methods: {
+    handleSearch() {
+      this.$emit('search', {...this.form});
+    },
+    handleReset(formName) {
+      this.$refs[formName].resetFields();
+      this.$emit('reset');
+    },
+    handleSubmit() {
+      this.handleSearch();
+    },
+    // 高级搜索
+    toggleAdvanced() {
+      this.advanced = !this.advanced;
     }
   }
+}
 </script>
 <style lang="scss" scoped>
-  .el-form-item {
-    min-height: 34px !important;
-    margin-bottom: 2px;
-    margin-top: 2px;
-  }
+.el-form-item {
+  min-height: 34px !important;
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
 </style>
