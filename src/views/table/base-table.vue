@@ -29,7 +29,7 @@
       <el-table-column prop="date" label="日期" width="180" />
       <el-table-column prop="name" label="姓名" :show-overflow-tooltip='true' width="180"/>
       <el-table-column label="操作">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           <el-button size="mini" type="success" @click="handleDelete(scope.$index, scope.row)" icon="el-icon-delete">

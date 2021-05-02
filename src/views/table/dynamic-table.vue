@@ -28,18 +28,18 @@
                    :stripe="config.stripe"
                    :size="config.size">
       <el-table-column label="操作" width="220" slot="name">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <i class="el-icon-time"/>
           <span style="margin-left: 10px">{{ scope.row.name }} --  {{ scope.$index }}</span>
         </template>
       </el-table-column>
       <el-table-column label="状态" min-width="100">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-switch v-model="scope.row.status"></el-switch>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="220">
-        <template slot-scope="scope">
+        <template v-slot="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           <el-button size="mini" type="success" @click="handleDelete(scope.$index, scope.row)">
