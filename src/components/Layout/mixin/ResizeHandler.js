@@ -35,7 +35,10 @@ export default {
       if (!hidden) {
         const isMobile = this.$_isMobile();
         store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop');
-        isMobile && store.dispatch('app/closeSideBar');
+        if (isMobile) {
+          store.dispatch('app/closeSideBar');
+          store.dispatch('setting/changeSetting', {layout: 'sideMenu'});
+        }
       }
     }
   }
