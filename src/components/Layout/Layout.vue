@@ -1,27 +1,19 @@
 <template>
-  <div>
-    <side-menu-layout v-if="setting.layout === 'sideMenu'"/>
-<!--    <top-menu-layout v-else/>-->
-<!--    <SettingDrawer/>-->
-  </div>
+  <component :is="componentId"></component>
 </template>
 <script>
 
-  import SideMenuLayout from "@/components/Layout/SideMenuLayout/SideMenuLayout";
-  import TopMenuLayout from "@/components/Layout/TopMenuLayout/TopMenuLayout";
-  // import SettingDrawer from "@/components/SettingDrawer/SettingDrawer";
-  import {mapGetters} from 'vuex'
+import LayoutSideMenu from "@/components/Layout/LayoutSideMenu";
+import LayoutTopMenu from "@/components/Layout/LayoutTopMenu";
+import {mapGetters} from 'vuex'
 
-  export default {
-    name: 'Layout',
-    components: {
-      SideMenuLayout,
-      TopMenuLayout,
-      // SettingDrawer
-
-    },
-    computed: {
-      ...mapGetters(['setting']),
+export default {
+  name: 'Layout',
+  computed: {
+    ...mapGetters(['setting']),
+    componentId() {
+      return this.setting.layout === 'sideMenu' ? LayoutSideMenu : LayoutTopMenu;
     }
-  };
+  }
+};
 </script>

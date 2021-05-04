@@ -1,6 +1,10 @@
 <template>
-  <div>
-<!--    <Theme :primary-color="primaryColor"></Theme>-->
+  <div class="container">
+    <div class="icon-setting-wrap flex-col-center" @click="toggleDrawer">
+      <i class="el icon-more-vertical"></i>
+    </div>
+
+    <!--    <Theme :primary-color="primaryColor"></Theme>-->
     <el-drawer
       title="系统布局设置"
       v-model="visible"
@@ -78,197 +82,212 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue';
-  import {mapGetters} from 'vuex';
-  import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
+import {mapGetters} from 'vuex';
+import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 
-  export default {
-    components: {Theme},
-    data() {
-      return {
-        visible: false,
-        direction: 'rtl',
-        size: '260px',
-        showClose: true,
-        color1: '',
-        selectedMenuTheme: 'dark',
-        menuThemes: [
-          {
-            theme: 'light',
-            label: '亮色菜单风格',
-            img: 'https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg',
-            checked: false
-          },
-          {
-            theme: 'dark',
-            label: '暗色菜单风格',
-            img: 'https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg',
-            checked: false
-          },
-          {
-            theme: 'other',
-            label: '暗色菜单风格',
-            img: 'https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg',
-            checked: false
-          }
-        ],
-        colorList: [
-          {key: '默认', color: '#409EFF'},
-          {key: '薄暮', color: '#F5222D'},
-          {key: '火山', color: '#FA541C'},
-          {key: '日暮', color: '#FAAD14'},
-          {key: '明青', color: '#13C2C2'},
-          {key: '极光绿', color: '#52C41A'},
-          {key: '极客蓝', color: '#2F54EB'},
-          {key: '酱紫', color: '#722ED1'}
-        ],
-        layoutMenus: [
-          {
-            theme: 'sideMenu',
-            label: '侧边菜单布局',
-            img: 'https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg',
-            checked: false
-          },
-          {
-            theme: 'topMenu',
-            label: '顶部菜单布局',
-            img: 'https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg',
-            checked: false
-          },
-          {
-            theme: 'mixMenu',
-            label: '混合菜单布局',
-            img: 'https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg',
-            checked: false
-          },
-        ],
+export default {
+  components: {Theme},
+  data() {
+    return {
+      visible: false,
+      direction: 'rtl',
+      size: '260px',
+      showClose: true,
+      color1: '',
+      selectedMenuTheme: 'dark',
+      menuThemes: [
+        {
+          theme: 'light',
+          label: '亮色菜单风格',
+          img: 'https://gw.alipayobjects.com/zos/rmsportal/LCkqqYNmvBEbokSDscrm.svg',
+          checked: false
+        },
+        {
+          theme: 'dark',
+          label: '暗色菜单风格',
+          img: 'https://gw.alipayobjects.com/zos/rmsportal/jpRkZQMyYRryryPNtyIC.svg',
+          checked: false
+        },
+        {
+          theme: 'other',
+          label: '暗色菜单风格',
+          img: 'https://gw.alipayobjects.com/zos/antfincdn/hmKaLQvmY2/LCkqqYNmvBEbokSDscrm.svg',
+          checked: false
+        }
+      ],
+      colorList: [
+        {key: '默认', color: '#409EFF'},
+        {key: '薄暮', color: '#F5222D'},
+        {key: '火山', color: '#FA541C'},
+        {key: '日暮', color: '#FAAD14'},
+        {key: '明青', color: '#13C2C2'},
+        {key: '极光绿', color: '#52C41A'},
+        {key: '极客蓝', color: '#2F54EB'},
+        {key: '酱紫', color: '#722ED1'}
+      ],
+      layoutMenus: [
+        {
+          theme: 'sideMenu',
+          label: '侧边菜单布局',
+          img: 'https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg',
+          checked: false
+        },
+        {
+          theme: 'topMenu',
+          label: '顶部菜单布局',
+          img: 'https://gw.alipayobjects.com/zos/antfincdn/URETY8%24STp/KDNDBbriJhLwuqMoxcAr.svg',
+          checked: false
+        },
+        {
+          theme: 'mixMenu',
+          label: '混合菜单布局',
+          img: 'https://gw.alipayobjects.com/zos/antfincdn/x8Ob%26B8cy8/LCkqqYNmvBEbokSDscrm.svg',
+          checked: false
+        },
+      ],
+    }
+  },
+  computed: {
+    ...mapGetters(['setting']),
+    navBar: {
+      get() {
+        return this.setting.navBar;
+      },
+      set() {
+        this.$store.dispatch('setting/toggleSetting', 'navBar');
       }
     },
-    computed: {
-      ...mapGetters(['setting']),
-      navBar: {
-        get() {
-          return this.setting.navBar;
-        },
-        set() {
-          this.$store.dispatch('setting/toggleSetting', 'navBar');
-        }
+    sidebarLogo: {
+      get() {
+        return this.setting.sidebarLogo;
       },
-      sidebarLogo: {
-        get() {
-          return this.setting.sidebarLogo;
-        },
-        set() {
-          this.$store.dispatch('setting/toggleSetting', 'sidebarLogo');
-        }
-      },
-      fixedHeader: {
-        get() {
-          return this.setting.fixedHeader;
-        },
-        set() {
-          this.$store.dispatch('setting/toggleSetting', 'fixedHeader');
-        }
-      },
-      tagView: {
-        get() {
-          return this.setting.tagView;
-        },
-        set() {
-          this.$store.dispatch('setting/toggleSetting', 'tagView');
-        }
-      },
-      primaryColor: {
-        get() {
-          return this.setting.primaryColor;
-        },
-        set(val) {
-          this.$store.dispatch('setting/changeSetting', {primaryColor: val});
-        }
+      set() {
+        this.$store.dispatch('setting/toggleSetting', 'sidebarLogo');
       }
     },
-    created() {
-      Vue.createApp({}).config.globalProperties.$setting = this;
+    fixedHeader: {
+      get() {
+        return this.setting.fixedHeader;
+      },
+      set() {
+        this.$store.dispatch('setting/toggleSetting', 'fixedHeader');
+      }
     },
-    methods: {
-      toggleDrawer() {
-        this.visible = !this.visible;
+    tagView: {
+      get() {
+        return this.setting.tagView;
       },
-      handleMenuTheme() {
-
+      set() {
+        this.$store.dispatch('setting/toggleSetting', 'tagView');
+      }
+    },
+    primaryColor: {
+      get() {
+        return this.setting.primaryColor;
       },
-      // 主题色切换事件
-      themeColorChange(colorString) {
-        this.primaryColor = colorString;
-      },
-      handleChangeNav(theme) {
-        this.$store.dispatch('setting/changeSetting', {layout: theme});
+      set(val) {
+        this.$store.dispatch('setting/changeSetting', {primaryColor: val});
       }
     }
-  };
-</script>
-<style lang="scss" scoped>
-  .drawer-container {
-    padding: 0 24px 24px 24px;
-    font-size: 14px;
-    line-height: 1.5;
-    word-wrap: break-word;
+  },
+  created() {
+    // Vue.createApp({}).config.globalProperties.$setting = this;
+  },
+  methods: {
+    toggleDrawer() {
+      this.visible = !this.visible;
+    },
+    handleMenuTheme() {
 
-    .setting-group {
-      .setting-title {
-        font-size: 14px;
-        color: rgba(0, 0, 0, .85);
-      }
-
-      .setting-item {
-        position: relative;
-        margin-right: 16px;
-        cursor: pointer;
-
-        img {
-          width: 48px;
-        }
-
-        i.el-icon-check {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin-left: -8px;
-          margin-top: -8px;
-          color: #1890ff;
-          font-size: 16px;
-          font-weight: bolder;
-        }
-      }
-
-      .color-block {
-        width: 20px;
-        height: 20px;
-        border-radius: 2px;
-        float: left;
-        cursor: pointer;
-        margin-right: 8px;
-        padding-left: 0px;
-        padding-right: 0px;
-        text-align: center;
-        color: #fff;
-        font-weight: 700;
-
-        i.el-icon-check {
-          font-size: 14px;
-        }
-      }
-    }
-
-    .drawer-item {
-      color: rgba(0, 0, 0, .65);
-      font-size: 14px;
-      padding: 12px 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    },
+    // 主题色切换事件
+    themeColorChange(colorString) {
+      this.primaryColor = colorString;
+    },
+    handleChangeNav(theme) {
+      this.$store.dispatch('setting/changeSetting', {layout: theme});
     }
   }
+};
+</script>
+<style lang="scss" scoped>
+.container {
+  .icon-setting-wrap {
+    width: 35px;
+    height: 50px;
+    cursor: pointer;
+
+    &.dart {
+      color: white;
+    }
+
+    &.light {
+      color: #303133;
+    }
+  }
+}
+
+.drawer-container {
+  padding: 0 24px 24px 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+
+  .setting-group {
+    .setting-title {
+      font-size: 14px;
+      color: rgba(0, 0, 0, .85);
+    }
+
+    .setting-item {
+      position: relative;
+      margin-right: 16px;
+      cursor: pointer;
+
+      img {
+        width: 48px;
+      }
+
+      i.el-icon-check {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -8px;
+        margin-top: -8px;
+        color: #1890ff;
+        font-size: 16px;
+        font-weight: bolder;
+      }
+    }
+
+    .color-block {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+      float: left;
+      cursor: pointer;
+      margin-right: 8px;
+      padding-left: 0px;
+      padding-right: 0px;
+      text-align: center;
+      color: #fff;
+      font-weight: 700;
+
+      i.el-icon-check {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .drawer-item {
+    color: rgba(0, 0, 0, .65);
+    font-size: 14px;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
 
 </style>

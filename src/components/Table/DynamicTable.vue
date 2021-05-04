@@ -19,8 +19,6 @@
               :size="tableSize"
               :stripe="stripe"
               v-loading="loading"
-              :height="height"
-              :max-height="maxHeight"
               :row-key="rowKey"
               :tree-props="treeProps"
               tooltip-effect="light">

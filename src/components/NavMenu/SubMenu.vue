@@ -14,12 +14,18 @@
   </div>
 </template>
 <script>
+
   import ItemMenu from "@/components/NavMenu/ItemMenu";
 
   export default {
     name: 'SubMenu',
     components: {
       ItemMenu
+    },
+    data(){
+      return {
+        logo: process.env.VUE_APP_LOGO
+      }
     },
     props: {
       menu: {

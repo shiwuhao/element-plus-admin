@@ -1,5 +1,5 @@
-import SideMenuLayout from "@/components/Layout/SideMenuLayout/SideMenuLayout";
-import TopMenuLayout from "@/components/Layout/TopMenuLayout/TopMenuLayout";
+import SideMenuLayout from "@/components/Layout/LayoutSideMenu";
+import TopMenuLayout from "@/components/Layout/LayoutTopMenu";
 import Layout from "@/components/Layout/Layout";
 
 export {SideMenuLayout, TopMenuLayout};

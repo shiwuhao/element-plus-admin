@@ -1,11 +1,14 @@
 @import "./variables.scss";
 @import "./flex.scss";
 @import "./sidebar.scss";
+@import "//at.alicdn.com/t/font_1804572_rvlqc2mxcs.css";
+
 
 .el-drawer__container div, .el-drawer__header span:focus {
   outline: 0;
 }
-.el-card__header{
+
+.el-card__header {
   padding: 10px 20px !important;
   font-size: 14px;
 }
@@ -44,28 +47,4 @@ body {
   height: 100%;
   position: absolute;
   z-index: 100;
-}
-
-.icon-setting-wrap {
-  width: 35px;
-  height: 35px;
-  margin-right: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-
-  &:hover {
-    background: #F2F6FC;
-  }
-
-  i {
-    display: block;
-    font-size: 20px;
-    padding: 0 10px;
-  }
-}
-.top-menu-layout .icon-setting-wrap{
-  color: white;;
-  &:hover {
-    background: #606266;
-  }
 }

@@ -22,7 +22,8 @@ const userInfoData = {
     data: {
       user: {
         email: 'shiwuhao@juzifenqi.com',
-        real_name: '石武浩2',
+        real_name: '石武浩',
+        display_name: '石武浩',
         avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
       },
       roles: ['Administrator'],
@@ -31,7 +32,7 @@ const userInfoData = {
 };
 
 const userListData = Mock.mock({
-  'data|15': [{
+  'data|35': [{
     'id|+1': 1,
     'email': '@email',
     'name': '@name',
@@ -43,7 +44,7 @@ const userListData = Mock.mock({
     from: 16,
     last_page: 5,
     path: "http://user-operate.juzifenqi.com:8080/api/users",
-    per_page: 15,
+    per_page: 35,
     to: 30,
     total: 73,
   }

@@ -2,8 +2,9 @@
   <el-card>
     <div class="flex-row-justify">
       <query-form style="width: 100%;" :options="queryFormOptions" size="mini" clearable @search="handleSearch">
-        <el-button slot="button" type="primary" size="mini">新增
-        </el-button>
+        <template v-slot:button>
+          <el-button type="primary" size="mini">新增</el-button>
+        </template>
       </query-form>
     </div>
     <dynamic-table ref="table"
@@ -15,8 +16,8 @@
                    :paginate="tablePaginate"
                    @change-page="changePage">
       <el-table-column label="操作">
-        <el-button type="primary" size="mini">编辑</el-button>
-        <el-button type="danger" size="mini">删除</el-button>
+        <el-button type="text"  size="mini">编辑</el-button>
+        <el-button type="text" size="mini">删除</el-button>
       </el-table-column>
     </dynamic-table>
   </el-card>

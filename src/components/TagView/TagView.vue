@@ -36,6 +36,7 @@
     padding: 0 10px;
 
     .scroll-container {
+      background: white;
       line-height: 30px;
 
       .tag-item {
