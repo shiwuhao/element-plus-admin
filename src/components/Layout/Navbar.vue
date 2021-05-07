@@ -4,9 +4,11 @@
       <i class="collapse" :class="[sidebar.collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']" @click="toggleSideBar"/>
       <breadcrumb/>
     </div>
-    <div class="right flex-row-justify" :class="[setting.layout === 'sideMenu' ? 'light' : 'dart']">
-      <personal-avatar class="right-item"/>
-      <setting-drawer class="right-item" ref="Setting"/>
+    <div class="action flex-row-justify" :class="[setting.layout === 'sideMenu' ? 'light' : 'dart']">
+      <Notify class="action-item" />
+      <FullScreen class="action-item"/>
+      <PersonalAvatar class="action-item"/>
+      <SettingDrawer class="action-item" ref="Setting"/>
     </div>
   </div>
 </template>
@@ -15,12 +17,14 @@
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PersonalAvatar from "@/components/PersonalAvatar/PersonalAvatar";
 import SettingDrawer from "@/components/SettingDrawer/SettingDrawer";
+import FullScreen from "@/components/Layout/FullScreen";
+import Notify from "@/components/Layout/Notify";
 
 import {mapGetters} from 'vuex';
 
 export default {
   name: 'NavBar',
-  components: {SettingDrawer, Breadcrumb, PersonalAvatar},
+  components: {SettingDrawer, Breadcrumb, PersonalAvatar, FullScreen, Notify},
   computed: {
     ...mapGetters(['setting', 'sidebar']),
   },
@@ -56,17 +60,28 @@ export default {
     }
   }
 
-  .right {
-    &.light ::v-deep .right-item {
-      :hover {
-        background: #EBEEF5;
+  .action {
+    ::v-deep .action-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+      height: 50px;
+      padding: 0 10px;
+      cursor: pointer;
+
+      &.fullscreen-action {
+        //background: red;
       }
     }
 
-    &.dart ::v-deep .right-item {
-      :hover {
-        background: #606266;
-      }
+    &.light ::v-deep .action-item:hover {
+      background: #EBEEF5;
+    }
+
+    &.dart ::v-deep .action-item:hover {
+      background: #606266;
     }
   }
 }

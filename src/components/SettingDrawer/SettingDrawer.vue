@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="icon-setting-wrap flex-col-center" @click="toggleDrawer">
-      <i class="el icon-more-vertical"></i>
+      <i class="iconfont icon-more-vertical"></i>
     </div>
 
     <!--    <Theme :primary-color="primaryColor"></Theme>-->
@@ -213,8 +213,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   .icon-setting-wrap {
-    width: 35px;
-    height: 50px;
+    //width: 35px;
+    //height: 50px;
     cursor: pointer;
 
     &.dart {

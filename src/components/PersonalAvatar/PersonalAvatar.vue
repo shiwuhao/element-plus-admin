@@ -32,10 +32,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   .avatar {
-    height: 50px;
     cursor: pointer;
-    font-size: 12px;
-    padding: 0 5px;
+    font-size: 1.2em;
 
     .el-avatar {
       -webkit-transform: scale(0.85);
