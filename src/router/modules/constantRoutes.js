@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/layouts/index.vue";
 
 export default [
   {

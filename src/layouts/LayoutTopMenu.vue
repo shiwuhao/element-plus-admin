@@ -26,10 +26,10 @@
 import PersonalAvatar from "@/components/PersonalAvatar/PersonalAvatar";
 import SettingDrawer from "@/components/SettingDrawer/SettingDrawer";
 import NavMenu from "@/components/NavMenu/NavMenu";
-import Navbar from "@/components/Layout/Navbar";
+import Navbar from "@/layouts/Navbar";
 import TagView from "@/components/TagView/TagView";
-import RouteView from "@/components/Layout/RouteView";
-import ResizeMixin from '@/components/Layout/mixin/ResizeHandler'
+import RouteView from "@/layouts/RouteView";
+import ResizeMixin from '@/layouts/mixin/ResizeHandler'
 import {mapGetters} from 'vuex';
 
 export default {

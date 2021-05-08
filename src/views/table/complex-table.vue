@@ -113,7 +113,7 @@ const cascaderData = [
         children: [
           {
             value: 'layout',
-            label: 'Layout 布局'
+            label: 'layouts 布局'
           },
           {
             value: 'color',

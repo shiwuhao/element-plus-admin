@@ -17,8 +17,8 @@
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PersonalAvatar from "@/components/PersonalAvatar/PersonalAvatar";
 import SettingDrawer from "@/components/SettingDrawer/SettingDrawer";
-import FullScreen from "@/components/Layout/FullScreen";
-import Notify from "@/components/Layout/Notify";
+import FullScreen from "@/layouts/FullScreen";
+import Notify from "@/layouts/Notify";
 
 import {mapGetters} from 'vuex';
 

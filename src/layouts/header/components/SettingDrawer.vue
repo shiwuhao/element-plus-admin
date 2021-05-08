@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div :class="theme" class="icon-setting-wrap flex-col-center" @click="toggleDrawer">
-      <i class="iconfont icon-more-vertical"></i>
+      <i class="el-icon-setting"></i>
     </div>
 
     <!--    <Theme :primary-color="primaryColor"></Theme>-->
@@ -87,7 +87,7 @@ import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 
 export default {
   components: {Theme},
-  props:['theme'],
+  props: ['theme'],
   data() {
     return {
       visible: false,
@@ -214,19 +214,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   .icon-setting-wrap {
-    //width: 35px;
-    //height: 50px;
-    cursor: pointer;
+    height: 49px;
+    padding: 0 10px;
 
-    &.dart {
-      color: white;
-      i{
-        font-weight: bold !important;
-      }
-    }
-
-    &.light {
-      color: #303133;
+    &.dart i {
+      font-weight: bold;
     }
   }
 }

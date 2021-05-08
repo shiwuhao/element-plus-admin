@@ -3,10 +3,10 @@
 </template>
 <script>
 
-import LayoutSideMenu from "@/components/Layout/LayoutSideMenu";
-import LayoutTopMenu from "@/components/Layout/LayoutTopMenu";
+import LayoutSideMenu from "@/layouts/LayoutSideMenu";
+import LayoutTopMenu from "@/layouts/LayoutTopMenu";
 import {mapGetters} from 'vuex'
-import ResizeMixin from "@/components/Layout/mixin/ResizeHandler";
+import ResizeMixin from "@/layouts/mixin/ResizeHandler";
 
 export default {
   name: 'Layout',

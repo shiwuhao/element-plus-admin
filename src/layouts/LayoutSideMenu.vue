@@ -22,11 +22,11 @@
   </el-container>
 </template>
 <script>
-import Navbar from "@/components/Layout/Navbar";
+import Navbar from "@/layouts/Navbar";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import TagView from "@/components/TagView/TagView";
-import RouteView from "@/components/Layout/RouteView";
-import ResizeMixin from '@/components/Layout/mixin/ResizeHandler'
+import RouteView from "@/layouts/RouteView";
+import ResizeMixin from '@/layouts/mixin/ResizeHandler'
 import {mapGetters} from 'vuex';
 
 export default {
