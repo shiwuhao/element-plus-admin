@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-wrapper">
+  <div class="sidebar-container">
     <el-scrollbar>
       <el-menu
         :class="mode === 'vertical'? 'menu-vertical' : 'menu-horizontal'"
@@ -9,10 +9,10 @@
         :active-text-color="variables.menuActiveText"
         :unique-opened="uniqueOpened"
         :collapse-transition="collapseTransition"
-        :collapse="mode === 'vertical' ? isCollapse : false"
+        :collapse="getMenuSetting.collapse"
         :router="true"
         :mode="mode">
-        <logo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>
+                <logo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>
         <sub-menu v-for="menu in menus" :index="menu.path" :key="menu.path" :menu="menu"/>
       </el-menu>
     </el-scrollbar>
@@ -20,13 +20,11 @@
 </template>
 <script>
 import {mapGetters} from 'vuex'
-import variables from '@/styles/variables.scss';
 import SubMenu from "@/components/NavMenu/SubMenu";
 import Logo from "@/components/NavMenu/Logo";
-import {defineComponent} from 'vue'
 
 
-export default defineComponent({
+export default {
   name: 'LayoutMenu',
   components: {
     SubMenu, Logo
@@ -39,12 +37,13 @@ export default defineComponent({
   },
   data() {
     return {
+      toggle: false,
       uniqueOpened: true, // 是否只保持一个子菜单的展开
       collapseTransition: true,// 是否开启折叠动画
     }
   },
   computed: {
-    ...mapGetters(['setting', 'sidebar', 'menus', 'device']),
+    ...mapGetters(['setting', 'sidebar', 'menus', 'device', 'getMenuSetting']),
     variables() {
       return {
         menuBg: '#222d32',
@@ -61,9 +60,23 @@ export default defineComponent({
     },
     // 是否水平折叠收起菜单
     isCollapse() {
-      return !!this.sidebar.collapse;
-    }
+      return !!false;
+    },
   },
 
-});
+};
 </script>
+<style lang="scss" scoped>
+.sidebar-container {
+  height: 100vh;
+
+  .menu-vertical {
+    height: 100%;
+    border: 0;
+  }
+
+  ::v-deep .el-scrollbar .el-scrollbar__view {
+    height: 100%;
+  }
+}
+</style>

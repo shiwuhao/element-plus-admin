@@ -120,20 +120,16 @@ export default {
       const {key} = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({path: this.redirect || '/', query: this.otherQuery})
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
-        } else {
-          return false
-        }
-      })
+    async handleLogin() {
+      const valid = await this.$refs.loginForm.validate();
+      if (!valid) return;
+      this.loading = true;
+      const {access_token} = await this.$store.dispatch('user/login', this.loginForm);
+      console.log(access_token);
+      if (access_token) {
+        await this.$router.push({path: this.redirect || '/', query: this.otherQuery});
+        this.loading = false
+      }
     },
     showPwd() {
       if (this.passwordType === 'password') {

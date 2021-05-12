@@ -1,8 +1,9 @@
 <template>
-  <el-header :class="theme" class="header-container flex-row-justify" height="50px">
+  <div :class="theme" class="header-container flex-row-justify">
     <!-- left start-->
     <div class="header-left flex-row-left">
       <Logo :theme="theme"/>
+      <HeaderTrigger :theme="theme"/>
       <Breadcrumb :theme="theme"/>
     </div>
     <!-- left end-->
@@ -22,7 +23,7 @@
     </div>
     <!--  right end  -->
 
-  </el-header>
+  </div>
 </template>
 
 <script>
@@ -33,10 +34,11 @@ import UserDropdown from "@/layouts/header/components/UserDropdown";
 import Breadcrumb from "@/layouts/header/components/Breadcrumb";
 import SettingDrawer from "@/layouts/header/components/SettingDrawer";
 import LayoutMenu from '@/layouts/menu/index';
+import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
 
 export default {
   name: "LayoutHeader",
-  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, SettingDrawer},
+  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, SettingDrawer, HeaderTrigger},
   data() {
     return {
       theme: 'light',

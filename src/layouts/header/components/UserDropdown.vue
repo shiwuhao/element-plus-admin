@@ -2,8 +2,8 @@
   <div class="container">
     <el-dropdown size="small" trigger="click">
       <div :class="theme" class="avatar flex-row-center">
-        <el-avatar :size="30" :src="user.avatar">{{ user.display_name }}</el-avatar>
-        <span class="name">{{ user.display_name }}</span>
+        <el-avatar :size="30" :src="getUser.avatar">{{ getUser.display_name }}</el-avatar>
+        <span class="name">{{ getUser.display_name }}</span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -21,13 +21,12 @@ import {mapGetters} from 'vuex';
 export default {
   props: ['theme'],
   computed: {
-    ...mapGetters(['user']),
+    ...mapGetters(['getUser']),
   },
   methods: {
-    logout() {
-      this.$store.dispatch('user/logout').then(() => {
-        location.reload();
-      })
+    async logout() {
+      await this.$store.dispatch('user/logout');
+      location.reload();
     }
   }
 };

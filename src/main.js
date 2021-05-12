@@ -9,4 +9,8 @@ import '@/mock/index';
 const app = createApp(App).use(store).use(router)
 installElementPlus(app)
 installContentment(app)
+
+import {ProjectConfig} from "@/settings/config";
+store.dispatch('app/setProjectConfig',ProjectConfig)
+
 app.mount('#app')

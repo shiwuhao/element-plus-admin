@@ -1,15 +1,13 @@
 <template>
   <el-drawer
     v-if="isMobile"
-    title="我是标题"
     v-model="drawer"
-    direction="ltr"
-    :before-close="handleClose" destroy-on-close>
-    <span>我来啦!</span>
-  </el-drawer>
-  <el-scrollbar style="width: 100%;">
+    :size="250"
+    :with-header="false"
+    direction="ltr">
     <LayoutMenu/>
-  </el-scrollbar>
+  </el-drawer>
+  <LayoutMenu v-else/>
 </template>
 
 <script>
@@ -20,7 +18,8 @@ export default {
   components: {LayoutMenu},
   data() {
     return {
-      isMobile:false,
+      isMobile: false,
+      drawer: false,
     };
   }
 }
