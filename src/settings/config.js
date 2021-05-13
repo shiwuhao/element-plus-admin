@@ -5,12 +5,12 @@
 export const MenuSetting = {
   mode: 'vertical',
   collapse: false,
-  backgroundColor: 'white',
-  textColor: '#303133',
+  backgroundColor: '#222d32',
+  textColor: '#fff',
   activeTextColor: '#409EFF',
-  uniqueOpened: false,
+  uniqueOpened: true,
   menuTrigger: 'hover',
-  router: false,
+  router: true,
   collapseTransition: true,
 }
 

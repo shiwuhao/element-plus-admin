@@ -1,27 +1,29 @@
 <template>
-  <span @click="toggleCollapsed">
-    <i :class="[getMenuSetting.collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']"></i>
+  <div class="container flex-col-center" @click="toggleCollapsed">
+    <span :class="getDarkMode">
+    <i :class="[getCollapsed ? 'el-icon-s-unfold' : 'el-icon-s-fold']"></i>
   </span>
+  </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {useMenuSetting} from '@/hooks/setting/useMenuSeeting'
 
 export default {
   name: "HeaderTrigger",
-  props: ['theme'],
-  computed: {
-    ...mapGetters(['getMenuSetting'])
-  },
-  methods: {
-    toggleCollapsed() {
-      const menuSetting = {...this.getMenuSetting, ...{collapse: !this.getMenuSetting.collapse}}
-      this.$store.dispatch('app/setProjectConfig', {menuSetting})
+  setup() {
+    const {getDarkMode, getCollapsed, toggleCollapsed} = useMenuSetting();
+    return {
+      getDarkMode,
+      getCollapsed,
+      toggleCollapsed
     }
   }
 }
 </script>
-
-<style scoped>
-
+<style lang="scss" scoped>
+.container {
+  height: 49px;
+  padding: 0 10px;
+}
 </style>

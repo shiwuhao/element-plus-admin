@@ -3,7 +3,7 @@
     <!-- left start-->
     <div class="header-left flex-row-left">
       <Logo :theme="theme"/>
-      <HeaderTrigger :theme="theme"/>
+      <HeaderTrigger :theme="theme" class="action-item"/>
       <Breadcrumb :theme="theme"/>
     </div>
     <!-- left end-->
@@ -54,7 +54,7 @@ export default {
   padding: 0 0;
   border-bottom: 1px solid #E4E7ED;
 
-  .header-right .action-item {
+  .action-item {
     cursor: pointer;
   }
 
@@ -63,7 +63,7 @@ export default {
     font-weight: bold;
     background: #000000;
 
-    .header-right .action-item:hover {
+    .action-item:hover {
       background: #606266;
     }
   }
@@ -72,7 +72,7 @@ export default {
     color: #303133;
     background: white;
 
-    .header-right .action-item:hover {
+    .action-item:hover {
       background: #F2F6FC;
     }
   }

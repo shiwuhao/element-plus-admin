@@ -22,7 +22,7 @@
   </el-container>
 </template>
 <script>
-import Navbar from "@/layouts/Navbar";
+import Navbar from "@/layouts/Navbar_bak";
 import NavMenu from "@/components/NavMenu/NavMenu";
 import TagView from "@/components/TagView/TagView";
 import RouteView from "@/layouts/RouteView";

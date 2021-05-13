@@ -5,11 +5,11 @@ import {useStore} from 'vuex';
  * 菜单设置
  * @returns {{toggleCollapsed: toggleCollapsed, getCollapsed}}
  */
-export function useMenuSetting() {
+export function useRootSetting() {
 
   const {dispatch, getters} = useStore();
   const getMenuSetting = computed(() => getters.getMenuSetting);
-  const getCollapsed = computed(() => getters.getMenuSetting.collapse);
+  const getCollapsed = computed(() => unref(getMenuSetting).collapse);
   const getDarkMode = computed(() => getters.getDarkMode);
 
   /**
@@ -24,7 +24,7 @@ export function useMenuSetting() {
    * 菜单水平折叠收起
    */
   async function toggleCollapsed() {
-    await setMenuSetting({...unref(getMenuSetting), collapse: !unref(getCollapsed)});
+    await setMenuSetting({collapse: !unref(getCollapsed)});
   }
 
   return {

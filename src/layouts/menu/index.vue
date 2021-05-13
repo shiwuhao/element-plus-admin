@@ -1,78 +1,83 @@
 <template>
   <div class="sidebar-container">
     <el-scrollbar>
-      <el-menu
-        :class="mode === 'vertical'? 'menu-vertical' : 'menu-horizontal'"
-        :default-active="activeMenu"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText"
-        :unique-opened="uniqueOpened"
-        :collapse-transition="collapseTransition"
-        :collapse="getMenuSetting.collapse"
-        :router="true"
-        :mode="mode">
-                <logo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>
-        <sub-menu v-for="menu in menus" :index="menu.path" :key="menu.path" :menu="menu"/>
+      <el-menu v-bind="getMenuSetting" :default-active="defaultActive">
+        <!--        <logo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>-->
+        <sub-menu v-for="menu in getMenus" :index="menu.path" :key="menu.path" :menu="menu"/>
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex'
 import SubMenu from "@/components/NavMenu/SubMenu";
 import Logo from "@/components/NavMenu/Logo";
-
+import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
+import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
+import {computed} from "vue";
+import {useRouter} from 'vue-router';
 
 export default {
   name: 'LayoutMenu',
   components: {
     SubMenu, Logo
   },
-  props: {
-    mode: {
-      type: String,
-      default: 'vertical'
-    }
-  },
-  data() {
+  setup() {
+    const {currentRoute: {meta, path}} = useRouter();
+    const {getMenuSetting} = useMenuSetting();
+    const defaultActive = computed(() => meta && meta.activeMenu ? meta.activeMenu : path);
+    const {getMenus} = useLayoutMenus();
     return {
-      toggle: false,
-      uniqueOpened: true, // 是否只保持一个子菜单的展开
-      collapseTransition: true,// 是否开启折叠动画
+      getMenuSetting,
+      defaultActive,
+      getMenus
     }
   },
-  computed: {
-    ...mapGetters(['setting', 'sidebar', 'menus', 'device', 'getMenuSetting']),
-    variables() {
-      return {
-        menuBg: '#222d32',
-        menuText: '#fff',
-        menuActiveText: this.setting.primaryColor,
-        // ...variables,
-      };
-    },
-    // 激活菜单
-    activeMenu() {
-      const route = this.$route;
-      const {meta, path} = route;
-      return meta.activeMenu ? meta.activeMenu : path;
-    },
-    // 是否水平折叠收起菜单
-    isCollapse() {
-      return !!false;
-    },
-  },
-
 };
 </script>
 <style lang="scss" scoped>
 .sidebar-container {
   height: 100vh;
 
-  .menu-vertical {
+  ::v-deep .el-menu {
     height: 100%;
     border: 0;
+
+    .sub-menu-wrapper > .el-menu-item {
+      padding-left: 15px !important;
+
+      & > div {
+        padding: 0 15px !important;
+      }
+    }
+
+    .el-submenu .el-submenu__title {
+      padding-left: 15px !important;
+    }
+
+    &.el-menu--collapse {
+      width: 50px;
+    }
+
+    &:not(.el-menu--collapse) {
+      width: 200px;
+    }
+
+    &.el-menu--collapse > div > .el-submenu > .el-submenu__title span {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
+      display: inline-block;
+    }
+  }
+
+  .el-menu:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
+
+  .el-menu:not(.el-menu--horizontal) {
+    height: 100%;
   }
 
   ::v-deep .el-scrollbar .el-scrollbar__view {

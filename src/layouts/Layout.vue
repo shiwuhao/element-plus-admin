@@ -1,5 +1,5 @@
 <template>
-  <component :is="componentId"></component>
+<!--  <component :is="componentId"></component>-->
 </template>
 <script>
 

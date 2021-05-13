@@ -8,7 +8,6 @@ const app = {
   mutations: {
     setProjectConfig: (state, projectConfig) => {
       state.projectConfig = {...state.projectConfig, ...projectConfig};
-      console.log(state.projectConfig);
     }
   },
   actions: {

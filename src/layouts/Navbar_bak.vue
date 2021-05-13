@@ -17,14 +17,14 @@
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import PersonalAvatar from "@/components/PersonalAvatar/PersonalAvatar";
 import SettingDrawer from "@/components/SettingDrawer/SettingDrawer";
-import FullScreen from "@/layouts/FullScreen";
+// import FullScreen from "@/layouts/FullScreenBak";
 import Notify from "@/layouts/Notify";
 
 import {mapGetters} from 'vuex';
 
 export default {
   name: 'NavBar',
-  components: {SettingDrawer, Breadcrumb, PersonalAvatar, FullScreen, Notify},
+  components: {SettingDrawer, Breadcrumb, PersonalAvatar, Notify},
   computed: {
     ...mapGetters(['setting', 'sidebar']),
   },
