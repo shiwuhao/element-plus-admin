@@ -2,15 +2,15 @@
   <div class="sidebar-container">
     <el-scrollbar>
       <el-menu v-bind="getMenuSetting" :default-active="defaultActive">
-        <!--        <logo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>-->
+        <!--        <SidebarLogo class="logo" v-if="setting.sidebarLogo" :collapse="isCollapse"/>-->
         <sub-menu v-for="menu in getMenus" :index="menu.path" :key="menu.path" :menu="menu"/>
       </el-menu>
     </el-scrollbar>
   </div>
 </template>
 <script>
-import SubMenu from "@/components/NavMenu/SubMenu";
-import Logo from "@/components/NavMenu/Logo";
+import SubMenu from "@/layouts/menu/SubMenu";
+import SidebarLogo from "@/layouts/menu/SidebarLogo";
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
 import {computed} from "vue";
@@ -19,7 +19,7 @@ import {useRouter} from 'vue-router';
 export default {
   name: 'LayoutMenu',
   components: {
-    SubMenu, Logo
+    SubMenu, SidebarLogo
   },
   setup() {
     const {currentRoute: {meta, path}} = useRouter();

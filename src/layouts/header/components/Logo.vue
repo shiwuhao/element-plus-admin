@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex-col-center">
+  <div class="container flex-row-left">
     <div class="flex-row-left">
       <img class="logo" :src="logo">
       <span class="title">{{ title }} </span>
@@ -7,28 +7,32 @@
   </div>
 </template>
 <script>
+import {useGlobalSetting} from "@/hooks/setting/useGlobalSeeting";
+
 export default {
-  data() {
+  setup() {
+    const {title, logo} = useGlobalSetting();
     return {
-      title: process.env.VUE_APP_TITLE,
-      logo: process.env.VUE_APP_LOGO
+      title,
+      logo
     }
   },
 }
 </script>
 <style lang="scss" scoped>
 .container {
+  width: 200px;
   height: 49px;
-  padding: 0 10px;
 
   .logo {
+    padding-left: 10px;
     height: 35px;
   }
 
   .title {
     font-size: 15px;
     font-weight: bold;
-    padding-left: 5px;
+    padding-left: 10px;
     margin: 0;
   }
 }

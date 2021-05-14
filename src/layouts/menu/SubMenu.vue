@@ -15,27 +15,27 @@
 </template>
 <script>
 
-  import ItemMenu from "@/components/NavMenu/ItemMenu";
+import ItemMenu from "@/layouts/menu/ItemMenu";
 
-  export default {
-    name: 'SubMenu',
-    components: {
-      ItemMenu
+export default {
+  name: 'SubMenu',
+  components: {
+    ItemMenu
+  },
+  data() {
+    return {
+      logo: process.env.VUE_APP_LOGO
+    }
+  },
+  props: {
+    menu: {
+      type: Object,
+      required: true
     },
-    data(){
-      return {
-        logo: process.env.VUE_APP_LOGO
-      }
-    },
-    props: {
-      menu: {
-        type: Object,
-        required: true
-      },
-      basePath: {
-        type: String,
-        default: '',
-      }
-    },
-  };
+    basePath: {
+      type: String,
+      default: '',
+    }
+  },
+};
 </script>

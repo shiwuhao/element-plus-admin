@@ -36,5 +36,8 @@ export const HeaderSetting = {
 export const ProjectConfig = {
   menuSetting: MenuSetting,
   headerSetting: HeaderSetting,
+  darkMode: 'light',
   showLogo: true,
+  showBreadcrumb: true,
+  showSettingDrawer: false,
 }

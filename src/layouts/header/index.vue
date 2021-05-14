@@ -1,25 +1,25 @@
 <template>
-  <div :class="theme" class="header-container flex-row-justify">
+  <div :class="getDarkMode" class="header-container flex-row-justify">
     <!-- left start-->
     <div class="header-left flex-row-left">
-      <Logo :theme="theme"/>
-      <HeaderTrigger :theme="theme" class="action-item"/>
-      <Breadcrumb :theme="theme"/>
+      <Logo v-if="getShowLogo" class="action-item"/>
+      <HeaderTrigger class="action-item"/>
+      <Breadcrumb v-if="getShowBreadcrumb"/>
     </div>
     <!-- left end-->
 
     <!--  menu start  -->
-    <div class="header-menu">
-      <!--      <LayoutMenu />-->
+    <div class="header-menu" v-if="getMenuMode === 'horizontal'">
+      <LayoutMenu/>
     </div>
     <!--  menu end  -->
 
     <!--  right start  -->
     <div class="header-right flex-row-right">
-      <Notify :theme="theme" class="action-item"/>
-      <FullScreen :theme="theme" class="action-item"/>
-      <UserDropdown :theme="theme" class="action-item"/>
-      <SettingDrawer :theme="theme" class="action-item "/>
+      <Notify class="action-item"/>
+      <FullScreen class="action-item"/>
+      <UserDropdown class="action-item"/>
+      <Setting class="action-item"/>
     </div>
     <!--  right end  -->
 
@@ -32,17 +32,24 @@ import Notify from "@/layouts/header/components/Notify";
 import FullScreen from "@/layouts/header/components/FullScreen";
 import UserDropdown from "@/layouts/header/components/UserDropdown";
 import Breadcrumb from "@/layouts/header/components/Breadcrumb";
-import SettingDrawer from "@/layouts/header/components/SettingDrawer";
+import Setting from "@/layouts/setting/index";
 import LayoutMenu from '@/layouts/menu/index';
 import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
+import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 
 export default {
   name: "LayoutHeader",
-  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, SettingDrawer, HeaderTrigger},
-  data() {
+  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
+  setup() {
+    const {getDarkMode, getShowLogo, getShowBreadcrumb} = useRootSetting();
+    const {getMenuMode} = useMenuSetting();
     return {
-      theme: 'light',
-    };
+      getDarkMode,
+      getShowLogo,
+      getShowBreadcrumb,
+      getMenuMode
+    }
   },
 }
 </script>

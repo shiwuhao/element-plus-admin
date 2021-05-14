@@ -11,6 +11,7 @@ export function useMenuSetting() {
   const getMenuSetting = computed(() => getters.getMenuSetting);
   const getCollapsed = computed(() => getters.getMenuSetting.collapse);
   const getDarkMode = computed(() => getters.getDarkMode);
+  const getMenuMode = computed(() => getters.getMenuSetting.mode);
 
   /**
    * 菜单设置
@@ -33,5 +34,6 @@ export function useMenuSetting() {
     getMenuSetting,
     getCollapsed,
     getDarkMode,
+    getMenuMode,
   };
 }
