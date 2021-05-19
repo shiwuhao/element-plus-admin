@@ -2,7 +2,7 @@
   <div class="sidebar-container">
     <el-scrollbar>
       <el-menu v-bind="getMenuSetting" :default-active="defaultActive">
-        <SidebarLogo class="logo" v-if="getShowSidebarLogo" :collapse="isCollapse"/>
+        <SidebarLogo class="logo" v-if="getShowSidebarLogo"/>
         <sub-menu v-for="menu in getMenus" :index="menu.path" :key="menu.path" :menu="menu"/>
       </el-menu>
     </el-scrollbar>
@@ -24,7 +24,7 @@ export default {
   },
   setup() {
     const {currentRoute: {meta, path}} = useRouter();
-    const {getMenuSetting} = useMenuSetting();
+    let {getMenuSetting} = useMenuSetting();
     const defaultActive = computed(() => meta && meta.activeMenu ? meta.activeMenu : path);
     const {getMenus} = useLayoutMenus();
     const {getShowSidebarLogo} = useRootSetting();
@@ -41,7 +41,7 @@ export default {
 .sidebar-container {
   height: 100vh;
 
-  ::v-deep .el-menu {
+  ::v-deep .el-menu:not(.el-menu--horizontal) {
     height: 100%;
     border: 0;
 
@@ -74,14 +74,13 @@ export default {
     }
   }
 
-  .el-menu:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
+  //.el-menu:not(.el-menu--horizontal) {
+  //
+  //  &:not(.el-menu--collapse) {
+  //    width: 200px;
+  //  }
+  //}
 
-  .el-menu:not(.el-menu--horizontal) {
-    height: 100%;
-  }
 
   ::v-deep .el-scrollbar .el-scrollbar__view {
     height: 100%;

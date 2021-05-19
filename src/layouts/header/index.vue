@@ -3,13 +3,13 @@
     <!-- left start-->
     <div class="header-left flex-row-left">
       <Logo v-if="getShowHeaderLogo" class="action-item"/>
-      <HeaderTrigger class="action-item"/>
-      <Breadcrumb v-if="getShowBreadcrumb"/>
+      <HeaderTrigger v-if="!getIsTopMenuMode" class="action-item"/>
+      <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb"/>
     </div>
     <!-- left end-->
 
     <!--  menu start  -->
-    <div class="header-menu" v-if="getMenuMode === 'horizontal'">
+    <div class="header-menu" v-if="getIsTopMenuMode">
       <LayoutMenu/>
     </div>
     <!--  menu end  -->
@@ -42,14 +42,15 @@ export default {
   name: "LayoutHeader",
   components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
   setup() {
-    const {getDarkMode, getShowLogo, getShowBreadcrumb,getShowHeaderLogo} = useRootSetting();
+    const {getDarkMode, getShowLogo, getShowBreadcrumb, getShowHeaderLogo, getIsTopMenuMode} = useRootSetting();
     const {getMenuMode} = useMenuSetting();
     return {
       getDarkMode,
       getShowLogo,
       getShowBreadcrumb,
       getMenuMode,
-      getShowHeaderLogo
+      getShowHeaderLogo,
+      getIsTopMenuMode,
     }
   },
 }
@@ -61,6 +62,9 @@ export default {
   height: 49px;
   padding: 0 0;
   border-bottom: 1px solid #E4E7ED;
+  .header-menu{
+    width: 100%;
+  }
 
   .action-item {
     cursor: pointer;

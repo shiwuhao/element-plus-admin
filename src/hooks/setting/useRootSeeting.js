@@ -1,5 +1,6 @@
 import {computed, unref} from 'vue'
 import {useStore} from 'vuex';
+import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 
 
 export function useRootSetting() {
@@ -65,7 +66,11 @@ export function useRootSetting() {
    * @returns {Promise<void>}
    */
   async function toggleNavbarMode(mode) {
+    const menuMode = mode === 'top-menu' ? 'horizontal' : 'vertical';
     await setRootSetting({navbarMode: mode});
+
+    const {setMenuSetting} = useMenuSetting();
+    await setMenuSetting({mode: menuMode});
   }
 
 
@@ -83,5 +88,8 @@ export function useRootSetting() {
     getShowSettingDrawer,
     getShowHeaderLogo,
     getShowSidebarLogo,
+    getIsSidebarMode,
+    getIsMixMode,
+    getIsTopMenuMode,
   };
 }

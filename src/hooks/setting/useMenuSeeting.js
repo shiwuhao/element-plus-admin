@@ -15,9 +15,10 @@ export function useMenuSetting() {
 
   /**
    * 菜单设置
-   * @param menuSetting
+   * @param options
    */
-  async function setMenuSetting(menuSetting) {
+  async function setMenuSetting(options) {
+    const menuSetting = {...getMenuSetting.value, ...options};
     await dispatch('app/setProjectConfig', {menuSetting});
   }
 
@@ -25,7 +26,7 @@ export function useMenuSetting() {
    * 菜单水平折叠收起
    */
   async function toggleCollapsed() {
-    await setMenuSetting({...unref(getMenuSetting), collapse: !unref(getCollapsed)});
+    await setMenuSetting({collapse: !unref(getCollapsed)});
   }
 
   return {
