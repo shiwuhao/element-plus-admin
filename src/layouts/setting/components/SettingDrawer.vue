@@ -13,11 +13,11 @@
         <div class="setting-group">
           <h3 class="setting-title">导航栏模式</h3>
           <div class="flex-row-left">
-            <template v-for="(item,index) in menuThemes" :key="index">
+            <template v-for="(item,index) in navbarModes" :key="index">
               <el-tooltip effect="dark" :content="item.title" placement="top-start">
-                <div class="setting-item" @click="handleMenuTheme(item)">
+                <div class="setting-item" @click="toggleNavbarMode(item.type)">
                   <img :src="item.img"/>
-                  <i class="el-icon-check" v-if="item.theme === getDarkMode"/>
+                  <i class="el-icon-check" v-if="item.type === getNavbarMode"/>
                 </div>
               </el-tooltip>
             </template>
@@ -68,7 +68,7 @@ export default {
     return {
       color1: '',
       selectedMenuTheme: 'dark',
-      menuThemes: [
+      navbarModes: [
         {
           mode: 'light',
           type: 'sidebar',
@@ -97,18 +97,22 @@ export default {
       getShowBreadcrumb,
       getShowSettingDrawer,
       getDarkMode,
+      getNavbarMode,
       closedSettingDrawer,
       toggleLogo,
       toggleBreadcrumb,
+      toggleNavbarMode,
     } = useRootSetting();
     return {
       getShowLogo,
       getShowBreadcrumb,
       getShowSettingDrawer,
       getDarkMode,
+      getNavbarMode,
       closedSettingDrawer,
       toggleLogo,
       toggleBreadcrumb,
+      toggleNavbarMode
     }
   },
 };

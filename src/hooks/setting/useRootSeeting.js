@@ -11,6 +11,12 @@ export function useRootSetting() {
   const getShowLogo = computed(() => getters.getProjectConfig.showLogo);
   const getShowBreadcrumb = computed(() => getters.getProjectConfig.showBreadcrumb);
   const getShowSettingDrawer = computed(() => getters.getProjectConfig.showSettingDrawer);
+  const getNavbarMode = computed(() => getters.getProjectConfig.navbarMode);
+  const getIsSidebarMode = computed(() => getNavbarMode.value === 'sidebar');
+  const getIsMixMode = computed(() => getNavbarMode.value === 'mix');
+  const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
+  const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
+  const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
 
 
   /**
@@ -58,8 +64,8 @@ export function useRootSetting() {
    * @param mode top-menu,side-menu,mix-menu
    * @returns {Promise<void>}
    */
-  async function toggleNavMode(mode) {
-    await setRootSetting({showSettingDrawer: false});
+  async function toggleNavbarMode(mode) {
+    await setRootSetting({navbarMode: mode});
   }
 
 
@@ -69,10 +75,13 @@ export function useRootSetting() {
     toggleBreadcrumb,
     openSettingDrawer,
     closedSettingDrawer,
-    toggleNavMode,
+    toggleNavbarMode,
     getDarkMode,
+    getNavbarMode,
     getShowLogo,
     getShowBreadcrumb,
     getShowSettingDrawer,
+    getShowHeaderLogo,
+    getShowSidebarLogo,
   };
 }

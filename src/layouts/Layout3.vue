@@ -16,7 +16,7 @@ import LayoutSidebar from "@/layouts/sidebar";
 import LayoutMenu from '@/layouts/menu'
 
 export default {
-  name: 'Layout',
+  name: 'Layout3',
   components: {
     LayoutSidebar,
     LayoutHeader,

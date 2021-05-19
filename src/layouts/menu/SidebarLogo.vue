@@ -1,6 +1,6 @@
 <template>
   <el-menu-item class="container" index="/">
-    <img v-show="collapse" :src="logo" class="sidebar-logo">
+    <img :src="logo" class="sidebar-logo">
     <template #title>
       <span class="sidebar-title">{{ title }} </span>
     </template>
@@ -8,18 +8,15 @@
 </template>
 
 <script>
+import {useGlobalSetting} from "@/hooks/setting/useGlobalSeeting";
+
 export default {
-  name: 'logo',
-  props: {
-    collapse: {
-      type: Boolean,
-      default: false,
-    }
-  },
-  data() {
+  name: 'sidebarLogo',
+  setup() {
+    const {title, logo} = useGlobalSetting();
     return {
-      title: process.env.VUE_APP_TITLE,
-      logo: process.env.VUE_APP_LOGO
+      title,
+      logo
     }
   },
 }
@@ -29,22 +26,22 @@ export default {
 .container {
   height: 50px;
   line-height: 50px;
+  padding-left: 10px !important;
 
   ::v-deep div {
     padding: 0 10px !important;
   }
 
   .sidebar-logo {
-    width: 35px;
-    height: 35px;
-    padding-right: 10px;
+    width: 30px;
+    height: 30px;
   }
 
   .sidebar-title {
     font-size: 15px;
     font-weight: bold;
     color: white;
-    padding: 0;
+    padding-left: 10px;
     margin: 0;
   }
 }
