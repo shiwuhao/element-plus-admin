@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import installElementPlus from './plugins/element'
 import installContentment from './plugins/contextmenu'
@@ -11,6 +11,10 @@ installElementPlus(app)
 installContentment(app)
 
 import {ProjectConfig} from "@/settings/config";
-store.dispatch('app/setProjectConfig',ProjectConfig)
+
+console.log(store.getters.getProjectConfig);
+if (!store.getters.getProjectConfig) {
+  store.dispatch('app/setProjectConfig', ProjectConfig)
+}
 
 app.mount('#app')

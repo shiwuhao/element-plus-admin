@@ -37,7 +37,7 @@ export const ProjectConfig = {
   menuSetting: MenuSetting,
   headerSetting: HeaderSetting,
   darkMode: 'light',
-  navbarMode: 'top-menu',
+  navbarMode: 'sidebar',
   showLogo: true,
   showBreadcrumb: true,
   showSettingDrawer: false,

@@ -42,11 +42,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+::v-deep .el-scrollbar__view {
+  height: 100%;
+}
+
 ::v-deep .el-menu:not(.el-menu--horizontal) {
-  height: 100vh;
+  height: 100%;
   border: 0;
 
-  > .el-menu-item {
+  & >.el-menu-item {
+    background: red;
     padding-left: 15px !important;
 
     & > div {
