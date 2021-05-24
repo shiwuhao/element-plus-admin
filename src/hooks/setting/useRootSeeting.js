@@ -1,13 +1,18 @@
 import {computed, ref, unref, watchEffect} from 'vue'
 import {useStore} from 'vuex';
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
-import {breakpointsTailwind, toRefs, useElementSize, useResizeObserver, useWindowSize,} from "@vueuse/core";
+import {useWindowSize} from "@vueuse/core";
 
 
 export function useRootSetting() {
 
   const {dispatch, getters} = useStore();
   const getProjectConfig = computed(() => getters.getProjectConfig);
+
+  const getIsMobile = computed(() => {
+    const {width} = useWindowSize();
+    return width.value <= 992;
+  });
 
   const getDarkMode = computed(() => getters.getProjectConfig.darkMode);
   const getShowLogo = computed(() => getters.getProjectConfig.showLogo);
@@ -17,14 +22,8 @@ export function useRootSetting() {
   const getIsSidebarMode = computed(() => getNavbarMode.value === 'sidebar');
   const getIsMixMode = computed(() => getNavbarMode.value === 'mix');
   const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
-  const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
+  const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value && !getIsMobile.value);
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
-
-
-  const getIsMobile = computed(() => {
-    const {width} = useWindowSize();
-    return width.value <= 992;
-  });
 
 
   /**
