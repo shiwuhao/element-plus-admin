@@ -29,6 +29,10 @@
           <h3 class="setting-title">内容区域</h3>
           <div>
             <div class="drawer-item flex-row-center">
+              <span>dark</span>
+              <el-switch v-model="dark" class="drawer-switch" @change="toggleDark"/>
+            </div>
+            <div class="drawer-item flex-row-center">
               <span>顶栏</span>
               <el-switch v-model="navBar" class="drawer-switch"/>
             </div>
@@ -59,6 +63,7 @@
 <script>
 import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import { useDark, useToggle } from '@vueuse/core'
 
 export default {
   name: 'setting',
@@ -68,6 +73,7 @@ export default {
     return {
       color1: '',
       selectedMenuTheme: 'dark',
+      dark:'',
       navbarModes: [
         {
           mode: 'light',
@@ -92,6 +98,8 @@ export default {
     }
   },
   setup() {
+    const isDark = useDark()
+    const toggleDark = useToggle(isDark)
     const {
       getShowLogo,
       getShowBreadcrumb,
@@ -112,7 +120,8 @@ export default {
       closedSettingDrawer,
       toggleLogo,
       toggleBreadcrumb,
-      toggleNavbarMode
+      toggleNavbarMode,
+      toggleDark
     }
   },
 };

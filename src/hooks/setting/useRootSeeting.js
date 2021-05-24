@@ -1,6 +1,7 @@
-import {computed, unref} from 'vue'
+import {computed, ref, unref, watchEffect} from 'vue'
 import {useStore} from 'vuex';
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
+import {breakpointsTailwind, toRefs, useElementSize, useResizeObserver, useWindowSize,} from "@vueuse/core";
 
 
 export function useRootSetting() {
@@ -18,6 +19,12 @@ export function useRootSetting() {
   const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
   const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
+
+
+  const getIsMobile = computed(() => {
+    const {width} = useWindowSize();
+    return width.value <= 992;
+  });
 
 
   /**
@@ -91,5 +98,6 @@ export function useRootSetting() {
     getIsSidebarMode,
     getIsMixMode,
     getIsTopMenuMode,
+    getIsMobile,
   };
 }

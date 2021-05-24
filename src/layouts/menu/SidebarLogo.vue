@@ -1,5 +1,5 @@
 <template>
-  <el-menu-item class="container" index="/">
+  <el-menu-item class="container">
     <img :src="logo" class="sidebar-logo">
     <template #title>
       <span class="sidebar-title">{{ title }} </span>
@@ -26,15 +26,12 @@ export default {
 .container {
   height: 50px;
   line-height: 50px;
-  padding-left: 10px !important;
-
-  ::v-deep div {
-    padding: 0 10px !important;
-  }
 
   .sidebar-logo {
     width: 30px;
     height: 30px;
+    position: relative;
+    left: -3px;
   }
 
   .sidebar-title {

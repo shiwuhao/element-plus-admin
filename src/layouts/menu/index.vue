@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar>
-    <el-menu v-bind="menuSetting" :default-active="defaultActive">
+    <el-menu class="menu-container" v-bind="menuSetting" :default-active="defaultActive">
       <SidebarLogo class="logo" v-if="getShowSidebarLogo"/>
       <sub-menu v-for="menu in getMenus" :index="menu.path" :key="menu.path" :menu="menu"/>
     </el-menu>
@@ -46,18 +46,22 @@ export default {
   height: 100%;
 }
 
-::v-deep .el-menu:not(.el-menu--horizontal) {
-  height: 100%;
-  border: 0;
-
-  & >.el-menu-item {
-    background: red;
+.menu-container{
+  ::v-deep & > .el-menu-item {
+    //background: red;
     padding-left: 15px !important;
 
     & > div {
       padding: 0 15px !important;
     }
   }
+}
+
+::v-deep .el-menu:not(.el-menu--horizontal) {
+  height: 100%;
+  border: 0;
+
+
 
   .el-submenu .el-submenu__title {
     padding-left: 15px !important;

@@ -1,10 +1,12 @@
 <template>
   <el-drawer
-    v-if="isMobile"
-    v-model="drawer"
-    :size="250"
+    v-if="getIsMobile"
+    :model-value="!getCollapsed"
+    :size="200"
     :with-header="false"
-    direction="ltr">
+    :destroy-on-close="true"
+    direction="ltr"
+    @closed="handleClose">
     <LayoutMenu/>
   </el-drawer>
   <LayoutMenu v-else/>
@@ -12,16 +14,26 @@
 
 <script>
 import LayoutMenu from '@/layouts/menu/index'
+import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 
 export default {
   name: "LayoutSidebar",
   components: {LayoutMenu},
-  data() {
+  setup() {
+    const {getIsMobile} = useRootSetting();
+    const {getCollapsed, setMenuSetting} = useMenuSetting();
+
+    function handleClose() {
+      setMenuSetting({collapse: true})
+    }
+
     return {
-      isMobile: false,
-      drawer: false,
-    };
-  }
+      getIsMobile,
+      getCollapsed,
+      handleClose,
+    }
+  },
 }
 </script>
 
