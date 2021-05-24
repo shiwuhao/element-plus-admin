@@ -57,7 +57,6 @@ instance.interceptors.response.use((response) => {
       default:
         noticeConfig = {title: err.response.status, desc: err.response.data.message};
     }
-    console.log(noticeConfig);
   }
   return Promise.reject(err)
 });

@@ -1,6 +1,7 @@
 const getters = {
   getAccessToken: state => state.user.access_token,
   getUser: state => state.user.user,
+  getRoles: state => state.user.roles,
   getProjectConfig: state => state.app.projectConfig,
   getMenuSetting: state => state.app.projectConfig.menuSetting,
   getDarkMode: state => state.app.projectConfig.darkMode,

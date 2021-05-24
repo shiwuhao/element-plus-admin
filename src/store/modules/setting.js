@@ -31,7 +31,6 @@ const setting = {
      * @param data
      */
     changeSetting({commit}, data) {
-      console.log('changeSetting', data);
       commit('CHANGE_SETTING', data)
     },
     /**

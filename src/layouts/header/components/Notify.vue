@@ -1,9 +1,9 @@
 <template>
   <div class="container" @click="visible=!visible">
-    <el-popover width="500" v-model="visible">
+    <el-popover width="500" v-model:visible="visible">
       <template #reference>
         <div class="badge flex-col-center">
-          <el-badge type="error" is-dot>
+          <el-badge type="danger" is-dot>
             <i class="iconfont icon-notify"></i>
           </el-badge>
         </div>

@@ -22,7 +22,7 @@ export function useRootSetting() {
   const getIsSidebarMode = computed(() => getNavbarMode.value === 'sidebar');
   const getIsMixMode = computed(() => getNavbarMode.value === 'mix');
   const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
-  const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value && !getIsMobile.value);
+  const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
 
 

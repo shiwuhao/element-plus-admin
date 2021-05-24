@@ -2,9 +2,9 @@
   <div :class="getDarkMode" class="header-container flex-row-justify">
     <!-- left start-->
     <div class="header-left flex-row-left">
-      <Logo v-if="getShowHeaderLogo" class="action-item"/>
+      <Logo v-if="getShowHeaderLogo && !getIsMobile" class="action-item"/>
       <HeaderTrigger v-if="!getIsTopMenuMode" class="action-item"/>
-      <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb"/>
+      <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb && !getIsMobile"/>
     </div>
     <!-- left end-->
 
@@ -42,9 +42,10 @@ export default {
   name: "LayoutHeader",
   components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
   setup() {
-    const {getDarkMode, getShowLogo, getShowBreadcrumb, getShowHeaderLogo, getIsTopMenuMode} = useRootSetting();
+    const {getDarkMode, getShowLogo, getShowBreadcrumb, getShowHeaderLogo, getIsTopMenuMode,getIsMobile} = useRootSetting();
     const {getMenuMode} = useMenuSetting();
     return {
+      getIsMobile,
       getDarkMode,
       getShowLogo,
       getShowBreadcrumb,

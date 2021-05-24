@@ -125,7 +125,6 @@ export default {
       if (!valid) return;
       this.loading = true;
       const {access_token} = await this.$store.dispatch('user/login', this.loginForm);
-      console.log(access_token);
       if (access_token) {
         await this.$router.push({path: this.redirect || '/', query: this.otherQuery});
         this.loading = false

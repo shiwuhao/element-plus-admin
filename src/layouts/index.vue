@@ -28,7 +28,6 @@ export default {
         default:
           layout = Layout1;
       }
-      console.log(layout);
       return layout;
     });
     return {getNavbarMode, componentId}

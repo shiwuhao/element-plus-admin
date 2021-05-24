@@ -12,7 +12,6 @@ installContentment(app)
 
 import {ProjectConfig} from "@/settings/config";
 
-console.log(store.getters.getProjectConfig);
 if (!store.getters.getProjectConfig) {
   store.dispatch('app/setProjectConfig', ProjectConfig)
 }

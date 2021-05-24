@@ -21,16 +21,23 @@ export default {
     SubMenu, SidebarLogo
   },
   setup() {
-    const {currentRoute: {meta, path}} = useRouter();
+    const {currentRoute} = useRouter();
+    const {meta, path} = unref(currentRoute);
     let {getMenuSetting} = useMenuSetting();
     const defaultActive = computed(() => meta && meta.activeMenu ? meta.activeMenu : path);
     const {getMenus} = useLayoutMenus();
     const {getShowSidebarLogo, getIsTopMenuMode} = useRootSetting();
     const menuSetting = computed(() => {
       if (unref(getIsTopMenuMode)) {
-        return {...unref(getMenuSetting), ...{mode: 'horizontal', backgroundColor: null, textColor: '#303133'}}
+        return {
+          ...unref(getMenuSetting), ...{
+            mode: 'horizontal',
+            backgroundColor: null,
+            textColor: '#303133',
+          }
+        }
       }
-      return unref(getMenuSetting);
+      return {...unref(getMenuSetting)};
     });
     return {
       menuSetting,
@@ -46,7 +53,7 @@ export default {
   height: 100%;
 }
 
-.menu-container{
+.menu-container {
   ::v-deep & > .el-menu-item {
     //background: red;
     padding-left: 15px !important;
@@ -60,7 +67,6 @@ export default {
 ::v-deep .el-menu:not(.el-menu--horizontal) {
   height: 100%;
   border: 0;
-
 
 
   .el-submenu .el-submenu__title {

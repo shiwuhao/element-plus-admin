@@ -143,7 +143,6 @@
       },
       // 过滤需要固定的标签
       filterAffixTags(routes, basePath = '/') {
-        console.log('routes',routes);
         let tags = [];
         routes.forEach(route => {
           if (route.meta && route.meta.affix) {
@@ -212,7 +211,6 @@
       // 移动到当前路由所在标签也面
       moveToCurrentTagView() {
         const tags = this.tagRefs;
-        console.log(tags);
         this.$nextTick(() => {
           for (const tag of tags) {
             if (tag.$attrs.route.path === this.$route.path) {
