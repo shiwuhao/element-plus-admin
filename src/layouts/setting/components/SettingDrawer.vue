@@ -43,7 +43,7 @@
 
             <div class="drawer-item">
               <span>固定Header</span>
-              <el-switch v-model="fixedHeader" class="drawer-switch"/>
+              <el-switch v-model="getHeaderFixed" class="drawer-switch" @change="toggleHeaderFixed"/>
             </div>
 
             <div class="drawer-item">
@@ -63,7 +63,8 @@
 <script>
 import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
-import { useDark, useToggle } from '@vueuse/core'
+import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
+import {useDark, useToggle} from '@vueuse/core'
 
 export default {
   name: 'setting',
@@ -73,7 +74,7 @@ export default {
     return {
       color1: '',
       selectedMenuTheme: 'dark',
-      dark:'',
+      dark: '',
       navbarModes: [
         {
           mode: 'light',
@@ -111,6 +112,9 @@ export default {
       toggleBreadcrumb,
       toggleNavbarMode,
     } = useRootSetting();
+
+    const {getHeaderFixed, toggleHeaderFixed} = useHeaderSetting();
+
     return {
       getShowLogo,
       getShowBreadcrumb,
@@ -121,7 +125,9 @@ export default {
       toggleLogo,
       toggleBreadcrumb,
       toggleNavbarMode,
-      toggleDark
+      toggleDark,
+      getHeaderFixed,
+      toggleHeaderFixed,
     }
   },
 };

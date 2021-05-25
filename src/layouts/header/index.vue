@@ -1,29 +1,31 @@
 <template>
-  <div :class="getDarkMode" class="header-container flex-row-justify">
-    <!-- left start-->
-    <div class="header-left flex-row-left">
-      <Logo v-if="getShowHeaderLogo && !getIsMobile" class="action-item"/>
-      <HeaderTrigger v-if="!getIsTopMenuMode" class="action-item"/>
-      <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb && !getIsMobile"/>
-    </div>
-    <!-- left end-->
+  <el-affix :offset="0" :position="getHeaderFixed ? 'top' : 'bottom' ">
+    <div class="header-container flex-row-justify">
+      <!-- left start-->
+      <div class="header-left flex-row-left">
+        <Logo v-if="getShowHeaderLogo && !getIsMobile" class="action-item"/>
+        <HeaderTrigger v-if="!getIsTopMenuMode" class="action-item"/>
+        <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb && !getIsMobile"/>
+      </div>
+      <!-- left end-->
 
-    <!--  menu start  -->
-    <div class="header-menu" v-if="getIsTopMenuMode">
-      <LayoutMenu/>
-    </div>
-    <!--  menu end  -->
+      <!--  menu start  -->
+      <div class="header-menu" v-if="getIsTopMenuMode">
+        <LayoutMenu/>
+      </div>
+      <!--  menu end  -->
 
-    <!--  right start  -->
-    <div class="header-right flex-row-right">
-      <Notify class="action-item"/>
-      <FullScreen class="action-item"/>
-      <UserDropdown class="action-item"/>
-      <Setting class="action-item"/>
-    </div>
-    <!--  right end  -->
+      <!--  right start  -->
+      <div class="header-right flex-row-right">
+        <Notify class="action-item"/>
+        <FullScreen class="action-item"/>
+        <UserDropdown class="action-item"/>
+        <Setting class="action-item"/>
+      </div>
+      <!--  right end  -->
 
-  </div>
+    </div>
+  </el-affix>
 </template>
 
 <script>
@@ -37,13 +39,22 @@ import LayoutMenu from '@/layouts/menu/index';
 import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
+import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
 
 export default {
-  name: "LayoutHeader",
+  name: "header",
   components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
   setup() {
-    const {getDarkMode, getShowLogo, getShowBreadcrumb, getShowHeaderLogo, getIsTopMenuMode,getIsMobile} = useRootSetting();
+    const {
+      getDarkMode,
+      getShowLogo,
+      getShowBreadcrumb,
+      getShowHeaderLogo,
+      getIsTopMenuMode,
+      getIsMobile
+    } = useRootSetting();
     const {getMenuMode} = useMenuSetting();
+    const {getHeaderFixed} = useHeaderSetting();
     return {
       getIsMobile,
       getDarkMode,
@@ -52,6 +63,7 @@ export default {
       getMenuMode,
       getShowHeaderLogo,
       getIsTopMenuMode,
+      getHeaderFixed,
     }
   },
 }
@@ -59,11 +71,13 @@ export default {
 
 <style lang="scss" scoped>
 .header-container {
+  background: white;
   width: 100%;
   height: 49px;
   padding: 0 0;
   border-bottom: 1px solid #E4E7ED;
-  .header-menu{
+
+  .header-menu {
     width: 100%;
   }
 

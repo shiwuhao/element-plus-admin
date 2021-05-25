@@ -1,10 +1,10 @@
 <template>
   <el-container class="container">
-    <el-header height="50px">
-      <LayoutHeader/>
-    </el-header>
     <el-main class="main">
-      <LayoutContent/>
+      <el-header height="50px">
+        <LayoutHeader/>
+      </el-header>
+      <LayoutContent class="content"/>
     </el-main>
   </el-container>
 </template>
@@ -35,9 +35,8 @@ export default {
   width: 100%;
   height: 100vh;
   padding: 0 0;
-
-  .main {
-    padding: 10px;
+  .content{
+    margin-top: 10px;
   }
 }
 </style>

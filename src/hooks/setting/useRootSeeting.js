@@ -34,6 +34,10 @@ export function useRootSetting() {
     await dispatch('app/setProjectConfig', rootSetting);
   }
 
+  async function toggleHeaderFixed() {
+    await setRootSetting({showLogo: !unref(getShowLogo)});
+  }
+
   /**
    * 开关logo
    * @returns {Promise<void>}

@@ -1,16 +1,14 @@
 <template>
   <el-container class="container">
-    <el-container>
-      <el-aside width="auto">
-        <LayoutSidebar/>
-      </el-aside>
-      <el-main class="main">
-        <el-header class="header" height="50px">
-          <LayoutHeader/>
-        </el-header>
-        <LayoutContent/>
-      </el-main>
-    </el-container>
+    <el-aside width="auto">
+      <LayoutSidebar/>
+    </el-aside>
+    <el-main class="main">
+      <el-header class="header" height="50px">
+        <LayoutHeader/>
+      </el-header>
+      <LayoutContent class="content"/>
+    </el-main>
   </el-container>
 </template>
 <script>
@@ -40,13 +38,8 @@ export default {
   width: 100%;
   height: 100vh;
   padding: 0 0;
-
-  .header{
-    margin-bottom: 10px;
-  }
-
-  .main {
-    padding: 0px;
+  .content{
+    margin-top: 5px;
   }
 }
 </style>

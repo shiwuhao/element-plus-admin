@@ -4,6 +4,7 @@ const getters = {
   getRoles: state => state.user.roles,
   getProjectConfig: state => state.app.projectConfig,
   getMenuSetting: state => state.app.projectConfig.menuSetting,
+  getHeaderSetting: state => state.app.projectConfig.headerSetting,
   getDarkMode: state => state.app.projectConfig.darkMode,
   getMenus: state => state.permission.menus,
   setting: state => state.setting,
