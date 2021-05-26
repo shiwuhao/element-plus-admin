@@ -12,7 +12,7 @@ import SidebarLogo from "@/layouts/menu/SidebarLogo";
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
-import {computed, ref, unref} from "vue";
+import {computed, watch, unref, ref} from "vue";
 import {useRouter} from 'vue-router';
 
 export default {
@@ -22,9 +22,15 @@ export default {
   },
   setup() {
     const {currentRoute} = useRouter();
-    const {meta, path} = unref(currentRoute);
     let {getMenuSetting} = useMenuSetting();
-    const defaultActive = computed(() => meta && meta.activeMenu ? meta.activeMenu : path);
+
+    // defaultActive
+    const defaultActive = computed(() => {
+      const {meta, path} = currentRoute.value;
+      return meta && meta.activeMenu ? meta.activeMenu : path;
+    })
+
+    // menu
     const {getMenus} = useLayoutMenus();
     const {getShowSidebarLogo, getIsTopMenuMode} = useRootSetting();
     const menuSetting = computed(() => {
@@ -54,8 +60,7 @@ export default {
 }
 
 .menu-container {
-  ::v-deep & > .el-menu-item {
-    //background: red;
+  ::v-deep & > div .el-menu-item {
     padding-left: 15px !important;
 
     & > div {

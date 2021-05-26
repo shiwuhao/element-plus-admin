@@ -27,12 +27,14 @@
                    :border="config.border"
                    :stripe="config.stripe"
                    :size="config.size">
-      <el-table-column label="操作" width="220" slot="name">
-        <template v-slot="scope">
-          <i class="el-icon-time"/>
-          <span style="margin-left: 10px">{{ scope.row.name }} --  {{ scope.$index }}</span>
-        </template>
-      </el-table-column>
+      <template #name>
+        <el-table-column label="操作" width="220">
+          <template v-slot="scope">
+            <i class="el-icon-time"/>
+            <span style="margin-left: 10px">{{ scope.row.name }} --  {{ scope.$index }}</span>
+          </template>
+        </el-table-column>
+      </template>
       <el-table-column label="状态" min-width="100">
         <template v-slot="scope">
           <el-switch v-model="scope.row.status"></el-switch>

@@ -2,7 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router'
 import store from '@/store'
 import constantRoutes from "@/router/modules/constantRoutes";
 import asyncRoutes from '@/router/modules/asyncRoutes.js';
-import {getToken} from "@/utils/auth";
+
+import nProgress from 'nprogress';
+import 'nprogress/nprogress.css'
 
 const routes = [
   ...constantRoutes,
@@ -21,6 +23,7 @@ const whiteList = [
 
 // 路由拦截器
 router.beforeEach(async (to, from, next) => {
+  nProgress.start();
   if (whiteList.indexOf(to.path) !== -1) { // 白名单，直接进入
     next();
   } else if (store.getters.getAccessToken) { // 已登录 拉取用户信息,过滤权限路由,动态注册路由
@@ -35,6 +38,12 @@ router.beforeEach(async (to, from, next) => {
   } else { // 否则全部重定向到登录页
     next(`/login?redirect=${to.path}`);
   }
+  return true;
+});
+
+router.afterEach(async () => {
+  nProgress.done();
+  return true;
 });
 
 

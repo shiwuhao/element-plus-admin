@@ -7,6 +7,9 @@ const getters = {
   getHeaderSetting: state => state.app.projectConfig.headerSetting,
   getDarkMode: state => state.app.projectConfig.darkMode,
   getMenus: state => state.permission.menus,
+  getCachedViews: state => state.tagView.cachedViews,
+  getVisitedViews: state => state.tagView.visitedViews,
+
   setting: state => state.setting,
   config: state => state.config,
   sidebar: state => state.app.sidebar,

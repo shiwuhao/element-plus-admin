@@ -1,10 +1,12 @@
 <template>
-  <el-menu-item class="container">
-    <img :src="logo" class="sidebar-logo">
-    <template #title>
-      <span class="sidebar-title">{{ title }} </span>
-    </template>
-  </el-menu-item>
+  <div>
+    <el-menu-item class="container" index="/">
+      <img :src="logo" class="sidebar-logo">
+      <template #title>
+        <span class="sidebar-title">{{ title }} </span>
+      </template>
+    </el-menu-item>
+  </div>
 </template>
 
 <script>

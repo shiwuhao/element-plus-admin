@@ -5,7 +5,7 @@ export default [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    meta: {icon: 'el-icon-user-solid', menu: true, cache: true},
+    meta: {menu: true},
     children: [
       {
         path: '/dashboard',
