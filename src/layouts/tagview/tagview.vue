@@ -85,10 +85,10 @@ export default {
     },
     // 标签视图点击事件
     clickTagView({path, fullPath}) {
-      console.log('tagView', path, fullPath,this.$route.path);
+      console.log('tagView', path, fullPath, this.$route.path);
       if (path === this.$route.path) return;
       // this.$router.replace({path: '/redirect' + fullPath});
-      this.$router.push({path:  fullPath});
+      this.$router.push({path: fullPath});
     },
     // 判断tag是否激活状态
     isActive(route) {
@@ -194,7 +194,7 @@ export default {
 
   .scroll-container {
     background: white;
-    line-height: 30px;
+    line-height: 27px;
 
     .tag-item {
       margin: 0 2px;
@@ -203,28 +203,29 @@ export default {
       user-select: none;
     }
   }
+}
 
-  .contextmenu {
-    margin: 0;
-    background: #fff;
-    z-index: 3000;
-    position: absolute;
-    list-style-type: none;
-    padding: 5px 0;
-    border-radius: 4px;
+.v-contextmenu {
+  margin: 0;
+  background: #fff;
+  z-index: 3000;
+  position: absolute;
+  list-style-type: none;
+  padding: 5px 0;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #333;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+
+  li.v-contextmenu-item {
     font-size: 12px;
-    font-weight: 400;
-    color: #333;
-    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+    margin: 0;
+    padding: 5px 16px;
+    cursor: pointer;
 
-    li {
-      margin: 0;
-      padding: 7px 16px;
-      cursor: pointer;
-
-      &:hover {
-        background: #eee;
-      }
+    &:hover {
+      background: #409EFF;
     }
   }
 }

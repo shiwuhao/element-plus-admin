@@ -1,7 +1,7 @@
 <template>
   <router-view>
     <template v-slot="{ Component, route }">
-      <transition name="fade" mode="out-in" appear>
+      <transition name="fade-slide" mode="out-in" appear>
         <keep-alive v-if="openCache" :include="getCachedViews">
           <component :is="Component" :key="route.fullPath"/>
         </keep-alive>
@@ -18,7 +18,7 @@ export default {
   name: "LayoutContent",
   data() {
     return {
-      openCache: false,
+      openCache: true,
       getCaches: [],
     }
   },
