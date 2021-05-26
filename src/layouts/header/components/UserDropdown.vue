@@ -38,13 +38,8 @@ export default {
     height: 49px;
     padding: 0 10px;
 
-    &.dart .name {
-      color: white;
-      padding-left: 5px;
-    }
-
-    &.light .name {
-      color: black;
+    .name {
+      color: #303133;
       padding-left: 5px;
     }
 

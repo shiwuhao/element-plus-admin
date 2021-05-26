@@ -2,8 +2,8 @@ import {useStore} from "vuex";
 import {computed} from "vue";
 
 /**
- * 菜单
- * @returns {{getMenus: ComputedRef<function(*): any>}}
+ *
+ * @returns {{getMenus: ComputedRef<function(*): *>}}
  */
 export function useLayoutMenus() {
   const {getters} = useStore();

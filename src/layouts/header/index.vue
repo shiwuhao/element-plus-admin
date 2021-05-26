@@ -76,6 +76,11 @@ export default {
   height: 49px;
   padding: 0 0;
   border-bottom: 1px solid #E4E7ED;
+  color: #303133;
+
+  .action-item:hover {
+    background: #F2F6FC;
+  }
 
   .header-menu {
     width: 100%;
@@ -83,25 +88,6 @@ export default {
 
   .action-item {
     cursor: pointer;
-  }
-
-  &.dart ::v-deep {
-    color: white !important;
-    font-weight: bold;
-    background: #000000;
-
-    .action-item:hover {
-      background: #606266;
-    }
-  }
-
-  &.light {
-    color: #303133;
-    background: white;
-
-    .action-item:hover {
-      background: #F2F6FC;
-    }
   }
 }
 </style>
