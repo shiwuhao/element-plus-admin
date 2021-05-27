@@ -2,6 +2,6 @@ import ElementPlus from 'element-plus'
 import '@/styles/element-variables.scss'
 import locale from 'element-plus/lib/locale/lang/zh-cn'
 
-export default (app) => {
-  app.use(ElementPlus, { locale })
+export function setupElementPlus(app) {
+  app.use(ElementPlus, {locale})
 }

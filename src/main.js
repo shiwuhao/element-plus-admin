@@ -1,19 +1,29 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import installElementPlus from './plugins/element'
-import installContentment from './plugins/contextmenu'
-import router from './router'
-import store from './store'
+import {setupElementPlus} from './plugins/element'
+import {setupContentment} from './plugins/contextmenu'
+import {setupRouter} from './router'
+import {setupStore} from './store'
 import '@/mock/index';
+import {setupRouterGuard} from "@/router/guard";
+import {initProjectConfig} from "@/logics/initProjectConfig";
 
-const app = createApp(App).use(store).use(router)
-installElementPlus(app)
-installContentment(app)
+(async () => {
+  const app = createApp(App);
 
-import {ProjectConfig} from "@/settings/config";
+  setupElementPlus(app);
 
-if (!store.getters.getProjectConfig) {
-  store.dispatch('app/setProjectConfig', ProjectConfig)
-}
+  setupContentment(app);
 
-app.mount('#app')
+  setupStore(app);
+
+  initProjectConfig();
+
+  setupRouter(app);
+
+  setupRouterGuard();
+
+  // await router.isReady();
+
+  app.mount('#app')
+})();

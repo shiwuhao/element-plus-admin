@@ -56,6 +56,15 @@
             </div>
           </div>
         </div>
+        <div class="setting-group">
+          <h3 class="setting-title">动画</h3>
+          <div>
+            <div class="drawer-item">
+              <span>顶部进度条</span>
+              <el-switch v-model="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
+            </div>
+          </div>
+        </div>
       </div>
     </el-drawer>
   </div>
@@ -64,6 +73,7 @@
 import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
+import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
 import {useDark, useToggle} from '@vueuse/core'
 
 export default {
@@ -114,6 +124,7 @@ export default {
     } = useRootSetting();
 
     const {getHeaderFixed, toggleHeaderFixed} = useHeaderSetting();
+    const {getOpenNProgress, toggleOpenNProgress} = useTransitionSetting();
 
     return {
       getShowLogo,
@@ -128,6 +139,8 @@ export default {
       toggleDark,
       getHeaderFixed,
       toggleHeaderFixed,
+      getOpenNProgress,
+      toggleOpenNProgress,
     }
   },
 };

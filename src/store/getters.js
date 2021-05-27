@@ -5,6 +5,7 @@ const getters = {
   getProjectConfig: state => state.app.projectConfig,
   getMenuSetting: state => state.app.projectConfig.menuSetting,
   getHeaderSetting: state => state.app.projectConfig.headerSetting,
+  getTransitionSetting: state => state.app.projectConfig.transitionSetting,
   getDarkMode: state => state.app.projectConfig.darkMode,
   getMenus: state => state.permission.menus,
   getCachedViews: state => state.tagView.cachedViews,

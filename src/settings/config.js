@@ -30,12 +30,24 @@ export const HeaderSetting = {
 };
 
 /**
+ * 动画设置
+ * @type {{openPageLoading: boolean, enable: boolean, openNProgress: boolean, basicTransition: string}}
+ */
+export const transitionSetting = {
+  enable: true,
+  basicTransition: 'fade',
+  openPageLoading: true,
+  openNProgress: true,
+}
+
+/**
  * 项目配置
  * @type {{menuSetting: {mode: string, backgroundColor: string, router: boolean, bgColor: string, activeTextColor: string, uniqueOpened: boolean, textColor: string, collapse: boolean, menuTrigger: string, collapseTransition: boolean}}}
  */
 export const ProjectConfig = {
   menuSetting: MenuSetting,
   headerSetting: HeaderSetting,
+  transitionSetting: transitionSetting,
   darkMode: 'light',
   navbarMode: 'sidebar',
   showLogo: true,

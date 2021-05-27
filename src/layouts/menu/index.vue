@@ -97,6 +97,9 @@ export default {
 
 //el-menu--horizontal
 ::v-deep .el-menu.el-menu--horizontal {
+  .menu-item{
+    float: left;
+  }
   .el-menu-item {
     height: 50px;
     line-height: 50px;

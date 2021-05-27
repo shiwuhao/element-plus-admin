@@ -1,6 +1,6 @@
 import contextmenu from 'v-contextmenu'
 import 'v-contextmenu/dist/themes/default.css'
 
-export default (app) => {
+export function setupContentment(app) {
   app.use(contextmenu)
 }

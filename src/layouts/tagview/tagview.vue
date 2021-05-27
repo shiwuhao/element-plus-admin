@@ -85,7 +85,6 @@ export default {
     },
     // 标签视图点击事件
     clickTagView({path, fullPath}) {
-      console.log('tagView', path, fullPath, this.$route.path);
       if (path === this.$route.path) return;
       // this.$router.replace({path: '/redirect' + fullPath});
       this.$router.push({path: fullPath});

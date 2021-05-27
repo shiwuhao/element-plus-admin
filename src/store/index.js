@@ -9,10 +9,16 @@ import tagView from "./modules/tagView";
 import permission from "./modules/permission";
 import user from "./modules/user";
 
-export default createStore({
+const store = createStore({
   plugins: [createPersistedState()],
   modules: {
     setting, config, app, tagView, permission, user
   },
   getters: getters,
 })
+
+export function setupStore(app) {
+  app.use(store);
+}
+
+export default store;
