@@ -1,12 +1,16 @@
+<template>
+  <div></div>
+</template>
 <script>
+import {useRouter} from 'vue-router'
+import {unref} from "vue";
+
 export default {
-  created() {
-    const { params, query } = this.$route
-    const { path } = params
-    this.$router.replace({ path: '/' + path, query })
+  setup() {
+    const {currentRoute, replace} = useRouter();
+    const {params, query} = unref(currentRoute);
+    const {path} = params;
+    replace({path: '/' + path, query})
   },
-  // render: function(h) {
-  //   return h() // avoid warning message
-  // }
 }
 </script>

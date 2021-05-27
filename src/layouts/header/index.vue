@@ -42,7 +42,7 @@ import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
 
 export default {
-  name: "header",
+  name: "LayoutHeader",
   components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
   setup() {
     const {
