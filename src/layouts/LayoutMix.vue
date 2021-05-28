@@ -23,8 +23,8 @@
 import LayoutHeader from './header/index';
 import LayoutContent from './content/index';
 import LayoutSidebar from "@/layouts/sidebar";
-import LayoutMenu from '@/layouts/menu'
-import TagView from "@/components/TagView/TagView";
+import LayoutMenu from '@/layouts/menu';
+import TagView from '@/layouts/tagview/tagView';
 
 export default {
   name: 'Layout1',
