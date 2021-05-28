@@ -1,12 +1,12 @@
-import {computed, ref, unref, watchEffect} from 'vue'
-import {useStore} from 'vuex';
+import {computed, unref} from 'vue'
+import store from "@/store";
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 import {useWindowSize} from "@vueuse/core";
 
 
 export function useRootSetting() {
 
-  const {dispatch, getters} = useStore();
+  const {dispatch, getters} = store;
   const getProjectConfig = computed(() => getters.getProjectConfig);
 
   const getIsMobile = computed(() => {
@@ -14,17 +14,18 @@ export function useRootSetting() {
     return width.value <= 992;
   });
 
-  const getDarkMode = computed(() => getters.getProjectConfig.darkMode);
-  const getShowLogo = computed(() => getters.getProjectConfig.showLogo);
-  const getShowBreadcrumb = computed(() => getters.getProjectConfig.showBreadcrumb);
-  const getShowSettingDrawer = computed(() => getters.getProjectConfig.showSettingDrawer);
-  const getNavbarMode = computed(() => getters.getProjectConfig.navbarMode);
+  const getDarkMode = computed(() => unref(getProjectConfig).darkMode);
+  const getShowLogo = computed(() => unref(getProjectConfig).showLogo);
+  const getShowBreadcrumb = computed(() => unref(getProjectConfig).showBreadcrumb);
+  const getShowSettingDrawer = computed(() => unref(getProjectConfig).showSettingDrawer);
+  const getNavbarMode = computed(() => unref(getProjectConfig).navbarMode);
   const getIsSidebarMode = computed(() => getNavbarMode.value === 'sidebar');
   const getIsMixMode = computed(() => getNavbarMode.value === 'mix');
   const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
   const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
   const getPageLoading = computed(() => getters.getPageLoading);
+  const getOpenKeepAlive = computed(() => unref(getProjectConfig).openKeepAlive);
 
 
   /**
@@ -86,7 +87,6 @@ export function useRootSetting() {
 
 
   return {
-    setRootSetting,
     toggleLogo,
     toggleBreadcrumb,
     openSettingDrawer,
@@ -104,5 +104,6 @@ export function useRootSetting() {
     getIsTopMenuMode,
     getIsMobile,
     getPageLoading,
+    getOpenKeepAlive,
   };
 }

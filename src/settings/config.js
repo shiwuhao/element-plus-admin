@@ -40,6 +40,10 @@ export const transitionSetting = {
   openNProgress: true,
 }
 
+export const tagViewSetting = {
+  enable: true,
+}
+
 /**
  * 项目配置
  * @type {{menuSetting: {mode: string, backgroundColor: string, router: boolean, bgColor: string, activeTextColor: string, uniqueOpened: boolean, textColor: string, collapse: boolean, menuTrigger: string, collapseTransition: boolean}}}
@@ -48,9 +52,11 @@ export const ProjectConfig = {
   menuSetting: MenuSetting,
   headerSetting: HeaderSetting,
   transitionSetting: transitionSetting,
+  tagViewSetting: tagViewSetting,
   darkMode: 'light',
   navbarMode: 'sidebar',
   showLogo: true,
   showBreadcrumb: true,
   showSettingDrawer: false,
+  openKeepAlive: true,
 }

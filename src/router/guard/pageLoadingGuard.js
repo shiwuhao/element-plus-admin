@@ -19,7 +19,7 @@ export function createPageLoadingGuard(router) {
     if (unref(getOpenPageLoading)) {
       setTimeout(async () => {
         await store.dispatch('app/setPageLoading', false);
-      }, 3000);
+      }, 1000);
     }
     return true;
   });

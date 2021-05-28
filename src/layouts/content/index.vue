@@ -1,8 +1,8 @@
 <template>
   <router-view v-loading="getOpenPageLoading && getPageLoading">
     <template v-slot="{ Component, route }">
-      <transition name="fade-slide" mode="out-in" appear>
-        <keep-alive v-if="openCache" :include="getCachedViews">
+      <transition :name="getTransitionName(route)" mode="out-in" appear>
+        <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
           <component :is="Component" :key="route.fullPath"/>
         </keep-alive>
         <component v-else :is="Component" :key="route.fullPath"/>
@@ -15,27 +15,34 @@
 import {useStore} from 'vuex';
 import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {unref} from "vue";
 
 export default {
-  name: "LayoutPage",
-  data() {
-    return {
-      openCache: true,
-      getCaches: [],
-    }
-  },
+  name: "Content",
   setup() {
     const {getters} = useStore();
     const {getCachedViews, getVisitedViews} = getters;
 
-    const {getOpenPageLoading} = useTransitionSetting();
-    const {getPageLoading} = useRootSetting();
+    const {getEnableTransition, getOpenPageLoading, getBasicTransition} = useTransitionSetting();
+    const {getPageLoading, getOpenKeepAlive} = useRootSetting();
+
+    function getTransitionName(route) {
+      if (!unref(getEnableTransition)) return null;
+      let name = '';
+      if (getOpenKeepAlive) {
+        name = route.meta.loaded ? 'fade-slide' : null;
+      }
+
+      return name || route.meta.transitionName || unref(getBasicTransition);
+    }
 
     return {
       getCachedViews,
       getVisitedViews,
       getOpenPageLoading,
-      getPageLoading
+      getPageLoading,
+      getOpenKeepAlive,
+      getTransitionName
     }
   }
 }

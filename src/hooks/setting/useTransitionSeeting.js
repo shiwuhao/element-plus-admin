@@ -14,6 +14,8 @@ export function useTransitionSetting() {
   const getOpenPageLoading = computed(() => unref(getTransitionSetting).openPageLoading);
   const getBasicTransition = computed(() => unref(getTransitionSetting).basicTransition);
 
+
+
   async function setTransitionSetting(options) {
     const transitionSetting = {...unref(getTransitionSetting), ...options};
     await dispatch('app/setProjectConfig', {transitionSetting});

@@ -1,75 +1,87 @@
 <template>
   <div class="container">
     <el-drawer
-      title="系统布局设置"
       v-model="getShowSettingDrawer"
       direction="rtl"
       :size="260"
-      :show-close="true"
+      :with-header="false"
+      :show-close="false"
       :append-to-body="true"
       @closed="closedSettingDrawer"
     >
-      <div class="drawer-container">
-        <div class="setting-group">
-          <h3 class="setting-title">导航栏模式</h3>
-          <div class="flex-row-left">
-            <template v-for="(item,index) in navbarModes" :key="index">
-              <el-tooltip effect="dark" :content="item.title" placement="top-start">
-                <div class="setting-item" @click="toggleNavbarMode(item.type)">
-                  <img :src="item.img"/>
-                  <i class="el-icon-check" v-if="item.type === getNavbarMode"/>
-                </div>
-              </el-tooltip>
-            </template>
-          </div>
-        </div>
-        <el-divider/>
-
-        <div class="setting-group">
-          <h3 class="setting-title">内容区域</h3>
-          <div>
-            <div class="drawer-item flex-row-center">
-              <span>dark</span>
-              <el-switch v-model="dark" class="drawer-switch" @change="toggleDark"/>
-            </div>
-            <div class="drawer-item flex-row-center">
-              <span>顶栏</span>
-              <el-switch v-model="navBar" class="drawer-switch"/>
-            </div>
-            <div class="drawer-item flex-row-center">
-              <span>Tag视图</span>
-              <el-switch v-model="tagView" class="drawer-switch"/>
-            </div>
-
-            <div class="drawer-item">
-              <span>固定Header</span>
-              <el-switch v-model="getHeaderFixed" class="drawer-switch" @change="toggleHeaderFixed"/>
-            </div>
-
-            <div class="drawer-item">
-              <span>侧边栏Logo</span>
-              <el-switch v-model="getShowLogo" class="drawer-switch" @change="toggleLogo"/>
-            </div>
-            <div class="drawer-item">
-              <span>面包屑导航</span>
-              <el-switch v-model="getShowBreadcrumb" class="drawer-switch" @change="toggleBreadcrumb"/>
+      <el-scrollbar height="100vh">
+        <div class="drawer-container">
+          <div class="setting-group">
+            <h3 class="setting-title">导航栏模式</h3>
+            <div class="flex-row-left">
+              <template v-for="(item,index) in navbarModes" :key="index">
+                <el-tooltip effect="dark" :content="item.title" placement="top-start">
+                  <div class="setting-item" @click="toggleNavbarMode(item.type)">
+                    <img :src="item.img"/>
+                    <i class="el-icon-check" v-if="item.type === getNavbarMode"/>
+                  </div>
+                </el-tooltip>
+              </template>
             </div>
           </div>
-        </div>
-        <div class="setting-group">
-          <h3 class="setting-title">动画</h3>
-          <div>
-            <div class="drawer-item">
-              <span>顶部进度条</span>
-              <el-switch v-model="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
+          <el-divider/>
+
+          <div class="setting-group">
+            <h3 class="setting-title">内容区域</h3>
+            <div>
+              <div class="drawer-item flex-row-center">
+                <span>dark</span>
+                <el-switch v-model="dark" class="drawer-switch" @change="toggleDark"/>
+              </div>
+              <div class="drawer-item flex-row-center">
+                <span>Tag视图</span>
+                <el-switch v-model="getEnableTagView" class="drawer-switch" @change="toggleEnableTagView"/>
+              </div>
+
+              <div class="drawer-item">
+                <span>固定Header</span>
+                <el-switch v-model="getHeaderFixed" class="drawer-switch" @change="toggleHeaderFixed"/>
+              </div>
+
+              <div class="drawer-item">
+                <span>侧边栏Logo</span>
+                <el-switch v-model="getShowLogo" class="drawer-switch" @change="toggleLogo"/>
+              </div>
+              <div class="drawer-item">
+                <span>面包屑导航</span>
+                <el-switch v-model="getShowBreadcrumb" class="drawer-switch" @change="toggleBreadcrumb"/>
+              </div>
             </div>
-            <div class="drawer-item">
-              <span>切换Loading</span>
-              <el-switch v-model="getOpenPageLoading" class="drawer-switch" @change="toggleOpenPageLoading"/>
+          </div>
+          <div class="setting-group">
+            <h3 class="setting-title">动画</h3>
+            <div>
+              <div class="drawer-item">
+                <span>顶部进度条</span>
+                <el-switch v-model="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
+              </div>
+              <div class="drawer-item">
+                <span>切换Loading</span>
+                <el-switch v-model="getOpenPageLoading" class="drawer-switch" @change="toggleOpenPageLoading"/>
+              </div>
+              <div class="drawer-item">
+                <span>切换动画</span>
+                <el-switch v-model="getEnableTransition" class="drawer-switch" @change="toggleEnableTransition"/>
+              </div>
+              <div class="drawer-item">
+                <span>动画类型</span>
+                <el-select v-model="getBasicTransition" size="mini" style="width: 120px"
+                           @change="setBasicTransition($event)">
+                  <el-option v-for="item in getRouterTransitionOptions"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
+                </el-select>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </el-scrollbar>
     </el-drawer>
   </div>
 </template>
@@ -78,7 +90,10 @@ import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
 import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
+import {useTagViewSetting} from "@/hooks/setting/useTagViewSeeting";
 import {useDark, useToggle} from '@vueuse/core'
+import {routerTransitionOptions} from '@/enums/appEnum'
+import {ref} from "vue";
 
 export default {
   name: 'setting',
@@ -128,7 +143,19 @@ export default {
     } = useRootSetting();
 
     const {getHeaderFixed, toggleHeaderFixed} = useHeaderSetting();
-    const {getOpenNProgress, toggleOpenNProgress, getOpenPageLoading, toggleOpenPageLoading} = useTransitionSetting();
+    const {
+      getOpenNProgress,
+      toggleOpenNProgress,
+      getOpenPageLoading,
+      toggleOpenPageLoading,
+      getEnableTransition,
+      toggleEnableTransition,
+      setBasicTransition,
+      getBasicTransition,
+    } = useTransitionSetting();
+
+    const {getEnableTagView, toggleEnableTagView} = useTagViewSetting();
+    const getRouterTransitionOptions = ref(routerTransitionOptions);
 
     return {
       getShowLogo,
@@ -147,6 +174,13 @@ export default {
       toggleOpenNProgress,
       getOpenPageLoading,
       toggleOpenPageLoading,
+      getEnableTransition,
+      toggleEnableTransition,
+      getEnableTagView,
+      toggleEnableTagView,
+      getRouterTransitionOptions,
+      setBasicTransition,
+      getBasicTransition
     }
   },
 };
