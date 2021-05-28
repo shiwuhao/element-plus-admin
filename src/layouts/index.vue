@@ -3,9 +3,9 @@
 </template>
 <script>
 
-import Layout1 from "@/layouts/Layout1";
-import Layout2 from "@/layouts/Layout2";
-import Layout3 from "@/layouts/Layout3";
+import LayoutMix from "@/layouts/LayoutMix";
+import LayoutAside from "@/layouts/LayoutAside";
+import LayoutTopMenu from "@/layouts/LayoutTopMenu";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {computed} from "vue";
 
@@ -17,16 +17,16 @@ export default {
       let layout;
       switch (getNavbarMode.value) {
         case 'mix':
-          layout = Layout1;
+          layout = LayoutMix;
           break;
         case 'sidebar':
-          layout = Layout2;
+          layout = LayoutAside;
           break;
         case 'top-menu':
-          layout = Layout3;
+          layout = LayoutTopMenu;
           break;
         default:
-          layout = Layout1;
+          layout = LayoutAside;
       }
       return layout;
     });
