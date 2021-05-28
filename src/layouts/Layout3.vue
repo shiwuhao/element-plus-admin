@@ -1,7 +1,7 @@
 <template>
   <el-container class="container">
     <el-main class="main">
-      <el-header height="50px">
+      <el-header height="auto">
         <LayoutHeader/>
       </el-header>
       <LayoutContent class="content"/>

@@ -1,18 +1,20 @@
 <template>
   <el-container class="container">
-    <el-header height="50px">
+    <el-header height="auto">
       <LayoutHeader/>
-    </el-header>
-    <el-header class="tagview" height="30px">
-      <tagview></tagview>
     </el-header>
     <el-container>
       <el-aside width="auto">
         <LayoutSidebar/>
       </el-aside>
-      <el-main class="main">
-        <LayoutContent/>
-      </el-main>
+      <el-container>
+        <el-header height="auto">
+          <TagView/>
+        </el-header>
+        <el-main class="main">
+          <LayoutContent/>
+        </el-main>
+      </el-container>
     </el-container>
   </el-container>
 </template>
@@ -22,7 +24,7 @@ import LayoutHeader from './header/index';
 import LayoutContent from './content/index';
 import LayoutSidebar from "@/layouts/sidebar";
 import LayoutMenu from '@/layouts/menu'
-import tagview from "@/layouts/tagview/tagview";
+import TagView from "@/components/TagView/TagView";
 
 export default {
   name: 'Layout1',
@@ -31,7 +33,7 @@ export default {
     LayoutHeader,
     LayoutContent,
     LayoutMenu,
-    tagview
+    TagView
   }
 };
 </script>
@@ -47,6 +49,7 @@ export default {
   padding: 0 0;
 
   .main {
+    padding-top: 10px;
     height: 100vh;
     padding-bottom: 50px;
   }

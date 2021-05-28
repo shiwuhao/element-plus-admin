@@ -3,9 +3,9 @@
     <div class="header-container flex-row-justify">
       <!-- left start-->
       <div class="header-left flex-row-left">
-        <Logo v-if="getShowHeaderLogo && !getIsMobile" class="action-item"/>
-        <HeaderTrigger v-if="!getIsTopMenuMode" class="action-item"/>
-        <Breadcrumb v-if="!getIsTopMenuMode && getShowBreadcrumb && !getIsMobile"/>
+        <Logo v-if="getShowHeaderLogo" class="action-item"/>
+        <HeaderTrigger v-if="getShowHeaderTrigger" class="action-item"/>
+        <Breadcrumb v-if="getShowBreadcrumb"/>
       </div>
       <!-- left end-->
 
@@ -23,8 +23,9 @@
         <Setting class="action-item"/>
       </div>
       <!--  right end  -->
-
     </div>
+
+    <TagView v-if="getShowTagView"/>
   </el-affix>
 </template>
 
@@ -37,33 +38,36 @@ import Breadcrumb from "@/layouts/header/components/Breadcrumb";
 import Setting from "@/layouts/setting/index";
 import LayoutMenu from '@/layouts/menu/index';
 import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
+import TagView from "@/layouts/tagview/tagView";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
 import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
 
 export default {
   name: "LayoutHeader",
-  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger},
+  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger, TagView},
   setup() {
     const {
       getDarkMode,
       getShowLogo,
       getShowBreadcrumb,
       getShowHeaderLogo,
+      getShowHeaderTrigger,
       getIsTopMenuMode,
-      getIsMobile
+      getShowTagView,
     } = useRootSetting();
     const {getMenuMode} = useMenuSetting();
     const {getHeaderFixed} = useHeaderSetting();
     return {
-      getIsMobile,
       getDarkMode,
       getShowLogo,
       getShowBreadcrumb,
       getMenuMode,
       getShowHeaderLogo,
+      getShowHeaderTrigger,
       getIsTopMenuMode,
       getHeaderFixed,
+      getShowTagView,
     }
   },
 }

@@ -33,7 +33,7 @@ import path from 'path';
 import {mapGetters} from 'vuex';
 
 export default {
-  name: 'tagview',
+  name: 'TagView',
   components: {
     scrollPanel,
   },

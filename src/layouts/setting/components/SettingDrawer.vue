@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-drawer
-      v-model="getShowSettingDrawer"
+      :model-value="getShowSettingDrawer"
       direction="rtl"
       :size="260"
       :with-header="false"
@@ -31,25 +31,25 @@
             <div>
               <div class="drawer-item flex-row-center">
                 <span>dark</span>
-                <el-switch v-model="dark" class="drawer-switch" @change="toggleDark"/>
+                <el-switch :model-value="dark" class="drawer-switch" @change="toggleDark"/>
               </div>
               <div class="drawer-item flex-row-center">
                 <span>Tag视图</span>
-                <el-switch v-model="getEnableTagView" class="drawer-switch" @change="toggleEnableTagView"/>
+                <el-switch :model-value="getEnableTagView" class="drawer-switch" @change="toggleEnableTagView"/>
               </div>
 
               <div class="drawer-item">
                 <span>固定Header</span>
-                <el-switch v-model="getHeaderFixed" class="drawer-switch" @change="toggleHeaderFixed"/>
+                <el-switch :model-value="getHeaderFixed" class="drawer-switch" @change="toggleHeaderFixed"/>
               </div>
 
               <div class="drawer-item">
                 <span>侧边栏Logo</span>
-                <el-switch v-model="getShowLogo" class="drawer-switch" @change="toggleLogo"/>
+                <el-switch :model-value="getShowLogo" class="drawer-switch" @change="toggleLogo"/>
               </div>
               <div class="drawer-item">
                 <span>面包屑导航</span>
-                <el-switch v-model="getShowBreadcrumb" class="drawer-switch" @change="toggleBreadcrumb"/>
+                <el-switch :model-value="getShowBreadcrumb" class="drawer-switch" @change="toggleBreadcrumb"/>
               </div>
             </div>
           </div>
@@ -58,19 +58,19 @@
             <div>
               <div class="drawer-item">
                 <span>顶部进度条</span>
-                <el-switch v-model="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
+                <el-switch :model-value="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
               </div>
               <div class="drawer-item">
                 <span>切换Loading</span>
-                <el-switch v-model="getOpenPageLoading" class="drawer-switch" @change="toggleOpenPageLoading"/>
+                <el-switch :model-value="getOpenPageLoading" class="drawer-switch" @change="toggleOpenPageLoading"/>
               </div>
               <div class="drawer-item">
                 <span>切换动画</span>
-                <el-switch v-model="getEnableTransition" class="drawer-switch" @change="toggleEnableTransition"/>
+                <el-switch :model-value="getEnableTransition" class="drawer-switch" @change="toggleEnableTransition"/>
               </div>
               <div class="drawer-item">
                 <span>动画类型</span>
-                <el-select v-model="getBasicTransition" size="mini" style="width: 120px"
+                <el-select :model-value="getBasicTransition" size="mini" style="width: 120px"
                            @change="setBasicTransition($event)">
                   <el-option v-for="item in getRouterTransitionOptions"
                              :key="item.value"
