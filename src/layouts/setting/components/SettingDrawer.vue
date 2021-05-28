@@ -86,7 +86,6 @@
   </div>
 </template>
 <script>
-import Theme from "@/components/SettingDrawer/ThemeColor/Theme";
 import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
 import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
@@ -97,7 +96,6 @@ import {ref} from "vue";
 
 export default {
   name: 'setting',
-  components: {Theme},
   props: ['theme'],
   data() {
     return {
