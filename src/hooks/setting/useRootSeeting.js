@@ -24,6 +24,7 @@ export function useRootSetting() {
   const getIsTopMenuMode = computed(() => getNavbarMode.value === 'top-menu');
   const getShowHeaderLogo = computed(() => !getIsSidebarMode.value && getShowLogo.value);
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
+  const getPageLoading = computed(() => getters.getPageLoading);
 
 
   /**
@@ -102,5 +103,6 @@ export function useRootSetting() {
     getIsMixMode,
     getIsTopMenuMode,
     getIsMobile,
+    getPageLoading,
   };
 }

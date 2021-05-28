@@ -3,6 +3,7 @@ const getters = {
   getUser: state => state.user.user,
   getRoles: state => state.user.roles,
   getProjectConfig: state => state.app.projectConfig,
+  getPageLoading: state => state.app.pageLoading,
   getMenuSetting: state => state.app.projectConfig.menuSetting,
   getHeaderSetting: state => state.app.projectConfig.headerSetting,
   getTransitionSetting: state => state.app.projectConfig.transitionSetting,

@@ -8,11 +8,14 @@ const app = {
   mutations: {
     setProjectConfig: (state, projectConfig) => {
       state.projectConfig = {...state.projectConfig, ...projectConfig};
+    },
+    setPageLoading(state, loading) {
+      state.pageLoading = loading;
     }
   },
   actions: {
-    setPageLoading(loading) {
-      this.pageLoading = loading;
+    setPageLoading({commit}, loading) {
+      commit('setPageLoading', loading);
     },
     setDarkMode(mode) {
       this.darkMode = mode;

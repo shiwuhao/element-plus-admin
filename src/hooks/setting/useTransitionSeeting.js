@@ -43,6 +43,7 @@ export function useTransitionSetting() {
     toggleOpenPageLoading,
     getEnableTransition,
     getOpenNProgress,
+    getOpenPageLoading,
     getBasicTransition,
   };
 }

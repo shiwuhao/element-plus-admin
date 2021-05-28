@@ -1,5 +1,5 @@
 <template>
-  <router-view>
+  <router-view v-loading="getOpenPageLoading && getPageLoading">
     <template v-slot="{ Component, route }">
       <transition name="fade-slide" mode="out-in" appear>
         <keep-alive v-if="openCache" :include="getCachedViews">
@@ -13,9 +13,11 @@
 
 <script>
 import {useStore} from 'vuex';
+import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
+import {useRootSetting} from "@/hooks/setting/useRootSeeting";
 
 export default {
-  name: "LayoutContent",
+  name: "LayoutPage",
   data() {
     return {
       openCache: true,
@@ -24,11 +26,16 @@ export default {
   },
   setup() {
     const {getters} = useStore();
-    const {getCachedViews,getVisitedViews} = getters;
+    const {getCachedViews, getVisitedViews} = getters;
+
+    const {getOpenPageLoading} = useTransitionSetting();
+    const {getPageLoading} = useRootSetting();
 
     return {
       getCachedViews,
-      getVisitedViews
+      getVisitedViews,
+      getOpenPageLoading,
+      getPageLoading
     }
   }
 }

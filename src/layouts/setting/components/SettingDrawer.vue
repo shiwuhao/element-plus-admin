@@ -63,6 +63,10 @@
               <span>顶部进度条</span>
               <el-switch v-model="getOpenNProgress" class="drawer-switch" @change="toggleOpenNProgress"/>
             </div>
+            <div class="drawer-item">
+              <span>切换Loading</span>
+              <el-switch v-model="getOpenPageLoading" class="drawer-switch" @change="toggleOpenPageLoading"/>
+            </div>
           </div>
         </div>
       </div>
@@ -124,7 +128,7 @@ export default {
     } = useRootSetting();
 
     const {getHeaderFixed, toggleHeaderFixed} = useHeaderSetting();
-    const {getOpenNProgress, toggleOpenNProgress} = useTransitionSetting();
+    const {getOpenNProgress, toggleOpenNProgress, getOpenPageLoading, toggleOpenPageLoading} = useTransitionSetting();
 
     return {
       getShowLogo,
@@ -141,6 +145,8 @@ export default {
       toggleHeaderFixed,
       getOpenNProgress,
       toggleOpenNProgress,
+      getOpenPageLoading,
+      toggleOpenPageLoading,
     }
   },
 };
