@@ -1,5 +1,5 @@
 import {computed, unref} from 'vue'
-import {useStore} from 'vuex';
+import store from "@/store";
 
 /**
  * headerSetting
@@ -7,9 +7,9 @@ import {useStore} from 'vuex';
  */
 export function useHeaderSetting() {
 
-  const {dispatch, getters} = useStore();
+  const {dispatch, getters} = store;
   const getHeaderSetting = computed(() => getters.getHeaderSetting);
-  const getHeaderFixed = computed(() => getters.getHeaderSetting.fixed);
+  const getHeaderFixed = computed(() => unref(getHeaderSetting).fixed);
 
   async function setHeaderSetting(options) {
     const headerSetting = {...getHeaderSetting.value, ...options};
@@ -23,7 +23,6 @@ export function useHeaderSetting() {
   return {
     getHeaderSetting,
     getHeaderFixed,
-    setHeaderSetting,
     toggleHeaderFixed,
   };
 }

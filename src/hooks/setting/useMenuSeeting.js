@@ -1,5 +1,5 @@
 import {computed, unref} from 'vue'
-import {useStore} from 'vuex';
+import store from "@/store";
 
 /**
  * 菜单设置
@@ -7,11 +7,11 @@ import {useStore} from 'vuex';
  */
 export function useMenuSetting() {
 
-  const {dispatch, getters} = useStore();
+  const {dispatch, getters} = store;
   const getMenuSetting = computed(() => getters.getMenuSetting);
-  const getCollapsed = computed(() => getters.getMenuSetting.collapse);
+  const getCollapsed = computed(() => unref(getMenuSetting).collapse);
+  const getMenuMode = computed(() => unref(getMenuSetting).mode);
   const getDarkMode = computed(() => getters.getDarkMode);
-  const getMenuMode = computed(() => getters.getMenuSetting.mode);
 
   /**
    * 菜单设置
@@ -30,7 +30,6 @@ export function useMenuSetting() {
   }
 
   return {
-    setMenuSetting,
     toggleCollapsed,
     getMenuSetting,
     getCollapsed,

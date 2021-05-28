@@ -3,6 +3,9 @@
     <el-header height="50px">
       <LayoutHeader/>
     </el-header>
+    <el-header class="tagview" height="30px">
+      <tagview></tagview>
+    </el-header>
     <el-container>
       <el-aside width="auto">
         <LayoutSidebar/>
@@ -19,6 +22,7 @@ import LayoutHeader from './header/index';
 import LayoutContent from './content/index';
 import LayoutSidebar from "@/layouts/sidebar";
 import LayoutMenu from '@/layouts/menu'
+import tagview from "@/layouts/tagview/tagview";
 
 export default {
   name: 'Layout1',
@@ -26,7 +30,8 @@ export default {
     LayoutSidebar,
     LayoutHeader,
     LayoutContent,
-    LayoutMenu
+    LayoutMenu,
+    tagview
   }
 };
 </script>
