@@ -26,7 +26,8 @@ export default {
 
     // defaultActive
     const defaultActive = computed(() => {
-      const {meta, path} = currentRoute.value;
+      const {meta, path,fullPath} = currentRoute.value;
+      console.log(path,fullPath);
       return meta && meta.activeMenu ? meta.activeMenu : path;
     })
 

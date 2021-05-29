@@ -1,8 +1,8 @@
 <template>
   <div class="menu-item">
     <el-menu-item :index="menu.path" :route="menu">
-      <i :class="menu.meta.icon"/>
-      <template #title>{{ menu.meta.title }}</template>
+      <i :class="menu.icon"/>
+      <template #title>{{ menu.title }}</template>
     </el-menu-item>
   </div>
 </template>

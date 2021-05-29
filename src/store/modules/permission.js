@@ -1,5 +1,4 @@
-import {constantRoutes, asyncRoutes} from '@/router';
-import {unref} from "vue";
+import {basicRoutes, asyncRoutes} from '@/router/routes';
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -36,6 +35,27 @@ function filterAsyncRoutes(routes, roles) {
   return res
 }
 
+/**
+ * 过滤菜单
+ * @param routes
+ * @param parentPath
+ * @returns {[]}
+ */
+function filterMenus(routes, parentPath = '') {
+  const res = [];
+  routes.forEach(({path, meta: {icon, title, menu}, children}) => {
+    let fullPath = parentPath + '/' + path.replace('/', '');
+    let tmp = {path: fullPath, icon: icon, title: title};
+    if (menu) {
+      if (children) {
+        tmp.children = filterMenus(children, fullPath);
+      }
+      res.push(tmp);
+    }
+  });
+  return res;
+}
+
 const permission = {
   namespaced: true,
   state: {
@@ -46,8 +66,8 @@ const permission = {
   mutations: {
     SET_ROUTES(state, routes) {
       state.addRoutes = routes;
-      state.routes = constantRoutes.concat(routes);
-      state.menus = state.routes.filter(item => item.meta && item.meta.menu !== false);
+      state.routes = basicRoutes.concat(routes);
+      state.menus = filterMenus(state.addRoutes);
     },
   },
   actions: {
