@@ -1,12 +1,12 @@
 import dashboard from "@/router/routes/modules/dashboard";
 import system from "@/router/routes/modules/system";
-import table from "@/router/routes/modules/table";
+import component from "@/router/routes/modules/component";
 import basic from "@/router/routes/basic";
 
 export const asyncRoutes = [
   ...dashboard,
   ...system,
-  ...table
+  ...component
 ];
 
 export const basicRoutes = [...basic];

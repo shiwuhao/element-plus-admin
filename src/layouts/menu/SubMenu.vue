@@ -1,5 +1,5 @@
 <template>
-  <el-submenu :index="menu.path" v-if="menu.children && menu.children.length > 1" popper-append-to-body>
+  <el-submenu :index="menu.path" v-if="menu.children && menu.children.length >= 1" popper-append-to-body>
     <template #title>
       <i :class="menu.icon"/>
       <span>{{ menu.title }}</span>
