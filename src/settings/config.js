@@ -58,5 +58,5 @@ export const ProjectConfig = {
   showLogo: true,
   showBreadcrumb: true,
   showSettingDrawer: false,
-  openKeepAlive: true,
+  openKeepAlive: false,
 }

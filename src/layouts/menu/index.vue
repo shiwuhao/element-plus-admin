@@ -26,8 +26,7 @@ export default {
 
     // defaultActive
     const defaultActive = computed(() => {
-      const {meta, path,fullPath} = currentRoute.value;
-      console.log(path,fullPath);
+      const {meta, path} = currentRoute.value;
       return meta && meta.activeMenu ? meta.activeMenu : path;
     })
 
@@ -98,9 +97,10 @@ export default {
 
 //el-menu--horizontal
 ::v-deep .el-menu.el-menu--horizontal {
-  .menu-item{
+  .menu-item {
     float: left;
   }
+
   .el-menu-item {
     height: 50px;
     line-height: 50px;

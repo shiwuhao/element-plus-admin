@@ -155,11 +155,9 @@ export default {
     toLastTagView(visitedViews, view) {
       const latestView = visitedViews.slice(-1)[0];
       if (latestView) {
-        console.log('latestView.fullPath', latestView.fullPath);
         // this.$router.replace({path: '/redirect' + latestView.fullPath})
         this.$router.push({path: '/redirect' + latestView.fullPath})
       } else {
-        console.log(333);
         if (view.name === 'Dashboard') {
           this.$router.replace({path: '/redirect' + view.fullPath})
         } else {
