@@ -1,10 +1,10 @@
 <template>
-  <div class="menu-item">
+<!--  <div class="menu-item">-->
     <el-menu-item :index="menu.path" :route="menu">
       <i :class="menu.icon"/>
       <template #title>{{ menu.title }}</template>
     </el-menu-item>
-  </div>
+<!--  </div>-->
 </template>
 
 <script>

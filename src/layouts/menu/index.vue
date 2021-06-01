@@ -67,33 +67,34 @@ export default {
       padding: 0 15px !important;
     }
   }
+
+  ::v-deep &.el-menu:not(.el-menu--horizontal) {
+    height: 100%;
+    border: 0;
+
+
+    & > .el-submenu > .el-submenu__title {
+      padding-left: 15px !important;
+    }
+
+    &.el-menu--collapse {
+      width: 50px;
+    }
+
+    &:not(.el-menu--collapse) {
+      width: 230px;
+    }
+
+    &.el-menu--collapse > div > .el-submenu > .el-submenu__title span {
+      height: 0;
+      width: 0;
+      overflow: hidden;
+      visibility: hidden;
+      display: inline-block;
+    }
+  }
 }
 
-::v-deep .el-menu:not(.el-menu--horizontal) {
-  height: 100%;
-  border: 0;
-
-
-  .el-submenu .el-submenu__title {
-    padding-left: 15px !important;
-  }
-
-  &.el-menu--collapse {
-    width: 50px;
-  }
-
-  &:not(.el-menu--collapse) {
-    width: 200px;
-  }
-
-  &.el-menu--collapse > div > .el-submenu > .el-submenu__title span {
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    visibility: hidden;
-    display: inline-block;
-  }
-}
 
 //el-menu--horizontal
 ::v-deep .el-menu.el-menu--horizontal {
