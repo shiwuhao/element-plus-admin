@@ -1,39 +1,10 @@
 <template>
-  <BasicTable :data="tableData">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
+  <BasicTable :data="tableData" :columns="tableColumns">
+    <template #date>
+      <el-table-column width="100" label="日期">
+      </el-table-column>
+    </template>
   </BasicTable>
-  <!--  <el-table-->
-  <!--    :data="tableData"-->
-  <!--    stripe-->
-  <!--    style="width: 100%">-->
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
-  <!--  </el-table>-->
 </template>
 
 <script>
@@ -44,6 +15,24 @@ export default {
   components: {BasicTable},
   data() {
     return {
+      tableColumns: [
+        {
+          slot: 'date',
+          prop: 'date',
+          label: '日期',
+          width: '180',
+        },
+        {
+          prop: 'name',
+          label: '姓名',
+          width: '80',
+        },
+        {
+          prop: 'address',
+          label: '地址',
+          width: '280',
+        },
+      ],
       tableData: [{
         date: '2016-05-02',
         name: '王小虎',

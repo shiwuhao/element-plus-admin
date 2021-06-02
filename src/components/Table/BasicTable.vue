@@ -1,18 +1,17 @@
 <template>
   <el-table v-bind="$attrs">
+    <template v-for="(column,index) in columns" :key="index">
+      <slot v-if="column.slot" :name="column.slot"></slot>
+      <el-table-column v-else v-bind="column"/>
+    </template>
     <slot></slot>
-<!--    <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">-->
-<!--      <slot :name="item" v-bind="data"></slot>-->
-<!--    </template>-->
-<!--    <template #[`header-${column.dataIndex}`] v-for="column in columns" :key="column.dataIndex">-->
-<!--      <HeaderCell :column="column" />-->
-<!--    </template>-->
   </el-table>
 </template>
 
 <script>
 export default {
-  name: "BasicTable"
+  name: "BasicTable",
+  props: ['columns']
 }
 </script>
 
