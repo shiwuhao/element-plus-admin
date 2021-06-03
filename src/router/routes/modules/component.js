@@ -11,6 +11,7 @@ export default [
       {
         path: 'table',
         name: 'table',
+        redirect: '/component/table/basic',
         meta: {title: '表格', menu: true, affix: false, icon: 'el-icon-table-lamp'},
         component: LayoutContent,
         children: [
@@ -18,7 +19,13 @@ export default [
             path: 'basic',
             name: 'basic',
             meta: {title: '基础表格', menu: true, affix: false},
-            component: () => import('@/views/component/table/basic'),
+            component: () => import('@/views/component/table/Basic'),
+          },
+          {
+            path: 'treeTable',
+            name: 'treeTable',
+            meta: {title: '树形表格', menu: true, affix: false},
+            component: () => import('@/views/component/table/TreeTable'),
           },
           {
             path: 'dynamic-table',
