@@ -1,6 +1,6 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicTable :data="tableData" :columns="tableColumns">
+    <BasicTable :data="tableData" :columns="tableColumns" border>
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="text" size="mini" @click="handleEdit(scope)">编辑</el-button>
@@ -31,7 +31,16 @@ export default {
       console.log(index, row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.tableData.splice(index, 1);
+        this.$message.success('删除成功!');
+      }).catch(() => {
+        this.$message.info('已取消删除');
+      });
     },
     onSubmit() {
       console.log('submit!');

@@ -9,6 +9,27 @@ export default [
     meta: {title: '组件', icon: 'el-icon-c-scale-to-original', menu: true},
     children: [
       {
+        path: 'form',
+        name: 'form',
+        redirect: '/component/form/basic',
+        meta: {title: '表单', menu: true, affix: false},
+        component: LayoutContent,
+        children: [
+          {
+            path: 'basic',
+            name: 'basicForm',
+            meta: {title: '基础表单', menu: true, affix: false},
+            component: () => import('@/views/component/form/Basic'),
+          },
+          {
+            path: 'dynamic',
+            name: 'dynamicForm',
+            meta: {title: '动态表单', menu: true, affix: false},
+            component: () => import('@/views/component/form/Basic'),
+          },
+        ],
+      },
+      {
         path: 'table',
         name: 'table',
         redirect: '/component/table/basic',
@@ -26,12 +47,6 @@ export default [
             name: 'treeTable',
             meta: {title: '树形表格', menu: true, affix: false},
             component: () => import('@/views/component/table/TreeTable'),
-          },
-          {
-            path: 'dynamic-table',
-            name: 'dynamic-table',
-            meta: {title: '动态表格', menu: true, affix: false},
-            component: () => import('@/views/component/table/dynamic-table'),
           },
           {
             path: 'search-form',

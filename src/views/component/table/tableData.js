@@ -40,7 +40,7 @@ export function getBasicColumns() {
 
 export function getBasicData() {
   const tableData = [];
-  for (let index = 0; index < 40; index++) {
+  for (let index = 0; index < 20; index++) {
     tableData.push({
       id: `${index}`,
       name: 'John Brown',
@@ -57,7 +57,7 @@ export function getBasicData() {
 
 export function getTreeData() {
   const tableData = [];
-  for (let index = 0; index < 40; index++) {
+  for (let index = 0; index < 20; index++) {
     tableData.push({
       id: `${index}`,
       name: 'John Brown',
