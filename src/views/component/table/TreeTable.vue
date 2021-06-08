@@ -1,6 +1,6 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicTable :data="tableData" :columns="tableColumns" row-key="id">
+    <BasicTable :data="tableData" :columns="tableColumns" row-key="id"  size="small">
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="text" size="mini" @click="handleEdit(scope)">编辑</el-button>

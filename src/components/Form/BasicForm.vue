@@ -1,23 +1,28 @@
 <template>
   <el-form>
-    {{$slots}}
+    {{ $slots }}
     <template v-for="schema in getSchema" :key="schema.field">
-      <el-form-item label="活动名称">
-        <template #[item]="data" v-for="item in Object.keys($slots)">
-          {{item}}
-          <slot :name="item" v-bind="data"></slot>
-        </template>
-      </el-form-item>
+      <FormItem></FormItem>
     </template>
   </el-form>
 </template>
 
 <script>
+import FormItem from "@/components/Form/components/FormItem";
+
 export default {
   name: "BasicForm",
+  components: {FormItem},
   setup() {
     const getSchema = [
-      {field: 'field1', label: 'Input', component: 'Input', componentProps: {}}
+      {
+        field: 'field1',
+        label: 'Input',
+        placeholder: '',
+        component: 'Input',
+        componentProps: {},
+        isShow: false,
+      }
     ];
 
     return {getSchema}
