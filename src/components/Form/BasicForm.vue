@@ -1,31 +1,38 @@
 <template>
-  <el-form>
-    {{ $slots }}
+  {{ formModel }}
+  <el-form :model="formModel" size="mini">
     <template v-for="schema in getSchema" :key="schema.field">
-      <FormItem></FormItem>
+      <FormItem :schema="schema" v-model="formModel[schema.field]">
+        <template #[item]="data" v-for="item in Object.keys($slots)">
+          <slot :name="item" v-bind="data"></slot>
+        </template>
+      </FormItem>
     </template>
   </el-form>
 </template>
 
 <script>
+import {getFormData} from "@/views/component/form/formData";
 import FormItem from "@/components/Form/components/FormItem";
+import {computed, ref} from "vue";
+
 
 export default {
   name: "BasicForm",
   components: {FormItem},
   setup() {
-    const getSchema = [
-      {
-        field: 'field1',
-        label: 'Input',
-        placeholder: '',
-        component: 'Input',
-        componentProps: {},
-        isShow: false,
-      }
-    ];
 
-    return {getSchema}
+    const getSchema = getFormData();
+    const formModel = ref({});
+
+    // computed(()=>{
+    //
+    // })
+
+    return {
+      getSchema,
+      formModel,
+    }
   }
 }
 </script>
