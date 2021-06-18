@@ -1,6 +1,6 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicForm> :s</BasicForm>
+    <BasicForm></BasicForm>
   </el-card>
 </template>
 

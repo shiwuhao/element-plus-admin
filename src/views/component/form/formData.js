@@ -105,6 +105,12 @@ export function getFormData() {
       component: 'DatePicker',
       componentProps: {
         placeholder: 'DatePicker',
+        type: 'date',
+        format: 'YYYY-MM-DD',
+        valueFormat: 'YYYY-MM-DD',
+        onChange: (e) => {
+          console.log(e)
+        },
       }
     },
     {

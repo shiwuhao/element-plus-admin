@@ -1,16 +1,15 @@
 <template>
   <el-form-item v-bind="getFormProps">
-    <el-select v-if="getComponent === 'select'" v-bind="getComponentProps" v-model="VModel">
+    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps" v-if="component === 'Select'">
       <el-option v-for="(option,index) in getComponentProps.options" :key="index" v-bind="option"></el-option>
-    </el-select>
-    <Comp v-else v-bind="getComponentProps" v-model="VModel"/>
+    </component>
+    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps" v-else></component>
   </el-form-item>
 </template>
 
 <script>
-import {computed, toRefs, unref, h, ref, watch} from 'vue'
+import {computed, toRefs, unref, ref, watch} from 'vue'
 import {isFunction} from "@/utils/is";
-import {lowerFirst} from 'lodash'
 import {componentMap} from './componentMap'
 
 export default {
@@ -25,11 +24,9 @@ export default {
       default: () => ({})
     }
   },
-  setup(props, {emit, slots}) {
-    console.log('slots', unref(props))
+  setup(props, {emit}) {
     const {schema, formProps} = toRefs(props)
     const {component, componentProps = {}} = unref(schema);
-    const getComponent = computed(() => lowerFirst(component));
     const getComponentProps = computed(() => {
       if (!isFunction(componentProps)) {
         return componentProps;
@@ -38,20 +35,16 @@ export default {
     })
 
     const getFormProps = formProps;
-    console.log('getComponentProps', getComponentProps)
-
-    const Comp = componentMap.get(unref(schema).component);
+    const getComponent = componentMap.get(component);
     const VModel = ref('')
 
     watch(() => VModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     })
-    // const getComp = h(<Comp {...unref(getComponentProps)}></Comp>);
 
-    // return () => h(<Comp {...unref(getComponentProps)} />);
     return {
       VModel,
-      Comp,
+      component,
       getComponent,
       getComponentProps,
       getFormProps

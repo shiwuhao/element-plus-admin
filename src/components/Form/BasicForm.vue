@@ -2,11 +2,7 @@
   {{ formModel }}
   <el-form :model="formModel" size="mini">
     <template v-for="schema in getSchema" :key="schema.field">
-      <FormItem :schema="schema" v-model="formModel[schema.field]">
-        <template #[item]="data" v-for="item in Object.keys($slots)">
-          <slot :name="item" v-bind="data"></slot>
-        </template>
-      </FormItem>
+      <FormItem :schema="schema" v-model="formModel[schema.field]"></FormItem>
     </template>
   </el-form>
 </template>
