@@ -24,6 +24,9 @@ export function getFormData() {
       field: 'input',
       label: 'Input',
       component: 'Input',
+      formProps: {
+        label: 'Input'
+      },
       componentProps: {
         placeholder: '这是一个Input表单',
       },

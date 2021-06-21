@@ -25,8 +25,8 @@ export default {
     }
   },
   setup(props, {emit}) {
-    const {schema, formProps} = toRefs(props)
-    const {component, componentProps = {}} = unref(schema);
+    const {schema} = toRefs(props);
+    const {component, componentProps = {}, formProps = {}, label} = unref(schema);
     const getComponentProps = computed(() => {
       if (!isFunction(componentProps)) {
         return componentProps;
@@ -34,7 +34,10 @@ export default {
       return componentProps({schema}) ?? {};
     })
 
-    const getFormProps = formProps;
+    const getFormProps = computed(() => {
+      return {...{label: label}, ...formProps}
+    });
+
     const getComponent = componentMap.get(component);
     const VModel = ref('')
 
