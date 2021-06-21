@@ -1,5 +1,4 @@
 <template>
-  {{ formModel }}
   <el-form :model="formModel" v-bind="props">
     <template v-for="schema in getSchema" :key="schema.field">
       <FormItem :schema="schema" v-model="formModel[schema.field]"></FormItem>
@@ -10,7 +9,7 @@
 <script>
 import {getFormData} from "@/views/component/form/formData";
 import FormItem from "@/components/Form/components/FormItem";
-import {computed, ref, reactive, watch} from "vue";
+import {ref, watch} from "vue";
 
 
 export default {
@@ -75,7 +74,6 @@ export default {
     const formModel = ref({});
 
     watch(() => formModel.value, (newVal) => {
-      console.log(111);
       emit('update:modelValue', newVal);
     }, {deep: true})
 

@@ -21,7 +21,7 @@ export default {
     }
   },
   setup(){
-    const form = reactive({})
+    const form = ref({})
     return {form};
   },
   methods: {
