@@ -77,7 +77,7 @@ export default {
     watch(() => formModel.value, (newVal) => {
       console.log(111);
       emit('update:modelValue', newVal);
-    })
+    }, {deep: true})
 
     return {
       props,
