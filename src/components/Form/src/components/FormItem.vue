@@ -1,16 +1,13 @@
 <template>
   <el-form-item v-bind="getFormProps">
-    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps" v-if="component === 'Select'">
-      <el-option v-for="(option,index) in getComponentProps.options" :key="index" v-bind="option"></el-option>
-    </component>
-    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps" v-else></component>
+    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
   </el-form-item>
 </template>
 
 <script>
 import {computed, toRefs, unref, ref, watch} from 'vue'
 import {isFunction} from "@/utils/is";
-import {componentMap} from './componentMap'
+import {componentMap} from '../componentMap'
 
 export default {
   name: "BasicFormItem",

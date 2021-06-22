@@ -8,7 +8,7 @@
 
 <script>
 import {getFormData} from "@/views/component/form/formData";
-import FormItem from "@/components/Form/components/FormItem";
+import FormItem from "./components/FormItem";
 import {ref, watch} from "vue";
 
 

@@ -1,15 +1,12 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <pre>
+    <BasicForm v-model="form" size="mini" label-width="150px"></BasicForm>
     {{ form }}
-    </pre>
-    <BasicForm v-model="form" size="mini" label-width="120px"></BasicForm>
   </el-card>
 </template>
 
 <script>
-import BasicForm from "@/components/Form/BasicForm";
-import {ref,reactive} from "vue";
+import {BasicForm} from "@/components/Form";
 
 export default {
   name: 'Basic',
@@ -17,12 +14,8 @@ export default {
   data() {
     return {
       cardTitle: this.$route.meta.title,
-      // form: {},
+      form: {},
     }
-  },
-  setup(){
-    const form = ref({})
-    return {form};
   },
   methods: {
 

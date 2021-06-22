@@ -25,7 +25,7 @@ export function getFormData() {
       label: 'Input',
       component: 'Input',
       formProps: {
-        label: 'Input'
+        rules: [{required: true}]
       },
       componentProps: {
         placeholder: '这是一个Input表单',
@@ -123,6 +123,85 @@ export function getFormData() {
       componentProps: {
         placeholder: 'DateTimePicker',
         type: 'datetime',
+      }
+    },
+    {
+      field: 'RadioGroup',
+      label: 'RadioGroup',
+      component: 'RadioGroup',
+      componentProps: {
+        placeholder: 'RadioGroup',
+        options: [
+          {
+            label: '选项1',
+            value: 'value1',
+          },
+          {
+            label: '选项2',
+            value: 'value2',
+          }
+        ],
+      }
+    },
+    {
+      field: 'RadioButtonGroup',
+      label: 'RadioButtonGroup',
+      component: 'RadioButtonGroup',
+      componentProps: {
+        placeholder: 'RadioButtonGroup',
+        options: [
+          {
+            label: '选项1',
+            value: 'value1',
+          },
+          {
+            label: '选项2',
+            value: 'value2',
+          }
+        ],
+      }
+    },
+    {
+      field: 'CheckboxGroup',
+      label: 'CheckboxGroup',
+      component: 'CheckboxGroup',
+      componentProps: {
+        options: [
+          {
+            label: '选项1',
+            value: 'check1',
+          },
+          {
+            label: '选项2',
+            value: 'check2',
+          }
+        ],
+      }
+    },
+    {
+      field: 'CheckboxButtonGroup',
+      label: 'CheckboxButtonGroup',
+      component: 'CheckboxButtonGroup',
+      componentProps: {
+        options: [
+          {
+            label: '选项1',
+            value: 'check1',
+          },
+          {
+            label: '选项2',
+            value: 'check2',
+          }
+        ],
+      }
+    },
+    {
+      field: 'Upload',
+      label: 'Upload',
+      component: 'Upload',
+      componentProps: {
+        action: "https://jsonplaceholder.typicode.com/posts/",
+        listType: "picture-card",
       }
     },
   ];
