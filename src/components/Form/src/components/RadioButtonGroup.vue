@@ -1,5 +1,5 @@
 <template>
-  <el-radio-group v-model="VModel" v-bind="$attrs">
+  <el-radio-group v-model="VModel" v-bind="{...$props,...$attrs}">
     <el-radio-button v-for="(option,index) in $attrs.options" :key="index" v-bind="option" :label="option.value">
       {{ option.label }}
     </el-radio-button>
@@ -7,12 +7,23 @@
 </template>
 
 <script>
-import {ref, watch} from 'vue'
+import {toRefs, watch} from 'vue'
 
 export default {
   name: "BasicRadioGroup",
+  props: {
+    modelValue: {
+      type: [Number, String],
+    }
+  },
   setup(props, {emit}) {
-    const VModel = ref('')
+    const {modelValue} = toRefs(props);
+    const VModel = modelValue;
+
+    watch(() => modelValue.value, (newVal) => {
+      VModel.value = newVal;
+    })
+
     watch(() => VModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     })

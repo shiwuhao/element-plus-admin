@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-checkbox-group v-model="VModel" v-bind="$props">
+    <el-checkbox-group v-model="VModel" v-bind="{...$props,...$attrs}">
       <el-checkbox v-for="(option) in $attrs.options" :key="option.value" v-bind="option" :label="option.value">
         {{ option.label }}
       </el-checkbox>
@@ -9,12 +9,23 @@
 </template>
 
 <script>
-import {ref, watch} from 'vue'
+import {ref, toRefs, watch} from 'vue'
 
 export default {
   name: "BasicCheckboxGroup",
+  props: {
+    modelValue: {
+      type: [Array, Number, String],
+    }
+  },
   setup(props, {emit}) {
-    const VModel = ref([])
+    const {modelValue} = toRefs(props);
+    const VModel = modelValue;
+
+    watch(() => modelValue.value, (newVal) => {
+      VModel.value = newVal;
+    })
+
     watch(() => VModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     })

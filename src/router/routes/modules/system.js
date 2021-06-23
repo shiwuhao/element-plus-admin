@@ -5,7 +5,7 @@ export default [
     path: '/system',
     component: Layout,
     redirect: '/system/configs',
-    meta: {title: '系统配置', icon: 'el-icon-setting', menu: true},
+    meta: {title: '系统', icon: 'el-icon-setting', menu: true},
     children: [
       {
         path: 'users',

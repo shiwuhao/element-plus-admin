@@ -1,24 +1,31 @@
 <template>
-  <el-form :model="formModel" v-bind="props">
-    <template v-for="schema in getSchema" :key="schema.field">
-      <FormItem :schema="schema" v-model="formModel[schema.field]"></FormItem>
-    </template>
+  <el-form :model="formModel" v-bind="{...$props,...$attrs}">
+    <el-row :gutter="30">
+      <template v-for="schema in getSchema" :key="schema.field">
+        <FormItem :schema="schema" v-model="formModel[schema.field]"></FormItem>
+      </template>
+      <FormAction></FormAction>
+    </el-row>
   </el-form>
 </template>
 
 <script>
-import {getFormData} from "@/views/component/form/formData";
 import FormItem from "./components/FormItem";
-import {ref, watch} from "vue";
+import FormAction from "./components/FormAction";
+import {toRefs, watch} from "vue";
 
 
 export default {
   name: "BasicForm",
-  components: {FormItem},
+  components: {FormItem, FormAction},
   props: {
-    model: {
+    modelValue: {
       type: Object,
       default: () => ({})
+    },
+    schemas: {
+      type: Array,
+      default: () => ([]),
     },
     rules: {
       type: Object,
@@ -70,15 +77,19 @@ export default {
     },
   },
   setup(props, {emit}) {
-    const getSchema = getFormData();
-    const formModel = ref({});
+    const {modelValue, schemas = []} = toRefs(props);
+    const getSchema = schemas;
+    const formModel = modelValue;
+
+    watch(() => modelValue.value, (newVal) => {
+      formModel.value = Object.assign(newVal);
+    }, {deep: true})
 
     watch(() => formModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     }, {deep: true})
 
     return {
-      props,
       getSchema,
       formModel,
     }

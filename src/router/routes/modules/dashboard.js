@@ -6,7 +6,7 @@ export default [
     component: Layout,
     name: 'dashboard',
     redirect: '/dashboard/analysis',
-    meta: {title: 'Dashboard', icon: 'el-icon-s-home', menu: true, cache: true},
+    meta: {title: '主页', icon: 'el-icon-s-home', menu: true, cache: true},
     children: [
       {
         path: 'analysis',

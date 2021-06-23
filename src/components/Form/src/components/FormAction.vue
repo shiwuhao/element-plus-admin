@@ -1,5 +1,10 @@
 <template>
-
+  <el-col>
+    <el-form-item>
+      <el-button>重置</el-button>
+      <el-button>查询</el-button>
+    </el-form-item>
+  </el-col>
 </template>
 
 <script>

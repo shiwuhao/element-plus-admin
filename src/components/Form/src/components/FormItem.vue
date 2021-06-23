@@ -1,7 +1,9 @@
 <template>
-  <el-form-item v-bind="getFormProps">
-    <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
-  </el-form-item>
+  <el-col v-bind="colProps">
+    <el-form-item v-bind="getFormProps">
+      <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
+    </el-form-item>
+  </el-col>
 </template>
 
 <script>
@@ -12,6 +14,10 @@ import {componentMap} from '../componentMap'
 export default {
   name: "BasicFormItem",
   props: {
+    modelValue: {
+      type: [String, Array, Number, Object],
+      default: '',
+    },
     schema: {
       type: Object,
       default: () => ({})
@@ -22,8 +28,8 @@ export default {
     }
   },
   setup(props, {emit}) {
-    const {schema} = toRefs(props);
-    const {component, componentProps = {}, formProps = {}, label} = unref(schema);
+    const {schema, modelValue} = toRefs(props);
+    const {component, componentProps = {}, colProps = {}, formProps = {}, label} = unref(schema);
     const getComponentProps = computed(() => {
       if (!isFunction(componentProps)) {
         return componentProps;
@@ -36,7 +42,11 @@ export default {
     });
 
     const getComponent = componentMap.get(component);
-    const VModel = ref('')
+    const VModel = ref(modelValue.value)
+
+    watch(() => modelValue.value, (newVal) => {
+      VModel.value = newVal;
+    })
 
     watch(() => VModel.value, (newVal) => {
       emit('update:modelValue', newVal);
@@ -47,7 +57,8 @@ export default {
       component,
       getComponent,
       getComponentProps,
-      getFormProps
+      getFormProps,
+      colProps
     }
   },
 }
