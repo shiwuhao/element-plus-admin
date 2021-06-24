@@ -22,6 +22,12 @@ export default [
             component: () => import('@/views/component/form/Basic'),
           },
           {
+            path: 'advancedForm',
+            name: 'advancedForm',
+            meta: {title: '收缩表单', menu: true, affix: false},
+            component: () => import('@/views/component/form/AdvancedForm'),
+          },
+          {
             path: 'dynamic',
             name: 'dynamicForm',
             meta: {title: '动态表单', menu: true, affix: false},

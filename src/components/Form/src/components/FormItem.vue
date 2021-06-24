@@ -1,5 +1,5 @@
 <template>
-  <el-col v-bind="colProps">
+  <el-col v-bind="colProps" v-show="getIsShow">
     <el-form-item v-bind="getFormProps">
       <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
     </el-form-item>
@@ -8,7 +8,7 @@
 
 <script>
 import {computed, toRefs, unref, ref, watch} from 'vue'
-import {isFunction} from "@/utils/is";
+import {isFunction, isBoolean} from "@/utils/is";
 import {componentMap} from '../componentMap'
 
 export default {
@@ -29,7 +29,7 @@ export default {
   },
   setup(props, {emit}) {
     const {schema, modelValue} = toRefs(props);
-    const {component, componentProps = {}, colProps = {}, formProps = {}, label} = unref(schema);
+    const {component, componentProps = {}, colProps = {}, formProps = {}, label, show, isAdvanced} = unref(schema);
     const getComponentProps = computed(() => {
       if (!isFunction(componentProps)) {
         return componentProps;
@@ -52,12 +52,27 @@ export default {
       emit('update:modelValue', newVal);
     })
 
+    const getIsShow = computed(() => {
+      let isShow = true;
+      const {showAdvancedButton} = props.formProps;
+      const schemaIsAdvanced = showAdvancedButton ? !!isAdvanced : true;
+      if (isBoolean(show)) {
+        isShow = show;
+      }
+      if (isFunction(show)) {
+        isShow = show(schema, VModel);
+      }
+
+      return isShow && schemaIsAdvanced;
+    });
+
     return {
       VModel,
       component,
       getComponent,
       getComponentProps,
       getFormProps,
+      getIsShow,
       colProps
     }
   },
