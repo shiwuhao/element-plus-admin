@@ -1,5 +1,5 @@
 <template>
-  <el-col :style="{textAlign:actionPosition}" v-if="showAction">
+  <el-col v-if="showAction" :style="{textAlign:actionPosition}" v-bind="colProps">
     <el-form-item>
       <slot name="resetBefore"></slot>
       <el-button type="default" v-bind="getResetButtonOption" v-if="showResetButton">
@@ -10,9 +10,9 @@
         {{ getSubmitButtonOption.text }}
       </el-button>
       <slot name="advanceBefore"></slot>
-      <el-button type="text" v-if="showAdvancedButton" :icon="getIsAdvanced ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
+      <el-button type="text" v-if="showAdvancedButton" :icon="!$props.isAdvanced ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
                  @click="toggleAdvanced">
-        {{ getIsAdvanced ? '展开' : '收起' }}
+        {{ !$props.isAdvanced ? '展开' : '收起' }}
       </el-button>
       <slot name="advanceAfter"></slot>
     </el-form-item>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {computed, ref, toRefs, unref} from "vue";
+import {computed, ref, toRefs} from "vue";
 
 export default {
   name: "FormAction",
@@ -49,6 +49,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showAdvancedLength: {
+      type: Boolean,
+      default: false,
+    },
     isAdvanced: {
       type: Boolean,
       default: true,
@@ -57,27 +61,27 @@ export default {
       type: String,
       default: 'right',
     },
+    colProps: {
+      type: Object,
+      default: () => ({})
+    }
   },
   setup(props, {emit}) {
-    const {resetButtonOption, submitButtonOption, isAdvanced} = toRefs(props);
+    const {resetButtonOption, submitButtonOption} = toRefs(props);
     const getResetButtonOption = computed(() => {
-      return {...{text: '重置'}, ...resetButtonOption}
+      return {...{text: '重置'}, ...resetButtonOption.value}
     })
     const getSubmitButtonOption = computed(() => {
-      return {...{text: '提交'}, ...submitButtonOption}
+      return {...{text: '提交'}, ...submitButtonOption.value}
     })
 
-    const getIsAdvanced = ref(isAdvanced.value);
-
     function toggleAdvanced() {
-      getIsAdvanced.value = !getIsAdvanced.value;
       emit('toggle-advanced');
     }
 
     return {
       getResetButtonOption,
       getSubmitButtonOption,
-      getIsAdvanced,
       toggleAdvanced,
     }
   }

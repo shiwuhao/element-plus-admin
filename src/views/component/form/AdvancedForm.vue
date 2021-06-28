@@ -1,12 +1,27 @@
 <template>
-  <el-card class="m10" :header="cardTitle">
+  <el-card class="m10" header="基础收缩示例">
     <BasicForm v-model="form"
                :schemas="schemas"
-               showAdvancedButton
+               :action-props="actionProps"
                size="small"
                label-width="150px"
                label-position="right"></BasicForm>
-    {{ form }}
+  </el-card>
+  <el-card class="m10" header="超过二行收起">
+    <BasicForm v-model="form"
+               :schemas="schemas"
+               :action-props="actionProps2"
+               size="small"
+               label-width="150px"
+               label-position="right"></BasicForm>
+  </el-card>
+  <el-card class="m10" header="动作按钮单独一行">
+    <BasicForm v-model="form"
+               :schemas="schemas"
+               :action-props="actionProps3"
+               size="small"
+               label-width="150px"
+               label-position="right"></BasicForm>
   </el-card>
 </template>
 
@@ -20,6 +35,49 @@ export default {
   data() {
     return {
       cardTitle: this.$route.meta.title,
+      actionProps: {
+        colProps: {
+          span: 6
+        },
+        actionPosition: 'left',
+        showAdvancedButton: true,
+        resetButtonOption: {
+          text: '重置'
+        },
+        submitButtonOption: {
+          text: '搜索'
+        }
+      },
+
+      actionProps2: {
+        colProps: {
+          span: 6
+        },
+        actionPosition: 'left',
+        showAdvancedButton: true,
+        showAdvancedLength: 2,
+        resetButtonOption: {
+          text: '重置'
+        },
+        submitButtonOption: {
+          text: '搜索'
+        }
+      },
+
+      actionProps3: {
+        colProps: {
+          span: 24
+        },
+        actionPosition: 'left',
+        showAdvancedButton: true,
+        showAdvancedLength: 2,
+        resetButtonOption: {
+          text: '重置'
+        },
+        submitButtonOption: {
+          text: '搜索'
+        }
+      },
       schemas: [
         {
           field: 'field1',

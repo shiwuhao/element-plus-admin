@@ -1,6 +1,10 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicForm v-model="form" :schemas="schemas" size="small" label-width="150px" label-position="right"></BasicForm>
+    <BasicForm v-model="form"
+               :schemas="schemas"
+               size="small"
+               label-width="150px"
+               label-position="right"></BasicForm>
     {{ form }}
   </el-card>
 </template>
@@ -16,6 +20,7 @@ export default {
     return {
       cardTitle: this.$route.meta.title,
       schemas: getFormData(),
+
       form: {
         input: "wqewqfdas",
         input_number: 12321,
