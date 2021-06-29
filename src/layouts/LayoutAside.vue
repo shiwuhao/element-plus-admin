@@ -39,7 +39,7 @@ export default {
   height: 100vh;
   padding: 0 0;
   .content{
-    margin-top: 10px;
+    //margin-top: 10px;
   }
 }
 </style>

@@ -1,33 +1,49 @@
 <template>
+  <el-card>
+  <el-page-header :content="cardTitle"></el-page-header>
+  </el-card>
   <el-card class="m10" header="基础收缩示例">
     <BasicForm v-model="form"
                :schemas="schemas"
                :action-props="actionProps"
                size="small"
-               label-width="150px"
+               label-width="80px"
                label-position="right"></BasicForm>
   </el-card>
   <el-card class="m10" header="超过二行收起">
-    <BasicForm v-model="form"
+    <BasicForm v-model="form2"
                :schemas="schemas"
                :action-props="actionProps2"
                size="small"
-               label-width="150px"
+               label-width="80px"
                label-position="right"></BasicForm>
   </el-card>
-  <el-card class="m10" header="动作按钮单独一行">
-    <BasicForm v-model="form"
+  <el-card class="m10" header="按钮单独一行">
+    <BasicForm v-model="form3"
                :schemas="schemas"
                :action-props="actionProps3"
                size="small"
-               label-width="150px"
+               label-width="80px"
                label-position="right"></BasicForm>
   </el-card>
+  <el-card class="m10" header="隐藏label">
+    <BasicForm v-model="form4"
+               :schemas="schemas2"
+               :action-props="actionProps4"
+               size="small"></BasicForm>
+  </el-card>
 </template>
-
 <script>
-import {getFormData} from "@/views/component/form/formData";
+const colProps = {
+  xs: {span: 24},
+  sm: {span: 12},
+  md: {span: 12},
+  lg: {span: 8},
+  xl: {span: 8},
+}
+
 import {BasicForm} from "@/components/Form";
+import {selectOptions, cascaderOptions} from './formData'
 
 export default {
   name: 'Basic',
@@ -36,9 +52,8 @@ export default {
     return {
       cardTitle: this.$route.meta.title,
       actionProps: {
-        colProps: {
-          span: 6
-        },
+        isAdvanced: true,
+        colProps: colProps,
         actionPosition: 'left',
         showAdvancedButton: true,
         resetButtonOption: {
@@ -50,9 +65,7 @@ export default {
       },
 
       actionProps2: {
-        colProps: {
-          span: 6
-        },
+        colProps: colProps,
         actionPosition: 'left',
         showAdvancedButton: true,
         showAdvancedLength: 2,
@@ -70,7 +83,20 @@ export default {
         },
         actionPosition: 'left',
         showAdvancedButton: true,
-        showAdvancedLength: 2,
+        showAdvancedLength: 3,
+        resetButtonOption: {
+          text: '重置'
+        },
+        submitButtonOption: {
+          text: '搜索'
+        }
+      },
+      actionProps4: {
+        colProps: colProps,
+        isAdvanced: true,
+        actionPosition: 'left',
+        showAdvancedButton: true,
+        showAdvancedLength: 3,
         resetButtonOption: {
           text: '重置'
         },
@@ -86,9 +112,7 @@ export default {
           componentProps: {
             placeholder: '这是一个Input表单',
           },
-          colProps: {
-            span: 8
-          }
+          colProps: colProps,
         },
         {
           field: 'field2',
@@ -97,9 +121,7 @@ export default {
           componentProps: {
             placeholder: '这是一个Input表单',
           },
-          colProps: {
-            span: 8
-          }
+          colProps: colProps,
         },
         {
           field: 'field3',
@@ -108,9 +130,7 @@ export default {
           componentProps: {
             placeholder: '这是一个Input表单',
           },
-          colProps: {
-            span: 8
-          }
+          colProps: colProps,
         },
         {
           field: 'field4',
@@ -119,9 +139,7 @@ export default {
           componentProps: {
             placeholder: '这是一个Input表单',
           },
-          colProps: {
-            span: 8
-          }
+          colProps: colProps,
         },
         {
           field: 'field5',
@@ -130,12 +148,63 @@ export default {
           componentProps: {
             placeholder: '这是一个Input表单',
           },
-          colProps: {
-            span: 8
-          }
+          colProps: colProps,
+        },
+      ],
+      schemas2: [
+        {
+          field: 'field1',
+          component: 'Input',
+          componentProps: {
+            placeholder: '这是一个Input表单',
+          },
+          colProps: colProps,
+        },
+        {
+          field: 'field2',
+          component: 'Select',
+          componentProps: {
+            placeholder: '这是一个Select',
+            options: selectOptions,
+            style: {
+              width: '100%',
+            }
+          },
+          colProps: colProps,
+        },
+        {
+          field: 'field3',
+          component: 'Cascader',
+          componentProps: {
+            placeholder: '这是一个级联菜单',
+            options: cascaderOptions,
+            style: {
+              width: '100%',
+            }
+          },
+          colProps: colProps,
+        },
+        {
+          field: 'field4',
+          component: 'Input',
+          componentProps: {
+            placeholder: '这是一个Input表单',
+          },
+          colProps: colProps,
+        },
+        {
+          field: 'field5',
+          component: 'Input',
+          componentProps: {
+            placeholder: '这是一个Input表单',
+          },
+          colProps: colProps,
         },
       ],
       form: {},
+      form2: {},
+      form3: {},
+      form4: {},
     }
   },
   methods: {

@@ -17,7 +17,7 @@
 <script>
 import FormItem from "./components/FormItem";
 import FormAction from "./components/FormAction";
-import {ref, toRefs, reactive, unref, watch} from "vue";
+import {toRefs, reactive, unref, watch} from "vue";
 
 
 export default {
@@ -85,12 +85,12 @@ export default {
       default: () => ({})
     }
   },
+  emits: ['reset', 'submit'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}} = toRefs(props);
     const getSchema = schemas;
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
-    const isAdvanced = ref(false);
     const getActionProps = reactive({
       isAdvanced: false,
       ...unref(actionProps),

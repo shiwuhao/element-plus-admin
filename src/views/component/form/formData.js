@@ -1,4 +1,4 @@
-const options = [
+export const selectOptions = [
   {
     label: '选项1',
     value: 'value1',
@@ -13,7 +13,7 @@ const options = [
   }
 ];
 
-const cascaderOptions = [
+export const cascaderOptions = [
   {
     label: '选项1',
     value: 'value1',
@@ -66,7 +66,7 @@ export function getFormData() {
       component: 'Select',
       componentProps: {
         placeholder: '这是一个Select',
-        options: options
+        options: selectOptions
       },
       colProps: {
         span: 12
@@ -169,7 +169,7 @@ export function getFormData() {
       component: 'RadioGroup',
       componentProps: {
         placeholder: 'RadioGroup',
-        options: options,
+        options: selectOptions,
       },
       colProps: {
         span: 12
@@ -181,7 +181,7 @@ export function getFormData() {
       component: 'RadioButtonGroup',
       componentProps: {
         placeholder: 'RadioButtonGroup',
-        options: options,
+        options: selectOptions,
       },
       colProps: {
         span: 12
@@ -192,7 +192,7 @@ export function getFormData() {
       label: '多选框',
       component: 'CheckboxGroup',
       componentProps: {
-        options: options,
+        options: selectOptions,
       },
       colProps: {
         span: 12
@@ -203,7 +203,7 @@ export function getFormData() {
       label: '多选框按钮',
       component: 'CheckboxButtonGroup',
       componentProps: {
-        options: options,
+        options: selectOptions,
       },
       colProps: {
         span: 12
