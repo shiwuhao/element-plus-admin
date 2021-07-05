@@ -1,12 +1,12 @@
 <template>
-  <div style="padding: 10px 0 0 10px;">
-    <el-button size="mini" @click="changFieldLabel(0)">更改字段1Label</el-button>
-    <el-button size="mini" @click="changFieldValue(0)">更改字段1Value</el-button>
-    <el-button size="mini" @click="appendSchema">向最后追加一个字段</el-button>
-    <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
-    <el-button size="mini">更改字段1Label</el-button>
-  </div>
   <el-card class="m10" :header="cardTitle">
+    <div style="padding-bottom: 30px;">
+      <el-button size="mini" @click="changFieldLabel(0)">更改字段1Label</el-button>
+      <el-button size="mini" @click="changFieldValue(0)">更改字段1Value</el-button>
+      <el-button size="mini" @click="appendSchema">向最后追加一个字段</el-button>
+      <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
+      <el-button size="mini">更改字段1Label</el-button>
+    </div>
     <BasicForm v-model="form"
                :schemas="schemas"
                @reset="handleReset"
