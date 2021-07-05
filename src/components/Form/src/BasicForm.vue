@@ -17,7 +17,7 @@
 <script>
 import FormItem from "./components/FormItem";
 import FormAction from "./components/FormAction";
-import {defineComponent, toRefs, reactive, unref, watch, provide, useContext, ref, onMounted} from "vue";
+import {defineComponent, toRefs, reactive, unref, watch, provide, ref} from "vue";
 
 export default defineComponent({
   name: "BasicForm",
@@ -91,16 +91,11 @@ export default defineComponent({
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
     const elForm = ref(null);
-
-    const getActionProps = reactive({
-      isAdvanced: false,
-      ...unref(actionProps),
-    });
+    const getActionProps = reactive({isAdvanced: false, ...unref(actionProps)});
 
     watch(() => modelValue.value, (newVal) => {
       formModel.value = Object.assign(newVal);
     }, {deep: true})
-
     watch(() => formModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     }, {deep: true})
@@ -133,7 +128,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-
-</style>

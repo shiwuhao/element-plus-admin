@@ -1,4 +1,11 @@
 <template>
+  <div style="padding: 10px 0 0 10px;">
+    <el-button size="mini" @click="changFieldLabel(0)">更改字段1Label</el-button>
+    <el-button size="mini" @click="changFieldValue(0)">更改字段1Value</el-button>
+    <el-button size="mini" @click="appendSchema">向最后追加一个字段</el-button>
+    <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
+    <el-button size="mini">更改字段1Label</el-button>
+  </div>
   <el-card class="m10" :header="cardTitle">
     <BasicForm v-model="form"
                :schemas="schemas"
@@ -7,12 +14,11 @@
                size="small"
                label-width="150px"
                label-position="right"></BasicForm>
-    {{ form }}
   </el-card>
 </template>
 
 <script>
-import {getFormData} from "@/views/component/form/formData";
+import {getDynamicFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
 
 export default {
@@ -21,7 +27,7 @@ export default {
   data() {
     return {
       cardTitle: this.$route.meta.title,
-      schemas: getFormData(),
+      schemas: getDynamicFormData(),
 
       form: {
         input: "wqewqfdas",
@@ -41,6 +47,27 @@ export default {
     }
   },
   methods: {
+    changFieldLabel(index) {
+      this.schemas[index]['label'] = 'Label';
+    },
+    changFieldValue(index) {
+      const field = this.schemas[index]['field'];
+      this.form[field] = 'newValue'
+    },
+    appendSchema() {
+      const schema = {
+        field: 'newField',
+        label: '新字段',
+        component: 'Input',
+        colProps: {
+          span: 8,
+        }
+      }
+      this.schemas.push(schema);
+    },
+    deleteLastSchema() {
+      this.schemas.splice(this.schemas.length-1, 1);
+    },
     handleReset() {
       console.log('reset-1111')
     },

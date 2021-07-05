@@ -29,17 +29,10 @@ export default {
   },
   setup(props, {emit}) {
     const {schema, modelValue} = toRefs(props);
-    const {
-      field,
-      component,
-      componentProps = {},
-      colProps = {},
-      formProps = {},
-      label,
-      show,
-      isAdvanced
-    } = unref(schema);
+    const {component, colProps = {}} = unref(schema);
+
     const getComponentProps = computed(() => {
+      const {componentProps = {}} = unref(schema);
       if (!isFunction(componentProps)) {
         return componentProps;
       }
@@ -47,6 +40,7 @@ export default {
     })
 
     const getFormProps = computed(() => {
+      const {label, field, formProps = {}} = unref(schema);
       return {...{label: label, prop: field}, ...formProps}
     });
 
@@ -62,6 +56,7 @@ export default {
     })
 
     const getIsShow = computed(() => {
+      const {show, isAdvanced} = unref(schema);
       let isShow = true;
       const {showAdvancedButton} = props.formProps;
       const schemaIsAdvanced = showAdvancedButton ? !!isAdvanced : true;

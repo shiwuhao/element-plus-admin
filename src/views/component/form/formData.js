@@ -434,3 +434,67 @@ export function getRuleFormData() {
     },
   ];
 }
+
+export function getDynamicFormData() {
+  return [
+    {
+      field: 'input',
+      label: '输入框',
+      component: 'Input',
+      componentProps: {
+        placeholder: '这是一个Input表单',
+      },
+      colProps: {
+        span: 8
+      },
+      formProps: {
+        rules: [{required: true, message: '这是个必填项', trigger: 'blur'}],
+      },
+    },
+    {
+      field: 'input_number',
+      label: '计数器',
+      component: 'InputNumber',
+      componentProps: {
+        placeholder: '这是一个InputNumber表单',
+        style: {
+          minWidth: '300px'
+        }
+      },
+      colProps: {
+        span: 8
+      },
+      formProps: {
+        rules: [{required: true, message: '这是个必填项', trigger: 'blur'}],
+      },
+    },
+    {
+      field: 'select',
+      label: '选择器',
+      component: 'Select',
+      componentProps: {
+        placeholder: '这是一个Select',
+        options: selectOptions
+      },
+      colProps: {
+        span: 8
+      }
+    },
+    {
+      field: 'cascader',
+      label: '级联选择器',
+      component: 'Cascader',
+      componentProps: {
+        placeholder: '这是一个Cascader',
+        collapseTags: true,
+        options: cascaderOptions,
+        change: () => {
+          console.log(111);
+        }
+      },
+      colProps: {
+        span: 8
+      }
+    },
+  ];
+}
