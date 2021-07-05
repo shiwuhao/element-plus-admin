@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="formModel" v-bind="{...$props,...$attrs}">
+  <el-form ref="elForm" :model="formModel" v-bind="{...$props,...$attrs}">
     <el-row :gutter="30">
       <template v-for="(schema,index) in getSchema" :key="schema.field">
         <FormItem :schema="schema" v-model="formModel[schema.field]"
@@ -17,10 +17,9 @@
 <script>
 import FormItem from "./components/FormItem";
 import FormAction from "./components/FormAction";
-import {toRefs, reactive, unref, watch} from "vue";
+import {defineComponent, toRefs, reactive, unref, watch, provide, useContext, ref, onMounted} from "vue";
 
-
-export default {
+export default defineComponent({
   name: "BasicForm",
   components: {FormItem, FormAction},
   props: {
@@ -85,12 +84,14 @@ export default {
       default: () => ({})
     }
   },
-  emits: ['reset', 'submit'],
+  emits: ['on-reset', 'on-submit'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}} = toRefs(props);
     const getSchema = schemas;
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
+    const elForm = ref(null);
+
     const getActionProps = reactive({
       isAdvanced: false,
       ...unref(actionProps),
@@ -104,9 +105,17 @@ export default {
       emit('update:modelValue', newVal);
     }, {deep: true})
 
-    function toggleAdvanced() {
-      getActionProps.isAdvanced = !getActionProps.isAdvanced
-    }
+    const toggleAdvanced = () => getActionProps.isAdvanced = !getActionProps.isAdvanced;
+    const validate = () => elForm.value.validate();
+    const validateField = () => elForm.value.validateField();
+    const resetFields = () => elForm.value.resetFields();
+    const clearValidate = () => elForm.value.clearValidate();
+
+    const handleSubmit = () => emit('submit');
+    const handleReset = () => emit('reset');
+
+    provide('handleReset', handleReset);
+    provide('handleSubmit', handleSubmit)
 
     return {
       getSchema,
@@ -114,10 +123,15 @@ export default {
       showAdvancedButton,
       showAdvancedLength,
       getActionProps,
-      toggleAdvanced
+      elForm,
+      toggleAdvanced,
+      validate,
+      validateField,
+      resetFields,
+      clearValidate
     }
-  }
-}
+  },
+})
 </script>
 
 <style scoped>

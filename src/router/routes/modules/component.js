@@ -16,10 +16,10 @@ export default [
         component: LayoutContent,
         children: [
           {
-            path: 'basic',
+            path: 'basicForm',
             name: 'basicForm',
             meta: {title: '基础表单', menu: true, affix: false},
-            component: () => import('@/views/component/form/Basic'),
+            component: () => import('@/views/component/form/BasicForm'),
           },
           {
             path: 'advancedForm',
@@ -28,10 +28,16 @@ export default [
             component: () => import('@/views/component/form/AdvancedForm'),
           },
           {
-            path: 'dynamic',
+            path: 'dynamicForm',
             name: 'dynamicForm',
             meta: {title: '动态表单', menu: true, affix: false},
-            component: () => import('@/views/component/form/Basic'),
+            component: () => import('@/views/component/form/DynamicForm'),
+          },
+          {
+            path: 'ruleForm',
+            name: 'ruleForm',
+            meta: {title: '表单验证', menu: true, affix: false},
+            component: () => import('@/views/component/form/RuleForm'),
           },
         ],
       },

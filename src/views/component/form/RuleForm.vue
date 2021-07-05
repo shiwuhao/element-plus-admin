@@ -1,28 +1,30 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicForm v-model="form"
+    <BasicForm ref="formRef"
+               v-model="form"
                :schemas="schemas"
+               @reset="handleReset"
+               @submit="handleSubmit"
                size="small"
                label-width="150px"
                label-position="right"></BasicForm>
-    {{ form }}
   </el-card>
 </template>
 
 <script>
-import {getFormData} from "@/views/component/form/formData";
+import {getRuleFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
 
 export default {
-  name: 'Basic',
+  name: 'RuleForm',
   components: {BasicForm},
   data() {
     return {
       cardTitle: this.$route.meta.title,
-      schemas: getFormData(),
+      schemas: getRuleFormData(),
 
       form: {
-        input: "wqewqfdas",
+        input: "",
         input_number: 12321,
         select: "value1",
         time_picker: "16:40:33",
@@ -39,10 +41,14 @@ export default {
     }
   },
   methods: {
-
-    onSubmit() {
-      console.log('submit!');
-    }
+    handleReset() {
+      this.$refs['formRef'].resetFields();
+    },
+    handleSubmit() {
+      this.$refs['formRef'].validate((e) => {
+        console.log('e', e);
+      })
+    },
   }
 }
 </script>

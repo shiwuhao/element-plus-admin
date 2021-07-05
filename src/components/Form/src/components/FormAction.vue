@@ -2,15 +2,16 @@
   <el-col v-if="showAction" :style="{textAlign:actionPosition}" v-bind="colProps">
     <el-form-item>
       <slot name="resetBefore"></slot>
-      <el-button type="default" v-bind="getResetButtonOption" v-if="showResetButton">
+      <el-button type="default" v-bind="getResetButtonOption" v-if="showResetButton" @click="handleReset">
         {{ getResetButtonOption.text }}
       </el-button>
       <slot name="submitBefore"></slot>
-      <el-button type="primary" v-bind="getSubmitButtonOption" v-if="showSubmitButton">
+      <el-button type="primary" v-bind="getSubmitButtonOption" v-if="showSubmitButton" @click="handleSubmit">
         {{ getSubmitButtonOption.text }}
       </el-button>
       <slot name="advanceBefore"></slot>
-      <el-button type="text" v-if="showAdvancedButton" :icon="!$props.isAdvanced ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
+      <el-button type="text" v-if="showAdvancedButton"
+                 :icon="!$props.isAdvanced ? 'el-icon-arrow-down' : 'el-icon-arrow-up'"
                  @click="toggleAdvanced">
         {{ !$props.isAdvanced ? '展开' : '收起' }}
       </el-button>
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-import {computed, ref, toRefs} from "vue";
+import {computed, ref, toRefs, inject} from "vue";
 
 export default {
   name: "FormAction",
@@ -75,6 +76,9 @@ export default {
       return {...{text: '提交'}, ...submitButtonOption.value}
     })
 
+    const handleReset = inject('handleReset');
+    const handleSubmit = inject('handleSubmit');
+
     function toggleAdvanced() {
       emit('toggle-advanced');
     }
@@ -83,6 +87,8 @@ export default {
       getResetButtonOption,
       getSubmitButtonOption,
       toggleAdvanced,
+      handleReset,
+      handleSubmit,
     }
   }
 }
