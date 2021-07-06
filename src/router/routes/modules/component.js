@@ -39,6 +39,12 @@ export default [
             meta: {title: '表单验证', menu: true, affix: false},
             component: () => import('@/views/component/form/RuleForm'),
           },
+          {
+            path: 'customForm',
+            name: 'customForm',
+            meta: {title: '自定义组件', menu: true, affix: false},
+            component: () => import('@/views/component/form/CustomForm'),
+          },
         ],
       },
       {

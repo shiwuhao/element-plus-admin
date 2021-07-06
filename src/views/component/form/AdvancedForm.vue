@@ -1,6 +1,6 @@
 <template>
   <el-card>
-  <el-page-header :content="cardTitle"></el-page-header>
+    <el-page-header :content="cardTitle"></el-page-header>
   </el-card>
   <el-card class="m10" header="基础收缩示例">
     <BasicForm v-model="form"
@@ -8,6 +8,7 @@
                :action-props="actionProps"
                size="small"
                label-width="80px"
+               auto-width
                label-position="right"></BasicForm>
   </el-card>
   <el-card class="m10" header="超过二行收起">
@@ -15,6 +16,7 @@
                :schemas="schemas"
                :action-props="actionProps2"
                size="small"
+               auto-width
                label-width="80px"
                label-position="right"></BasicForm>
   </el-card>
@@ -23,6 +25,7 @@
                :schemas="schemas"
                :action-props="actionProps3"
                size="small"
+               auto-width
                label-width="80px"
                label-position="right"></BasicForm>
   </el-card>
@@ -30,6 +33,7 @@
     <BasicForm v-model="form4"
                :schemas="schemas2"
                :action-props="actionProps4"
+               auto-width
                size="small"></BasicForm>
   </el-card>
 </template>
@@ -116,6 +120,16 @@ export default {
         },
         {
           field: 'field2',
+          label: 'Select',
+          component: 'Select',
+          componentProps: {
+            placeholder: '这是一个Select',
+            options: selectOptions,
+          },
+          colProps: colProps,
+        },
+        {
+          field: 'field2',
           label: 'field2',
           component: 'Input',
           componentProps: {
@@ -141,15 +155,6 @@ export default {
           },
           colProps: colProps,
         },
-        {
-          field: 'field5',
-          label: 'field5',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps,
-        },
       ],
       schemas2: [
         {
@@ -166,9 +171,6 @@ export default {
           componentProps: {
             placeholder: '这是一个Select',
             options: selectOptions,
-            style: {
-              width: '100%',
-            }
           },
           colProps: colProps,
         },
@@ -178,9 +180,6 @@ export default {
           componentProps: {
             placeholder: '这是一个级联菜单',
             options: cascaderOptions,
-            style: {
-              width: '100%',
-            }
           },
           colProps: colProps,
         },

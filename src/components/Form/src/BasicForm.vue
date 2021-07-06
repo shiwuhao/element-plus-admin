@@ -3,7 +3,11 @@
     <el-row :gutter="30">
       <template v-for="(schema,index) in getSchema" :key="schema.field">
         <FormItem :schema="schema" v-model="formModel[schema.field]"
-                  v-show="showAdvancedButton ? index < showAdvancedLength || getActionProps.isAdvanced : true"></FormItem>
+                  v-show="showAdvancedButton ? index < showAdvancedLength || getActionProps.isAdvanced : true">
+          <template #[item]="data" v-for="item in Object.keys($slots)">
+            <slot :name="item" v-bind="data"></slot>
+          </template>
+        </FormItem>
       </template>
       <FormAction v-bind="getActionProps" @toggle-advanced="toggleAdvanced">
         <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
@@ -79,6 +83,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    autoWidth: {
+      type: Boolean,
+      default: false
+    },
     actionProps: {
       type: Object,
       default: () => ({})
@@ -86,7 +94,7 @@ export default defineComponent({
   },
   emits: ['on-reset', 'on-submit'],
   setup(props, {emit}) {
-    const {modelValue, schemas = [], actionProps = {}} = toRefs(props);
+    const {modelValue, schemas = [], actionProps = {}, autoWidth} = toRefs(props);
     const getSchema = schemas;
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
@@ -111,6 +119,7 @@ export default defineComponent({
 
     provide('handleReset', handleReset);
     provide('handleSubmit', handleSubmit)
+    provide('autoWidth', autoWidth)
 
     return {
       getSchema,

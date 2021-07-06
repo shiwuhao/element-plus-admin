@@ -1,13 +1,14 @@
 <template>
   <el-col v-bind="colProps" v-show="getIsShow">
     <el-form-item v-bind="getFormProps">
-      <component :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
+      <component v-if="!schema.slot" :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
+      <slot v-else :name="schema.slot" v-bind="{schema:$props['schema']}"></slot>
     </el-form-item>
   </el-col>
 </template>
 
 <script>
-import {computed, toRefs, unref, ref, watch} from 'vue'
+import {computed, toRefs, unref, ref, watch, inject, h} from 'vue'
 import {isFunction, isBoolean} from "@/utils/is";
 import {componentMap} from '../componentMap'
 
@@ -29,12 +30,17 @@ export default {
   },
   setup(props, {emit}) {
     const {schema, modelValue} = toRefs(props);
-    const {component, colProps = {}} = unref(schema);
+    const {component, colProps = {}, slot, render} = unref(schema);
+    const autoWidth = inject('autoWidth');
 
     const getComponentProps = computed(() => {
       const {componentProps = {}} = unref(schema);
       if (!isFunction(componentProps)) {
-        return componentProps;
+        const {style = {}} = componentProps;
+        if (autoWidth.value === true) {
+          style['width'] = '100%';
+        }
+        return {...componentProps, style: style};
       }
       return componentProps({schema}) ?? {};
     })
@@ -44,8 +50,8 @@ export default {
       return {...{label: label, prop: field}, ...formProps}
     });
 
-    const getComponent = componentMap.get(component);
-    const VModel = ref(modelValue.value)
+    const getComponent = isFunction(render) ? render(h, modelValue, schema) : componentMap.get(component);
+    const VModel = ref(modelValue.value);
 
     watch(() => modelValue.value, (newVal) => {
       VModel.value = newVal;
@@ -77,7 +83,9 @@ export default {
       getComponentProps,
       getFormProps,
       getIsShow,
-      colProps
+      colProps,
+      autoWidth,
+      slot,
     }
   },
 }

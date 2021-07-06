@@ -6,6 +6,7 @@
                @reset="handleReset"
                @submit="handleSubmit"
                size="small"
+               auto-width
                label-width="150px"
                label-position="right"></BasicForm>
   </el-card>

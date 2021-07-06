@@ -5,13 +5,14 @@
       <el-button size="mini" @click="changFieldValue(0)">更改字段1Value</el-button>
       <el-button size="mini" @click="appendSchema">向最后追加一个字段</el-button>
       <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
-      <el-button size="mini">更改字段1Label</el-button>
+      <el-button size="mini" @click="autoWidth=!autoWidth">自动宽度</el-button>
     </div>
     <BasicForm v-model="form"
                :schemas="schemas"
                @reset="handleReset"
                @submit="handleSubmit"
                size="small"
+               :auto-width="autoWidth"
                label-width="150px"
                label-position="right"></BasicForm>
   </el-card>
@@ -28,7 +29,7 @@ export default {
     return {
       cardTitle: this.$route.meta.title,
       schemas: getDynamicFormData(),
-
+      autoWidth: false,
       form: {
         input: "wqewqfdas",
         input_number: 12321,
@@ -66,7 +67,7 @@ export default {
       this.schemas.push(schema);
     },
     deleteLastSchema() {
-      this.schemas.splice(this.schemas.length-1, 1);
+      this.schemas.splice(this.schemas.length - 1, 1);
     },
     handleReset() {
       console.log('reset-1111')
