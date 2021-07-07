@@ -14,12 +14,13 @@
       </template>
     </BasicForm>
   </el-card>
+  {{ form }}
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {ElInput} from 'element-plus'
-import {h} from "vue";
+import {h} from 'vue'
 
 export default {
   name: 'RuleForm',
@@ -38,10 +39,11 @@ export default {
           render: (h, modelValue) => {
             return h(ElInput, {
               placeholder: '请输入',
+              type: 'text',
               onInput: (e) => {
                 console.log(e);
               },
-            });
+            }, {prepend: () => 'http://'});
           }
         },
         {
@@ -50,9 +52,6 @@ export default {
           component: 'Input',
           componentProps: {
             placeholder: '这是一个Input表单',
-            slots: () => {
-              // h()
-            }
           },
           colProps: {
             span: 8
