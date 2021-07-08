@@ -31,7 +31,7 @@ export function useTagView() {
   async function goView(view) {
     const {path, fullPath} = view;
     if (path === unref(currentRoute).path) return;
-    await push({path: fullPath})
+    await replace({path: fullPath})
   }
 
   /**

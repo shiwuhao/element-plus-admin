@@ -50,7 +50,7 @@ import {BasicForm} from "@/components/Form";
 import {selectOptions, cascaderOptions} from './formData'
 
 export default {
-  name: 'Basic',
+  name: 'AdvancedForm',
   components: {BasicForm},
   data() {
     return {

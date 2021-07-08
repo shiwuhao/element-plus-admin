@@ -20,10 +20,9 @@
 <script>
 import {BasicForm} from "@/components/Form";
 import {ElInput} from 'element-plus'
-import {h} from 'vue'
 
 export default {
-  name: 'RuleForm',
+  name: 'CustomForm',
   components: {BasicForm},
   data() {
     return {

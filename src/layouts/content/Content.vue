@@ -21,7 +21,7 @@ export default {
   name: "Content",
   setup() {
     const {getters} = useStore();
-    const {getCachedViews, getVisitedViews} = getters;
+    const {getCachedViews} = getters;
 
     const {getEnableTransition, getBasicTransition} = useTransitionSetting();
     const {getOpenKeepAlive} = useRootSetting();
@@ -38,7 +38,6 @@ export default {
 
     return {
       getCachedViews,
-      getVisitedViews,
       getOpenKeepAlive,
       getTransitionName
     }
