@@ -1,14 +1,14 @@
 <template>
   <el-card class="m10" :header="cardTitle">
-    <BasicForm ref="formRef"
-               v-model="form"
-               :schemas="schemas"
-               @reset="handleReset"
-               @submit="handleSubmit"
-               size="small"
-               auto-width
-               label-width="150px"
-               label-position="right"></BasicForm>
+<!--    <BasicForm ref="formRef"-->
+<!--               v-model="form"-->
+<!--               :schemas="schemas"-->
+<!--               @reset="handleReset"-->
+<!--               @submit="handleSubmit"-->
+<!--               size="small"-->
+<!--               auto-width-->
+<!--               label-width="150px"-->
+<!--               label-position="right"></BasicForm>-->
   </el-card>
 </template>
 
