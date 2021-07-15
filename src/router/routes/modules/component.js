@@ -3,7 +3,7 @@ import LayoutContent from "@/layouts/content/Content"
 
 export default [
   {
-    path: '/component',
+    path: '/comp',
     component: Layout,
     redirect: '/component/table/basic',
     meta: {title: '组件', icon: 'el-icon-c-scale-to-original', menu: true},
@@ -11,7 +11,7 @@ export default [
       {
         path: 'form',
         name: 'form',
-        redirect: '/component/form/basic',
+        redirect: '/comp/form/basic',
         meta: {title: '表单', menu: true, affix: false},
         component: LayoutContent,
         children: [
