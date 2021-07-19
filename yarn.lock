@@ -2601,6 +2601,11 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
+codemirror@^5.62.0:
+  version "5.62.0"
+  resolved "https://registry.nlark.com/codemirror/download/codemirror-5.62.0.tgz#e9ecd012e6f9eaf2e05ff4a449ff750f51619e22"
+  integrity sha1-6ezQEub56vLgX/SkSf91D1FhniI=
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/collection-visit/download/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -3285,6 +3290,11 @@ detect-node@^2.0.4:
   version "2.1.0"
   resolved "https://registry.nlark.com/detect-node/download/detect-node-2.1.0.tgz?cache=0&sync_timestamp=1621146954463&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdetect-node%2Fdownload%2Fdetect-node-2.1.0.tgz#c9c70775a49c3d03bc2c06d9a73be550f978f8b1"
   integrity sha1-yccHdaScPQO8LAbZpzvlUPl4+LE=
+
+diff-match-patch@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/diff-match-patch/download/diff-match-patch-1.0.5.tgz#abb584d5f10cd1196dfc55aa03701592ae3f7b37"
+  integrity sha1-q7WE1fEM0Rlt/FWqA3AVkq4/ezc=
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -8438,6 +8448,13 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vditor@^3.8.6:
+  version "3.8.6"
+  resolved "https://registry.nlark.com/vditor/download/vditor-3.8.6.tgz#95a89c4865efa740bf55f2a7e3f968b395987a60"
+  integrity sha1-laicSGXvp0C/VfKn4/los5WYemA=
+  dependencies:
+    diff-match-patch "^1.0.5"
 
 vendors@^1.0.0:
   version "1.0.4"

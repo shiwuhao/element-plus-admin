@@ -1,4 +1,4 @@
-{
+export const jsonData = `{
   "name": "element-plus-admin",
   "version": "0.1.0",
   "private": true,
@@ -17,7 +17,6 @@
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "v-contextmenu": "^3.0.0-alpha.4",
-    "vditor": "^3.8.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "4.0",
@@ -64,3 +63,68 @@
     "not dead"
   ]
 }
+`;
+
+export const htmlData = `<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/lib/theme-chalk/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+    <title>Element Plus demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <el-button>{{ message }}</el-button>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            message: "Hello Element Plus",
+          };
+        },
+      };
+      const app = Vue.createApp(App);
+      app.use(ElementPlus);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
+`;
+export const javascriptData = `import Vue from 'vue'
+import ElementPlus from 'element-plus'
+import './element-variables.scss'
+import App from './App.vue';
+
+const app = createApp(App)
+app.use(ElementPlus)`;
+
+export const markdownData = `# element-plus-admin
+
+## Project setup
+\`\`\`
+yarn install
+\`\`\`
+
+### Compiles and hot-reloads for development
+\`\`\`
+yarn serve
+\`\`\`
+
+### Compiles and minifies for production
+\`\`\`
+yarn build
+\`\`\`
+
+### Lints and fixes files
+\`\`\`
+yarn lint
+\`\`\`
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+`;

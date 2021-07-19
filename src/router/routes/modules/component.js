@@ -3,7 +3,7 @@ import LayoutContent from "@/layouts/content/Content"
 
 export default [
   {
-    path: '/comp',
+    path: '/component',
     component: Layout,
     redirect: '/component/table/basic',
     meta: {title: '组件', icon: 'el-icon-c-scale-to-original', menu: true},
@@ -11,8 +11,8 @@ export default [
       {
         path: 'form',
         name: 'form',
-        redirect: '/comp/form/basic',
-        meta: {title: '表单', menu: true, affix: false},
+        redirect: '/component/form/basic',
+        meta: {title: '表单', menu: true, affix: false, icon: 'el-icon-edit'},
         component: LayoutContent,
         children: [
           {
@@ -77,6 +77,33 @@ export default [
             name: 'complex-table',
             meta: {title: '综合表格', menu: true, affix: false},
             component: () => import('@/views/component/table/complex-table'),
+          },
+        ],
+      },
+      {
+        path: 'editor',
+        name: 'editor',
+        redirect: '/component/editor/code',
+        meta: {title: '编辑器', menu: true, affix: false, icon: 'el-icon-edit-outline'},
+        component: LayoutContent,
+        children: [
+          {
+            path: 'code',
+            name: 'code',
+            meta: {title: '代码编辑器', menu: true, affix: false},
+            component: () => import('@/views/component/editor/codeEditor'),
+          },
+          {
+            path: 'markdown',
+            name: 'markdown',
+            meta: {title: 'markdown编辑器', menu: true, affix: false},
+            component: () => import('@/views/component/editor/markdownEditor'),
+          },
+          {
+            path: 'rich',
+            name: 'rich',
+            meta: {title: '富文本编辑器', menu: true, affix: false},
+            component: () => import('@/views/component/editor/codeEditor'),
           },
         ],
       },
