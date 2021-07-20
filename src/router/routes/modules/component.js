@@ -103,7 +103,7 @@ export default [
             path: 'rich',
             name: 'rich',
             meta: {title: '富文本编辑器', menu: true, affix: false},
-            component: () => import('@/views/component/editor/codeEditor'),
+            component: () => import('@/views/component/editor/richEditor'),
           },
         ],
       },

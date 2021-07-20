@@ -24,14 +24,8 @@ export default {
 
     onMounted(() => {
       editor = new Vditor('vditor', {
-        after: () => {
-          nextTick(() => {
-            editor.setValue(props.modelValue)
-          })
-        },
-        input: (value) => {
-          emit('update:modelValue', value);
-        },
+        after: () => nextTick(() => editor.setValue(props.modelValue)),
+        input: (value) => emit('update:modelValue', value),
         ...props.options,
       })
     });

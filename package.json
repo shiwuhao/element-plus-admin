@@ -16,6 +16,7 @@
     "element-plus": "^1.0.2-beta.48",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "tinymce": "^5.8.2",
     "v-contextmenu": "^3.0.0-alpha.4",
     "vditor": "^3.8.6",
     "vue": "^3.0.0",
