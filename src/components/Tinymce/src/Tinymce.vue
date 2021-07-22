@@ -1,9 +1,10 @@
 <template>
-  <editor v-model="content" :init="options"/>
+  <editor v-model="content" :init="initOptions" :plugins="$props.plugins" :toolbar="$props.toolbar"
+          :disabled="$props.disabled"/>
 </template>
 
 <script>
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, watch} from 'vue';
 import tinymce from 'tinymce/tinymce';
 import Editor from '@tinymce/tinymce-vue';
 import "tinymce/icons/default/icons";
@@ -42,7 +43,6 @@ import "tinymce/plugins/imagetools";
 import "tinymce/plugins/autosave";
 import "tinymce/plugins/autoresize";
 
-
 export default {
   name: 'app',
   components: {Editor},
@@ -57,26 +57,24 @@ export default {
     },
     plugins: {
       type: [String, Array],
-      default:
-        "preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap hr nonbreaking insertdatetime advlist lists wordcount imagetools textpattern autosave autoresize"
+      default: "preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap hr nonbreaking insertdatetime advlist lists wordcount imagetools textpattern autosave autoresize"
     },
     toolbar: {
       type: [String, Array],
-      default:
-        "code undo redo restoredraft | cut copy paste pastetext | forecolor backcolor bold italic underline strikethrough link codesample | alignleft aligncenter alignright alignjustify outdent indent lineheight formatpainter | \
-    styleselect formatselect fontselect fontsizeselect | bullist numlist | blockquote subscript superscript removeformat | \
-    table image media charmap hr pagebreak insertdatetime | bdmap fullscreen preview"
+      default: "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | code"
     },
+    options: {
+      type: Object,
+      default: () => ({})
+    }
   },
   setup(props, {emit}) {
-    const content = ref();
-    const options = ref({
+    const content = ref(props.modelValue);
+    const initOptions = ref({
       language_url: '/static/tinymce/langs/zh_CN.js',
       language: 'zh_CN',
       skin_url: '/static/tinymce/skins/ui/oxide',
-      height: 600,
-      plugins: props.plugins,
-      toolbar: props.toolbar,
+      height: 1600,
       toolbar_mode: 'sliding',
       branding: true,
       menubar: false,
@@ -85,16 +83,20 @@ export default {
       images_upload_handler: (blobInfo, success, failure) => {
         const img = 'data:image/jpeg;base64,' + blobInfo.base64()
         success(img)
-      }
+      },
+      ...props.options,
     });
 
+    watch(() => props.modelValue, newVal => content.value = newVal);
+    watch(() => content.value, newVal => emit('update:modelValue', newVal));
+
     onMounted(() => {
-      tinymce.init(options.value)
+      tinymce.init(initOptions.value)
     })
 
     return {
       content,
-      options
+      initOptions
     }
   }
 }
