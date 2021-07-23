@@ -1,8 +1,5 @@
 <template>
-  <el-card title="系统配置">
-    <template #header>
-      <div>{{ cardTitle}}</div>
-    </template>
+  <el-card class="m10" title="系统配置" :header="$route.meta.title">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="用户管理" name="first">
         <el-row>
@@ -25,7 +22,6 @@
     components: {BasicForm},
     data() {
       return {
-        cardTitle: this.$route.meta.title,
         activeName: 'second',
       };
     },
