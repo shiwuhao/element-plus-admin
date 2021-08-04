@@ -6,7 +6,7 @@ export default [
     path: '/component',
     component: Layout,
     redirect: '/component/table/basic',
-    meta: {title: '组件', icon: 'el-icon-c-scale-to-original', menu: true},
+    meta: {title: '组件', icon: 'el-icon-setting', menu: true},
     children: [
       {
         path: 'form',
@@ -72,12 +72,6 @@ export default [
             meta: {title: '搜索表单', menu: true, affix: false},
             component: () => import('@/views/component/table/search-form'),
           },
-          {
-            path: 'complex-table',
-            name: 'complex-table',
-            meta: {title: '综合表格', menu: true, affix: false},
-            component: () => import('@/views/component/table/complex-table'),
-          },
         ],
       },
       {
@@ -106,6 +100,12 @@ export default [
             component: () => import('@/views/component/editor/richEditor'),
           },
         ],
+      },
+      {
+        path: 'page-header',
+        name: 'page-header',
+        meta: {title: '页头', menu: true, affix: false},
+        component: () => import('@/views/component/page-header/index'),
       },
     ]
   }

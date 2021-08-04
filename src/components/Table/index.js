@@ -1,5 +1,4 @@
-import DynamicTable from "@/components/Table/DynamicTable";
+import BasicTable from "@/components/Table/BasicTable";
 import QueryForm from "@/components/Table/QueryForm";
 
-export {QueryForm, DynamicTable};
-export default DynamicTable;
+export {QueryForm, BasicTable};

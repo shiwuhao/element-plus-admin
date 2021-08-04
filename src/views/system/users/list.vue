@@ -7,7 +7,7 @@
         </template>
       </query-form>
     </div>
-    <dynamic-table ref="table"
+    <basic-table ref="table"
                    :stripe="true"
                    :border="true"
                    :columns="tableColumns"
@@ -19,18 +19,18 @@
         <el-button type="text"  size="mini">编辑</el-button>
         <el-button type="text" size="mini">删除</el-button>
       </el-table-column>
-    </dynamic-table>
+    </basic-table>
   </el-card>
 </template>
 
 <script>
-  import DynamicTable from "@/components/Table/DynamicTable";
+  import {BasicTable} from "@/components/Table";
   import QueryForm from "@/components/Table/QueryForm";
   import {users as userRequest} from "@/api/index";
 
   export default {
     components: {
-      DynamicTable, QueryForm
+      BasicTable, QueryForm
     },
     name: "list",
     data() {

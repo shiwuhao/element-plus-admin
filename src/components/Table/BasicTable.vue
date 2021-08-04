@@ -17,7 +17,10 @@
 <script>
 export default {
   name: "BasicTable",
-  props: ['columns']
+  props: ['columns'],
+  setup() {
+
+  }
 }
 </script>
 

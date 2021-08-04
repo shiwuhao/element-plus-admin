@@ -17,7 +17,7 @@ export default [
         path: 'configs',
         name: 'config',
         meta: {title: '站点配置', menu: true, affix: false},
-        component: () => import('@/views/system/configs/list'),
+        component: () => import('@/views/system/configs/index'),
       }
     ]
   },
