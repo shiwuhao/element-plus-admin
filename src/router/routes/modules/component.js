@@ -102,10 +102,10 @@ export default [
         ],
       },
       {
-        path: 'page-header',
-        name: 'page-header',
-        meta: {title: '页头', menu: true, affix: false},
-        component: () => import('@/views/component/page-header/index'),
+        path: 'page-wrapper',
+        name: 'page-wrapper',
+        meta: {title: '页面包裹', menu: true, affix: false},
+        component: () => import('@/views/component/page-wrapper/index'),
       },
     ]
   }

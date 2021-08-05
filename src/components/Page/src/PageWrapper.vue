@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" :style="{backgroundColor:backgroundColor}">
+  <div class="page-wrapper">
     <div class="page-header">
       <div class="page-header-title flex-row-justify">
         <div>
@@ -10,19 +10,20 @@
           <slot name="extra"></slot>
         </div>
       </div>
-      <slot name="content">
-        <div class="page-header-content" v-if="content">
-          {{ content }}
-        </div>
-      </slot>
+
+      <div class="page-header-content" v-if="content">
+        <slot name="content"> {{ content }}</slot>
+      </div>
     </div>
-    <div>
+    <div class="page-wrapper-content" :class="getContentClass">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+
+import {computed} from "vue";
 
 export default {
   name: "PageWrapper",
@@ -43,19 +44,44 @@ export default {
       type: String,
       default: '#FFFFFF',
     },
+    contentBackground: {
+      type: Boolean,
+      default: false,
+    },
+    contentClass: {
+      type: StaticRange,
+      default: '',
+    },
     backIcon: {
       type: [String, Boolean],
       default: 'el-icon-back',
+    },
+  },
+  setup(props) {
+
+    const getContentClass = computed(() => {
+      const {contentClass, contentBackground} = props;
+      return [
+        contentClass,
+        {'content-bg': contentBackground}
+      ]
+    });
+
+    return {
+      getContentClass
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  padding: 16px;
-
+.page-wrapper {
+  align-items:stretch;
   .page-header {
+    flex: 1;
+    padding: 16px;
+    background-color: white;
+
     .page-header-title {
       font-size: 20px;
       font-weight: bolder;
@@ -67,10 +93,19 @@ export default {
       }
     }
 
-    .page-header-content {
-      padding-top: 12px;
-      font-size: 14px;
-    }
+  }
+
+  .page-header-content {
+    padding-top: 12px;
+    font-size: 14px;
+  }
+
+  .page-wrapper-content {
+    margin: 16px;
+  }
+
+  .content-bg {
+    background-color: white;
   }
 }
 </style>
