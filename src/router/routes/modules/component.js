@@ -67,10 +67,10 @@ export default [
             component: () => import('@/views/component/table/TreeTable'),
           },
           {
-            path: 'search-form',
+            path: 'queryTable',
             name: 'search-form',
-            meta: {title: '搜索表单', menu: true, affix: false},
-            component: () => import('@/views/component/table/search-form'),
+            meta: {title: '查询表格', menu: true, affix: false},
+            component: () => import('@/views/component/table/QueryTable'),
           },
         ],
       },
