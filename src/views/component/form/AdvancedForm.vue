@@ -1,41 +1,43 @@
 <template>
-  <el-card>
-    <el-page-header :content="cardTitle"></el-page-header>
-  </el-card>
-  <el-card class="m10" header="基础收缩示例">
-    <BasicForm v-model="form"
-               :schemas="schemas"
-               :action-props="actionProps"
-               size="small"
-               label-width="80px"
-               auto-width
-               label-position="right"></BasicForm>
-  </el-card>
-  <el-card class="m10" header="超过二行收起">
-    <BasicForm v-model="form2"
-               :schemas="schemas"
-               :action-props="actionProps2"
-               size="small"
-               auto-width
-               label-width="80px"
-               label-position="right"></BasicForm>
-  </el-card>
-  <el-card class="m10" header="按钮单独一行">
-    <BasicForm v-model="form3"
-               :schemas="schemas"
-               :action-props="actionProps3"
-               size="small"
-               auto-width
-               label-width="80px"
-               label-position="right"></BasicForm>
-  </el-card>
-  <el-card class="m10" header="隐藏label">
-    <BasicForm v-model="form4"
-               :schemas="schemas2"
-               :action-props="actionProps4"
-               auto-width
-               size="small"></BasicForm>
-  </el-card>
+  <PageWrapper
+    :title="cardTitle"
+    :sub-title="cardTitle"
+    content="收缩表单多用于列表筛选">
+    <el-card class="mt10" shadow="none" header="基础收缩示例">
+      <BasicForm v-model="form"
+                 :schemas="schemas"
+                 :action-props="actionProps"
+                 size="small"
+                 label-width="80px"
+                 auto-width
+                 label-position="right"></BasicForm>
+    </el-card>
+    <el-card class="mt10" shadow="none" header="超过二行收起">
+      <BasicForm v-model="form2"
+                 :schemas="schemas"
+                 :action-props="actionProps2"
+                 size="small"
+                 auto-width
+                 label-width="80px"
+                 label-position="right"></BasicForm>
+    </el-card>
+    <el-card class="mt10" shadow="none" header="按钮单独一行">
+      <BasicForm v-model="form3"
+                 :schemas="schemas"
+                 :action-props="actionProps3"
+                 size="small"
+                 auto-width
+                 label-width="80px"
+                 label-position="right"></BasicForm>
+    </el-card>
+    <el-card class="mt10" shadow="none" header="隐藏label">
+      <BasicForm v-model="form4"
+                 :schemas="schemas2"
+                 :action-props="actionProps4"
+                 auto-width
+                 size="small"></BasicForm>
+    </el-card>
+  </PageWrapper>
 </template>
 <script>
 const colProps = {
@@ -48,10 +50,11 @@ const colProps = {
 
 import {BasicForm} from "@/components/Form";
 import {selectOptions, cascaderOptions} from './formData'
+import PageWrapper from "@/components/Page/src/PageWrapper";
 
 export default {
   name: 'AdvancedForm',
-  components: {BasicForm},
+  components: {BasicForm, PageWrapper},
   data() {
     return {
       cardTitle: this.$route.meta.title,

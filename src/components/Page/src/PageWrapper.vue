@@ -15,7 +15,10 @@
         <slot name="content"> {{ content }}</slot>
       </div>
     </div>
-    <div class="page-wrapper-content" :class="getContentClass">
+    <div class="page-wrapper-content"
+         ref="contentRef"
+         :class="{'content-bg' :$props.contentBackground}"
+         :style="{minHeight:$props.contentFullHeight ? contentHeight+'px' : 'auto'}">
       <slot></slot>
     </div>
   </div>
@@ -23,7 +26,8 @@
 
 <script>
 
-import {computed} from "vue";
+import {onMounted, ref} from "vue";
+import {useWindowSize} from '@vueuse/core'
 
 export default {
   name: "PageWrapper",
@@ -40,35 +44,27 @@ export default {
       type: String,
       default: '',
     },
-    backgroundColor: {
-      type: String,
-      default: '#FFFFFF',
-    },
     contentBackground: {
       type: Boolean,
       default: false,
     },
-    contentClass: {
-      type: StaticRange,
-      default: '',
-    },
-    backIcon: {
-      type: [String, Boolean],
-      default: 'el-icon-back',
-    },
+    contentFullHeight: {
+      type: Boolean,
+      default: false,
+    }
   },
-  setup(props) {
+  setup() {
+    const contentRef = ref(null);
+    let contentHeight = ref(null);
 
-    const getContentClass = computed(() => {
-      const {contentClass, contentBackground} = props;
-      return [
-        contentClass,
-        {'content-bg': contentBackground}
-      ]
-    });
+    onMounted(() => {
+      const {height} = useWindowSize();
+      contentHeight.value = height.value - contentRef.value.offsetTop - 22;
+    })
 
     return {
-      getContentClass
+      contentRef,
+      contentHeight,
     }
   }
 }
@@ -76,7 +72,8 @@ export default {
 
 <style lang="scss" scoped>
 .page-wrapper {
-  align-items:stretch;
+  align-items: stretch;
+
   .page-header {
     flex: 1;
     padding: 16px;

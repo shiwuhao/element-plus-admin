@@ -5,13 +5,14 @@
     sub-title="二级标题"
     content="内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情"
     content-background
+    content-full-height
   >
     <template #extra>
       <el-button type="primary" size="mini">按钮1</el-button>
       <el-button type="primary" size="mini">按钮2</el-button>
       <el-button type="primary" size="mini">按钮3</el-button>
     </template>
-    <el-card hadow="never" >
+    <el-card shadow="none">
       <el-descriptions class="margin-top" column="3" :size="size" border>
         <el-descriptions-item>
           <template #label>
@@ -50,7 +51,6 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-card>
-
   </page-wrapper>
 </template>
 

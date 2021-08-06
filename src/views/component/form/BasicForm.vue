@@ -1,23 +1,29 @@
 <template>
-  <el-card class="m10" :header="cardTitle">
-    <BasicForm v-model="form"
-               :schemas="schemas"
-               @reset="handleReset"
-               @submit="handleSubmit"
-               size="small"
-               label-width="150px"
-               label-position="right"></BasicForm>
-    {{ form }}
-  </el-card>
+  <PageWrapper
+    :title="cardTitle"
+    :sub-title="cardTitle"
+    content-full-height>
+    <el-card shadow="none">
+      <BasicForm
+        v-model="form"
+        :schemas="schemas"
+        @reset="handleReset"
+        @submit="handleSubmit"
+        size="small"
+        label-width="150px"
+        label-position="right"></BasicForm>
+    </el-card>
+  </PageWrapper>
 </template>
 
 <script>
 import {getFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
+import PageWrapper from "@/components/Page/src/PageWrapper";
 
 export default {
   name: 'Basic',
-  components: {BasicForm},
+  components: {BasicForm, PageWrapper},
   data() {
     return {
       cardTitle: this.$route.meta.title,

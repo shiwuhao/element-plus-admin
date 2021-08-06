@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <router-view>
-      <template v-slot="{ Component, route }">
-        <transition :name="getTransitionName(route)">
-          <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
-            <component :is="Component" :key="route.fullPath"/>
-          </keep-alive>
-          <component v-else :is="Component" :key="route.fullPath"/>
-        </transition>
-      </template>
-    </router-view>
-  </div>
+  <router-view>
+    <template v-slot="{ Component, route }">
+      <transition :name="getTransitionName(route)">
+        <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
+          <component :is="Component" :key="route.fullPath"/>
+        </keep-alive>
+        <component v-else :is="Component" :key="route.fullPath"/>
+      </transition>
+    </template>
+  </router-view>
 </template>
 
 <script>

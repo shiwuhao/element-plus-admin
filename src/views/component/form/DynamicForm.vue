@@ -1,13 +1,16 @@
 <template>
-  <el-card class="m10" :header="cardTitle">
-    <div style="padding-bottom: 30px;">
+  <PageWrapper
+    :title="cardTitle"
+    :sub-title="cardTitle"
+    content-background>
+    <div style="padding: 30px;">
       <el-button size="mini" @click="changFieldLabel(0)">更改字段1Label</el-button>
       <el-button size="mini" @click="changFieldValue(0)">更改字段1Value</el-button>
       <el-button size="mini" @click="appendSchema">向最后追加一个字段</el-button>
       <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
       <el-button size="mini" @click="autoWidth=!autoWidth">自动宽度{{ autoWidth }}</el-button>
     </div>
-    <BasicForm v-model="form"
+    <BasicForm class="m10" v-model="form"
                :schemas="schemas"
                @reset="handleReset"
                @submit="handleSubmit"
@@ -15,16 +18,17 @@
                :auto-width="autoWidth"
                label-width="150px"
                label-position="right"></BasicForm>
-  </el-card>
+  </PageWrapper>
 </template>
 
 <script>
 import {getDynamicFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
+import PageWrapper from "@/components/Page/src/PageWrapper";
 
 export default {
   name: 'DynamicForm',
-  components: {BasicForm},
+  components: {BasicForm, PageWrapper},
   data() {
     return {
       cardTitle: this.$route.meta.title,

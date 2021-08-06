@@ -1,6 +1,11 @@
 <template>
-  <el-card class="m10" :header="cardTitle">
-    <BasicForm ref="formRef"
+  <PageWrapper
+    :title="cardTitle"
+    :sub-title="cardTitle"
+    content-background
+    content-full-height>
+    <BasicForm class="p10"
+               ref="formRef"
                v-model="form"
                :schemas="schemas"
                @reset="handleReset"
@@ -9,16 +14,17 @@
                auto-width
                label-width="150px"
                label-position="right"></BasicForm>
-  </el-card>
+  </PageWrapper>
 </template>
 
 <script>
 import {getRuleFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
+import PageWrapper from "@/components/Page/src/PageWrapper";
 
 export default {
   name: 'RuleForm',
-  components: {BasicForm},
+  components: {BasicForm, PageWrapper},
   data() {
     return {
       cardTitle: this.$route.meta.title,

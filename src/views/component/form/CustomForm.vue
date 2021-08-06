@@ -1,6 +1,11 @@
 <template>
-  <el-card class="m10" :header="cardTitle">
-    <BasicForm ref="formRef"
+  <PageWrapper
+    :title="cardTitle"
+    :sub-title="cardTitle"
+    content-background
+    content-full-height>
+    <BasicForm class="p16"
+               ref="formRef"
                v-model="form"
                :schemas="schemas"
                @reset="handleReset"
@@ -13,17 +18,17 @@
         <el-input v-model="form.input3" placeholder="自定义Slot"></el-input>
       </template>
     </BasicForm>
-  </el-card>
-  {{ form }}
+  </PageWrapper>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {ElInput} from 'element-plus'
+import PageWrapper from "@/components/Page/src/PageWrapper";
 
 export default {
   name: 'CustomForm',
-  components: {BasicForm},
+  components: {BasicForm, PageWrapper},
   data() {
     return {
       cardTitle: this.$route.meta.title,
