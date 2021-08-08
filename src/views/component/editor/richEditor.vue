@@ -1,15 +1,16 @@
 <template>
-  <el-card class="mt10" :header="$route.meta.title">
+  <PageWrapper :title="$route.meta.title">
     <tinymce v-model="content"></tinymce>
-  </el-card>
+  </PageWrapper>
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce/src/Tinymce";
+import {PageWrapper} from '@/components/Page';
+import {Tinymce} from "@/components/Tinymce";
 
 export default {
   name: "richEditor",
-  components: {Tinymce},
+  components: {PageWrapper, Tinymce},
   data() {
     return {
       content: `

@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import BasicTable from "@/components/Table/BasicTable";
-import PageWrapper from "@/components/Page/src/PageWrapper";
+import {BasicTable} from "@/components/Table";
+import {PageWrapper} from '@/components/Page';
 
 import {getBasicColumns, getTreeData} from './tableData';
 

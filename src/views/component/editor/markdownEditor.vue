@@ -1,5 +1,5 @@
 <template>
-  <el-card class="mt10" :header="cardTitle">
+  <PageWrapper :title="$route.meta.title">
     <el-radio-group v-model="editorMode" size="small" @change="handleChangeTheme">
       <el-radio-button label="dark">dark</el-radio-button>
       <el-radio-button label="classic">classic</el-radio-button>
@@ -7,19 +7,19 @@
     <div class="mt10">
       <Markdown ref="markdownRef" v-model="codeData" :options="options"></Markdown>
     </div>
-  </el-card>
+  </PageWrapper>
 </template>
 
 <script>
+import {PageWrapper} from "@/components/Page";
 import {Markdown} from '@/components/Markdown'
 import {markdownData} from "./codeData";
 
 export default {
   name: "json",
-  components: {Markdown},
+  components: {Markdown, PageWrapper},
   data() {
     return {
-      cardTitle: this.$route.meta.title,
       editorMode: 'classic',
       codeData: markdownData,
       options: {

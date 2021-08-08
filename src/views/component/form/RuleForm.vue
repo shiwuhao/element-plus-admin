@@ -20,7 +20,7 @@
 <script>
 import {getRuleFormData} from "@/views/component/form/formData";
 import {BasicForm} from "@/components/Form";
-import PageWrapper from "@/components/Page/src/PageWrapper";
+import {PageWrapper} from '@/components/Page';
 
 export default {
   name: 'RuleForm',

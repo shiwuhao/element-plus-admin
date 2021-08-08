@@ -1,24 +1,24 @@
 <template>
-  <el-card class="mt10" :header="cardTitle">
+  <PageWrapper :title="$route.meta.title">
     <el-radio-group v-model="codeMode" size="small" @change="handleChange">
       <el-radio-button label="json">Json数据</el-radio-button>
       <el-radio-button label="html">Html代码</el-radio-button>
       <el-radio-button label="javascript">Javascript代码</el-radio-button>
     </el-radio-group>
     <CodeEditor v-model="codeData" class="mt10" style="height:100%;min-height: 750px"></CodeEditor>
-  </el-card>
+  </PageWrapper>
 </template>
 
 <script>
+import {PageWrapper} from "@/components/Page";
 import {CodeEditor} from '@/components/CodeEditor'
 import {jsonData, htmlData, javascriptData} from "./codeData";
 
 export default {
   name: "json",
-  components: {CodeEditor},
+  components: {CodeEditor, PageWrapper},
   data() {
     return {
-      cardTitle: this.$route.meta.title,
       codeMode: 'json',
       codeData: jsonData,
     }

@@ -24,7 +24,7 @@
 <script>
 import {BasicForm} from "@/components/Form";
 import {ElInput} from 'element-plus'
-import PageWrapper from "@/components/Page/src/PageWrapper";
+import {PageWrapper} from '@/components/Page';
 
 export default {
   name: 'CustomForm',

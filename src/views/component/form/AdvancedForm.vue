@@ -50,7 +50,7 @@ const colProps = {
 
 import {BasicForm} from "@/components/Form";
 import {selectOptions, cascaderOptions} from './formData'
-import PageWrapper from "@/components/Page/src/PageWrapper";
+import {PageWrapper} from '@/components/Page';
 
 export default {
   name: 'AdvancedForm',

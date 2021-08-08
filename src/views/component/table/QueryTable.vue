@@ -26,9 +26,8 @@
 
 <script>
 
-import QueryForm from "@/components/Table/QueryForm";
-import PageWrapper from "@/components/Page/src/PageWrapper";
-import BasicTable from "@/components/Table/BasicTable";
+import {PageWrapper} from '@/components/Page';
+import {QueryForm,BasicTable} from "@/components/Table";
 import {getBasicColumns, getBasicData} from './tableData';
 
 
