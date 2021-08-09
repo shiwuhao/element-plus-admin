@@ -3,37 +3,37 @@ export function getBasicColumns() {
     {
       prop: 'id',
       label: 'ID',
-      width: '100',
+      minWidth: '100',
     },
     {
       prop: 'name',
       label: '姓名',
-      width: '180',
+      minWidth: '180',
     },
     {
       prop: 'age',
       label: '年龄',
-      width: '80',
+      minWidth: '80',
     },
     {
       prop: 'no',
       label: '编号',
-      width: '180',
+      minWidth: '100',
     },
     {
       prop: 'address',
       label: '地址',
-      width: '380',
+      minWidth: '280',
     },
     {
       prop: 'created_at',
       label: '创建时间',
-      width: '200',
+      minWidth: '150',
     },
     {
       prop: 'updated_at',
       label: '更新时间',
-      width: '200',
+      minWidth: '200',
     },
   ];
 }
