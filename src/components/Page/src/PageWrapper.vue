@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="page-header-content" v-if="content">
+      <div class="page-header-content">
         <slot name="content"> {{ content }}</slot>
       </div>
     </div>
@@ -92,7 +92,7 @@ export default {
 
   }
 
-  .page-header-content {
+  .page-header-content:not(:empty) {
     padding-top: 12px;
     font-size: 14px;
   }

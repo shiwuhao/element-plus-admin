@@ -1,5 +1,5 @@
 <template>
-  <el-tabs v-model="activeName" tab-position="left" @tab-click="handleClick">
+  <el-tabs v-model="activeName" tab-position="top" @tab-click="handleClick">
     <el-tab-pane label="用户管理" name="first">
       <el-row>
         <el-col :span="12">
