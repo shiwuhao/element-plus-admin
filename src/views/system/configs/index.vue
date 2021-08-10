@@ -4,7 +4,7 @@
     background-color
   >
     <template #extra>
-      <el-button type="primary" size="mini">新增</el-button>
+      <el-button type="primary" size="mini" @click="dialog = true">新增</el-button>
     </template>
     <template #content>
       <el-radio-group v-model="configMode" size="mini">
@@ -17,21 +17,23 @@
       <tab-list v-if="configMode === 'config'"></tab-list>
     </el-card>
   </page-wrapper>
-
+  <EditTemplate v-model="dialog"/>
 </template>
 
 <script>
-import PageWrapper from "@/components/Page/src/PageWrapper";
+import {PageWrapper} from "@/components/Page";
 import TableList from "@/views/system/configs/TableList";
 import TabList from "@/views/system/configs/TabList";
+import EditTemplate from "@/views/system/configs/EditTemplate";
 
 export default {
   name: "index",
-  components: {PageWrapper, TableList, TabList},
+  components: {PageWrapper, TableList, TabList, EditTemplate},
   data() {
     return {
+      dialog: false,
       activeName: 'second',
-      configMode:'editor',
+      configMode: 'editor',
     };
   },
   methods: {
