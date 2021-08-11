@@ -1,12 +1,13 @@
 <template>
-  <BasicTable :columns="tableColumns" :data="data" size="small" border></BasicTable>
+  {{ tableData }}
+  <BasicTable :columns="tableColumns" :data="tableData" size="small" border></BasicTable>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
 import {useConfigRequest} from "@/api/useConfigRequest";
-import {reactive, unref, toRefs} from "vue";
+import {reactive, unref, toRefs, ref, computed} from "vue";
 
 export default {
   name: "TableList",
@@ -22,19 +23,15 @@ export default {
         {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
         {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
       ],
+      tableData: [],
     })
     const {data, isFinished} = useConfigRequest('index', {});
-    console.log(data);
+    state.tableData = data.data;
+
     return {
       ...toRefs(state),
-      data
     }
   },
-  methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
-    }
-  }
 }
 </script>
 
