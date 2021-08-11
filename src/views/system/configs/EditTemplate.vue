@@ -1,36 +1,35 @@
 <template>
-  <el-drawer
+  {{data}}
+  <BasicDrawer
     title="新增配置"
-    v-model="$props.modelValue"
     direction="rtl"
-    custom-class="drawer"
     size="50%"
-    ref="drawer"
-    append-to-body
-    @close="drawerClose"
-  >
-    <div class="drawer__content">
+    v-model="$props.modelValue"
+    @close="drawerClose">
+    <template #default>
       <el-form :model="form" label-width="80px" size="small">
         <el-form-item label="配置分组">
-          <el-select v-model="form.group" placeholder="请选择配置分组">
+          <el-select v-model="form.group" clearable placeholder="请选择配置分组" style="width: 100%;">
             <el-option label="区域一" value="shanghai"></el-option>
             <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="配置类型">
-          <el-select v-model="form.type" placeholder="请选择配置类型" style="width: 100%;">
+          <el-select v-model="form.type" clearable placeholder="请选择配置类型" style="width: 100%;">
             <el-option label="区域一" value="shanghai"></el-option>
             <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渲染组件">
-          <el-select v-model="form.component" placeholder="请选择渲染组件" style="width: 100%;">
+          <el-select v-model="form.component" clearable placeholder="请选择渲染组件" style="width: 100%;">
             <el-option label="区域一" value="shanghai"></el-option>
             <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="配置标识">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
+          <el-input v-model="form.name" autocomplete="off">
+            <template #prepend v-if="form.group">{{ form.group }}</template>
+          </el-input>
         </el-form-item>
         <el-form-item label="配置名称">
           <el-input v-model="form.title" autocomplete="off"></el-input>
@@ -42,28 +41,32 @@
           <el-input v-model="form.value" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
-      <div class="drawer-footer">
-        <el-button @click="cancelForm" size="small">取 消</el-button>
-        <el-button type="primary" size="small" @click="$refs.drawer.closeDrawer()" :loading="loading">
-          {{ loading ? '提交中 ...' : '确 定' }}
-        </el-button>
-      </div>
-    </div>
-  </el-drawer>
+    </template>
+    <template #footer>
+      <el-button @click="drawerClose" size="small">取 消</el-button>
+      <el-button type="primary" size="small" @click="$refs.drawer.closeDrawer()" :loading="loading">
+        {{ loading ? '提交中 ...' : '确 定' }}
+      </el-button>
+    </template>
+  </BasicDrawer>
 </template>
 
 <script>
+import {BasicDrawer} from "@/components/Drawer";
 import {reactive, toRefs} from "vue";
+import {useConfigRequest} from "@/api/useConfigRequest";
 
 export default {
   name: "editTemplate",
+  components: {BasicDrawer},
   props: {
     modelValue: {
       type: Boolean,
-      default: false,
+      default: true,
     }
   },
   setup(props, {emit}) {
+    // const {data, isFinished} = useConfigRequest('index',{});
     const state = reactive({
       loading: false,
       form: {}
@@ -73,33 +76,10 @@ export default {
 
     return {
       ...toRefs(state),
+      // data,
+      // isFinished,
       drawerClose
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.drawer {
-  .el-drawer__header {
-    padding: 10px !important;
-  }
-
-  .drawer__content {
-    width: 100%;
-  }
-
-  .drawer-footer {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    text-align: right;
-    padding-right: 20px;
-    height: 60px;
-    line-height: 60px;
-    width: 100%;
-    border-top: 1px solid #EEEEEF;
-  }
-}
-
-</style>

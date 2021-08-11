@@ -1,16 +1,18 @@
 <template>
-  <BasicTable :columns="tableColumns" size="small" border></BasicTable>
+  <BasicTable :columns="tableColumns" :data="data" size="small" border></BasicTable>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
+import {useConfigRequest} from "@/api/useConfigRequest";
+import {reactive, unref, toRefs} from "vue";
 
 export default {
   name: "TableList",
   components: {BasicForm, BasicTable},
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       activeName: 'second',
       tableColumns: [
         {prop: 'id', label: 'ID', width: 100, align: 'center'},
@@ -20,7 +22,13 @@ export default {
         {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
         {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
       ],
-    };
+    })
+    const {data, isFinished} = useConfigRequest('index', {});
+    console.log(data);
+    return {
+      ...toRefs(state),
+      data
+    }
   },
   methods: {
     handleClick(tab, event) {
