@@ -54,7 +54,6 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer";
 import {reactive, toRefs} from "vue";
-import {useConfigRequest} from "@/api/useConfigRequest";
 
 export default {
   name: "editTemplate",

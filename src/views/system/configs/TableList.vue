@@ -1,15 +1,14 @@
 <template>
-  {{ tableData }}
   <BasicTable :columns="tableColumns" :data="tableData" size="small" border></BasicTable>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
-import {useConfigRequest} from "@/api/useConfigRequest";
-import {reactive, unref, toRefs, ref, computed} from "vue";
+import {useFetchList, useFetchDetail} from "@/api/useConfigRequest";
+import {defineComponent, reactive, toRefs,} from "vue";
 
-export default {
+export default defineComponent({
   name: "TableList",
   components: {BasicForm, BasicTable},
   setup() {
@@ -23,16 +22,19 @@ export default {
         {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
         {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
       ],
-      tableData: [],
     })
-    const {data, isFinished} = useConfigRequest('index', {});
-    state.tableData = data.data;
+
+    const {data, paginate} = useFetchList();
+    const {data: detail} = useFetchDetail({id: 1});
 
     return {
       ...toRefs(state),
+      tableData: data,
+      paginate,
+      detail
     }
   },
-}
+})
 </script>
 
 <style scoped>

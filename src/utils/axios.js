@@ -2,15 +2,19 @@ import axios from 'axios';
 import Qs from 'qs';
 import {getToken} from '@/utils/auth';
 
+const handleParamInUrl = (url, params) => {
+  return url.replace(/:(\w+)/g, (_, key) => params[key])
+}
+
 const instance = axios.create({
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: 'http://element-plus-admin.local/backend',
   headers: {Accept: 'text/json'},
-});
+})
 
 // 请求拦截
 instance.interceptors.request.use(function (config) {
 
-
+  config.url = handleParamInUrl(config.url, config.params);
   if (config.method === "post") {
     config.data = Qs.stringify(config.data);
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
