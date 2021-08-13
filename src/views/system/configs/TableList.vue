@@ -25,13 +25,11 @@ export default defineComponent({
     })
 
     const {data, paginate} = useFetchList();
-    const {data: detail} = useFetchDetail({id: 1});
 
     return {
       ...toRefs(state),
       tableData: data,
       paginate,
-      detail
     }
   },
 })

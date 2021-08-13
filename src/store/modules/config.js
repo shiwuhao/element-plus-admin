@@ -3,17 +3,16 @@ import {useFetchItemList} from "@/api/useConfigRequest";
 const config = {
   namespaced: true,
   state: {
-    config: {},
+    configs: {},
   },
   mutations: {
-    setConfig(state, config) {
-      state.config = config;
+    setConfig(state, configs) {
+      state.configs = configs;
     },
   },
   actions: {
     setConfigItem({commit}) {
       const {data,getConfigList} = useFetchItemList();
-      console.log(data.value,getConfigList());
       commit('setConfig', data.value);
     }
   }

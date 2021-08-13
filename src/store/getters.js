@@ -1,4 +1,5 @@
 const getters = {
+  getConfigs: state => state.config.configs,
   getAccessToken: state => state.user.access_token,
   getUser: state => state.user.user,
   getRoles: state => state.user.roles,
