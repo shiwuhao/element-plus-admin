@@ -61,7 +61,7 @@ export function useConfigRequest() {
       paginate: {},
     })
     const getConfigList = async () => {
-      const {data: response} = useAxios(Api.LIST.url, {}, axios)
+      const {data: response} = useAxios('/test.json')
       const {data, meta} = toRefs(response);
 
       console.log(response, data, meta)

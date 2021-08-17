@@ -26,6 +26,7 @@ import TableList from "@/views/system/configs/TableList";
 import TabList from "@/views/system/configs/TabList";
 import EditTemplate from "@/views/system/configs/EditTemplate";
 import {reactive} from "vue";
+import {toRefs} from "@vueuse/core";
 
 export default {
   name: "index",
@@ -35,18 +36,11 @@ export default {
       dialog: false,
       activeName: 'second',
       configMode: 'editor',
-    })
-  },
-  data() {
+    });
     return {
-
-    };
-  },
-  methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
+      ...toRefs(state)
     }
-  }
+  },
 }
 </script>
 
