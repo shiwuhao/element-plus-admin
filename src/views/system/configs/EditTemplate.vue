@@ -7,7 +7,7 @@
     @close="drawerClose">
     <template #default>
       <pre lang="yaml">
-      {{form}}
+      {{ form }}
       </pre>
       <el-form :model="form" :rules="rules" label-width="80px" size="small">
         <el-form-item label="配置分组" prop="group">
@@ -58,7 +58,7 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {onMounted, reactive, toRefs} from "vue";
+import {onMounted, reactive, toRefs, unref, watch} from "vue";
 import {useConfig} from "@/hooks/config/useConfig";
 import {useConfigRequest} from "@/api/useConfigRequest";
 
@@ -71,24 +71,19 @@ export default {
       default: true,
     },
     editable: {
-      type: [Object, Boolean],
-      default: false
+      type: [Object],
+      default: () => {
+        return {}
+      }
     }
   },
   setup(props, {emit}) {
+    const {editable} = toRefs(props);
     const {fetchStore, fetchUpdate, fetchDetail} = useConfigRequest();
     const {getGroups, getTypes, getComponents} = useConfig();
     const state = reactive({
       loading: false,
-      form: {
-        group: "basic",
-        type: "number",
-        component: "input",
-        name: "Test2",
-        title: "测试",
-        extra: "111",
-        value: "1111"
-      },
+      form: {},
       rules: {
         group: [{required: true, message: '请选择配置分组', trigger: 'change'}],
         type: [{required: true, message: '请选择配置类型', trigger: 'change'}],
@@ -102,16 +97,18 @@ export default {
 
     const drawerClose = () => emit('update:modelValue', false);
     const handleSubmit = async () => {
+      console.log(123112);
       const {data: response} = !state.form.id ? await fetchStore(state.form) : await fetchUpdate(state.form);
       console.log(response)
       emit('update:editable', response.data);
+      drawerClose();
     }
 
-    onMounted(() => {
-      if (props.editable) {
-        const {data: response} = fetchDetail(props.editable);
-        state.form = response.data;
-      }
+    watch(editable, async ({id}) => {
+      const {data:response} = await fetchDetail(id);
+      const {data} = unref(response);
+      console.log('data', data);
+      state.form = data;
     })
 
     return {

@@ -3,8 +3,10 @@
     <el-table-column
       label="操作"
       width="120">
-      <el-button type="text" size="small">编辑</el-button>
-      <el-button type="text" size="small">删除</el-button>
+      <template #default="scope">
+        <el-button type="text" size="small" @click="handleEdit(scope.row,index)">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
+      </template>
     </el-table-column>
   </BasicTable>
 </template>
@@ -13,7 +15,7 @@
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
 import {useConfigRequest} from "@/api/useConfigRequest";
-import {defineComponent, reactive, toRefs,} from "vue";
+import {defineComponent, inject, reactive, toRefs,} from "vue";
 
 export default defineComponent({
   name: "TableList",
@@ -31,13 +33,15 @@ export default defineComponent({
       ],
     })
 
-    const {fetchList} = useConfigRequest();
-    const {data, paginate} = fetchList();
+    const {fetchList2} = useConfigRequest();
+    const {data, paginate} = fetchList2();
+    const handleEdit = inject('handleEdit');
 
     return {
       ...toRefs(state),
       tableData: data,
       paginate,
+      handleEdit,
     }
   },
 })

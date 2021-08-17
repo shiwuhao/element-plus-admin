@@ -17,7 +17,7 @@
       <tab-list v-if="configMode === 'config'"></tab-list>
     </el-card>
   </page-wrapper>
-  <EditTemplate v-model="dialog"/>
+  <EditTemplate v-model="dialog" :editable="editable"/>
 </template>
 
 <script>
@@ -25,18 +25,27 @@ import {PageWrapper} from "@/components/Page";
 import TableList from "@/views/system/configs/TableList";
 import TabList from "@/views/system/configs/TabList";
 import EditTemplate from "@/views/system/configs/EditTemplate";
-import {reactive} from "vue";
-import {toRefs} from "@vueuse/core";
+import {reactive, toRefs, provide} from "vue";
 
 export default {
   name: "index",
   components: {PageWrapper, TableList, TabList, EditTemplate},
-  setup(){
+  setup() {
     const state = reactive({
       dialog: false,
+      editable: null,
       activeName: 'second',
       configMode: 'editor',
     });
+
+    const handleEdit = (editable, index) => {
+      console.log(editable)
+      state.editable = editable;
+      state.dialog = true;
+    }
+
+    provide('handleEdit', handleEdit)
+
     return {
       ...toRefs(state)
     }

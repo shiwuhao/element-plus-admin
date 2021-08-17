@@ -35,25 +35,25 @@ export function useConfigRequest() {
   }
 
   // 列表
-  // const fetchList = (searchQuery) => {
-  //   const state = reactive({
-  //     data: [],
-  //     paginate: {},
-  //   })
-  //   const getConfigList = async () => {
-  //     const {data: response} = await axios.request({...Api.LIST, params: searchQuery});
-  //     state.data = response.data;
-  //     state.paginate = response.meta;
-  //   }
-  //
-  //   onMounted(getConfigList);
-  //   watch(searchQuery, getConfigList);
-  //
-  //   return {
-  //     ...toRefs(state),
-  //     getConfigList,
-  //   }
-  // }
+  const fetchList2 = (searchQuery) => {
+    const state = reactive({
+      data: [],
+      paginate: {},
+    })
+    const getConfigList = async () => {
+      const {data: response} = await axios.request({...Api.LIST, params: searchQuery});
+      state.data = response.data;
+      state.paginate = response.meta;
+    }
+
+    onMounted(getConfigList);
+    watch(searchQuery, getConfigList);
+
+    return {
+      ...toRefs(state),
+      getConfigList,
+    }
+  }
 
   const fetchList = (searchQuery) => {
     const state = reactive({
@@ -79,19 +79,12 @@ export function useConfigRequest() {
   }
 
   // 详情
-  const fetchDetail = (params) => {
-    const data = ref();
-    const getConfigDetail = async () => {
-      const {data: response} = await axios.request({...Api.DETAIL, ...{params}})
-      data.value = response;
-    }
-
-    onMounted(getConfigDetail);
-    watch(params, getConfigDetail);
+  const fetchDetail = async (id) => {
+    const response = await axios.request({...Api.DETAIL, ...{params: {id}}})
+    console.log('response', response);
 
     return {
-      data,
-      getConfigDetail
+      ...toRefs(response),
     }
   }
 
@@ -110,13 +103,14 @@ export function useConfigRequest() {
   }
 
   // 更新
-  const fetchUpdate = (params) => {
+  const fetchUpdate = async (params) => {
     const data = ref({});
     const getFetchUpdate = async () => {
-      const {data: response} = await axios.request({...Api.UPDATE, ...{params}})
+      const {id} = params;
+      const {data: response} = await axios.request({...Api.UPDATE, ...{params: {id}, data: params}})
       data.value = response;
     }
-
+    await getFetchUpdate();
     return {
       data,
       getFetchUpdate
@@ -140,6 +134,7 @@ export function useConfigRequest() {
   return {
     fetchItemList,
     fetchList,
+    fetchList2,
     fetchDetail,
     fetchStore,
     fetchUpdate,
