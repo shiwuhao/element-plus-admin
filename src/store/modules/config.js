@@ -1,6 +1,20 @@
+import {useFetchItemList} from "@/api/useConfigRequest";
+
 const config = {
-  state: {},
-  mutations: {},
-  actions: {}
+  namespaced: true,
+  state: {
+    configs: {},
+  },
+  mutations: {
+    setConfig(state, configs) {
+      state.configs = configs;
+    },
+  },
+  actions: {
+    setConfigItem({commit}) {
+      const {data,getConfigList} = useFetchItemList();
+      commit('setConfig', data.value);
+    }
+  }
 };
 export default config;

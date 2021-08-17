@@ -9,9 +9,11 @@
     <template #default>
       <el-form :model="form" label-width="80px" size="small">
         <el-form-item label="配置分组">
+          {{getGroups}}
           <el-select v-model="form.group" clearable placeholder="请选择配置分组" style="width: 100%;">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+            <template v-for="(item,index) in getGroups" :key="index">
+              <el-option :label="item.label" :value="item.value" ></el-option>
+            </template>
           </el-select>
         </el-form-item>
         <el-form-item label="配置类型">
@@ -54,7 +56,7 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer";
 import {reactive, toRefs} from "vue";
-import {useConfigRequest} from "@/api/useConfigRequest";
+import {useConfig} from "@/hooks/config/useConfig";
 
 export default {
   name: "editTemplate",
@@ -74,11 +76,14 @@ export default {
 
     const drawerClose = () => emit('update:modelValue', false);
 
+    const {getGroups} = useConfig();
+
     return {
       ...toRefs(state),
       // data,
       // isFinished,
-      drawerClose
+      drawerClose,
+      getGroups
     }
   }
 }
