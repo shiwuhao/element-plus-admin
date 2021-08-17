@@ -1,11 +1,18 @@
 <template>
-  <BasicTable :columns="tableColumns" :data="tableData" size="small" border></BasicTable>
+  <BasicTable :columns="tableColumns" :data="tableData" size="small" border>
+    <el-table-column
+      label="操作"
+      width="120">
+      <el-button type="text" size="small">编辑</el-button>
+      <el-button type="text" size="small">删除</el-button>
+    </el-table-column>
+  </BasicTable>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
-import {useFetchList, useFetchDetail} from "@/api/useConfigRequest";
+import {useConfigRequest} from "@/api/useConfigRequest";
 import {defineComponent, reactive, toRefs,} from "vue";
 
 export default defineComponent({
@@ -24,7 +31,8 @@ export default defineComponent({
       ],
     })
 
-    const {data, paginate} = useFetchList();
+    const {fetchList} = useConfigRequest();
+    const {data, paginate} = fetchList();
 
     return {
       ...toRefs(state),

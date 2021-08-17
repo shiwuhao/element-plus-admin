@@ -1,5 +1,4 @@
 <template>
-  {{data}}
   <BasicDrawer
     title="新增配置"
     direction="rtl"
@@ -7,46 +6,50 @@
     v-model="$props.modelValue"
     @close="drawerClose">
     <template #default>
-      <el-form :model="form" label-width="80px" size="small">
-        <el-form-item label="配置分组">
-          {{getGroups}}
+      <pre lang="yaml">
+      {{form}}
+      </pre>
+      <el-form :model="form" :rules="rules" label-width="80px" size="small">
+        <el-form-item label="配置分组" prop="group">
           <el-select v-model="form.group" clearable placeholder="请选择配置分组" style="width: 100%;">
             <template v-for="(item,index) in getGroups" :key="index">
-              <el-option :label="item.label" :value="item.value" ></el-option>
+              <el-option :label="item.label" :value="item.value"></el-option>
             </template>
           </el-select>
         </el-form-item>
-        <el-form-item label="配置类型">
+        <el-form-item label="配置类型" prop="type">
           <el-select v-model="form.type" clearable placeholder="请选择配置类型" style="width: 100%;">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+            <template v-for="(item,index) in getTypes" :key="index">
+              <el-option :label="item.label" :value="item.value"></el-option>
+            </template>
           </el-select>
         </el-form-item>
-        <el-form-item label="渲染组件">
+        <el-form-item label="渲染组件" prop="component">
           <el-select v-model="form.component" clearable placeholder="请选择渲染组件" style="width: 100%;">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+            <template v-for="(item,index) in getComponents" :key="index">
+              <el-option :label="item.label" :value="item.value"></el-option>
+            </template>
           </el-select>
         </el-form-item>
-        <el-form-item label="配置标识">
+        <el-form-item label="配置标识" prop="name">
           <el-input v-model="form.name" autocomplete="off">
             <template #prepend v-if="form.group">{{ form.group }}</template>
           </el-input>
         </el-form-item>
-        <el-form-item label="配置名称">
+        <el-form-item label="配置名称" prop="title">
           <el-input v-model="form.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="配置项">
+        <el-form-item label="配置项" prop="extra">
           <el-input v-model="form.extra" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="配置值">
+        <el-form-item label="配置值" prop="value">
           <el-input v-model="form.value" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
     </template>
     <template #footer>
       <el-button @click="drawerClose" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="$refs.drawer.closeDrawer()" :loading="loading">
+      <el-button type="primary" size="small" @click="handleSubmit" :loading="loading">
         {{ loading ? '提交中 ...' : '确 定' }}
       </el-button>
     </template>
@@ -55,8 +58,9 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {reactive, toRefs} from "vue";
+import {onMounted, reactive, toRefs} from "vue";
 import {useConfig} from "@/hooks/config/useConfig";
+import {useConfigRequest} from "@/api/useConfigRequest";
 
 export default {
   name: "editTemplate",
@@ -65,25 +69,58 @@ export default {
     modelValue: {
       type: Boolean,
       default: true,
+    },
+    editable: {
+      type: [Object, Boolean],
+      default: false
     }
   },
   setup(props, {emit}) {
-    // const {data, isFinished} = useConfigRequest('index',{});
+    const {fetchStore, fetchUpdate, fetchDetail} = useConfigRequest();
+    const {getGroups, getTypes, getComponents} = useConfig();
     const state = reactive({
       loading: false,
-      form: {}
+      form: {
+        group: "basic",
+        type: "number",
+        component: "input",
+        name: "Test2",
+        title: "测试",
+        extra: "111",
+        value: "1111"
+      },
+      rules: {
+        group: [{required: true, message: '请选择配置分组', trigger: 'change'}],
+        type: [{required: true, message: '请选择配置类型', trigger: 'change'}],
+        component: [{required: true, message: '请选择渲染组件', trigger: 'change'}],
+        name: [{required: true, message: '请输入配置标识', trigger: 'blur'}],
+        title: [{required: true, message: '请输入配置标题', trigger: 'blur'}],
+        extra: [{required: true, message: '请输入配置项', trigger: 'blur'}],
+        value: [{required: true, message: '请输入配置值', trigger: 'blur'}]
+      },
     });
 
     const drawerClose = () => emit('update:modelValue', false);
+    const handleSubmit = async () => {
+      const {data: response} = !state.form.id ? await fetchStore(state.form) : await fetchUpdate(state.form);
+      console.log(response)
+      emit('update:editable', response.data);
+    }
 
-    const {getGroups} = useConfig();
+    onMounted(() => {
+      if (props.editable) {
+        const {data: response} = fetchDetail(props.editable);
+        state.form = response.data;
+      }
+    })
 
     return {
       ...toRefs(state),
-      // data,
-      // isFinished,
       drawerClose,
-      getGroups
+      getGroups,
+      getTypes,
+      getComponents,
+      handleSubmit,
     }
   }
 }

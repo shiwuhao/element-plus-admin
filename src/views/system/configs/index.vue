@@ -25,15 +25,21 @@ import {PageWrapper} from "@/components/Page";
 import TableList from "@/views/system/configs/TableList";
 import TabList from "@/views/system/configs/TabList";
 import EditTemplate from "@/views/system/configs/EditTemplate";
+import {reactive} from "vue";
 
 export default {
   name: "index",
   components: {PageWrapper, TableList, TabList, EditTemplate},
-  data() {
-    return {
+  setup(){
+    const state = reactive({
       dialog: false,
       activeName: 'second',
       configMode: 'editor',
+    })
+  },
+  data() {
+    return {
+
     };
   },
   methods: {
