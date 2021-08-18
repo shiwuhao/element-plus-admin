@@ -1,8 +1,8 @@
-import {ref, onMounted, watch, reactive} from 'vue'
+import {ref, onMounted, watch, reactive, unref, computed} from 'vue'
 import {toRef, toRefs} from "vue";
 import axios from "@/utils/axios";
 import store from "@/store";
-import {useAxios} from "@vueuse/integrations";
+import {useAxios} from "./useAxios";
 
 const Api = {
   CONFIG_ITEMS: {url: '/configs/items', method: 'get'},
@@ -35,48 +35,51 @@ export function useConfigRequest() {
   }
 
   // 列表
-  const fetchList2 = (searchQuery) => {
+  const fetchList = (params) => {
     const state = reactive({
-      data: [],
-      paginate: {},
+      tableData: null,
+      paginate: null,
+      isLoading: false,
     })
-    const getConfigList = async () => {
-      const {data: response} = await axios.request({...Api.LIST, params: searchQuery});
-      state.data = response.data;
-      state.paginate = response.meta;
+
+    const fetch = () => {
+      const {data, isLoading} = useAxios({...Api.LIST, ...params});
+      state.tableData = computed(() => ({...data.value}.data));
+      state.paginate = computed(() => ({...data.value}.meta));
+      state.isLoading = isLoading;
     }
 
-    onMounted(getConfigList);
-    watch(searchQuery, getConfigList);
+    onMounted(fetch);
+    watch(params, fetch);
 
     return {
       ...toRefs(state),
-      getConfigList,
+      fetch
     }
   }
 
-  const fetchList = (searchQuery) => {
-    const state = reactive({
-      data: [],
-      paginate: {},
-    })
-    const getConfigList = async () => {
-      const {data: response} = useAxios('/test.json')
-      const {data, meta} = toRefs(response);
-
-      console.log(response, data, meta)
-      // state.data = response.data;
-      // state.paginate = response.meta;
-    }
-
-    onMounted(getConfigList);
-    watch(searchQuery, getConfigList);
-
-    return {
-      ...toRefs(state),
-      getConfigList,
-    }
-  }
+  // const fetchList = (searchQuery) => {
+  //   const state = reactive({
+  //     data: [],
+  //     paginate: {},
+  //   })
+  //   const getConfigList = async () => {
+  //     const {data: response} = useAxios('/test.json')
+  //     const {data, meta} = toRefs(response);
+  //
+  //     console.log(response, data, meta)
+  //     // state.data = response.data;
+  //     // state.paginate = response.meta;
+  //   }
+  //
+  //   onMounted(getConfigList);
+  //   watch(searchQuery, getConfigList);
+  //
+  //   return {
+  //     ...toRefs(state),
+  //     getConfigList,
+  //   }
+  // }
 
   // 详情
   const fetchDetail = async (id) => {
@@ -134,7 +137,6 @@ export function useConfigRequest() {
   return {
     fetchItemList,
     fetchList,
-    fetchList2,
     fetchDetail,
     fetchStore,
     fetchUpdate,

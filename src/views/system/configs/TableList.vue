@@ -1,5 +1,6 @@
 <template>
-  <BasicTable :columns="tableColumns" :data="tableData" size="small" border>
+  <button @click="fetch">刷新</button>
+  <BasicTable :columns="tableColumns" :data="tableData" :loading="isLoading" size="small" border>
     <el-table-column
       label="操作"
       width="120">
@@ -15,7 +16,7 @@
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
 import {useConfigRequest} from "@/api/useConfigRequest";
-import {defineComponent, inject, reactive, toRefs,} from "vue";
+import {defineComponent, inject, reactive, toRefs, ref, unref, computed} from "vue";
 
 export default defineComponent({
   name: "TableList",
@@ -33,15 +34,18 @@ export default defineComponent({
       ],
     })
 
-    const {fetchList2} = useConfigRequest();
-    const {data, paginate} = fetchList2();
+
+    const {fetchList} = useConfigRequest();
+    const {tableData, paginate, isLoading,fetch} = fetchList();
     const handleEdit = inject('handleEdit');
 
     return {
       ...toRefs(state),
-      tableData: data,
+      tableData,
       paginate,
+      isLoading,
       handleEdit,
+      fetch,
     }
   },
 })

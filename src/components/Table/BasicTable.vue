@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table v-bind="$attrs">
+    <el-table v-bind="$attrs" v-loading="$attrs.loading">
       <template v-for="(column,index) in columns" :key="index">
         <el-table-column v-if="column.slot" v-bind="column">
           <template #default="scope">

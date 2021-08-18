@@ -1,6 +1,6 @@
 <template>
   <BasicDrawer
-    title="新增配置"
+    :title="!form.id ? '新增配置' : '编辑配置'"
     direction="rtl"
     size="50%"
     v-model="$props.modelValue"
@@ -105,7 +105,7 @@ export default {
     }
 
     watch(editable, async ({id}) => {
-      const {data:response} = await fetchDetail(id);
+      const {data: response} = await fetchDetail(id);
       const {data} = unref(response);
       console.log('data', data);
       state.form = data;
