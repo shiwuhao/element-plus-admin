@@ -1,12 +1,22 @@
 <template>
-  <BasicTable :columns="tableColumns" :data="tableData" size="small" border></BasicTable>
+  <button @click="fetch">刷新</button>
+  <BasicTable :columns="tableColumns" :data="tableData" :loading="isLoading" size="small" border>
+    <el-table-column
+      label="操作"
+      width="120">
+      <template #default="scope">
+        <el-button type="text" size="small" @click="handleEdit(scope.row,index)">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
+      </template>
+    </el-table-column>
+  </BasicTable>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
-import {useFetchList, useFetchDetail} from "@/api/useConfigRequest";
-import {defineComponent, reactive, toRefs,} from "vue";
+import {useConfigRequest} from "@/api/useConfigRequest";
+import {defineComponent, inject, reactive, toRefs, ref, unref, computed} from "vue";
 
 export default defineComponent({
   name: "TableList",
@@ -24,12 +34,18 @@ export default defineComponent({
       ],
     })
 
-    const {data, paginate} = useFetchList();
+
+    const {fetchList} = useConfigRequest();
+    const {tableData, paginate, isLoading,fetch} = fetchList();
+    const handleEdit = inject('handleEdit');
 
     return {
       ...toRefs(state),
-      tableData: data,
+      tableData,
       paginate,
+      isLoading,
+      handleEdit,
+      fetch,
     }
   },
 })

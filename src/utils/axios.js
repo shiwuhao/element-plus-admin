@@ -3,7 +3,11 @@ import Qs from 'qs';
 import {getToken} from '@/utils/auth';
 
 const handleParamInUrl = (url, params) => {
-  return url.replace(/:(\w+)/g, (_, key) => params[key])
+  return url.replace(/:(\w+)/g, (_, key) => {
+    const _p = params[key];
+    delete params[key];
+    return _p;
+  })
 }
 
 const instance = axios.create({
