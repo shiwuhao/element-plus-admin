@@ -56,6 +56,6 @@ export default defineComponent({
   }
   .divider-title {
     margin-right: 10px;
-  }src/components/Divider/
+  }
 }
 </style>
