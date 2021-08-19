@@ -37,16 +37,16 @@ export function useConfigRequest() {
   // 列表
   const fetchList = (params) => {
     const state = reactive({
-      tableData: null,
+      data: null,
       paginate: null,
-      isLoading: false,
+      loading: false,
     })
 
     const fetch = () => {
-      const {data, isLoading} = useAxios({...Api.LIST, ...params});
-      state.tableData = computed(() => ({...data.value}.data));
-      state.paginate = computed(() => ({...data.value}.meta));
-      state.isLoading = isLoading;
+      const {data, loading} = useAxios('/configs', {params});
+      state.data = computed(() => data.value.data);
+      state.paginate = computed(() => data.value.meta);
+      state.loading = loading;
     }
 
     onMounted(fetch);
@@ -58,36 +58,19 @@ export function useConfigRequest() {
     }
   }
 
-  // const fetchList = (searchQuery) => {
-  //   const state = reactive({
-  //     data: [],
-  //     paginate: {},
-  //   })
-  //   const getConfigList = async () => {
-  //     const {data: response} = useAxios('/test.json')
-  //     const {data, meta} = toRefs(response);
-  //
-  //     console.log(response, data, meta)
-  //     // state.data = response.data;
-  //     // state.paginate = response.meta;
-  //   }
-  //
-  //   onMounted(getConfigList);
-  //   watch(searchQuery, getConfigList);
-  //
-  //   return {
-  //     ...toRefs(state),
-  //     getConfigList,
-  //   }
-  // }
-
   // 详情
-  const fetchDetail = async (id) => {
-    const response = await axios.request({...Api.DETAIL, ...{params: {id}}})
-    console.log('response', response);
+  const fetchDetail = (id) => {
+    const state = reactive({
+      data: {},
+      loading: false,
+    })
+
+    const {data, loading} = useAxios(`/configs/${id}`);
+    state.data = computed(() => ({...data.value.data}));
+    state.loading = loading;
 
     return {
-      ...toRefs(response),
+      ...toRefs(state)
     }
   }
 

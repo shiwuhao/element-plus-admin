@@ -4,50 +4,43 @@
     background-color
   >
     <template #extra>
-      <el-button type="primary" size="mini" @click="dialog = true">新增</el-button>
+      <el-button type="primary" size="mini" @click="drawerToggle">新增</el-button>
     </template>
     <template #content>
-      <el-radio-group v-model="configMode" size="mini">
+      <el-radio-group v-model="mode" size="mini">
         <el-radio-button label="editor">配置模式</el-radio-button>
         <el-radio-button label="config">编辑模式</el-radio-button>
       </el-radio-group>
     </template>
     <el-card shadow="none">
-      <table-list v-if="configMode === 'editor'"></table-list>
-      <tab-list v-if="configMode === 'config'"></tab-list>
+      <table-list v-if="mode === 'editor'"></table-list>
+      <tab-list v-if="mode === 'config'"></tab-list>
     </el-card>
   </page-wrapper>
-  <EditTemplate v-model="dialog" :editable="editable"/>
+
 </template>
 
 <script>
 import {PageWrapper} from "@/components/Page";
 import TableList from "@/views/system/configs/TableList";
 import TabList from "@/views/system/configs/TabList";
-import EditTemplate from "@/views/system/configs/EditTemplate";
-import {reactive, toRefs, provide} from "vue";
+import {provide, ref} from "vue";
 
 export default {
   name: "index",
-  components: {PageWrapper, TableList, TabList, EditTemplate},
+  components: {PageWrapper, TableList, TabList},
   setup() {
-    const state = reactive({
-      dialog: false,
-      editable: null,
-      activeName: 'second',
-      configMode: 'editor',
-    });
+    const mode = ref('editor');
+    const dialog = ref(false);
 
-    const handleEdit = (editable, index) => {
-      console.log(editable)
-      state.editable = editable;
-      state.dialog = true;
-    }
+    const drawerToggle = () => dialog.value = !dialog.value;
 
-    provide('handleEdit', handleEdit)
+    provide('dialog', dialog);
+    provide('drawerToggle', drawerToggle);
 
     return {
-      ...toRefs(state)
+      mode,
+      drawerToggle,
     }
   },
 }

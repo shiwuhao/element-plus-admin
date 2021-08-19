@@ -1,6 +1,6 @@
 <template>
-  <button @click="fetch">刷新</button>
-  <BasicTable :columns="tableColumns" :data="tableData" :loading="isLoading" size="small" border>
+  {{ dialog }}
+  <BasicTable :columns="tableColumns" :data="tableData" :paginate="paginate" :loading="loading" size="small">
     <el-table-column
       label="操作"
       width="120">
@@ -10,17 +10,19 @@
       </template>
     </el-table-column>
   </BasicTable>
+  <EditTemplate v-model="dialog" v-model:editable="editable"/>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
+import EditTemplate from "@/views/system/configs/EditTemplate";
 import {useConfigRequest} from "@/api/useConfigRequest";
 import {defineComponent, inject, reactive, toRefs, ref, unref, computed} from "vue";
 
 export default defineComponent({
   name: "TableList",
-  components: {BasicForm, BasicTable},
+  components: {BasicForm, BasicTable, EditTemplate},
   setup() {
     const state = reactive({
       activeName: 'second',
@@ -32,18 +34,25 @@ export default defineComponent({
         {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
         {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
       ],
+      editable: {},
     })
 
-
     const {fetchList} = useConfigRequest();
-    const {tableData, paginate, isLoading,fetch} = fetchList();
-    const handleEdit = inject('handleEdit');
+    const {data: tableData, paginate, loading, fetch} = fetchList();
+
+    const dialog = inject('dialog');
+    const drawerToggle = inject('drawerToggle');
+    const handleEdit = (editable, index) => {
+      state.editable = editable;
+      drawerToggle();
+    }
 
     return {
       ...toRefs(state),
+      dialog,
       tableData,
       paginate,
-      isLoading,
+      loading,
       handleEdit,
       fetch,
     }
