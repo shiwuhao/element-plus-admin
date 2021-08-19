@@ -50,3 +50,34 @@ export const articleAction = [
   { icon: 'el-icon-thumb', text: '156', color: '#459ae8' },
   { icon: 'el-icon-chat-dot-round', text: '2', color: '#42d27d' },
 ]
+export const personalInfo = [
+  {
+    icon: 'el-icon-user',
+    title: 'web前端开发工程师',
+  },
+  {
+    icon: 'el-icon-s-grid',
+    title: '某某某事业群',
+  },
+  {
+    icon: 'el-icon-s-home',
+    title: '北京市朝阳区',
+  }
+]
+export const activeTab = [
+  {
+    key: '1',
+    name: '文章',
+    component: 'Article',
+  },
+  {
+    key: '2',
+    name: '应用',
+    component: 'Application',
+  },
+  {
+    key: '3',
+    name: '项目',
+    component: 'Project',
+  },
+]
