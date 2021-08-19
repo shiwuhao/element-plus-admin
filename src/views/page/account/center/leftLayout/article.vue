@@ -52,6 +52,11 @@ export default defineComponent({
 .personal-center-article {
   width: 96%;
   margin: 0 auto;
+  &:last-child {
+    .divider-empty {
+      display: none;
+    }
+  }
   .divider-empty{
     ::v-deep .el-divider--horizontal {
       margin: 12px 0;
