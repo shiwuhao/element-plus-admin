@@ -118,13 +118,19 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .el-tag + .el-tag {
-  margin-left: 10px;
+  margin: 0 0 10px 8px;
 }
-
+::v-deep .el-input__inner {
+  height: 24px;
+  vertical-align: super;
+}
+.el-button--small {
+  min-height: inherit;
+  border: 1px dashed #dcdfe6;
+}
 .button-new-tag {
   margin-left: 10px;
-  height: 32px;
-  line-height: 30px;
+  height: 24px;
   padding-top: 0;
   padding-bottom: 0;
 }
