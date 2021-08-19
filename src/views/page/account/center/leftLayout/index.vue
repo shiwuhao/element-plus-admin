@@ -36,9 +36,9 @@
         <el-card :class="`${prefixCls}-right`">
           <el-tabs v-model="activeName">
             <el-tab-pane :label="item.name" :name="item.key" v-for="item in activeTab" :key="item.key">
-               <div v-if="item.key === '1'">
-                 <Article />
-               </div>
+              <div v-if="item.key === '1'">
+                <Article/>
+              </div>
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -52,7 +52,7 @@ import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
 import Team from './team';
 import Article from './article'
-import {personalInfo,activeTab} from './data';
+import {personalInfo, activeTab} from './data';
 
 export default defineComponent({
   name: "PersonalCenter",
@@ -89,11 +89,13 @@ export default defineComponent({
 <style lang="scss" scoped>
 .personal-center {
   margin: 20px;
- ::v-deep .personal-center-article {
+
+  ::v-deep .personal-center-article {
     &:first-child {
       margin-top: 15px;
     }
   }
+
   .personal-center-left {
     margin-bottom: 10px;
 
