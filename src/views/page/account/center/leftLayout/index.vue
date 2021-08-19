@@ -1,39 +1,45 @@
 <template>
   <div :class="prefixCls">
     <el-row :gutter="20">
-      <el-col :span="6">
+      <el-col :lg="6" :xs="24">
         <el-card :class="`${prefixCls}-left`">
-          <el-avatar icon="el-icon-user-solid" :shape="shape" :size="size" :fit="fit" :src="url">
-            <span>CoCo</span>
-            <span>海纳百川，有容乃大</span>
-          </el-avatar>
-          <div :class="`${prefixCls}-left-introduce`">
-            <p>
-              <i class="el-icon-edit"></i>
-              <span>交互专家</span></p>
-            <p>
-              <i class="el-icon-edit"></i>
-              <span>某某某事业部</span></p>
-            <p>
-              <i class="el-icon-edit"></i>
-              <span>北京市</span></p>
+          <div :class="`${prefixCls}-left-content`">
+            <div :class="`${prefixCls}-left-avatar`">
+              <el-avatar
+                icon="el-icon-user-solid"
+                :shape="shape"
+                :size="size"
+                :fit="fit"
+                :src="url">
+              </el-avatar>
+            </div>
+            <div :class="`${prefixCls}-left-text`">
+              <h3>CoCo</h3>
+              <h4>海纳百川，有容乃大</h4>
+            </div>
+            <div :class="`${prefixCls}-left-introduce`">
+              <p v-for="(item,index) in personalInfo" :key="index">
+                <i :class="item.icon"></i>
+                <span>{{ item.title }}</span>
+              </p>
+            </div>
           </div>
           <el-divider></el-divider>
-          <PageWrapper title="标签" />
+          <PageWrapper title="标签"/>
           <Tag :dynamicTags="tags" :addTagVisible='addTagVisible' :closable="closable"/>
           <el-divider></el-divider>
-          <PageWrapper title="团队" />
+          <PageWrapper title="团队"/>
           <Team :prefix="prefixCls"/>
         </el-card>
       </el-col>
-      <el-col :span="18">
+      <el-col :lg="18" :xs="24">
         <el-card :class="`${prefixCls}-right`">
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="文章（8）" name="first">
-              <Article/>
+          <el-tabs v-model="activeName">
+            <el-tab-pane :label="item.name" :name="item.key" v-for="item in activeTab" :key="item.key">
+               <div v-if="item.key === '1'">
+                 <Article />
+               </div>
             </el-tab-pane>
-            <el-tab-pane label="应用（8）" name="second">应用</el-tab-pane>
-            <el-tab-pane label="项目（8）" name="third">项目</el-tab-pane>
           </el-tabs>
         </el-card>
       </el-col>
@@ -46,6 +52,8 @@ import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
 import Team from './team';
 import Article from './article'
+import {personalInfo,activeTab} from './data';
+
 export default defineComponent({
   name: "PersonalCenter",
   components: {
@@ -58,7 +66,7 @@ export default defineComponent({
     const tags = ref(['标签一', '标签二', '标签三'])
     const addTagVisible = ref(true)
     const closable = ref(true)
-    const activeName = ref('first')
+    const activeName = ref('1')
     const avatar = reactive({
       fit: 'fill',
       shape: 'circle',
@@ -71,6 +79,8 @@ export default defineComponent({
       closable,
       addTagVisible,
       activeName,
+      personalInfo,
+      activeTab,
       ...toRefs(avatar)
     }
   }
@@ -78,14 +88,57 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .personal-center {
-  margin: 20px
+  margin: 20px;
+ ::v-deep .personal-center-article {
+    &:first-child {
+      margin-top: 15px;
+    }
+  }
+  .personal-center-left {
+    margin-bottom: 10px;
+
+    .personal-center-left-content {
+      .personal-center-left-avatar {
+        text-align: center;
+      }
+
+      .personal-center-left-introduce {
+        padding-left: 24px;
+
+        i {
+          margin-right: 7px;
+        }
+      }
+
+      .personal-center-left-text {
+        text-align: center;
+        margin-bottom: 28px;
+
+        h3 {
+          color: rgba(0, 0, 0, .85);
+          font-weight: 500;
+          font-size: 20px;
+          height: 15px;
+        }
+
+        h4 {
+          color: rgba(0, 0, 0, .85);
+          font-size: 14px;
+          font-weight: inherit;
+        }
+      }
+    }
+  }
 }
+
 .el-divider--horizontal {
   background: 0 0;
   border-top: 1px dashed #e8eaec;
 }
+
 ::v-deep .page-wrapper .page-header {
   padding: 0;
+
   span {
     font-size: 14px;
   }
