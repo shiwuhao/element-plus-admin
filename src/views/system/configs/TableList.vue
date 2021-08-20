@@ -1,6 +1,7 @@
 <template>
-  <button @click="fetch">刷新</button>
-  <BasicTable :columns="tableColumns" :data="tableData" :loading="isLoading" size="small" border>
+  <BasicForm v-model="search" :schemas="schemas" :action-props="actionProps" size="small"
+             @submit="handleSearch"></BasicForm>
+  <BasicTable :columns="tableColumns" :data="response.data" :paginate="response.meta" :loading="loading" size="small">
     <el-table-column
       label="操作"
       width="120">
@@ -10,17 +11,20 @@
       </template>
     </el-table-column>
   </BasicTable>
+  <EditTemplate v-model="dialog" v-model:editable="editable"/>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
+import EditTemplate from "@/views/system/configs/EditTemplate";
 import {useConfigRequest} from "@/api/useConfigRequest";
-import {defineComponent, inject, reactive, toRefs, ref, unref, computed} from "vue";
+import {defineComponent, inject, reactive, toRefs,} from "vue";
+import {useFetchList} from "@/api/useConfigRequest";
 
 export default defineComponent({
   name: "TableList",
-  components: {BasicForm, BasicTable},
+  components: {BasicForm, BasicTable, EditTemplate},
   setup() {
     const state = reactive({
       activeName: 'second',
@@ -32,20 +36,35 @@ export default defineComponent({
         {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
         {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
       ],
+      schemas: [
+        {field: 'field1', label: 'field1', component: 'Input', colProps: {span: 8}}
+      ],
+      search: {},
+      actionProps: {
+        isAdvanced: true,
+        colProps: {span: 8},
+        actionPosition: 'left',
+        resetButtonOption: {text: '重置'},
+        submitButtonOption: {text: '搜索'}
+      },
+      editable: {},
     })
 
+    const {data: response, loading, fetch: handleSearch} = useFetchList(state.search);
 
-    const {fetchList} = useConfigRequest();
-    const {tableData, paginate, isLoading,fetch} = fetchList();
-    const handleEdit = inject('handleEdit');
+    const dialog = inject('dialog');
+    const handleEdit = (editable, index) => {
+      state.editable = editable;
+      dialog.value = true;
+    }
 
     return {
       ...toRefs(state),
-      tableData,
-      paginate,
-      isLoading,
+      dialog,
+      response,
+      loading,
       handleEdit,
-      fetch,
+      handleSearch
     }
   },
 })
