@@ -13,6 +13,26 @@ const Api = {
   DELETE: {url: '/configs/:id', method: 'delete'},
 }
 
+// 列表
+export const useFetchList = (params = {}) => {
+  return useAxios({...Api.LIST, ...{params}});
+}
+
+// 详情
+export const useFetchDetail = (id) => {
+  return useAxios(`/configs/${id}`);
+}
+
+// 新增
+export const useFetchStore = async (requestData) => {
+  return useAxios(`/configs`, {method: 'post', data: requestData});
+}
+
+// 更新
+export const useFetchUpdate = async (id, requestData) => {
+  return useAxios(`/configs/${id}`, {method: 'put', data: requestData});
+}
+
 export function useConfigRequest() {
 
   // 全局配置项
@@ -35,27 +55,8 @@ export function useConfigRequest() {
   }
 
   // 列表
-  const fetchList = (params) => {
-    const state = reactive({
-      data: null,
-      paginate: null,
-      loading: false,
-    })
-
-    const fetch = () => {
-      const {data, loading} = useAxios('/configs', {params});
-      state.data = computed(() => data.value.data);
-      state.paginate = computed(() => data.value.meta);
-      state.loading = loading;
-    }
-
-    onMounted(fetch);
-    watch(params, fetch);
-
-    return {
-      ...toRefs(state),
-      fetch
-    }
+  const useFetchList = (params = {}) => {
+    return useAxios({...Api.LIST, ...{params}});
   }
 
   // 详情
@@ -95,7 +96,7 @@ export function useConfigRequest() {
 
   return {
     fetchItemList,
-    fetchList,
+    useFetchList,
     useFetchDetail,
     useFetchStore,
     useFetchUpdate,

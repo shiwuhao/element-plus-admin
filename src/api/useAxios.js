@@ -1,36 +1,35 @@
 import axios from '@/utils/axios';
-import {useAxios as useAxiosRequest} from "@vueuse/integrations";
+import {reactive, toRefs} from "vue";
 
-export function useAxios(url, options = {}) {
-  const {
-    response,
-    data,
-    error,
-    finished,
-    loading,
-    isFinished,
-    isLoading,
-    cancel,
-    canceled,
-    aborted,
-    abort,
-  } = useAxiosRequest(url, options, axios);
+const sleep = (time = 0) => new Promise(resolve => setTimeout(resolve, time))
 
-  if (data.value === undefined) {
-    data.value = {};
+export function useAxios(options) {
+  const state = reactive({
+    response: {},
+    data: {},
+    error: false,
+    loading: false,
+    finished: false,
+  })
+
+  const fetch = async () => {
+    state.loading = true;
+    // await sleep(1000);
+    await axios.request(options).then(response => {
+      state.response = response;
+      state.data = response.data;
+    }).catch(error => {
+      state.error = error;
+    }).finally(() => {
+      state.loading = false
+      state.finished = true
+    })
   }
 
+  fetch().then(r => r);
+
   return {
-    response,
-    data,
-    error,
-    finished,
-    loading,
-    isFinished,
-    isLoading,
-    cancel,
-    canceled,
-    aborted,
-    abort,
+    ...toRefs(state),
+    fetch,
   }
 }

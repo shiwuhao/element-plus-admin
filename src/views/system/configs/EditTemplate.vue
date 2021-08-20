@@ -7,6 +7,7 @@
     v-model="$props.modelValue"
     @close="handleDrawerClose">
     <template #default>
+      {{ fetchLoading }}
       {{ form }}
       <el-form :model="form" :rules="rules" label-width="80px" size="small">
         <el-form-item label="配置分组" prop="group">
@@ -47,7 +48,7 @@
       </el-form>
     </template>
     <template #footer>
-      <el-button @click="drawerClose" size="small">取 消</el-button>
+      <el-button @click="handleDrawerClose" size="small">取 消</el-button>
       <el-button type="primary" size="small" @click="handleSubmit" :loading="submitLoading">
         {{ submitLoading ? '提交中 ...' : '确 定' }}
       </el-button>
@@ -57,9 +58,12 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {inject, reactive, ref, toRefs, watch} from "vue";
+import {computed, inject, reactive, ref, toRefs, unref, watch, toRaw, onMounted} from "vue";
 import {useConfig} from "@/hooks/config/useConfig";
 import {useConfigRequest} from "@/api/useConfigRequest";
+import {useFetchDetail, useFetchStore, useFetchUpdate} from "@/api/useConfigRequest";
+import {useAxios} from "@/api/useAxios";
+import axios from "@/utils/axios";
 
 export default {
   name: "editTemplate",
@@ -78,10 +82,11 @@ export default {
   },
   setup(props, {emit}) {
     const {editable} = toRefs(props);
-    const {useFetchStore, useFetchUpdate, useFetchDetail} = useConfigRequest();
+    // const {useFetchStore, useFetchUpdate, useFetchDetail} = useConfigRequest();
+    const fetchLoading = ref(false);
     const {getGroups, getTypes, getComponents} = useConfig();
     const state = reactive({
-      fetchLoading: false,
+      // fetchLoading: false,
       submitLoading: false,
       form: {},
       rules: {
@@ -109,17 +114,23 @@ export default {
       emit('update:editable', getResponse);
     }
 
-    watch(editable, () => {
+    const fetchDetail = async () => {
       if (!editable.value.id) return;
-      const {getResponse, loading} = useFetchDetail(editable.value.id);
-      state.fetchLoading = loading;
-      state.form = getResponse;
-      console.log(state);
+      // const {data, loading} = useFetchDetail(editable.value.id);
+      const {data, loading} = await axios.get(`/configs/${editable.value.id}`).then(r => r);
+      state.form = data.data;
+      console.log(data, data.data);
+    }
+
+    onMounted(() => {
+
+      watch(editable, fetchDetail);
     })
 
 
     return {
       ...toRefs(state),
+      fetchLoading,
       getGroups,
       getTypes,
       getComponents,
