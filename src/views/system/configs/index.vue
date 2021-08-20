@@ -4,7 +4,7 @@
     background-color
   >
     <template #extra>
-      <el-button type="primary" size="mini" @click="drawerToggle">新增</el-button>
+      <el-button type="primary" size="mini" @click="dialog = true">新增{{dialog}}</el-button>
     </template>
     <template #content>
       <el-radio-group v-model="mode" size="mini">
@@ -33,14 +33,11 @@ export default {
     const mode = ref('editor');
     const dialog = ref(false);
 
-    const drawerToggle = () => dialog.value = !dialog.value;
-
     provide('dialog', dialog);
-    provide('drawerToggle', drawerToggle);
 
     return {
       mode,
-      drawerToggle,
+      dialog,
     }
   },
 }

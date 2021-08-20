@@ -59,48 +59,24 @@ export function useConfigRequest() {
   }
 
   // 详情
-  const fetchDetail = (id) => {
-    const state = reactive({
-      data: {},
-      loading: false,
-    })
-
+  const useFetchDetail = (id) => {
     const {data, loading} = useAxios(`/configs/${id}`);
-    state.data = computed(() => ({...data.value.data}));
-    state.loading = loading;
-
-    return {
-      ...toRefs(state)
-    }
+    const getResponse = computed(() => ({...data.value.data}));
+    return {getResponse, loading};
   }
 
   // 新增
-  const fetchStore = async (params) => {
-    const data = ref({});
-    const getFetchStore = async () => {
-      const {data: response} = await axios.request({...Api.STORE, ...{data: params}})
-      data.value = response;
-    }
-    await getFetchStore();
-    return {
-      data,
-      getFetchStore
-    }
+  const useFetchStore = async (requestData) => {
+    const {data, loading} = useAxios(`/configs`, {method: 'post', data: requestData});
+    const getResponse = computed(() => data.value.data);
+    return {getResponse, loading};
   }
 
   // 更新
-  const fetchUpdate = async (params) => {
-    const data = ref({});
-    const getFetchUpdate = async () => {
-      const {id} = params;
-      const {data: response} = await axios.request({...Api.UPDATE, ...{params: {id}, data: params}})
-      data.value = response;
-    }
-    await getFetchUpdate();
-    return {
-      data,
-      getFetchUpdate
-    }
+  const useFetchUpdate = async (id, requestData) => {
+    const {data, loading} = useAxios(`/configs/${id}`, {method: 'put', data: requestData});
+    const getResponse = computed(() => data.value.data);
+    return {getResponse, loading};
   }
 
   // 删除
@@ -120,9 +96,9 @@ export function useConfigRequest() {
   return {
     fetchItemList,
     fetchList,
-    fetchDetail,
-    fetchStore,
-    fetchUpdate,
+    useFetchDetail,
+    useFetchStore,
+    useFetchUpdate,
     fetchDelete
   }
 }

@@ -1,15 +1,15 @@
 <template>
   <div class="drawer-container">
     <el-drawer
-      v-bind="{...$props,...$attrs}"
-      @close="drawerClose">
+        v-bind="{...$props,...$attrs}"
+        @close="drawerClose">
       <template #title>
         <div class="drawer__title" ref="headerRef">
           <slot name="title">{{ $attrs.title }}</slot>
         </div>
       </template>
       <template #default>
-        <el-scrollbar :height="getScrollHeight">
+        <el-scrollbar :height="getScrollHeight" v-loading="$attrs.loading">
           <div class="drawer__content">
             <slot name="default"></slot>
           </div>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {reactive, toRefs, ref, onMounted, computed, unref} from "vue";
+import {ref, onMounted, unref} from "vue";
 import {useElementBounding, useWindowSize} from '@vueuse/core'
 
 export default {
@@ -58,7 +58,7 @@ export default {
   ::v-deep .el-drawer {
     .drawer__title {
       font-weight: bolder;
-      font-size: 18px;
+      font-size: 16px;
       padding: 10px;
     }
 

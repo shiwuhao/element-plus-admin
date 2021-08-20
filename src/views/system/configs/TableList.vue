@@ -1,5 +1,5 @@
 <template>
-  {{ dialog }}
+  {{editable}}
   <BasicTable :columns="tableColumns" :data="tableData" :paginate="paginate" :loading="loading" size="small">
     <el-table-column
       label="操作"
@@ -18,7 +18,7 @@ import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
 import EditTemplate from "@/views/system/configs/EditTemplate";
 import {useConfigRequest} from "@/api/useConfigRequest";
-import {defineComponent, inject, reactive, toRefs, ref, unref, computed} from "vue";
+import {defineComponent, inject, reactive, toRefs,} from "vue";
 
 export default defineComponent({
   name: "TableList",
@@ -41,10 +41,9 @@ export default defineComponent({
     const {data: tableData, paginate, loading, fetch} = fetchList();
 
     const dialog = inject('dialog');
-    const drawerToggle = inject('drawerToggle');
     const handleEdit = (editable, index) => {
       state.editable = editable;
-      drawerToggle();
+      dialog.value = true;
     }
 
     return {

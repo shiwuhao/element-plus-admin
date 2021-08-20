@@ -3,10 +3,12 @@
     :title="!form ? '新增配置' : '编辑配置'"
     direction="rtl"
     size="50%"
+    :loading="fetchLoading"
     v-model="$props.modelValue"
-    @close="drawerClose">
+    @close="handleDrawerClose">
     <template #default>
-      <el-form :model="form" :rules="rules" label-width="80px" size="small" v-loading="loading">
+      {{ form }}
+      <el-form :model="form" :rules="rules" label-width="80px" size="small">
         <el-form-item label="配置分组" prop="group">
           <el-select v-model="form.group" clearable placeholder="请选择配置分组" style="width: 100%;">
             <template v-for="(item,index) in getGroups" :key="index">
@@ -46,7 +48,7 @@
     </template>
     <template #footer>
       <el-button @click="drawerClose" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="handleSubmit" :loading="loading">
+      <el-button type="primary" size="small" @click="handleSubmit" :loading="submitLoading">
         {{ submitLoading ? '提交中 ...' : '确 定' }}
       </el-button>
     </template>
@@ -55,7 +57,7 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {inject, onMounted, reactive, toRefs, unref, watch} from "vue";
+import {inject, reactive, ref, toRefs, watch} from "vue";
 import {useConfig} from "@/hooks/config/useConfig";
 import {useConfigRequest} from "@/api/useConfigRequest";
 
@@ -76,11 +78,10 @@ export default {
   },
   setup(props, {emit}) {
     const {editable} = toRefs(props);
-    console.log(editable);
-    const {fetchStore, fetchUpdate, fetchDetail} = useConfigRequest();
+    const {useFetchStore, useFetchUpdate, useFetchDetail} = useConfigRequest();
     const {getGroups, getTypes, getComponents} = useConfig();
     const state = reactive({
-      loading: false,
+      fetchLoading: false,
       submitLoading: false,
       form: {},
       rules: {
@@ -94,28 +95,26 @@ export default {
       },
     });
 
-    const drawerToggle = inject('drawerToggle');
-    const handleSubmit = async () => {
-      const {
-        data: response,
-        loading: submitLoading
-      } = !state.form.id ? await fetchStore(state.form) : await fetchUpdate(state.form);
-      state.submitLoading = submitLoading;
-      emit('update:editable', response.data);
-      drawerToggle();
-    }
-
-    const drawerClose = () => {
-      drawerToggle();
-      emit('update:editable', {});
+    const dialog = inject('dialog');
+    const handleDrawerClose = () => {
+      dialog.value = false;
+      // state.form = ref({});
+      emit('update:editable', state.form)
     };
 
+    const handleSubmit = () => {
+      const {form: {id, ...requestData}} = state;
+      const {getResponse, loading: submitLoading} = id ? useFetchStore(id, requestData) : useFetchUpdate(requestData);
+      state.submitLoading = submitLoading;
+      emit('update:editable', getResponse);
+    }
+
     watch(editable, () => {
-      if (editable.value.id) {
-        const {data, loading} = fetchDetail(editable.value.id);
-        state.loading = loading;
-        state.form = data;
-      }
+      if (!editable.value.id) return;
+      const {getResponse, loading} = useFetchDetail(editable.value.id);
+      state.fetchLoading = loading;
+      state.form = getResponse;
+      console.log(state);
     })
 
 
@@ -125,7 +124,7 @@ export default {
       getTypes,
       getComponents,
       handleSubmit,
-      drawerClose
+      handleDrawerClose,
     }
   }
 }
