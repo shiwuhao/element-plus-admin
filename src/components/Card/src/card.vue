@@ -8,7 +8,9 @@
             <el-button class="button" type="text">{{ btnName }}</el-button>
           </div>
         </template>
-        <div class="text item" :cardData='applicationList'></div>
+        <div class="text item" :cardData='applicationList'>
+          <slot name="text-custom"></slot>
+        </div>
         <div :class="imageCard === true ? 'application-image-card':'application-card'">
           <img :src="imageUrl" class="image">
           <div style="padding: 14px;" class="project-card">
@@ -16,7 +18,7 @@
             <p class="project-card-description">{{ description }}</p>
             <div class="bottom">
               <time class="time">{{ time }}</time>
-              <slot name="custom"></slot>
+              <slot name="image-custom"></slot>
             </div>
           </div>
         </div>
@@ -93,8 +95,8 @@ export default defineComponent({
 }
 @media screen and (min-width: 640px) {
   .el-row {
-    width: 32%;
-    margin-right: 15px;
+    width: 31%;
+    margin-right: 20px;
   }
 }
 .common-card {
