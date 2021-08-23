@@ -81,3 +81,23 @@ export const activeTab = [
     component: 'Project',
   },
 ]
+export const applicationList = (() => {
+  const result = [];
+  for (let i = 0; i < 8; i++) {
+    result.push({
+      title: 'Vben Admin',
+      url: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
+      color: '#1890ff',
+      active: '100',
+      new: '1,799',
+      download: 'bx:bx-download',
+    });
+  }
+  return result;
+})();
+export const applicationActions = [
+  { icon: 'el-icon-download', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '下载' },
+  { icon: 'el-icon-edit', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '编辑'  },
+  { icon: 'el-icon-share', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '分享'  },
+  { icon: 'el-icon-more-outline',fontSize: '14px', color: 'rgba(0,0,0,.45)' },
+];
