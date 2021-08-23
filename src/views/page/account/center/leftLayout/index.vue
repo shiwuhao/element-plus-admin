@@ -76,7 +76,7 @@ export default defineComponent({
     const tags = ref(['标签一', '标签二', '标签三'])
     const addTagVisible = ref(true)
     const closable = ref(true)
-    const activeName = ref('2')
+    const activeName = ref('1')
     const avatar = reactive({
       fit: 'fill',
       shape: 'circle',
@@ -106,7 +106,7 @@ export default defineComponent({
     }
   }
   .personal-center-right {
-    .personal-center-right-application {
+    .personal-center-right-application,.personal-center-right-project {
       display: flex;
       flex-wrap: wrap;
     }
