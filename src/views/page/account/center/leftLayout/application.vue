@@ -25,6 +25,18 @@
             :color="item.color"
             v-for="(item,ind) in applicationActions" :key="ind"
           />
+          <el-dropdown>
+            <span class="el-dropdown-link">
+                <i class="el-icon-more-outline"></i>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item icon="el-icon-plus">1st menu item</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-plus">2nd menu item</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-plus-outline">3ird item</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
       </div>
     </template>
@@ -58,13 +70,17 @@ export default defineComponent({
     align-items: center;
     border-top: 1px solid #f0f0f0;
     padding: 10px 0;
-
+    box-sizing: border-box;
+    overflow: auto;
+    ::v-deep .el-dropdown {
+      padding: 0 23px;
+    }
     ::v-deep .basic-divider {
       .divider-content {
-        //padding: 0 13px 0 20px;
+        padding: 0 20px;
       }
-
       &:last-child {
+        padding-right: 0;
         .el-divider--vertical {
           width: inherit;
         }
@@ -103,6 +119,7 @@ export default defineComponent({
 
     p {
       display: grid;
+
       span {
         &:first-child {
           color: rgba(0, 0, 0, .45);
@@ -110,6 +127,7 @@ export default defineComponent({
           line-height: 20px;
           margin-bottom: 5px;
         }
+
         &:last-child {
           font-size: 22px;
           font-weight: 500;
