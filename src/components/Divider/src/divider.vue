@@ -1,7 +1,9 @@
 <template>
   <div class="basic-divider">
     <div class="divider-content">
-      <i :class="iconName" class="divider-iconName" :style="{color:color}"></i>
+      <el-tooltip class="item" effect="dark" :content="tipContent" placement="top-start" :disabled="disabled">
+         <i :class="iconName" class="divider-iconName" :style="{color:color}"></i>
+      </el-tooltip>
       <span class="divider-title">{{ title }}</span>
     </div>
     <el-divider
@@ -17,6 +19,10 @@ import {defineComponent} from 'vue';
 export default defineComponent({
   name: 'basic-divider',
   props: {
+    disabled: {
+      type: Boolean,
+      default: true
+    },
     iconName:{
       type: String,
       default: ''
@@ -40,6 +46,10 @@ export default defineComponent({
     direction: {
       type: String,
       default: 'horizontal'
+    },
+    tipContent: {
+      type: String,
+      default: ''
     }
   },
   setup() {
