@@ -101,3 +101,16 @@ export const applicationActions = [
   { icon: 'el-icon-share', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '分享'  },
   { icon: 'el-icon-more-outline',fontSize: '14px', color: 'rgba(0,0,0,.45)' },
 ];
+export const projectList = (() => {
+  const result = [];
+  for (let i = 0; i < 8; i++) {
+    result.push({
+      title: 'Vben Admin',
+      time: '2小时前',
+      url: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+      image: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+      content: '基于Vue Next, TypeScript, Ant Design实现的一套完整的企业级后台管理系统。',
+    });
+  }
+  return result;
+})();
