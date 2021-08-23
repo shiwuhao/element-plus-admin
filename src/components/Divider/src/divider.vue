@@ -60,12 +60,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .basic-divider {
   display: flex;
-  .divider-iconName {
-    margin-right: 3px;
-    margin-left: 10px;
-  }
-  .divider-title {
-    margin-right: 10px;
-  }
 }
 </style>

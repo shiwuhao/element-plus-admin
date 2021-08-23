@@ -99,7 +99,7 @@ export const applicationActions = [
   { icon: 'el-icon-download', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '下载' },
   { icon: 'el-icon-edit', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '编辑'  },
   { icon: 'el-icon-share', fontSize: '14px', color: 'rgba(0,0,0,.45)',text: '分享'  },
-  { icon: 'el-icon-more-outline',fontSize: '14px', color: 'rgba(0,0,0,.45)' },
+  // { icon: 'el-icon-more-outline',fontSize: '14px', color: 'rgba(0,0,0,.45)' },
 ];
 export const projectList = (() => {
   const result = [];
