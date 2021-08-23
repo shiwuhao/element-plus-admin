@@ -1,30 +1,28 @@
 <template>
   <BasicForm v-model="search" :schemas="schemas" :action-props="actionProps" size="small"
              @submit="fetch"></BasicForm>
-  <BasicTable :columns="tableColumns" :data="lists" :paginate="paginate" size="small">
+  <BasicTable :columns="tableColumns" :data="data.data" :paginate="data.meta" :loading="loading" size="small">
     <el-table-column label="操作" width="120">
       <template #default="scope">
-        <el-button type="text" size="small" @click="handleEdit(scope.$index)">编辑</el-button>
+        <el-button type="text" size="small" @click="handleEdit(scope.row,index)">编辑</el-button>
         <el-button type="text" size="small">删除</el-button>
       </template>
     </el-table-column>
   </BasicTable>
   <EditTemplate
     v-model="dialog"
-    :editable="itemData"
+    :editable="editable"
     :editabale-index="editableIndex"
-  />
+    @edit-close="editClose"
+    @callback="editCallback"/>
 </template>
 
 <script>
 import {BasicForm} from "@/components/Form";
 import {BasicTable} from "@/components/Table"
 import EditTemplate from "@/views/system/configs/EditTemplate";
-import {defineComponent, inject, reactive, toRefs, ref} from "vue";
+import {defineComponent, inject, reactive, toRefs,} from "vue";
 import {useFetchList} from "@/api/useConfigRequest";
-
-import {compositionApi} from '@/composables/compositionApi.js';
-import axios from "@/utils/axios";
 
 export default defineComponent({
   name: "TableList",
@@ -53,38 +51,30 @@ export default defineComponent({
       },
       editable: {},
       editableIndex: null,
-      itemData: {},
     })
+
+    const {data, loading, fetch} = useFetchList(state.search);
 
     const dialog = inject('dialog');
 
-    const id = ref();
-    const listApi = () => axios.get('/configs');
-    const detailApi = (item) => axios.get(`/configs/${item.id}`);
-    const updateApi = (item) => axios.put(`/configs/${id.value}`, item);
-    const storeApi = (item) => axios.post(`/configs`, item);
-    const deleteApi = (item) => axios.delete(`/configs/${item.id}`);
-
-    const {
-      lists,
-      paginate,
-      editItem,
-      currentItem
-    } = compositionApi(listApi, detailApi, updateApi, storeApi, deleteApi, state.itemData);
-
-    const handleEdit = (index) => {
-      editItem(index)
-      state.itemData = currentItem;
+    const handleEdit = (editable, index) => {
+      state.editable = editable;
+      state.editableIndex = index;
       dialog.value = true;
     }
 
+    const editCallback = (editable) => state.index > 0 ? data.value.data[state.index] = editable : data.value.push(editable);
+    const editClose = () => (state.editable = {}) && (state.editableIndex = null);
+
     return {
       ...toRefs(state),
-      lists,
-      paginate,
       dialog,
-      editItem,
+      data,
+      loading,
       handleEdit,
+      editCallback,
+      editClose,
+      fetch,
     }
   },
 })

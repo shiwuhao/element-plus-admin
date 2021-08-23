@@ -103,8 +103,6 @@ export default {
       emit('edit-close');
     }
 
-
-
     const handleSubmit = () => {
       const {id, ...requestData} = state.form;
       const {data, loading} = id ? useFetchUpdate(id, requestData) : useFetchStore(requestData);
