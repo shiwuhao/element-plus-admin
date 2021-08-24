@@ -2,12 +2,16 @@
   <router-view/>
 </template>
 <script>
-import {useConfigRequest} from '@/api/useConfigRequest'
+import {useFetchItemList} from '@/api/useConfigRequest'
+import store from "@/store";
+import {watch} from "vue";
 
 export default {
   setup() {
-    const {fetchItemList} = useConfigRequest();
-    fetchItemList();
+    const {data} = useFetchItemList();
+    watch(data, () => {
+      store.commit('config/setConfig', data.value.data);
+    })
   }
 }
 </script>
