@@ -18,7 +18,7 @@ export default [
           {
             path: 'center',
             name: 'AccountCenterPage',
-            component: () => import('@/views/page/account/center/leftLayout'),
+            component: () => import('@/views/page/account/center/index.vue'),
             meta: {title: '个人中心',menu: true, affix: false}
           },
           {
