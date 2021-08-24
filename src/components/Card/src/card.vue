@@ -96,7 +96,7 @@ export default defineComponent({
 @media screen and (min-width: 640px) {
   .el-row {
     width: 31%;
-    margin-right: 20px;
+    margin-right: 15px;
   }
 }
 .common-card {
