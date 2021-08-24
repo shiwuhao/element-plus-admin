@@ -72,6 +72,9 @@ export default defineComponent({
     display: flex;
     align-items: center;
     margin-left: -24px;
+    ::v-deep .divider-iconName {
+      margin-right: 5px;
+    }
   }
   .article-main {
     padding-top: 12px;
