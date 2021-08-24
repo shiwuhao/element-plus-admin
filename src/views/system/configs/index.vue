@@ -8,12 +8,12 @@
     </template>
     <template #content>
       <el-radio-group v-model="mode" size="mini">
-        <el-radio-button label="editor">配置模式</el-radio-button>
-        <el-radio-button label="config">编辑模式</el-radio-button>
+        <el-radio-button label="config">配置模式</el-radio-button>
+        <el-radio-button label="manager">管理模式</el-radio-button>
       </el-radio-group>
     </template>
     <el-card shadow="none">
-      <table-list v-if="mode === 'editor'"></table-list>
+      <table-list v-if="mode === 'manager'"></table-list>
       <tab-list v-if="mode === 'config'"></tab-list>
     </el-card>
   </page-wrapper>
@@ -30,7 +30,7 @@ export default {
   name: "index",
   components: {PageWrapper, TableList, TabList},
   setup() {
-    const mode = ref('editor');
+    const mode = ref('manager');
     const dialog = ref(false);
 
     provide('dialog', dialog);

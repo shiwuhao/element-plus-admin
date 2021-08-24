@@ -11,8 +11,8 @@
   </BasicTable>
   <EditTemplate
     v-model="dialog"
-    :editable="itemData"
-    :editabale-index="editableIndex"
+    :item="itemData"
+    :confirm="confirm"
   />
 </template>
 
@@ -22,6 +22,7 @@ import {BasicTable} from "@/components/Table"
 import EditTemplate from "@/views/system/configs/EditTemplate";
 import {defineComponent, inject, reactive, toRefs, ref} from "vue";
 import {useFetchList} from "@/api/useConfigRequest";
+import configs from "@/api/configs";
 
 import {compositionApi} from '@/composables/compositionApi.js';
 import axios from "@/utils/axios";
@@ -31,6 +32,7 @@ export default defineComponent({
   components: {BasicForm, BasicTable, EditTemplate},
   setup() {
     const state = reactive({
+      dialog: false,
       activeName: 'second',
       tableColumns: [
         {prop: 'id', label: 'ID', width: 100, align: 'center'},
@@ -56,35 +58,24 @@ export default defineComponent({
       itemData: {},
     })
 
-    const dialog = inject('dialog');
+    const {listApi, detailApi, updateApi, storeApi, deleteApi} = configs;
+    const compositionData = compositionApi({listApi, detailApi, updateApi, storeApi, deleteApi, itemData: state.itemData});
+    const {lists, paginate, editItem,confirm} = compositionData;
 
-    const id = ref();
-    const listApi = () => axios.get('/configs');
-    const detailApi = (item) => axios.get(`/configs/${item.id}`);
-    const updateApi = (item) => axios.put(`/configs/${id.value}`, item);
-    const storeApi = (item) => axios.post(`/configs`, item);
-    const deleteApi = (item) => axios.delete(`/configs/${item.id}`);
-
-    const {
-      lists,
-      paginate,
-      editItem,
-      currentItem
-    } = compositionApi(listApi, detailApi, updateApi, storeApi, deleteApi, state.itemData);
-
+    const handleAdd = () => state.dialog = true;
     const handleEdit = (index) => {
-      editItem(index)
-      state.itemData = currentItem;
-      dialog.value = true;
+      editItem(index);
+      handleAdd();
     }
 
     return {
       ...toRefs(state),
+      compositionData,
       lists,
       paginate,
-      dialog,
       editItem,
       handleEdit,
+      handleAdd,
     }
   },
 })

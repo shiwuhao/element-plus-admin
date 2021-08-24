@@ -69,17 +69,17 @@ export default {
       type: Boolean,
       default: true,
     },
-    editable: {
-      type: [Object],
+    item: {
+      type: Object,
       default: () => {
         return {}
       }
-    }
+    },
+    confirm: {
+      type: Function,
+    },
   },
   setup(props, {emit}) {
-    const {editable, editableIndex} = toRefs(props);
-    console.log(editable);
-    const {getGroups, getTypes, getComponents} = useConfig();
     const state = reactive({
       fetchLoading: '',
       submitLoading: false,
@@ -94,6 +94,17 @@ export default {
         value: [{required: true, message: '请输入配置值', trigger: 'blur'}]
       },
     });
+
+    const {getGroups, getTypes, getComponents} = useConfig();
+    const {compositionApi} = toRefs(props);
+    const {submitItem, currentIndex, currentItem} = compositionApi;
+
+    watch([currentItem, currentIndex], () => {
+      console.log(currentIndex, currentItem);
+      state.form = currentItem
+    });
+
+
     const dialog = inject('dialog');
     const formRef = ref();
     const handleDrawerClose = () => {
@@ -102,7 +113,6 @@ export default {
       nextTick(() => formRef.value.clearValidate());
       emit('edit-close');
     }
-
 
 
     const handleSubmit = () => {
@@ -114,14 +124,14 @@ export default {
       handleDrawerClose();
     }
 
-    const fetchDetail = () => {
-      if (!editable.value.id) return;
-      const {data, loading: fetchLoading} = useFetchDetail(editable.value.id);
-      watch(data, () => state.form = data.value.data);
-      state.fetchLoading = fetchLoading;
-    }
-
-    watch(editable, fetchDetail)
+    // const fetchDetail = () => {
+    //   if (!editable.value.id) return;
+    //   const {data, loading: fetchLoading} = useFetchDetail(editable.value.id);
+    //   watch(data, () => state.form = data.value.data);
+    //   state.fetchLoading = fetchLoading;
+    // }
+    //
+    // watch(editable, fetchDetail)
 
     return {
       ...toRefs(state),
