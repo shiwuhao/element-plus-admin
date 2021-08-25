@@ -1,53 +1,54 @@
 <template>
+  <el-button @click="addItem">aaa</el-button>
   <BasicDrawer
-    :title="!item.id ? '新增配置' : '编辑配置'"
+    :title="!itemData.id ? '新增配置' : '编辑配置'"
     direction="rtl"
     size="50%"
-    :loading="fetchItemLoading"
+    :loading="fetchLoading"
     v-model="dialog"
-    @close="cancelItem">
+    @close="cancel">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
+      <el-form ref="formRef" :model="itemData" :rules="rules" label-width="80px" size="small">
         <el-form-item label="配置分组" prop="group">
-          <el-select v-model="item.group" clearable placeholder="请选择配置分组" style="width: 100%;">
+          <el-select v-model="itemData.group" clearable placeholder="请选择配置分组" style="width: 100%;">
             <template v-for="(item,index) in getGroups" :key="index">
               <el-option :label="item.label" :value="item.value"></el-option>
             </template>
           </el-select>
         </el-form-item>
         <el-form-item label="配置类型" prop="type">
-          <el-select v-model="item.type" clearable placeholder="请选择配置类型" style="width: 100%;">
+          <el-select v-model="itemData.type" clearable placeholder="请选择配置类型" style="width: 100%;">
             <template v-for="(item,index) in getTypes" :key="index">
               <el-option :label="item.label" :value="item.value"></el-option>
             </template>
           </el-select>
         </el-form-item>
         <el-form-item label="渲染组件" prop="component">
-          <el-select v-model="item.component" clearable placeholder="请选择渲染组件" style="width: 100%;">
+          <el-select v-model="itemData.component" clearable placeholder="请选择渲染组件" style="width: 100%;">
             <template v-for="(item,index) in getComponents" :key="index">
               <el-option :label="item.label" :value="item.value"></el-option>
             </template>
           </el-select>
         </el-form-item>
         <el-form-item label="配置标识" prop="name">
-          <el-input v-model="item.name" autocomplete="off">
-            <template #prepend v-if="item.group">{{ item.group }}</template>
+          <el-input v-model="itemData.name" autocomplete="off">
+            <template #prepend v-if="itemData.group">{{ itemData.group }}</template>
           </el-input>
         </el-form-item>
         <el-form-item label="配置名称" prop="title">
-          <el-input v-model="item.title" autocomplete="off"></el-input>
+          <el-input v-model="itemData.title" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="配置项" prop="extra">
-          <el-input v-model="item.extra" type="textarea" rows="3" autocomplete="off"></el-input>
+          <el-input v-model="itemData.extra" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="配置值" prop="value">
-          <el-input v-model="item.value" type="textarea" rows="3" autocomplete="off"></el-input>
+          <el-input v-model="itemData.value" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
     </template>
     <template #footer>
-      <el-button @click="cancelItem" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="confirmItem" :loading="fetchConfirmLoading">
+      <el-button @click="cancel" size="small">取 消</el-button>
+      <el-button type="primary" size="small" @click="confirm" :loading="submitLoading">
         {{ submitLoading ? '提交中 ...' : '确 定' }}
       </el-button>
     </template>
@@ -64,10 +65,7 @@ import {useEditTemplate} from "@/composables/useEditTemplate";
 export default {
   name: "editTemplate",
   components: {BasicDrawer},
-  props: {
-    resourceApi: Object
-  },
-  setup(props) {
+  setup() {
     const state = shallowReactive({
       rules: {
         group: [{required: true, message: '请选择配置分组', trigger: 'change'}],
@@ -81,10 +79,11 @@ export default {
     })
 
     const {getGroups, getTypes, getComponents,} = useConfig();
+    const pageData = useEditTemplate({itemApi, updateApi, storeApi});
 
     return {
+      ...toRefs(pageData),
       ...toRefs(state),
-      ...toRefs(props.resourceApi),
       getGroups,
       getTypes,
       getComponents,
