@@ -86,7 +86,8 @@ export default defineComponent({
     }
 
     .article-title, .article-link {
-      color: #1890ff
+      //color: #1890ff
+      color: $color
     }
 
     .article-link {

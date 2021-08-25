@@ -19,6 +19,8 @@
     "element-plus": "^1.0.2-beta.70",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
+    "sass-loader": "10.1.1",
+    "sass-resources-loader": "^2.2.4",
     "tinymce": "^5.8.2",
     "v-contextmenu": "^3.0.0-alpha.4",
     "vditor": "^3.8.6",
@@ -39,7 +41,6 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "mockjs": "^1.1.0",
     "sass": "^1.27.0",
-    "sass-loader": "^10.0.4",
     "vue-cli-plugin-element-plus": "~0.0.13"
   },
   "eslintConfig": {
