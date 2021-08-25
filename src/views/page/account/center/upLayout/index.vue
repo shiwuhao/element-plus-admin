@@ -104,7 +104,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .el-header {
-  margin-bottom: 140px;
+  height: auto;
 }
 
 .personal-center {
@@ -134,8 +134,8 @@ export default defineComponent({
     .personal-center-left-content {
       display: flex;
       border-right: 1px dashed #e8eaec;
-      padding: 0 80px;
-
+      padding: 0 10px;
+      float: left;
       .personal-center-left-avatar {
         text-align: center;
         margin-top: 14px;
@@ -169,13 +169,16 @@ export default defineComponent({
       }
     }
 
-    .personal-center-left-tag, .personal-center-left-team {
+    .personal-center-left-tag {
       border-right: 1px dashed #e8eaec;
-      padding: 0 80px;
+      float: left;
+      padding: 0 20px;
     }
 
     .personal-center-left-team {
+      border-right: 1px dashed #e8eaec;
       border-right: none;
+      padding: 0 10px;
     }
   }
 }
