@@ -4,15 +4,16 @@
   <BasicTable :columns="tableColumns" :data="lists" :paginate="paginate" size="small">
     <el-table-column label="操作" width="120">
       <template #default="scope">
-        <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
-        <el-button type="text" size="small" @click="deleteItem(scope.$index)">删除</el-button>
+        <el-button type="text" size="small" @click="handleEdit(scope.row,scope.$index)">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
       </template>
     </el-table-column>
   </BasicTable>
   <EditTemplate
     ref="editTemplateRef"
     v-model="dialog"
-    :resource-api="resourceApi"
+    :item="itemData"
+    :confirm="confirm"
   />
 </template>
 
@@ -23,7 +24,7 @@ import EditTemplate from "@/views/system/configs/EditTemplate";
 import {defineComponent, inject, reactive, toRefs, ref} from "vue";
 import {useFetchList} from "@/api/useConfigRequest";
 import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/configs";
-import {useResourceApi} from "@/composables/useResourceApi";
+
 import {compositionApi} from '@/composables/compositionApi.js';
 import axios from "@/utils/axios";
 
@@ -58,12 +59,29 @@ export default defineComponent({
       itemData: {},
     })
 
-    const resourceApi = useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi});
+    const compositionData = compositionApi({
+      listApi,
+      itemApi,
+      updateApi,
+      storeApi,
+      deleteApi,
+      itemData: state.itemData
+    });
+    const {lists, paginate, editItem, confirm} = compositionData;
+
+    const editTemplateRef = ref(null);
+    const handleAdd = () => editTemplateRef.value.addItem();
+    const handleEdit = (item, index) => editTemplateRef.value.editItem(item, index);
 
     return {
       ...toRefs(state),
-      ...toRefs(resourceApi),
-      resourceApi,
+      compositionData,
+      lists,
+      paginate,
+      editItem,
+      handleEdit,
+      handleAdd,
+      editTemplateRef,
     }
   },
 })

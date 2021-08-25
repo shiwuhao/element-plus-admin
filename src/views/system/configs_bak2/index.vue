@@ -33,7 +33,7 @@ export default {
     const mode = ref('manager');
     const tableListRef = ref(null);
 
-    const handleAdd = () => tableListRef.value.addItem();
+    const handleAdd = () => tableListRef.value.handleAdd();
 
     return {
       mode,
