@@ -107,10 +107,6 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     await getList();
   }
 
-  watch(state.item, async () => {
-    await getItem(state.item);
-  })
-
   onMounted(async () => {
     await getList();
   })
