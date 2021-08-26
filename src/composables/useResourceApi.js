@@ -1,7 +1,7 @@
 import {reactive, ref, watch, toRefs, onMounted, nextTick} from 'vue';
 import {useThrottleFn} from '@vueuse/core';
 
-export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi, item = {}, uniqueId = 'id'}) {
+export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi, uniqueId = 'id'}) {
   const formRef = ref(null);
   const queryRef = ref(null);
   const tableRef = ref(null);

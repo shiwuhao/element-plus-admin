@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="none">
-    <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery" advanced is-advanced></BasicQuery>
+    <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery"></BasicQuery>
   </el-card>
   <el-card shadow="none" class="mt10">
     <BasicTable :columns="columns"
@@ -48,12 +48,6 @@ export default defineComponent({
         {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],
       schemas: [
-        {field: 'title', placeholder: '标题', component: 'Input'},
-        {field: 'name', placeholder: '标识', component: 'Input'},
-        {field: 'title', placeholder: '标题', component: 'Input'},
-        {field: 'name', placeholder: '标识', component: 'Input'},
-        {field: 'title', placeholder: '标题', component: 'Input'},
-        {field: 'name', placeholder: '标识', component: 'Input'},
         {field: 'title', placeholder: '标题', component: 'Input'},
         {field: 'name', placeholder: '标识', component: 'Input'},
       ],
