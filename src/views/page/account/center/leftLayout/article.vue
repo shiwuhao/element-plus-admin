@@ -69,9 +69,8 @@ export default defineComponent({
     margin-top: -6px;
   }
   .divider-wrap {
-    display: flex;
-    align-items: center;
-    margin-left: -24px;
+    @include flex;
+    margin-left: -14px;
     ::v-deep .divider-iconName {
       margin-right: 5px;
     }
@@ -81,12 +80,12 @@ export default defineComponent({
 
     .article-icon {
       font-size: 18px;
-      vertical-align: text-top;
+      @include middleWay($vertical-align: text-top);
       margin-right: 5px;
     }
 
     .article-title, .article-link {
-      color: $color;
+      color: $color-text-blue;
     }
 
     .article-link {
@@ -95,12 +94,12 @@ export default defineComponent({
     }
 
     .article-word, .article-time {
-      color: rgba(0, 0, 0, .25);
+      color: $color-text-gray;
     }
 
     .article-time {
       margin-left: 15px;
-      vertical-align: middle;
+      @include middleWay;
     }
   }
 }

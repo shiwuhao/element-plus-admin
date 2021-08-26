@@ -107,8 +107,7 @@ export default defineComponent({
   }
   .personal-center-right {
     .personal-center-right-application,.personal-center-right-project {
-      display: flex;
-      flex-wrap: wrap;
+      @include flex($wrap:wrap);
     }
   }
   .personal-center-left {
@@ -116,7 +115,7 @@ export default defineComponent({
 
     .personal-center-left-content {
       .personal-center-left-avatar {
-        text-align: center;
+        @include middleWay
       }
 
       .personal-center-left-introduce {
@@ -128,20 +127,15 @@ export default defineComponent({
       }
 
       .personal-center-left-text {
-        text-align: center;
+        @include middleWay;
         margin-bottom: 28px;
 
         h3 {
-          color: rgba(0, 0, 0, .85);
-          font-weight: 500;
-          font-size: 20px;
-          height: 15px;
+          @include title($height: 15px)
         }
 
         h4 {
-          color: rgba(0, 0, 0, .85);
-          font-size: 14px;
-          font-weight: inherit;
+          @include description($color: $color-text-black)
         }
       }
     }
@@ -150,14 +144,14 @@ export default defineComponent({
 
 .el-divider--horizontal {
   background: 0 0;
-  border-top: 1px dashed #e8eaec;
+  border-top: 1px dashed $color-border-dashed;
 }
 
 ::v-deep .page-wrapper .page-header {
   padding: 0;
 
   span {
-    font-size: 14px;
+    font-size: $font-size-small;
   }
 }
 </style>

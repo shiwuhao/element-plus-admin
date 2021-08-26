@@ -1,1 +1,55 @@
-$color: #1890ff
+$color-text-blue: #1890ff;
+$color-border-solid: #f0f0f0;
+$color-text-black: #000000d9;
+$color-text-gray: #00000073;
+$color-border-dashed: #e8eaec;
+$font-size-small: 14px;
+$font-size-middle: 20px;
+//大标题
+@mixin title($font-size: $font-size-middle,$font-weight: 500,$color: $color-text-black,$height: null) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  height: $height;
+}
+
+//内容描述
+@mixin description($font-size: $font-size-small,$font-weight: 400,$color: $color-text-gray,$height: null) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  height: $height;
+}
+
+//单行省略号
+@mixin singleLine($width: null) {
+  width: $width;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//多号省略号
+@mixin multipleLine($width: null,$line: 3) {
+  width: $width;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+}
+
+//flex布局
+@mixin flex($justify-content: null,$align-items: center,$direction: null,$wrap: null) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+//居中对齐
+@mixin middleWay($text-align: center,$vertical-align: middle) {
+  text-align: $text-align;
+  vertical-align: $vertical-align;
+}

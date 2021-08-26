@@ -62,13 +62,11 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .card-application {
-  text-align: center;
+  @include middleWay;
 
   .card-application-divider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #f0f0f0;
+    @include flex($justify-content: center);
+    border-top: 1px solid $color-border-solid;
     padding: 10px 0;
     box-sizing: border-box;
     overflow: auto;
@@ -89,7 +87,7 @@ export default defineComponent({
   }
 
   .card-application-top {
-    text-align: left;
+    @include middleWay($text-align: left);
     margin: 12px 0 0px 23px;
 
     .card-application-icon {
@@ -99,38 +97,29 @@ export default defineComponent({
     }
 
     .card-application-title {
-      overflow: hidden;
-      color: rgba(0, 0, 0, .85);
-      font-weight: 500;
-      font-size: 16px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      vertical-align: super;
+      @include title($font-size: 16px);
+      @include singleLine;
+      @include middleWay($vertical-align: super);
     }
   }
 
   .card-application-main {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    @include flex($justify-content: space-between);
     padding: 0 57px;
     box-sizing: border-box;
-    align-items: center;
+    @include middleWay;
 
     p {
       display: grid;
 
       span {
         &:first-child {
-          color: rgba(0, 0, 0, .45);
-          font-size: 12px;
-          line-height: 20px;
           margin-bottom: 5px;
+          @include description($font-size: 12px,$height: 20px)
         }
-
         &:last-child {
-          font-size: 22px;
-          font-weight: 500;
+          @include title($font-size: 22px)
         }
       }
     }

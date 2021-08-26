@@ -103,16 +103,13 @@ export default defineComponent({
   margin-bottom: 14px;
 
   .time {
-    font-size: 13px;
-    color: #999;
+    @include description($font-size: 13px,$color:#999);
   }
 
   .bottom {
     margin-top: 13px;
     line-height: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex($justify-content: space-between)
   }
 
   .button {
@@ -135,13 +132,11 @@ export default defineComponent({
 
   .project-card {
     .project-card-title {
-      font-size: 16px;
-      color: rgba(0, 0, 0, .85)
+      @include description($font-size: 16px,$color: $color-text-black);
     }
 
     .project-card-description {
-      font-size: 14px;
-      color: rgba(0, 0, 0, .45);
+      @include description
     }
   }
 

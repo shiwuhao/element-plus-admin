@@ -59,6 +59,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .basic-divider {
-  display: flex;
+  @include flex;
 }
 </style>
