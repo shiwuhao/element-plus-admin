@@ -8,7 +8,7 @@
 </template>
 <script>
 import SettingDrawer from "@/layouts/setting/components/SettingDrawer";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 
 export default {
   name: 'setting',

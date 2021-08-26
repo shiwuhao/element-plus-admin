@@ -1,7 +1,7 @@
 <template>
   <router-view>
     <template v-slot="{ Component, route }">
-      <transition :name="getTransitionName(route)">
+      <transition :name="getTransitionName(route)" mode="out-in">
         <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
           <component :is="Component" :key="route.fullPath"/>
         </keep-alive>
@@ -13,8 +13,8 @@
 
 <script>
 import {useStore} from 'vuex';
-import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {unref} from "vue";
 
 export default {

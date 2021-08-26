@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import Content from "@/layouts/content/Content";
 
 export default {

@@ -11,15 +11,33 @@
       </template>
       <slot></slot>
     </el-table>
+    <div class="mt10">
+      <el-pagination v-bind="paginate" @current-change="changePage" hide-on-single-page></el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "BasicTable",
-  props: ['columns'],
-  setup() {
+  props: {
+    columns: {
+      type: Array,
+      default: () => ([]),
+    },
+    paginate: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  setup(props, {emit}) {
+    const changePage = (currentPage) => {
+      emit('change-page', currentPage);
+    }
 
+    return {
+      changePage
+    }
   }
 }
 </script>

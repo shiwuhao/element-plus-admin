@@ -86,10 +86,10 @@
   </div>
 </template>
 <script>
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
-import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
-import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
-import {useTagViewSetting} from "@/hooks/setting/useTagViewSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
+import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting";
 import {useDark, useToggle} from '@vueuse/core'
 import {routerTransitionOptions} from '@/enums/appEnum'
 import {ref} from "vue";

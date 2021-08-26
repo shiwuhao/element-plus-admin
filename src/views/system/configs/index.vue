@@ -1,8 +1,5 @@
 <template>
-  <page-wrapper
-    :title="$route.meta.title"
-    background-color
-  >
+  <page-wrapper :title="$route.meta.title">
     <template #extra>
       <el-button type="primary" size="mini" @click="handleAdd">新增</el-button>
     </template>
@@ -12,10 +9,8 @@
         <el-radio-button label="manager">管理模式</el-radio-button>
       </el-radio-group>
     </template>
-    <el-card shadow="none">
-      <table-list v-if="mode === 'manager'" ref="tableListRef"></table-list>
-      <tab-list v-if="mode === 'config'"></tab-list>
-    </el-card>
+    <table-list v-if="mode === 'manager'" ref="tableListRef"></table-list>
+    <group-list v-if="mode === 'config'"></group-list>
   </page-wrapper>
 
 </template>
@@ -23,12 +18,12 @@
 <script>
 import {PageWrapper} from "@/components/Page";
 import TableList from "@/views/system/configs/TableList";
-import TabList from "@/views/system/configs/TabList";
-import {provide, ref} from "vue";
+import GroupList from "@/views/system/configs/GroupList";
+import {ref} from "vue";
 
 export default {
   name: "index",
-  components: {PageWrapper, TableList, TabList},
+  components: {PageWrapper, TableList, GroupList},
   setup() {
     const mode = ref('manager');
     const tableListRef = ref(null);

@@ -14,8 +14,8 @@
 
 <script>
 import LayoutMenu from '@/layouts/menu/index'
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
-import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
 
 export default {
   name: "LayoutSidebar",

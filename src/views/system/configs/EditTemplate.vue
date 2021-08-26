@@ -48,7 +48,7 @@
     <template #footer>
       <el-button @click="cancelItem" size="small">取 消</el-button>
       <el-button type="primary" size="small" @click="confirmItem" :loading="fetchConfirmLoading">
-        {{ submitLoading ? '提交中 ...' : '确 定' }}
+        {{ fetchConfirmLoading ? '提交中 ...' : '确 定' }}
       </el-button>
     </template>
   </BasicDrawer>
@@ -57,15 +57,16 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive} from "vue";
-import {useConfig} from "@/hooks/config/useConfig";
-import {itemApi, updateApi, storeApi} from '@/api/configs'
-import {useEditTemplate} from "@/composables/useEditTemplate";
+import {useConfig} from "@/composables/config/useConfig";
 
 export default {
   name: "editTemplate",
   components: {BasicDrawer},
   props: {
-    resourceApi: Object
+    resourceApi: {
+      type: Object,
+      default: () => ({})
+    },
   },
   setup(props) {
     const state = shallowReactive({
@@ -80,15 +81,21 @@ export default {
       }
     })
 
-    const {getGroups, getTypes, getComponents,} = useConfig();
+    const {getGroups, getTypes, getComponents} = useConfig();
+    const {formRef, item, dialog, fetchItemLoading, fetchConfirmLoading, cancelItem, confirmItem} = toRefs(props.resourceApi);
 
     return {
       ...toRefs(state),
-      ...toRefs(props.resourceApi),
       getGroups,
       getTypes,
       getComponents,
-
+      formRef,
+      item,
+      dialog,
+      fetchItemLoading,
+      fetchConfirmLoading,
+      cancelItem,
+      confirmItem,
     }
   }
 }

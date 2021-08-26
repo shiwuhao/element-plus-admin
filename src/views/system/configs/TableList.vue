@@ -1,64 +1,71 @@
 <template>
-  <BasicForm v-model="search" :schemas="schemas" :action-props="actionProps" size="small"
-             @submit="fetch"></BasicForm>
-  <BasicTable :columns="tableColumns" :data="lists" :paginate="paginate" size="small">
-    <el-table-column label="操作" width="120">
-      <template #default="scope">
-        <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
-        <el-button type="text" size="small" @click="deleteItem(scope.$index)">删除</el-button>
-      </template>
-    </el-table-column>
-  </BasicTable>
-  <EditTemplate
-    ref="editTemplateRef"
-    v-model="dialog"
-    :resource-api="resourceApi"
-  />
+  <el-card shadow="none">
+    <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery" advanced is-advanced></BasicQuery>
+  </el-card>
+  <el-card shadow="none" class="mt10">
+    <BasicTable :columns="columns"
+                :data="lists"
+                :paginate="paginate"
+                :loading="fetchListLoading"
+                @change-page="changePage">
+      <el-table-column label="操作" width="120">
+        <template #default="scope">
+          <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
+          <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+            <template #reference>
+              <el-button type="text" size="small">删除</el-button>
+            </template>
+          </el-popconfirm>
+        </template>
+      </el-table-column>
+    </BasicTable>
+    <EditTemplate
+      ref="editTemplateRef"
+      v-model="dialog"
+      :resource-api="resourceApi"
+    />
+  </el-card>
 </template>
 
 <script>
-import {BasicForm} from "@/components/Form";
-import {BasicTable} from "@/components/Table"
+import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "@/views/system/configs/EditTemplate";
-import {defineComponent, inject, reactive, toRefs, ref} from "vue";
-import {useFetchList} from "@/api/useConfigRequest";
 import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/configs";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {compositionApi} from '@/composables/compositionApi.js';
-import axios from "@/utils/axios";
+import {defineComponent, reactive, toRefs} from "vue";
 
 export default defineComponent({
   name: "TableList",
-  components: {BasicForm, BasicTable, EditTemplate},
+  components: {BasicQuery, BasicTable, EditTemplate},
   setup() {
     const state = reactive({
-      dialog: false,
-      activeName: 'second',
-      tableColumns: [
-        {prop: 'id', label: 'ID', width: 100, align: 'center'},
-        {prop: 'title', label: '标题', minWidth: 100, align: 'center'},
-        {prop: 'name', label: '标识', minWidth: 100, align: 'center'},
-        {prop: 'group_label', label: '分组', minWidth: 100, align: 'center'},
-        {prop: 'type_label', label: '类型', minWidth: 100, align: 'center'},
-        {prop: 'created_at', label: '创建时间', minWidth: 100, align: 'center'},
+      columns: [
+        {prop: 'id', label: 'ID', width: 100},
+        {prop: 'title', label: '标题', minWidth: 100},
+        {prop: 'name', label: '标识', minWidth: 100},
+        {prop: 'group_label', label: '分组', minWidth: 100},
+        {prop: 'type_label', label: '类型', minWidth: 100},
+        {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],
       schemas: [
-        {field: 'field1', label: 'field1', component: 'Input', colProps: {span: 8}}
+        {field: 'title', placeholder: '标题', component: 'Input'},
+        {field: 'name', placeholder: '标识', component: 'Input'},
+        {field: 'title', placeholder: '标题', component: 'Input'},
+        {field: 'name', placeholder: '标识', component: 'Input'},
+        {field: 'title', placeholder: '标题', component: 'Input'},
+        {field: 'name', placeholder: '标识', component: 'Input'},
+        {field: 'title', placeholder: '标题', component: 'Input'},
+        {field: 'name', placeholder: '标识', component: 'Input'},
       ],
-      search: {},
-      actionProps: {
-        isAdvanced: true,
-        colProps: {span: 8},
-        actionPosition: 'left',
-        resetButtonOption: {text: '重置'},
-        submitButtonOption: {text: '搜索'}
-      },
-      editable: {},
-      editableIndex: null,
-      itemData: {},
     })
 
-    const resourceApi = useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi});
+    const resourceApi = useResourceApi({
+      listApi,
+      itemApi,
+      updateApi,
+      storeApi,
+      deleteApi
+    });
 
     return {
       ...toRefs(state),
@@ -69,6 +76,3 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-
-</style>

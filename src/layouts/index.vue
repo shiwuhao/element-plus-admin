@@ -6,7 +6,7 @@
 import LayoutMix from "@/layouts/LayoutMix";
 import LayoutAside from "@/layouts/LayoutAside";
 import LayoutTopMenu from "@/layouts/LayoutTopMenu";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {computed} from "vue";
 
 export default {

@@ -1,8 +1,8 @@
 <template>
   <div class="drawer-container">
     <el-drawer
-        v-bind="{...$props,...$attrs}"
-        @close="drawerClose">
+      v-bind="{...$props,...$attrs}"
+      @close="drawerClose">
       <template #title>
         <div class="drawer__title" ref="headerRef">
           <slot name="title">{{ $attrs.title }}</slot>
@@ -58,17 +58,16 @@ export default {
   ::v-deep .el-drawer {
     .drawer__title {
       font-weight: bolder;
-      font-size: 16px;
-      padding: 10px;
     }
 
     .el-drawer__header {
-      margin-bottom: 0;
+      padding: 10px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #EEEEEF;
     }
 
     .drawer__content {
-      padding: 10px;
+      padding: 0 10px;
       margin-bottom: 80px;
     }
 

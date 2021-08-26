@@ -34,13 +34,13 @@ export default {
     const autoWidth = inject('autoWidth');
 
     const getComponentProps = computed(() => {
-      const {componentProps = {}} = unref(schema);
+      const {componentProps = {}, placeholder} = unref(schema);
       if (!isFunction(componentProps)) {
         const {style = {}} = componentProps;
         if (autoWidth.value === true) {
           style['width'] = '100%';
         }
-        return {...componentProps, style: style};
+        return {placeholder, ...componentProps, style: style};
       }
       return componentProps({schema}) ?? {};
     })

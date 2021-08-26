@@ -115,7 +115,10 @@ export default defineComponent({
     const clearValidate = () => elForm.value.clearValidate();
 
     const handleSubmit = () => emit('submit');
-    const handleReset = () => emit('reset');
+    const handleReset = () => {
+      elForm.value.resetFields();
+      emit('reset');
+    }
 
     provide('handleReset', handleReset);
     provide('handleSubmit', handleSubmit)

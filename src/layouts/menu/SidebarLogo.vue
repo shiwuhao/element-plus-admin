@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import {useGlobalSetting} from "@/hooks/setting/useGlobalSeeting";
+import {useGlobalSetting} from "@/composables/setting/useGlobalSeeting";
 
 export default {
   name: 'sidebarLogo',

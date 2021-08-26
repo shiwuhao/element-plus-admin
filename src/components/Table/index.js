@@ -1,3 +1,7 @@
-import BasicTable from "@/components/Table/BasicTable";
+import BasicTable from "@/components/Table/src/BasicTable";
+import BasicQuery from "@/components/Table/src/BasicQuery";
 
-export {BasicTable};
+export {
+  BasicTable,
+  BasicQuery
+};
