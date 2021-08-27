@@ -1,22 +1,32 @@
 import {reactive, ref, watch, toRefs, onMounted, nextTick} from 'vue';
 import {useThrottleFn} from '@vueuse/core';
 
-export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi, uniqueId = 'id'}) {
+export function useResourceApi({
+                                 listApi,
+                                 itemApi,
+                                 updateApi,
+                                 storeApi,
+                                 deleteApi,
+                                 query = {},
+                                 item = {},
+                                 paginate = {
+                                   layout: 'prev, pager, next, ->, total',
+                                 },
+                                 uniqueId = 'id'
+                               }) {
   const formRef = ref(null);
   const queryRef = ref(null);
   const tableRef = ref(null);
   const state = reactive({
-    item: {},
-    query: {
-      page: 1,
-    },
+    item: item,
+    query: query,
     lists: [],
-    paginate: {},
+    paginate: paginate,
     dialog: false,
     currentIndex: null,
-    fetchListLoading: false,
-    fetchItemLoading: false,
-    fetchConfirmLoading: false,
+    listLoading: false,
+    itemLoading: false,
+    confirmLoading: false,
   });
 
   // 节流
@@ -31,24 +41,23 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
 
   // 获取列表
   const getList = async () => {
-    state.fetchListLoading = true;
+    state.listLoading = true;
     const {data: {data, meta}} = await listApi(state.query).then(r => r);
     state.lists = data;
-    state.paginate = {
-      layout: 'prev, pager, next, ->, total',
-      pageSize: meta.per_page,
-      total: meta.total,
-      pageCount: meta.last_page,
-    };
-    state.fetchListLoading = false;
+    if (meta) {
+      state.paginate.pageSize = meta.per_page;
+      state.paginate.total = meta.total;
+      state.paginate.pageCount = meta.last_page;
+    }
+    state.listLoading = false;
   }
 
   // 获取项
   const getItem = async (item) => {
-    state.fetchItemLoading = true;
+    state.itemLoading = true;
     const {data: {data}} = await itemApi(item).then(r => r);
     state.item = data;
-    state.fetchItemLoading = false;
+    state.itemLoading = false;
   }
 
   // 添加项
@@ -72,11 +81,20 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     state.lists.splice(state.currentIndex, 1);
   }
 
-  // 取消提交
-  const cancelItem = () => {
-    state.item = {};
-    state.dialog = false;
-    nextTick(() => formRef.value.clearValidate()).then(r => r);
+  // 更新项
+  const updateItem = async () => {
+    state.confirmLoading = true
+    const {data: {data}} = await updateApi(state.item).then(r => r);
+    state.confirmLoading = false;
+    return data;
+  }
+
+  // 保存项
+  const storeItem = async () => {
+    state.confirmLoading = true
+    const {data: {data}} = await storeApi(state.item).then(r => r);
+    state.confirmLoading = false;
+    return data;
   }
 
   // 确认提交
@@ -84,21 +102,20 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     formRef.value.validate(async (valid) => {
       if (valid) {
         const {[uniqueId]: id} = state.item;
-        const api = id ? updateApi(state.item) : storeApi(state.item);
-
-        state.fetchConfirmLoading = true;
-        const {data: {data}} = await api.then(r => r);
-        state.fetchConfirmLoading = false;
-
-        if (id) {
-          state.lists[state.currentIndex] = data;
-        } else {
-          state.lists.unshift(data);
+        const data = id ? await updateItem() : await storeItem();
+        if (data) {
+          id ? state.lists[state.currentIndex] = data : state.lists.unshift(data);
         }
-
         cancelItem();
       }
     })
+  }
+
+  // 取消提交
+  const cancelItem = () => {
+    state.item = {};
+    state.dialog = false;
+    nextTick(() => formRef.value.clearValidate()).then(r => r);
   }
 
   // 分页
@@ -121,6 +138,8 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     getItem,
     addItem,
     editItem,
+    updateItem,
+    storeItem,
     deleteItem,
     confirmItem,
     cancelItem,

@@ -11,6 +11,8 @@ import {
   ElTimeSelect,
 } from 'element-plus'
 import Select from "./components/Select";
+import Textarea from "./components/Textarea";
+import TimePicker from "./components/TimePicker";
 import RadioGroup from "./components/RadioGroup";
 import RadioButtonGroup from "./components/RadioButtonGroup";
 import CheckboxGroup from "./components/CheckboxGroup";
@@ -19,6 +21,7 @@ import {BasicUpload} from '@/components/Upload'
 
 const componentMap = new Map;
 componentMap.set('Input', ElInput);
+componentMap.set('Textarea', Textarea);
 componentMap.set('Select', Select);
 componentMap.set('RadioGroup', RadioGroup);
 componentMap.set('RadioButtonGroup', RadioButtonGroup);
@@ -32,7 +35,7 @@ componentMap.set('Cascader', ElCascader);
 componentMap.set('Slider', ElSlider);
 componentMap.set('DatePicker', ElDatePicker);
 componentMap.set('DatePicker', ElDatePicker);
-componentMap.set('TimePicker', ElTimePicker);
+componentMap.set('TimePicker', TimePicker);
 componentMap.set('TimeSelect', ElTimeSelect);
 componentMap.set('Upload', BasicUpload);
 

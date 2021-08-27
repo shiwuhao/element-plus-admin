@@ -6,7 +6,7 @@
     <BasicTable :columns="columns"
                 :data="lists"
                 :paginate="paginate"
-                :loading="fetchListLoading"
+                :loading="listLoading"
                 @change-page="changePage">
       <el-table-column label="操作" width="120">
         <template #default="scope">
