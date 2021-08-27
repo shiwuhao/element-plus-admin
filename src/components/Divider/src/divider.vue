@@ -60,5 +60,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .basic-divider {
   @include flex;
+  .divider-content {
+    padding: 0 10px
+  }
 }
 </style>
