@@ -9,8 +9,8 @@
 <script>
 import SubMenu from "@/layouts/menu/SubMenu";
 import SidebarLogo from "@/layouts/menu/SidebarLogo";
-import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
 import {computed, watch, unref, ref} from "vue";
 import {useRouter} from 'vue-router';

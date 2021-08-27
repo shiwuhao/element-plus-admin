@@ -1,0 +1,71 @@
+<template>
+  <BasicForm v-bind="$props" :schemas="schemaOptions" :action-props="actionProps"></BasicForm>
+</template>
+
+<script>
+import {BasicForm} from '@/components/Form';
+import {reactive, ref, toRefs} from "vue";
+
+export default {
+  name: "BasicQuery",
+  components: {BasicForm},
+  props: {
+    modelValue: {
+      type: Object,
+      default: () => ({})
+    },
+    schemas: {
+      type: Array,
+      default: () => ([]),
+    },
+    colProps: {
+      type: Object,
+      default: () => {
+        return {span: 8}
+      },
+    },
+    isAdvanced: {
+      type: Boolean,
+      default: false,
+    },
+    advanced: {
+      type: Boolean,
+      default: false,
+    },
+    advancedLength: {
+      type: [Number, String],
+      default: 3,
+    }
+  },
+  setup(props) {
+    const {schemas, colProps, isAdvanced, advanced, advancedLength} = toRefs(props);
+    const state = reactive({
+      actionProps: {
+        isAdvanced: isAdvanced,
+        showAdvancedButton: advanced,
+        showAdvancedLength: advancedLength,
+        colProps: colProps,
+        actionPosition: 'left',
+        resetButtonOption: {text: '重置'},
+        submitButtonOption: {text: '搜索'}
+      },
+    })
+
+    const schemaOptions = ref([]);
+    schemas.value.forEach(item => {
+      schemaOptions.value.push({colProps: colProps.value, ...item});
+    })
+
+    return {
+      ...toRefs(state),
+      schemaOptions,
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+::v-deep.el-form .el-form-item--small.el-form-item {
+  margin-bottom: 5px !important;
+}
+</style>

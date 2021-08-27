@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {useMenuSetting} from '@/hooks/setting/useMenuSeeting'
+import {useMenuSetting} from '@/composables/setting/useMenuSeeting'
 
 export default {
   name: "HeaderTrigger",

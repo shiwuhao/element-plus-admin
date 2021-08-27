@@ -1,7 +1,7 @@
 import nProgress from 'nprogress';
 import 'nprogress/nprogress.css'
 import {unref} from 'vue'
-import {useTransitionSetting} from "@/hooks/setting/useTransitionSeeting";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
 
 /**
  * ProgressGuard

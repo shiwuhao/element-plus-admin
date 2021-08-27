@@ -39,9 +39,9 @@ import Setting from "@/layouts/setting/index";
 import LayoutMenu from '@/layouts/menu/index';
 import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
 import TagView from "@/layouts/tagview/tagView";
-import {useRootSetting} from "@/hooks/setting/useRootSeeting";
-import {useMenuSetting} from "@/hooks/setting/useMenuSeeting";
-import {useHeaderSetting} from "@/hooks/setting/useHeaderSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
+import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
 
 export default {
   name: "LayoutHeader",

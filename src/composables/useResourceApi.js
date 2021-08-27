@@ -1,12 +1,15 @@
-import {reactive, ref, useContext, watch, toRefs, onMounted} from 'vue';
+import {reactive, ref, watch, toRefs, onMounted, nextTick} from 'vue';
+import {useThrottleFn} from '@vueuse/core';
 
-export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi, item = {}, uniqueId = 'id'}) {
+export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi, uniqueId = 'id'}) {
   const formRef = ref(null);
   const queryRef = ref(null);
   const tableRef = ref(null);
   const state = reactive({
     item: {},
-    query: {},
+    query: {
+      page: 1,
+    },
     lists: [],
     paginate: {},
     dialog: false,
@@ -16,14 +19,27 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     fetchConfirmLoading: false,
   });
 
-  const {emit} = useContext();
+  // 节流
+  const _throttledQuery = useThrottleFn(async () => {
+    await getList();
+  }, 1000);
+
+  // 查询
+  const getQuery = async () => {
+    await _throttledQuery();
+  }
 
   // 获取列表
   const getList = async () => {
     state.fetchListLoading = true;
-    const {data: {data, meta}} = await listApi().then(r => r);
+    const {data: {data, meta}} = await listApi(state.query).then(r => r);
     state.lists = data;
-    state.paginate = meta;
+    state.paginate = {
+      layout: 'prev, pager, next, ->, total',
+      pageSize: meta.per_page,
+      total: meta.total,
+      pageCount: meta.last_page,
+    };
     state.fetchListLoading = false;
   }
 
@@ -60,6 +76,7 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
   const cancelItem = () => {
     state.item = {};
     state.dialog = false;
+    nextTick(() => formRef.value.clearValidate()).then(r => r);
   }
 
   // 确认提交
@@ -79,15 +96,16 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
           state.lists.unshift(data);
         }
 
-        emit('on-confirm', data.data);
         cancelItem();
       }
     })
   }
 
-  watch(state.item, async () => {
-    await getItem(state.item);
-  })
+  // 分页
+  const changePage = async (page) => {
+    state.query.page = page;
+    await getList();
+  }
 
   onMounted(async () => {
     await getList();
@@ -99,11 +117,13 @@ export function useResourceApi({listApi, itemApi, updateApi, storeApi, deleteApi
     queryRef,
     tableRef,
     getList,
+    getQuery,
     getItem,
     addItem,
     editItem,
     deleteItem,
     confirmItem,
     cancelItem,
+    changePage,
   };
 }

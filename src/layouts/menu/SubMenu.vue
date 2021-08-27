@@ -1,5 +1,5 @@
 <template>
-  <el-submenu :index="menu.path" v-if="menu.children && menu.children.length >= 1" popper-append-to-body>
+  <el-sub-menu :index="menu.path" v-if="menu.children && menu.children.length >= 1" popper-append-to-body>
     <template #title>
       <i :class="menu.icon"/>
       <span>{{ menu.title }}</span>
@@ -8,7 +8,7 @@
       <sub-menu v-if="child.children && child.children.length > 1" :menu="child" :key="child.path"/>
       <item-menu v-else :menu="child" :key="child.path"/>
     </template>
-  </el-submenu>
+  </el-sub-menu>
   <item-menu v-else :menu="menu.children && menu.children.length === 1 ? menu.children[0] : menu"/>
 </template>
 <script>
