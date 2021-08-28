@@ -1,11 +1,11 @@
 <template>
   {{ form }}
   <el-card shadow="none">
-    <el-tabs v-model="query.group" tab-position="top" @tab-click="getList">
+    <el-tabs v-model="query.group" tab-position="left" @tab-click="getList">
       <template v-for="(item,index) in getGroups" :key="index">
         <el-tab-pane :label="item.label" :name="item.value">
           <el-row v-loading="listLoading">
-            <el-col :span="12">
+            <el-col xs="24">
               <BasicForm v-if="query.group === item.value"
                          v-model="form"
                          label-position="top"

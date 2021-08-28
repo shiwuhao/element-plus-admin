@@ -56,19 +56,13 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {toRefs, shallowReactive} from "vue";
+import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
 
 export default {
   name: "editTemplate",
   components: {BasicDrawer},
-  props: {
-    resourceApi: {
-      type: Object,
-      default: () => ({})
-    },
-  },
-  setup(props) {
+  setup() {
     const state = shallowReactive({
       rules: {
         group: [{required: true, message: '请选择配置分组', trigger: 'change'}],
@@ -82,7 +76,7 @@ export default {
     })
 
     const {getGroups, getTypes, getComponents} = useConfig();
-    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = toRefs(props.resourceApi);
+    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
 
     return {
       ...toRefs(state),

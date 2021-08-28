@@ -19,11 +19,7 @@
         </template>
       </el-table-column>
     </BasicTable>
-    <EditTemplate
-      ref="editTemplateRef"
-      v-model="dialog"
-      :resource-api="resourceApi"
-    />
+    <EditTemplate ref="editTemplateRef" v-model="dialog"/>
   </el-card>
 </template>
 
@@ -32,7 +28,7 @@ import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "@/views/system/configs/EditTemplate";
 import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/configs";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs} from "vue";
+import {defineComponent, reactive, toRefs, provide} from "vue";
 
 export default defineComponent({
   name: "TableList",
@@ -61,10 +57,11 @@ export default defineComponent({
       deleteApi
     });
 
+    provide('resourceApi', resourceApi);
+
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
-      resourceApi,
     }
   },
 })
