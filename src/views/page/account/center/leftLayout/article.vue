@@ -66,11 +66,11 @@ export default defineComponent({
     }
   }
   .page-wrapper {
-    margin-top: -6px;
+    margin-top: 2px;
   }
   .divider-wrap {
     @include flex;
-    margin-left: -14px;
+    margin-left: -24px;
     ::v-deep .divider-iconName {
       margin-right: 5px;
     }
