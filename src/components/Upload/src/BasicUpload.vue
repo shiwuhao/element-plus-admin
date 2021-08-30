@@ -3,7 +3,7 @@
     :on-preview="handlePreview"
     v-bind="$props"
   >
-    <el-button size="mini" type="primary">点击上传</el-button>
+    <el-button v-bind="$props">点击上传</el-button>
     <template #tip>
       <div class="el-upload__tip">{{ $props.tips }}</div>
     </template>
@@ -27,7 +27,7 @@ export default {
     })
 
     function handlePreview(file) {
-      state.dialogImageUrl = file.url;
+      state.dialogImageUrl = file.url ? file.url : file.response['data'][0]['url'];
       state.dialogVisible = true;
     }
 
