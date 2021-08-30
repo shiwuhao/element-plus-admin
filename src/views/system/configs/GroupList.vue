@@ -1,5 +1,4 @@
 <template>
-  {{ form }}
   <el-card shadow="none">
     <el-tabs v-model="query.group" tab-position="left" @tab-click="getList">
       <template v-for="(item,index) in getGroups" :key="index">
@@ -9,14 +8,21 @@
               <BasicForm v-if="query.group === item.value"
                          v-model="form"
                          label-position="top"
+                         :action-props="{position:'left',submitButtonProps:{loading:confirmLoading}}"
                          :schemas="schemas"
-                         @submit="updateItem"></BasicForm>
+                         @submit="updateItem">
+                <template #label="{labelProps}">
+                  <span class="label">{{ labelProps.title }}</span>
+                  <span class="sub-label">{{ labelProps.name }}</span>
+                </template>
+              </BasicForm>
             </el-col>
           </el-row>
         </el-tab-pane>
       </template>
     </el-tabs>
   </el-card>
+  {{ form }}
 </template>
 
 <script>
@@ -30,9 +36,10 @@ export default {
   name: "GroupList",
   components: {BasicForm},
   setup() {
+    const VModel = ref('2021-08-08 16:00:00');
     const {getGroups} = useConfig();
 
-    const {listLoading, query, formRef, item: form, lists, updateItem, getList} = useResourceApi({
+    const {listLoading, confirmLoading, query, formRef, item: form, lists, updateItem, getList} = useResourceApi({
       listApi: groupListApi,
       updateApi: groupUpdateApi,
       query: {group: 'basic'},
@@ -48,17 +55,14 @@ export default {
     watch(lists, () => {
       schemas.value.splice(0, schemas.value.length);
       lists.value.forEach(item => {
-        let _value = item.value;
-        if (item.component === 'TimePicker') {
-          _value = new Date('2021-08-27 ' + item.value)
-          console.log(item.value, _value)
-        }
-
-        form.value[item.name] = _value;
+        form.value[item.name] = item.value;
         schemas.value.push({
           field: item.name,
-          label: `${item.title}(${item.name})`,
+          labelProps: {title: item.title, name: item.name},
           component: item.component,
+          formProps: {
+            required: true,
+          },
           componentProps: {
             options: object2array(item['parse_extra']),
             style: {width: '100%'},
@@ -67,9 +71,9 @@ export default {
       })
     })
 
-
     return {
       listLoading,
+      confirmLoading,
       query,
       formRef,
       form,
@@ -78,11 +82,19 @@ export default {
       getGroups,
       updateItem,
       getList,
+      VModel,
     }
   },
 }
 </script>
 
 <style scoped>
+.label {
 
+}
+
+.sub-label {
+  color: #C0C4CC;
+  margin-left: 10px;
+}
 </style>

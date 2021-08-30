@@ -5,7 +5,7 @@
         <FormItem :schema="schema" v-model="formModel[schema.field]"
                   v-show="showAdvancedButton ? index < showAdvancedLength || getActionProps.isAdvanced : true">
           <template #[item]="data" v-for="item in Object.keys($slots)">
-            <slot :name="item" v-bind="data"></slot>
+            <slot :name="item" v-bind="{...schema,...data}"></slot>
           </template>
         </FormItem>
       </template>
@@ -21,7 +21,7 @@
 <script>
 import FormItem from "./components/FormItem";
 import FormAction from "./components/FormAction";
-import {defineComponent, toRefs, reactive, unref, watch, provide, ref} from "vue";
+import {defineComponent, toRefs, reactive, unref, watch, provide, ref, computed} from "vue";
 
 export default defineComponent({
   name: "BasicForm",
@@ -99,16 +99,15 @@ export default defineComponent({
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
     const elForm = ref(null);
-    const getActionProps = reactive({isAdvanced: false, ...unref(actionProps)});
+    const getActionProps = computed(() => {
+      return {isAdvanced: false, ...unref(actionProps)};
+    });
 
-    watch(() => modelValue.value, (newVal) => {
-      formModel.value = Object.assign(newVal);
-    }, {deep: true})
     watch(() => formModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     }, {deep: true})
 
-    const toggleAdvanced = () => getActionProps.isAdvanced = !getActionProps.isAdvanced;
+    const toggleAdvanced = () => getActionProps.value.isAdvanced = !getActionProps.value.isAdvanced;
     const validate = () => elForm.value.validate();
     const validateField = () => elForm.value.validateField();
     const resetFields = () => elForm.value.resetFields();
