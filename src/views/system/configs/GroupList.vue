@@ -36,7 +36,6 @@ export default {
   name: "GroupList",
   components: {BasicForm},
   setup() {
-    const VModel = ref('2021-08-08 16:00:00');
     const {getGroups} = useConfig();
 
     const {listLoading, confirmLoading, query, formRef, item: form, lists, updateItem, getList} = useResourceApi({
@@ -55,6 +54,17 @@ export default {
     watch(lists, () => {
       schemas.value.splice(0, schemas.value.length);
       lists.value.forEach(item => {
+        let componentProps = {style: {width: '100%'},};
+        switch (item.component) {
+          case 'select':
+            componentProps = {options: object2array(item['parse_extra'])};
+            break;
+          case 'Upload':
+            componentProps = {fileList: [{url: item['parse_value'], name: item['parse_value']}],limit:1};
+            break;
+          default:
+        }
+
         form.value[item.name] = item.value;
         schemas.value.push({
           field: item.name,
@@ -63,10 +73,7 @@ export default {
           formProps: {
             required: true,
           },
-          componentProps: {
-            options: object2array(item['parse_extra']),
-            style: {width: '100%'},
-          },
+          componentProps: {style: {width: '100%'}, ...componentProps}
         })
       })
     })
@@ -82,7 +89,6 @@ export default {
       getGroups,
       updateItem,
       getList,
-      VModel,
     }
   },
 }
