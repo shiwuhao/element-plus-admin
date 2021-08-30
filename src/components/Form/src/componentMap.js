@@ -13,11 +13,13 @@ import {
 import Select from "./components/Select";
 import Textarea from "./components/Textarea";
 import TimePicker from "./components/TimePicker";
+import DatePicker from "./components/DatePicker";
+import DateTimePicker from "./components/DateTimePicker";
 import RadioGroup from "./components/RadioGroup";
 import RadioButtonGroup from "./components/RadioButtonGroup";
 import CheckboxGroup from "./components/CheckboxGroup";
 import CheckboxButtonGroup from "./components/CheckboxButtonGroup";
-import {BasicUpload} from '@/components/Upload'
+import Upload from './components/Upload'
 
 const componentMap = new Map;
 componentMap.set('Input', ElInput);
@@ -33,11 +35,11 @@ componentMap.set('InputNumber', ElInputNumber);
 componentMap.set('Switch', ElSwitch);
 componentMap.set('Cascader', ElCascader);
 componentMap.set('Slider', ElSlider);
-componentMap.set('DatePicker', ElDatePicker);
-componentMap.set('DatePicker', ElDatePicker);
+componentMap.set('DatePicker', DatePicker);
+componentMap.set('DateTimePicker', DateTimePicker);
 componentMap.set('TimePicker', TimePicker);
 componentMap.set('TimeSelect', ElTimeSelect);
-componentMap.set('Upload', BasicUpload);
+componentMap.set('Upload', Upload);
 
 export {
   componentMap

@@ -29,7 +29,7 @@
           <Tag :dynamicTags="tags" :addTagVisible='addTagVisible' :closable="closable"/>
           <el-divider></el-divider>
           <PageWrapper title="团队"/>
-          <Team :prefix="prefixCls"/>
+          <Team />
         </el-card>
       </el-col>
       <el-col :lg="18" :xs="24">
