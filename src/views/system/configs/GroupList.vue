@@ -56,7 +56,7 @@ export default {
       lists.value.forEach(item => {
         let componentProps = {style: {width: '100%'},};
         switch (item.component) {
-          case 'select':
+          case 'Select':
             componentProps = {options: object2array(item['parse_extra'])};
             break;
           case 'Upload':
