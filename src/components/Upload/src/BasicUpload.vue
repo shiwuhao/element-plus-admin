@@ -27,7 +27,7 @@ export default {
     })
 
     function handlePreview(file) {
-      state.dialogImageUrl = file.url;
+      state.dialogImageUrl = file.url ? file.url : file.response['data'][0]['url'];
       state.dialogVisible = true;
     }
 
