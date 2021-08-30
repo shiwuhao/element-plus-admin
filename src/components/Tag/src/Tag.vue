@@ -2,13 +2,6 @@
   <el-tag
     :key="tag"
     v-for="tag in tagData"
-    :closable="closable"
-    :type="type"
-    :hit="hit"
-    :color="color"
-    :size="size"
-    :effect="effect"
-    :disable-transitions="disableTransitions"
     @click="handleClick(tag)"
     @close="handleClose(tag)">
     {{ tag }}
@@ -19,12 +12,11 @@
       v-if="inputVisible"
       v-model="inputValue"
       ref="saveTagInput"
-      :size="size"
       @keyup.enter="handleInputConfirm"
       @blur="handleInputConfirm"
     >
     </el-input>
-    <el-button v-else class="button-new-tag" :size="size" @click="showInput">+ New Tag</el-button>
+    <el-button v-else class="button-new-tag"  @click="showInput">+ New Tag</el-button>
   </template>
 </template>
 <script>
