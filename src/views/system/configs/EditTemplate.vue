@@ -3,7 +3,7 @@
     :title="!item.id ? '新增配置' : '编辑配置'"
     direction="rtl"
     size="50%"
-    :loading="fetchItemLoading"
+    :loading="itemLoading"
     v-model="dialog"
     @close="cancelItem">
     <template #default>
@@ -37,7 +37,7 @@
         <el-form-item label="配置名称" prop="title">
           <el-input v-model="item.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="配置项" prop="extra">
+        <el-form-item label="配置项" prop="extra" v-if="item.type === 'enum'">
           <el-input v-model="item.extra" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="配置值" prop="value">
@@ -47,8 +47,8 @@
     </template>
     <template #footer>
       <el-button @click="cancelItem" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="confirmItem" :loading="fetchConfirmLoading">
-        {{ fetchConfirmLoading ? '提交中 ...' : '确 定' }}
+      <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
+        {{ confirmLoading ? '提交中 ...' : '确 定' }}
       </el-button>
     </template>
   </BasicDrawer>
@@ -56,19 +56,13 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {toRefs, shallowReactive} from "vue";
+import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
 
 export default {
   name: "editTemplate",
   components: {BasicDrawer},
-  props: {
-    resourceApi: {
-      type: Object,
-      default: () => ({})
-    },
-  },
-  setup(props) {
+  setup() {
     const state = shallowReactive({
       rules: {
         group: [{required: true, message: '请选择配置分组', trigger: 'change'}],
@@ -82,7 +76,7 @@ export default {
     })
 
     const {getGroups, getTypes, getComponents} = useConfig();
-    const {formRef, item, dialog, fetchItemLoading, fetchConfirmLoading, cancelItem, confirmItem} = toRefs(props.resourceApi);
+    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
 
     return {
       ...toRefs(state),
@@ -92,8 +86,8 @@ export default {
       formRef,
       item,
       dialog,
-      fetchItemLoading,
-      fetchConfirmLoading,
+      itemLoading,
+      confirmLoading,
       cancelItem,
       confirmItem,
     }

@@ -1,10 +1,14 @@
 <template>
   <div class="page-wrapper">
     <div class="page-header">
-      <div class="page-header-title flex-row-justify">
+      <div class="flex-row-justify">
         <div>
-          <span>{{ title }}</span>
-          <span class="page-header-sub-title">{{ subTitle }}</span>
+          <span class="page-header-title">
+            <slot name="title">{{ title }}</slot>
+          </span>
+          <span class="page-header-sub-title">
+            <slot name="sub-title">{{ subTitle }}</slot>
+          </span>
         </div>
         <div>
           <slot name="extra"></slot>
