@@ -66,7 +66,7 @@ export default defineComponent({
     }
   }
   .page-wrapper {
-    margin-top: -6px;
+    margin-top: 2px;
   }
   .divider-wrap {
     display: flex;

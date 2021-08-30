@@ -3,7 +3,7 @@
     :on-preview="handlePreview"
     v-bind="$props"
   >
-    <el-button size="mini" type="primary">点击上传</el-button>
+    <el-button v-bind="$props">点击上传</el-button>
     <template #tip>
       <div class="el-upload__tip">{{ $props.tips }}</div>
     </template>

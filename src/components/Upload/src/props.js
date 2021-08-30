@@ -1,6 +1,6 @@
 const basicProps = {
   action: {
-    type: Boolean,
+    type: String,
     required: true,
   },
   headers: {
@@ -85,6 +85,15 @@ const basicProps = {
   },
   tips:{
     type: String,
+  },
+  size: {
+    type: String
+  },
+  type: {
+    type: String
+  },
+  icon: {
+    type: String
   }
 };
 
