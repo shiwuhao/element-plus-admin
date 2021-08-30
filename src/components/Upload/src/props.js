@@ -1,6 +1,9 @@
 const basicProps = {
   action: {
-    type: Boolean,
+    type: String,
+    default: () => {
+      return process.env.VUE_APP_UPLOAD_URL;
+    },
     required: true,
   },
   headers: {
@@ -83,8 +86,17 @@ const basicProps = {
   httpRequest: {
     type: Function,
   },
-  tips:{
+  tips: {
     type: String,
+  },
+  size: {
+    type: String
+  },
+  type: {
+    type: String
+  },
+  icon: {
+    type: String
   }
 };
 
