@@ -11,7 +11,7 @@ const handleParamInUrl = (url, params) => {
 }
 
 const instance = axios.create({
-  baseURL: 'http://element-plus-admin.local/backend',
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {Accept: 'text/json'},
 })
 

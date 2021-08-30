@@ -1,13 +1,13 @@
 <template>
-  <el-col v-if="showAction" :style="{textAlign:actionPosition}" v-bind="colProps">
+  <el-col v-if="showAction" :style="{textAlign:position}" v-bind="colProps">
     <el-form-item>
       <slot name="resetBefore"></slot>
-      <el-button type="default" v-bind="getResetButtonOption" v-if="showResetButton" @click="handleReset">
-        {{ getResetButtonOption.text }}
+      <el-button type="default" v-bind="$props.resetButtonProps" v-if="showResetButton" @click="handleReset">
+        {{ $props.resetButtonText }}
       </el-button>
       <slot name="submitBefore"></slot>
-      <el-button type="primary" v-bind="getSubmitButtonOption" v-if="showSubmitButton" @click="handleSubmit">
-        {{ getSubmitButtonOption.text }}
+      <el-button type="primary" v-bind="$props.submitButtonProps" v-if="showSubmitButton" @click="handleSubmit">
+        {{ $props.submitButtonText }}
       </el-button>
       <slot name="advanceBefore"></slot>
       <el-button type="text" v-if="showAdvancedButton"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {computed, ref, toRefs, inject} from "vue";
+import {inject} from "vue";
 
 export default {
   name: "FormAction",
@@ -34,17 +34,25 @@ export default {
       type: Boolean,
       default: true,
     },
-    resetButtonOption: {
+    resetButtonProps: {
       type: Object,
       default: () => ({})
+    },
+    resetButtonText: {
+      type: String,
+      default: '重置'
     },
     showSubmitButton: {
       type: Boolean,
       default: true,
     },
-    submitButtonOption: {
+    submitButtonProps: {
       type: Object,
       default: () => ({})
+    },
+    submitButtonText: {
+      type: String,
+      default: '提交'
     },
     showAdvancedButton: {
       type: Boolean,
@@ -58,7 +66,7 @@ export default {
       type: Boolean,
       default: true,
     },
-    actionPosition: {
+    position: {
       type: String,
       default: 'right',
     },
@@ -68,14 +76,6 @@ export default {
     }
   },
   setup(props, {emit}) {
-    const {resetButtonOption, submitButtonOption} = toRefs(props);
-    const getResetButtonOption = computed(() => {
-      return {...{text: '重置'}, ...resetButtonOption.value}
-    })
-    const getSubmitButtonOption = computed(() => {
-      return {...{text: '提交'}, ...submitButtonOption.value}
-    })
-
     const handleReset = inject('handleReset');
     const handleSubmit = inject('handleSubmit');
 
@@ -84,8 +84,6 @@ export default {
     }
 
     return {
-      getResetButtonOption,
-      getSubmitButtonOption,
       toggleAdvanced,
       handleReset,
       handleSubmit,

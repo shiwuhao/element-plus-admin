@@ -1,10 +1,10 @@
 <template>
-  <page-wrapper :title="$route.meta.title">
-    <template #sub-title>
+  <page-wrapper>
+    <template #title>
       <el-switch class="sub-title" v-model="mode" size="mini" active-text="配置模式" inactive-text="管理模式"></el-switch>
     </template>
     <template #extra>
-      <el-button type="primary" size="mini" @click="handleAdd">新增</el-button>
+      <el-button type="primary" size="mini" :disabled="!mode" @click="handleAdd">新增</el-button>
     </template>
     <table-list v-if="mode" ref="tableListRef"></table-list>
     <group-list v-if="!mode"></group-list>
@@ -35,10 +35,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.sub-title{
-  margin-left: 30px;
-  color: ;
-}
-</style>

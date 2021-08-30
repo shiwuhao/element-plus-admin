@@ -1,5 +1,6 @@
 <template>
-  <el-time-picker v-model="VModel" v-bind="{...$props,...$attrs}" value-format="HH:mm:ss"></el-time-picker>
+  <el-date-picker v-model="VModel" v-bind="{...$props,...$attrs}" type="datetime"
+                  value-format="YYYY-MM-DD HH:mm:ss"></el-date-picker>
 </template>
 
 <script>
@@ -19,6 +20,7 @@ export default {
     watch(() => VModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     })
+
     return {
       VModel,
     }
