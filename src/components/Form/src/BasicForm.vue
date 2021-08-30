@@ -1,6 +1,6 @@
 <template>
   <el-form ref="elForm" :model="formModel" v-bind="{...$props,...$attrs}">
-    <el-row :gutter="30">
+    <el-row :gutter="30" v-if="getSchema.length > 0">
       <template v-for="(schema,index) in getSchema" :key="schema.field">
         <FormItem :schema="schema" v-model="formModel[schema.field]"
                   v-show="showAdvancedButton ? index < showAdvancedLength || getActionProps.isAdvanced : true">
@@ -15,6 +15,7 @@
         </template>
       </FormAction>
     </el-row>
+    <el-empty v-else></el-empty>
   </el-form>
 </template>
 

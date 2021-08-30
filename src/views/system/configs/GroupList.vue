@@ -22,7 +22,6 @@
       </template>
     </el-tabs>
   </el-card>
-  {{ form }}
 </template>
 
 <script>
@@ -52,6 +51,7 @@ export default {
 
     const schemas = ref([]);
     watch(lists, () => {
+      form.value = {};
       schemas.value.splice(0, schemas.value.length);
       lists.value.forEach(item => {
         let componentProps = {style: {width: '100%'},};
@@ -60,7 +60,7 @@ export default {
             componentProps = {options: object2array(item['parse_extra'])};
             break;
           case 'Upload':
-            componentProps = {fileList: [{url: item['parse_value'], name: item['parse_value']}],limit:1};
+            componentProps = {fileList: [{url: item['parse_value'], name: item['parse_value']}], limit: 1};
             break;
           default:
         }
