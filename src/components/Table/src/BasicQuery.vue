@@ -46,8 +46,9 @@ export default {
         showAdvancedLength: advancedLength,
         colProps: colProps,
         actionPosition: 'left',
-        resetButtonOption: {text: '重置'},
-        submitButtonOption: {text: '搜索'}
+        resetButtonText: '重置',
+        submitButtonText: '搜索',
+        position: 'left',
       },
     })
 

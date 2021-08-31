@@ -1,34 +1,26 @@
-import axios from '@/utils/axios';
+import axios from "@/utils/axios";
 
-const users = {};
+const listApi = (query = {}) => axios.get('/users', {params: query});
+const itemApi = (item = {}) => axios.get(`/users/${item.id}`);
+const updateApi = (item = {}) => axios.put(`/users/${item.id}`, {
+  id: item.id,
+  username: item.username,
+  nickname: item.nickname,
+  password: item.password,
+  status: item.status,
+});
+const storeApi = (item = {}) => axios.post(`/users`, {
+  username: item.username,
+  nickname: item.nickname,
+  password: item.password,
+  status: item.status,
+});
+const deleteApi = (item = {}) => axios.delete(`/users/${item.id}`);
 
-/**
- * 登录
- * @param params
- * @returns {*}
- */
-users.login = (params = {}) => {
-  return axios.post('/api/login', params);
-};
-
-/**
- * 登出
- * @returns {*}
- */
-users.logout = () => {
-  return axios.post('/api/logout');
-};
-
-/**
- * 登录用户信息
- * @returns {Promise<AxiosResponse<T>>}
- */
-users.userInfo = () => {
-  return axios.get('/api/user-info');
-};
-
-
-users.index = (params) => {
-  return axios.get('/api/users');
+export {
+  listApi,
+  itemApi,
+  updateApi,
+  storeApi,
+  deleteApi,
 }
-export default users;
