@@ -1,5 +1,6 @@
 import axios from "@/utils/axios";
 
+const configItemsApi = (query = {}) => axios.get('/configs/items', {params: query});
 const listApi = (query = {}) => axios.get('/configs', {params: query});
 const itemApi = (item = {}) => axios.get(`/configs/${item.id}`);
 const updateApi = (item = {}) => axios.put(`/configs/${item.id}`, {
@@ -27,6 +28,7 @@ const groupListApi = (query = {}) => axios.get('/configs/group', {params: query}
 const groupUpdateApi = (item = {}) => axios.put(`/configs/group`, item);
 
 export {
+  configItemsApi,
   listApi,
   itemApi,
   updateApi,
