@@ -4,7 +4,6 @@
 <script>
 import {configItemsApi} from '@/api/configs'
 import store from "@/store";
-import {watch} from "vue";
 
 export default {
   setup() {
