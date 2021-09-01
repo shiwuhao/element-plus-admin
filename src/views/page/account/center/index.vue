@@ -1,6 +1,6 @@
 <template>
-<!--  <LeftLayout />-->
-  <UpLayout />
+  <LeftLayout />
+<!--  <UpLayout />-->
 </template>
 <script>
 import {defineComponent} from 'vue';
