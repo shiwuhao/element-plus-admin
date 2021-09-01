@@ -2,15 +2,13 @@
   <router-view/>
 </template>
 <script>
-import {useFetchItemList} from '@/api/useConfigRequest'
+import {configItemsApi} from '@/api/configs'
 import store from "@/store";
-import {watch} from "vue";
 
 export default {
   setup() {
-    const {data} = useFetchItemList();
-    watch(data, () => {
-      store.commit('config/setConfig', data.value.data);
+    configItemsApi().then((response) => {
+      store.commit('config/setConfig', response.data.data);
     })
   }
 }

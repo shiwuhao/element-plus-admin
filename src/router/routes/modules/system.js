@@ -11,7 +11,7 @@ export default [
         path: 'users',
         name: 'users',
         meta: {title: '用户管理', menu: true, affix: false},
-        component: () => import('@/views/system/users/list'),
+        component: () => import('@/views/system/users/index'),
       },
       {
         path: 'configs',

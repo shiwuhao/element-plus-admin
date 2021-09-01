@@ -1,4 +1,4 @@
-import users from '@/api/users';
+import personal from '@/api/personal';
 
 const user = {
   namespaced: true,
@@ -20,17 +20,17 @@ const user = {
   },
   actions: {
     async login({commit}, params) {
-      const {data: {data}} = await users.login(params);
+      const {data: {data}} = await personal.login(params);
       commit('setAccessToken', data.access_token);
       return data;
     },
     async logout({commit}) {
-      await users.logout();
+      await personal.logout();
       commit('setAccessToken', undefined);
       commit('setUser', undefined);
     },
     async getUserInfo({commit}) {
-      const {data: {data}} = await users.userInfo();
+      const {data: {data}} = await personal.userInfo();
       commit('setUser', data.user);
       commit('setRoles', data.roles);
       return data;
