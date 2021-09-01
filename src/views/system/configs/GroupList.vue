@@ -1,25 +1,23 @@
 <template>
   <el-card shadow="none">
     <el-tabs v-model="query.group" tab-position="left" @tab-click="getList">
-      <template v-for="(item,index) in getGroups" :key="index">
-        <el-tab-pane :label="item.label" :name="item.value">
-          <el-row v-loading="listLoading">
-            <el-col xs="24">
-              <BasicForm v-if="query.group === item.value"
-                         v-model="form"
-                         label-position="top"
-                         :action-props="{position:'left',submitButtonProps:{loading:confirmLoading}}"
-                         :schemas="schemas"
-                         @submit="updateItem">
-                <template #label="{labelProps}">
-                  <span class="label">{{ labelProps.title }}</span>
-                  <span class="sub-label">{{ labelProps.name }}</span>
-                </template>
-              </BasicForm>
-            </el-col>
-          </el-row>
-        </el-tab-pane>
-      </template>
+      <el-tab-pane v-for="(item,index) in getGroups" :key="index" :label="item.label" :name="item.value">
+        <el-row v-loading="listLoading">
+          <el-col xs="24">
+            <BasicForm v-if="query.group === item.value"
+                       v-model="form"
+                       label-position="top"
+                       :action-props="{position:'left',submitButtonProps:{loading:confirmLoading}}"
+                       :schemas="schemas"
+                       @submit="updateItem">
+              <template #label="{labelProps}">
+                <span class="label">{{ labelProps.title }}</span>
+                <span class="sub-label">{{ labelProps.name }}</span>
+              </template>
+            </BasicForm>
+          </el-col>
+        </el-row>
+      </el-tab-pane>
     </el-tabs>
   </el-card>
 </template>
@@ -29,7 +27,7 @@ import {BasicForm} from "@/components/Form";
 import {useConfig} from "@/composables/config/useConfig";
 import {groupListApi, groupUpdateApi} from "@/api/configs"
 import {useResourceApi} from "@/composables/useResourceApi";
-import {reactive, ref, watch} from "vue";
+import {ref, watch} from "vue";
 
 export default {
   name: "GroupList",

@@ -8,7 +8,7 @@ import store from "@/store";
 export default {
   setup() {
     configItemsApi().then((response) => {
-      store.commit('config/setConfig', response.data);
+      store.commit('config/setConfig', response.data.data);
     })
   }
 }
