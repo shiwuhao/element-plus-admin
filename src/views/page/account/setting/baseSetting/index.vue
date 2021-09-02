@@ -1,7 +1,6 @@
 <template>
   <div class="base-setting">
     <h2>基本设置</h2>
-    {{form}}
     <el-row :gutter="30">
       <el-col :span="16">
         <el-form :model="form" label-position="top" :rules="rules" ref="formRef">
@@ -22,7 +21,7 @@
           </el-form-item>
           <el-form-item label="所在省市" prop="area">
             <el-cascader
-              :options="options"
+              :options="area.options"
               clearable
               placeholder="请选择省市"
               filterable
@@ -59,13 +58,12 @@
 </template>
 <script>
 import {defineComponent, ref, reactive, toRefs, shallowReactive, onMounted} from 'vue';
-import {BasicForm} from "@/components/Form";
 import {BasicUpload} from "@/components/Upload";
 import {getRequest} from '@/libs/api';
 import {ElMessage} from 'element-plus';
 
 export default defineComponent({
-  components: {BasicForm, BasicUpload},
+  components: {BasicUpload},
   setup() {
     const labelPosition = ref('top');
     const formRef = ref(null);
@@ -89,25 +87,7 @@ export default defineComponent({
       }
     })
     const area = reactive({
-      options: [
-        {
-          value: 1,
-          label: '陕西',
-          children: [
-            {value: 3, label: '西安'},
-            {value: 4, label: '延安'},
-          ]
-        },
-        {
-          value: 2,
-          label: '山西',
-          children: [
-            {value: 5, label: '晋中市'},
-            {value: 6, label: '太原市'},
-            {value: 7, label: '阳泉市'},
-          ]
-        }
-      ]
+      options: []
     })
     const submitForm = () => {
       formRef.value.validate(async (valid) => {
@@ -128,20 +108,56 @@ export default defineComponent({
       formRef.value.resetFields();
     }
     onMounted(()=>{
+      getEditData()
+      getArea()
+    })
+    const getEditData = () => {
       getRequest('/js/baseSetting.json').then(res => {
         form.value = res.data.data
+        editForm(form.value)
       })
-    })
+    }
+    const getArea = () => {
+      getRequest('/js/province.json').then(res => {
+        area.value = formatArea(res.data.data)
+        area.options = area.value
+      })
+    }
+    const editForm = (data) => {
+      const {email,name,introduce,region,area,address,phone} = data;
+      [form.email,form.name,form.introduce,form.region,form.area,form.address,form.phone]
+        =
+        [email,name,introduce,region,area,address,phone]
+    }
+    const formatArea = (data) => {
+        let options = [];
+        data.forEach(item => {
+          let {
+            id: value,
+            name: label,
+            children: children
+          } = item
+          options.push({
+            value,
+            label,
+            children: children && children.map(item => {
+              return {label: item.name, value: item.id}
+            })
+          })
+        })
+        return options
+    }
     return {
       labelPosition,
       form,
       formRef,
       submitForm,
       resetForm,
+      editForm,
       confirmLoading,
+      area,
       ...toRefs(avatar),
       ...toRefs(field),
-      ...toRefs(area)
     }
   }
 })
