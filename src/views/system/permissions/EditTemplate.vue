@@ -1,6 +1,6 @@
 <template>
   <BasicDrawer
-    :title="!item.id ? '新增配置' : '编辑配置'"
+    :title="!item.id ? '新增权限' : '编辑权限'"
     direction="rtl"
     size="50%"
     :loading="itemLoading"
@@ -13,6 +13,18 @@
         </el-form-item>
         <el-form-item label="显示名称" prop="title">
           <el-input v-model="item.title" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="请求方式" prop="method">
+          <el-radio-group v-model="item.method">
+            <el-radio-button label="GET"></el-radio-button>
+            <el-radio-button label="POST"></el-radio-button>
+            <el-radio-button label="PUT"></el-radio-button>
+            <el-radio-button label="DELETE"></el-radio-button>
+            <el-radio-button label="*"></el-radio-button>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="后端URL" prop="url">
+          <el-input v-model="item.url" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="备注" prop="textarea">
           <el-input v-model="item.remark" type="textarea" autocomplete="off"></el-input>
@@ -40,6 +52,8 @@ export default {
       rules: {
         name: [{required: true, message: '请输入唯一标识', trigger: 'blur'}],
         title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
+        method: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
+        url: [{required: true, message: '请输入后端url地址', trigger: 'blur'}],
       }
     })
 
