@@ -26,7 +26,7 @@ import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default defineComponent({
   components: {BaseSetting, SafeSetting,AccountBind,MsgNotify},
   setup() {
-    const activeName = ref('4');
+    const activeName = ref('1');
     const {getIsMobile} = useRootSetting();
     return {
       activeName,
