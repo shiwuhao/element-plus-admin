@@ -1,8 +1,7 @@
 <template>
-  <div class="base-setting">
-    <h2>基本设置</h2>
+  <div :class="getIsMobile?'mobile-base-setting':'base-setting'">
     <el-row :gutter="30">
-      <el-col :span="16">
+      <el-col :span="16" class="mobile-form">
         <el-form :model="form" label-position="top" :rules="rules" ref="formRef">
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="form.email" placeholder="请输入邮箱" clearable/>
@@ -61,10 +60,11 @@ import {defineComponent, ref, reactive, toRefs, shallowReactive, onMounted} from
 import {BasicUpload} from "@/components/Upload";
 import {getRequest} from '@/libs/api';
 import {ElMessage} from 'element-plus';
-
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default defineComponent({
   components: {BasicUpload},
   setup() {
+    const {getIsMobile} = useRootSetting();
     const labelPosition = ref('top');
     const formRef = ref(null);
     const confirmLoading = ref(false);
@@ -107,7 +107,7 @@ export default defineComponent({
     const resetForm = () => {
       formRef.value.resetFields();
     }
-    onMounted(()=>{
+    onMounted(() => {
       getEditData()
       getArea()
     })
@@ -124,28 +124,28 @@ export default defineComponent({
       })
     }
     const editForm = (data) => {
-      const {email,name,introduce,region,area,address,phone} = data;
-      [form.email,form.name,form.introduce,form.region,form.area,form.address,form.phone]
+      const {email, name, introduce, region, area, address, phone} = data;
+      [form.email, form.name, form.introduce, form.region, form.area, form.address, form.phone]
         =
-        [email,name,introduce,region,area,address,phone]
+        [email, name, introduce, region, area, address, phone]
     }
     const formatArea = (data) => {
-        let options = [];
-        data.forEach(item => {
-          let {
-            id: value,
-            name: label,
-            children: children
-          } = item
-          options.push({
-            value,
-            label,
-            children: children && children.map(item => {
-              return {label: item.name, value: item.id}
-            })
+      let options = [];
+      data.forEach(item => {
+        let {
+          id: value,
+          name: label,
+          children: children
+        } = item
+        options.push({
+          value,
+          label,
+          children: children && children.map(item => {
+            return {label: item.name, value: item.id}
           })
         })
-        return options
+      })
+      return options
     }
     return {
       labelPosition,
@@ -156,6 +156,7 @@ export default defineComponent({
       editForm,
       confirmLoading,
       area,
+      getIsMobile,
       ...toRefs(avatar),
       ...toRefs(field),
     }
@@ -163,8 +164,8 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.base-setting {
-  margin: -16px 0 0 26px;
+.base-setting,.mobile-base-setting {
+  padding-left: 18px;
 
   ::v-deep .el-select--small {
     width: 100%;
@@ -176,9 +177,26 @@ export default defineComponent({
     .el-avatar {
       margin-bottom: 25px;
     }
+
     .el-icon-upload {
       text-align: center;
     }
+  }
+}
+.mobile-base-setting {
+  .base-setting-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+  .mobile-form {
+    margin: auto;
+  }
+  .el-form {
+    margin-top: 278px;
   }
 }
 </style>
