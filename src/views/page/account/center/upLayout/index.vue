@@ -43,14 +43,8 @@
       <el-card :class="`${prefixCls}-right`">
         <el-tabs v-model="activeName">
           <el-tab-pane :label="item.name" :name="item.key" v-for="item in activeTab" :key="item.key">
-            <div v-if="item.key === '1'" :class="`${prefixCls}-right-article`">
-              <Article/>
-            </div>
-            <div v-else-if="item.key === '2'" :class="`${prefixCls}-right-application`">
-              <Application/>
-            </div>
-            <div v-else :class="`${prefixCls}-right-project`">
-              <Project/>
+            <div :class="`${prefixCls}-right-flex`">
+              <component :is="item.component"/>
             </div>
           </el-tab-pane>
         </el-tabs>
@@ -115,14 +109,6 @@ export default defineComponent({
       margin-top: 15px;
     }
   }
-
-  .personal-center-right {
-    .personal-center-right-application, .personal-center-right-project {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-
   .personal-center-left {
     ::v-deep .el-card__body {
       width: 100%;
