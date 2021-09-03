@@ -8,17 +8,14 @@
     @close="cancelItem">
     <template #default>
       <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="item.username" autocomplete="off"></el-input>
+        <el-form-item label="唯一标识" prop="name">
+          <el-input v-model="item.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="用户昵称" prop="nickname">
-          <el-input v-model="item.nickname" autocomplete="off"></el-input>
+        <el-form-item label="显示名称" prop="title">
+          <el-input v-model="item.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码" :prop="!item.id ? 'password' : ''">
-          <el-input v-model="item.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="状态" prop="status">
-          <el-switch v-model="item.status" :active-value="1" :inactive-value="0"></el-switch>
+        <el-form-item label="备注" prop="textarea">
+          <el-input v-model="item.remark" type="textarea" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
     </template>
@@ -41,10 +38,8 @@ export default {
   setup() {
     const state = shallowReactive({
       rules: {
-        username: [{required: true, message: '请选择配置分组', trigger: 'change'}],
-        nickname: [{required: true, message: '请选择配置类型', trigger: 'change'}],
-        password: [{required: true, message: '请选择渲染组件', trigger: 'change'}],
-        status: [{required: true}],
+        name: [{required: true, message: '请输入唯一标识', trigger: 'blur'}],
+        title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
       }
     })
 

@@ -14,6 +14,18 @@ export default [
         component: () => import('@/views/system/users/index'),
       },
       {
+        path: 'roles',
+        name: 'roles',
+        meta: {title: '角色管理', menu: true, affix: false},
+        component: () => import('@/views/system/roles/index'),
+      },
+      {
+        path: 'permissions',
+        name: 'permissions',
+        meta: {title: '权限管理', menu: true, affix: false},
+        component: () => import('@/views/system/permissions/index'),
+      },
+      {
         path: 'configs',
         name: 'config',
         meta: {title: '站点配置', menu: true, affix: false},
