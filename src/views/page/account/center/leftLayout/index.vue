@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls">
+  <div :class="prefixCls" class="m10">
     <el-row :gutter="20">
       <el-col :lg="6" :xs="24">
         <el-card :class="`${prefixCls}-left`">
@@ -92,8 +92,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .personal-center {
-  margin: 20px;
-
   ::v-deep .personal-center-article {
     &:first-child {
       margin-top: 15px;

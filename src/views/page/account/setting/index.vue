@@ -1,5 +1,5 @@
 <template>
-  <el-card class="setting-card">
+  <el-card class="setting-card m10">
     <el-tabs :class="getIsMobile?'mobile-setting-tabs':'setting-tabs'"
              :tab-position="getIsMobile?'top':'left'"
              v-model="activeName"
@@ -10,7 +10,7 @@
         :label="item.name"
         :name="item.key"
       >
-        <component :is="item.component" />
+        <component :is="item.component"/>
       </el-tab-pane>
     </el-tabs>
   </el-card>
@@ -23,8 +23,9 @@ import AccountBind from './accountBind/accountBind';
 import MsgNotify from './msgNotify/msgNotify';
 import {settingList} from './data';
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
+
 export default defineComponent({
-  components: {BaseSetting, SafeSetting,AccountBind,MsgNotify},
+  components: {BaseSetting, SafeSetting, AccountBind, MsgNotify},
   setup() {
     const activeName = ref('1');
     const {getIsMobile} = useRootSetting();
@@ -38,10 +39,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .setting-card {
-  margin: 24px;
-
   .setting-tabs {
-
     ::v-deep .el-tabs__nav-wrap {
       width: 224px;
 
@@ -52,16 +50,18 @@ export default defineComponent({
       }
     }
   }
+
   .mobile-setting-tabs {
     ::v-deep .el-tabs__nav-wrap {
       width: 100%;
     }
   }
 }
+
 .setting-page {
   margin-top: 20px;
   padding-left: 18px;
-  //margin: -16px 0 0 26px;
+
   ::v-deep .el-descriptions {
     margin-bottom: 40px;
 
@@ -72,16 +72,18 @@ export default defineComponent({
         font-size: $font-size-small;
         color: $color-text-black
       }
-
     }
+
     .el-descriptions__body {
       border-bottom: 1px solid $color-border-dashed;
       padding-bottom: 14px;
     }
+
     .is-left {
       color: $color-text-gray;
       font-size: $font-size-small;
     }
+
     .el-descriptions-title {
       color: $color-text-blue;
       font-size: $font-size-small;

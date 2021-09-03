@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls">
+  <div :class="prefixCls" class="m10">
     <el-header>
       <el-card :class="`${prefixCls}-left`">
         <div :class="`${prefixCls}-left-content`">
@@ -100,10 +100,7 @@ export default defineComponent({
 .el-header {
   height: auto;
 }
-
 .personal-center {
-  margin: 20px;
-
   ::v-deep .personal-center-article {
     &:first-child {
       margin-top: 15px;
