@@ -7,6 +7,7 @@ import {setupStore} from './store'
 import '@/mock/index';
 import {setupRouterGuard} from "@/router/guard";
 import {initProjectConfig} from "@/logics/initProjectConfig";
+import SvgIcon from '@/components/SvgIcon/SvgIcon';
 
 (async () => {
   const app = createApp(App);
@@ -26,4 +27,5 @@ import {initProjectConfig} from "@/logics/initProjectConfig";
   // await router.isReady();
 
   app.mount('#app')
+  app.component('svg-icon',SvgIcon)
 })();

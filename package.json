@@ -41,7 +41,10 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "mockjs": "^1.1.0",
     "sass": "^1.27.0",
-    "vue-cli-plugin-element-plus": "~0.0.13"
+    "svgo": "^2.5.0",
+    "svgo-loader": "^3.0.0",
+    "vue-cli-plugin-element-plus": "~0.0.13",
+    "vue-cli-plugin-svg-sprite": "^1.1.0"
   },
   "browserslist": [
     "> 1%",

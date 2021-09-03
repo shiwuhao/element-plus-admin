@@ -8,6 +8,12 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
+  chainWebpack: config => {
+    config.module
+      .rule('svg-sprite')
+      .use('svgo-loader')
+      .loader('svgo-loader')
+  },
   css: {
     extract: false,//注释css热更新生效
     sourceMap: false,//开启css source maps
