@@ -1,6 +1,5 @@
 <template>
-  <div class="safe-setting">
-    <h2>安全设置</h2>
+  <div class="setting-page">
     <el-descriptions :title="item.title" v-for="item in safeSettingList" :key="item.key">
       <el-descriptions-item :label="item.label">：{{ item.value }}</el-descriptions-item>
       <template #extra>
@@ -72,58 +71,58 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.safe-setting {
-  margin: -16px 0 0 26px;
-  h2 {
-    margin-bottom: 32px;
-  }
-  //.safe-setting-left {
-  //  display: inline-grid;
-  //
-  //  .left-title {
-  //    height: 30px;
-  //    font-size: $font-size-small;
-  //    color: $color-text-black
-  //  }
-  //
-  //  .left-description {
-  //    color: $color-text-gray;
-  //    font-size: $font-size-small;
-  //    line-height: 45px;
-  //  }
-  //}
-  //
-  //.right-operation {
-  //  color: $color-text-blue;
-  //  font-size: $font-size-small;
-  //  margin-right: 2px;
-  //}
-  //}
-  ::v-deep .el-descriptions {
-    margin-bottom: 40px;
-
-    .el-descriptions__header {
-      height: 0;
-
-      .el-descriptions__title {
-        font-size: $font-size-small;
-        color: $color-text-black
-      }
-
-    }
-    .el-descriptions__body {
-      border-bottom: 1px solid $color-border-dashed;
-      padding-bottom: 14px;
-    }
-    .is-left {
-      color: $color-text-gray;
-      font-size: $font-size-small;
-    }
-    .el-descriptions-title {
-      color: $color-text-blue;
-      font-size: $font-size-small;
-      cursor: pointer;
-    }
-  }
-}
+//.safe-setting {
+//  margin: -16px 0 0 26px;
+//  h2 {
+//    margin-bottom: 32px;
+//  }
+//  //.safe-setting-left {
+//  //  display: inline-grid;
+//  //
+//  //  .left-title {
+//  //    height: 30px;
+//  //    font-size: $font-size-small;
+//  //    color: $color-text-black
+//  //  }
+//  //
+//  //  .left-description {
+//  //    color: $color-text-gray;
+//  //    font-size: $font-size-small;
+//  //    line-height: 45px;
+//  //  }
+//  //}
+//  //
+//  //.right-operation {
+//  //  color: $color-text-blue;
+//  //  font-size: $font-size-small;
+//  //  margin-right: 2px;
+//  //}
+//  //}
+//  ::v-deep .el-descriptions {
+//    margin-bottom: 40px;
+//
+//    .el-descriptions__header {
+//      height: 0;
+//
+//      .el-descriptions__title {
+//        font-size: $font-size-small;
+//        color: $color-text-black
+//      }
+//
+//    }
+//    .el-descriptions__body {
+//      border-bottom: 1px solid $color-border-dashed;
+//      padding-bottom: 14px;
+//    }
+//    .is-left {
+//      color: $color-text-gray;
+//      font-size: $font-size-small;
+//    }
+//    .el-descriptions-title {
+//      color: $color-text-blue;
+//      font-size: $font-size-small;
+//      cursor: pointer;
+//    }
+//  }
+//}
 </style>
