@@ -8,12 +8,14 @@ const updateApi = (item = {}) => axios.put(`/roles/${item.id}`, {
   title: item.title,
   remark: item.remark,
   status: item.status,
+  permissions: item.permissions,
 });
 const storeApi = (item = {}) => axios.post(`/roles`, {
   name: item.name,
   title: item.title,
   remark: item.remark,
   status: item.status,
+  permissions: item.permissions,
 });
 const deleteApi = (item = {}) => axios.delete(`/roles/${item.id}`);
 

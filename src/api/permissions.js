@@ -16,10 +16,13 @@ const storeApi = (item = {}) => axios.post(`/permissions`, {
 });
 const deleteApi = (item = {}) => axios.delete(`/permissions/${item.id}`);
 
+const autoGenerateApi = (item = {}) => axios.post(`/permissions/auto`);
+
 export {
   listApi,
   itemApi,
   updateApi,
   storeApi,
   deleteApi,
+  autoGenerateApi,
 }

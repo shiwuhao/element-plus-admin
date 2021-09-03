@@ -1,6 +1,7 @@
 <template>
   <page-wrapper :title="$route.meta['title']">
     <template #extra>
+      <el-button type="primary" size="mini" @click="autoGenerateApi">自动生成权限节点</el-button>
       <el-button type="primary" size="mini" @click="addItem">新增</el-button>
     </template>
     <el-card shadow="none">
@@ -33,7 +34,7 @@
 import {PageWrapper} from "@/components/Page"
 import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
-import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/permissions";
+import {listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
 import {useResourceApi} from "@/composables/useResourceApi";
 import {defineComponent, reactive, toRefs, provide} from "vue";
 
@@ -44,8 +45,8 @@ export default defineComponent({
     const state = reactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
-        {prop: 'title', label: '权限名称', minWidth: 100},
-        {prop: 'name', label: '权限标识', minWidth: 100},
+        {prop: 'title', label: '显示名称', minWidth: 100},
+        {prop: 'name', label: '唯一标识', minWidth: 100},
         {prop: 'method', label: '请求方式', minWidth: 100},
         {prop: 'url', label: 'url', minWidth: 100},
         {prop: 'created_at', label: '创建时间', minWidth: 100},
@@ -70,6 +71,7 @@ export default defineComponent({
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
+      autoGenerateApi,
     }
   },
 })
