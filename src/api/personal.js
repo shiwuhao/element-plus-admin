@@ -8,7 +8,7 @@ const personal = {};
  * @returns {*}
  */
 personal.login = (params = {}) => {
-  return axios.post('/api/login', params);
+  return axios.post('/login', params);
 };
 
 /**
@@ -16,7 +16,7 @@ personal.login = (params = {}) => {
  * @returns {*}
  */
 personal.logout = () => {
-  return axios.post('/api/logout');
+  return axios.post('/logout');
 };
 
 /**
@@ -24,11 +24,7 @@ personal.logout = () => {
  * @returns {Promise<AxiosResponse<T>>}
  */
 personal.userInfo = () => {
-  return axios.get('/api/user-info');
+  return axios.get('/user');
 };
 
-
-personal.index = (params) => {
-  return axios.get('/api/users');
-}
 export default personal;

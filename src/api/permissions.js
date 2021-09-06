@@ -5,6 +5,8 @@ const itemApi = (item = {}) => axios.get(`/permissions/${item.id}`);
 const updateApi = (item = {}) => axios.put(`/permissions/${item.id}`, {
   name: item.name,
   title: item.title,
+  url:item.url,
+  method:item.method,
   remark: item.remark,
   status: item.status,
 });

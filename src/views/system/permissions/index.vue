@@ -64,6 +64,7 @@ export default defineComponent({
       updateApi,
       storeApi,
       deleteApi,
+      item: {type: 'menu'}
     });
 
     provide('resourceApi', resourceApi);

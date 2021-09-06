@@ -1,2 +1,2 @@
-require('./user.js');
-require('./upload');
+// require('./user.js');
+// require('./upload');
