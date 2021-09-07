@@ -1,14 +1,12 @@
 <template>
   <div class="basic-divider">
     <div class="divider-content">
-      <el-tooltip class="item" effect="dark" :content="tipContent" placement="top-start" :disabled="disabled">
+      <el-tooltip class="item" effect="dark"  placement="top-start" v-bind="{...$props,...$attrs}">
          <i :class="iconName" class="divider-iconName" :style="{color:color}"></i>
       </el-tooltip>
       <span class="divider-title">{{ title }}</span>
     </div>
-    <el-divider
-      :content-position="contentPosition"
-      :direction="direction">
+    <el-divider v-bind="{...$props,...$attrs}">
       {{ text }}
     </el-divider>
   </div>
