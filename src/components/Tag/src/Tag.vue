@@ -2,6 +2,7 @@
   <el-tag
     :key="tag"
     v-for="tag in tagData"
+    v-bind="{...$props,...$attrs}"
     @click="handleClick(tag)"
     @close="handleClose(tag)">
     {{ tag }}
