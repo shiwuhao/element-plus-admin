@@ -55,7 +55,13 @@ import Article from './article'
 import Application from './application';
 import Project from './project';
 import {personalInfo, activeTab} from './data';
-
+// const path = require('path');
+// const files = require.context('./',false,/\.vue$/);
+// const modules = {};
+// files.keys().forEach(key=>{
+//   const name = path.basename(key,'.vue')
+//   modules[name] = files(key).default || files(key)
+// })
 export default defineComponent({
   name: "PersonalCenter",
   components: {

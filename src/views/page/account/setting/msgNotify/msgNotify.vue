@@ -3,7 +3,7 @@
     <el-descriptions :title="item.title" v-for="item in msgNotifyList" :key="item.key">
       <el-descriptions-item :label="item.label">{{ item.value }}</el-descriptions-item>
       <template #extra>
-        <el-switch v-model="item.status"/>
+        <el-switch v-model="value" />
       </template>
     </el-descriptions>
   </div>
@@ -13,10 +13,10 @@ import {defineComponent, reactive, ref} from 'vue';
 import {msgNotifyList} from '../data';
 export default defineComponent({
   setup(){
-    // const value = ref(true)
+    const value = ref(true)
     return {
       msgNotifyList,
-      // value
+      value
     }
   }
 })

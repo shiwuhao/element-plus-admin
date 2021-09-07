@@ -1,6 +1,6 @@
 <template>
   <el-collapse v-model="activeName">
-    <el-collapse-item :name=name :title=title>
+    <el-collapse-item v-bind="{...$props,...$attrs}">
       <template #title v-if="customTitle">
           <div class="setting-wrap-custom">
             <slot name="icon"></slot>

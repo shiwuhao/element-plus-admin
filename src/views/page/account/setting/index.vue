@@ -49,46 +49,49 @@ export default defineComponent({
         }
       }
     }
+
+    .setting-page {
+      margin-top: 20px;
+      padding-left: 18px;
+
+      ::v-deep .el-descriptions {
+        margin-bottom: 40px;
+
+        .el-descriptions__header {
+          height: 0;
+
+          .el-descriptions__title {
+            font-size: $font-size-small;
+            color: $color-text-black
+          }
+        }
+
+        .el-descriptions__body {
+          border-bottom: 1px solid $color-border-dashed;
+          padding-bottom: 14px;
+        }
+
+        .is-left {
+          color: $color-text-gray;
+          font-size: $font-size-small;
+        }
+
+        .el-descriptions-title {
+          color: $color-text-blue;
+          font-size: $font-size-small;
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   .mobile-setting-tabs {
     ::v-deep .el-tabs__nav-wrap {
       width: 100%;
     }
+
   }
 }
 
-.setting-page {
-  margin-top: 20px;
-  padding-left: 18px;
 
-  ::v-deep .el-descriptions {
-    margin-bottom: 40px;
-
-    .el-descriptions__header {
-      height: 0;
-
-      .el-descriptions__title {
-        font-size: $font-size-small;
-        color: $color-text-black
-      }
-    }
-
-    .el-descriptions__body {
-      border-bottom: 1px solid $color-border-dashed;
-      padding-bottom: 14px;
-    }
-
-    .is-left {
-      color: $color-text-gray;
-      font-size: $font-size-small;
-    }
-
-    .el-descriptions-title {
-      color: $color-text-blue;
-      font-size: $font-size-small;
-      cursor: pointer;
-    }
-  }
-}
 </style>
