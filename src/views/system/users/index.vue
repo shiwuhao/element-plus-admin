@@ -12,6 +12,10 @@
                   :paginate="paginate"
                   :loading="listLoading"
                   @change-page="changePage">
+
+          <template #roles="scope">
+            <el-tag class="mr10" v-for="(item,index) in scope.row.roles" :key="index" size="mini">{{item.title}}</el-tag>
+          </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">
             <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
@@ -45,6 +49,7 @@ export default defineComponent({
         {prop: 'id', label: 'ID', width: 100},
         {prop: 'username', label: '用户名', minWidth: 100},
         {prop: 'nickname', label: '昵称', minWidth: 100},
+        {prop: 'roles', label: '角色', minWidth: 100,slot:'roles'},
         {prop: 'status_label', label: '状态', minWidth: 100},
         {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],

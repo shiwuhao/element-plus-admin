@@ -20,6 +20,12 @@
         <el-form-item label="状态" prop="status">
           <el-switch v-model="item.status" :active-value="1" :inactive-value="0"></el-switch>
         </el-form-item>
+        <el-form-item label="角色" prop="status">
+          <el-select v-model="item.roles" multiple placeholder="请选择角色" style="width: 100%;">
+            <el-option v-for="item in getRoles" :key="item.id" :label="item.title" :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
     </template>
     <template #footer>
@@ -34,6 +40,7 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive, inject} from "vue";
+import {useConfig} from "@/composables/config/useConfig";
 
 export default {
   name: "editTemplate",
@@ -48,10 +55,12 @@ export default {
       }
     })
 
+    const {getRoles} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
 
     return {
       ...toRefs(state),
+      getRoles,
       formRef,
       item,
       dialog,

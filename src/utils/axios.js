@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Qs from 'qs';
-import {getToken} from '@/utils/auth';
+import store from "@/store";
 
 const handleParamInUrl = (url, params) => {
   return url.replace(/:(\w+)/g, (_, key) => {
@@ -11,6 +11,7 @@ const handleParamInUrl = (url, params) => {
 }
 
 const instance = axios.create({
+  // eslint-disable-next-line no-undef
   baseURL: process.env.VUE_APP_API_URL,
   headers: {Accept: 'text/json'},
 })
@@ -23,8 +24,9 @@ instance.interceptors.request.use(function (config) {
     config.data = Qs.stringify(config.data);
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
   }
-  if (getToken()) {
-    config.headers['Authorization'] = 'Bearer ' + getToken();
+  const {getters} = store;
+  if (getters.getAccessToken) {
+    config.headers['Authorization'] = 'Bearer ' + getters.getAccessToken;
   }
 
   return config;

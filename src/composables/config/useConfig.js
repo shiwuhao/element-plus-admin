@@ -7,11 +7,10 @@ export function useConfig() {
   const getComponents = computed(() => store.getters.getConfigs.components);
   const getPermissions = computed(() => store.getters.getConfigs.permissions);
   const getTreePermissions = computed(() => {
-    const permissions = store.getters.getConfigs.permissions;
-    return permissions.map(item => {
-      return {id: item.id, label: item.title ? item.name : item.name, children: []};
-    })
+    const root = [{id: 0, pid: 0, title: '根节点'}];
+    return root.concat(store.getters.getConfigs.permissions);
   });
+  const getRoles = computed(() => store.getters.getConfigs.roles);
 
   return {
     getGroups,
@@ -19,5 +18,6 @@ export function useConfig() {
     getComponents,
     getPermissions,
     getTreePermissions,
+    getRoles,
   }
 }

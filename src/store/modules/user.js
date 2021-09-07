@@ -31,7 +31,7 @@ const user = {
     },
     async getUserInfo({commit}) {
       const {data: {data}} = await personal.userInfo();
-      commit('setUser', data.user);
+      commit('setUser', data);
       commit('setRoles', data.roles);
       return data;
     },
