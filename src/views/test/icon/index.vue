@@ -10,6 +10,8 @@
 <script>
 import {defineComponent, ref, onMounted, reactive, computed, unref} from 'vue';
 import iconList from '@/assets/icons/icon';
+// import iconList from '@element-plus/icons'
+// console.log(iconList)
 import {IconPicker} from '@/components/Icon'
 export default defineComponent({
   components: {IconPicker},

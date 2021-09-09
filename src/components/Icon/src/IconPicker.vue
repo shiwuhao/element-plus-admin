@@ -8,7 +8,6 @@
         <el-input
           v-model="iconName"
           ref="input"
-          @input="changeVal"
           v-bind="{...$props,...$attrs}"
         >
           <template #prepend>
@@ -61,10 +60,6 @@ export default defineComponent({
     const showPop = () => {
       visible.value = true;
     };
-    //input值发生改变事件
-    const changeVal = () => {
-      icons.value = icons;
-    };
     //隐藏icon下拉列表事件
     const hidePanel = (e) => {
       if (!popover.value.contains(e.target)) {
@@ -83,7 +78,6 @@ export default defineComponent({
       selectedIcon,
       showPop,
       iconName,
-      changeVal,
       icons,
       hidePanel,
       popover
