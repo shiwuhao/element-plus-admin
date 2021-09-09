@@ -9,7 +9,7 @@
     </el-card>
     <el-card shadow="none" class="mt10">
       <BasicTable :columns="columns"
-                  :data="tableData"
+                  :data="lists"
                   :paginate="paginate"
                   :loading="listLoading"
                   row-key="id"
@@ -67,39 +67,16 @@ export default defineComponent({
       item: {type: 'menu'}
     });
 
-    function listToTree(oldArr) {
-      oldArr.forEach(element => {
-        let parentId = element.pid;
-        if (parentId !== 0) {
-          oldArr.forEach(ele => {
-            if (ele.id === parentId) {
-              if (!ele.children) {
-                ele.children = [];
-              }
-              ele.children.push(element);
-            }
-          });
-        }
-      });
-      oldArr = oldArr.filter(ele => ele.parentId === 0); //这一步是过滤，按树展开，将多余的数组剔除；
-      return oldArr;
-    }
-
-    const {lists} = resourceApi;
-    const tableData = ref();
-    watch(lists, (val) => {
-      console.log(1111,val);
-      tableData.value = listToTree(val);
-      console.log(tableData);
-    })
-
-
     provide('resourceApi', resourceApi);
+
+    const editItem2 = (e) => {
+      console.log(e);
+    }
 
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
-      tableData,
+      editItem2,
       autoGenerateApi,
     }
   },
