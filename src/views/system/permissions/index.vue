@@ -16,8 +16,8 @@
                   @change-page="changePage">
         <el-table-column label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="editItem2(scope)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+            <el-button type="text" size="small" @click="editItem({item:scope.row})">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem({item:scope.row})">
               <template #reference>
                 <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>
               </template>
@@ -36,7 +36,7 @@ import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
 import {listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs, provide, watch,ref} from "vue";
+import {defineComponent, reactive, toRefs, provide, watch, ref} from "vue";
 
 export default defineComponent({
   name: "index",

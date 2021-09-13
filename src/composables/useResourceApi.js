@@ -66,19 +66,19 @@ export function useResourceApi({
   }
 
   // 修改项
-  const editItem = async (index) => {
+  const editItem = async ({index = null, item = {}}) => {
     state.dialog = true;
     state.currentIndex = index;
-    const item = state.lists[state.currentIndex];
-    await getItem(item);
+    const _item = index ? state.lists[state.currentIndex] : item;
+    await getItem(_item);
   }
 
   // 删除项
-  const deleteItem = async (index) => {
+  const deleteItem = async ({index = null, item = {}}) => {
     state.currentIndex = index;
-    const item = state.lists[state.currentIndex];
-    await deleteApi(item).then(r => r);
-    state.lists.splice(state.currentIndex, 1);
+    const _item = index ? state.lists[state.currentIndex] : item;
+    await deleteApi(_item).then(r => r);
+    index && state.lists.splice(state.currentIndex, 1);
   }
 
   // 更新项
@@ -106,6 +106,7 @@ export function useResourceApi({
         if (data) {
           id ? state.lists[state.currentIndex] = data : state.lists.unshift(data);
         }
+        getList();
         cancelItem();
       }
     })
