@@ -16,7 +16,7 @@
                   @change-page="changePage">
         <el-table-column label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
+            <el-button type="text" size="small" @click="editItem2(scope)">编辑</el-button>
             <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
               <template #reference>
                 <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>

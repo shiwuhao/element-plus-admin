@@ -19,7 +19,7 @@
             v-model="item.pid"
             :options="getTreePermissions"
             :show-all-levels="false"
-            :props="{ checkStrictly: true,expandTrigger:'hover',value:'id',label:'title',emitPath:false }"
+            :props="{ checkStrictly: true,value:'id',label:'title',emitPath:false }"
             clearable
             style="width: 100%;"
           ></el-cascader>
