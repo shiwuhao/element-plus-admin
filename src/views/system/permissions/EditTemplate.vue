@@ -8,11 +8,10 @@
     @close="cancelItem">
     <template #default>
       <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
-        {{ item }}
-        <el-form-item label="节点类型" prop="name">
+        <el-form-item label="节点类型" prop="type">
           <el-radio-group v-model="item.type" size="mini">
-            <el-radio-button label="menu">菜单路由</el-radio-button>
-            <el-radio-button label="permission">权限节点</el-radio-button>
+            <el-radio-button label="menu">菜单</el-radio-button>
+            <el-radio-button label="action">动作</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="父级节点" prop="pid">
@@ -20,7 +19,7 @@
             v-model="item.pid"
             :options="getTreePermissions"
             :show-all-levels="false"
-            :props="{ checkStrictly: true,expandTrigger:'hover',value:'id',label:'title',emitPath:false }"
+            :props="{ checkStrictly: true,value:'id',label:'title',emitPath:false }"
             clearable
             style="width: 100%;"
           ></el-cascader>
@@ -31,9 +30,9 @@
         <el-form-item label="显示名称" prop="title">
           <el-input v-model="item.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item :label="item.type === 'permission' ? '后端URL' : '前端路由'" prop="url">
+        <el-form-item label="后端URL" prop="url" v-if="item.type === 'permission'">
           <el-input v-model="item.url">
-            <template #prepend v-if="item.type === 'permission'">
+            <template #prepend>
               <el-select v-model="item.method" placeholder="请求方式" style="width: 120px">
                 <el-option label="get" value="get"></el-option>
                 <el-option label="post" value="post"></el-option>
@@ -43,8 +42,18 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item label="备注" prop="textarea">
-          <el-input v-model="item.remark" type="textarea" autocomplete="off"></el-input>
+        <el-form-item label="菜单图标" prop="icon" v-if="item.type === 'menu'">
+          <e-icon-picker v-model="item.icon"/>
+<!--          <el-select v-model="item.icon">-->
+<!--            <el-icon :size="20">-->
+<!--              <edit />-->
+<!--            </el-icon>-->
+<!--            <el-option value="el-icon-ice-cream-square"><span class="el-icon-ice-cream-square"></span></el-option>-->
+<!--          </el-select>-->
+<!--          &lt;!&ndash;          <el-input v-model="item.icon"></el-input>&ndash;&gt;-->
+        </el-form-item>
+        <el-form-item label="前端路由" prop="url" v-if="item.type === 'menu'">
+          <el-input v-model="item.url"></el-input>
         </el-form-item>
       </el-form>
     </template>
@@ -61,15 +70,19 @@
 import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
+import * as icons from '@element-plus/icons';
+console.log(icons)
 
 export default {
   name: "editTemplate",
-  components: {BasicDrawer},
+  components: {BasicDrawer,icons},
   setup() {
     const state = shallowReactive({
+      icons: icons,
       rules: {
-        type: [],
-        pid: [{required: true, message: '请选择父级节点', trigger: 'blur'}],
+        pid: [{required: true, message: '请选择父级节点', trigger: 'change'}],
+        type: [{required: true, message: '请选择菜单类型', trigger: 'change'}],
+        icon: [{required: true, message: '请选择图表', trigger: 'change'}],
         name: [{required: true, message: '请输入唯一标识', trigger: 'blur'}],
         title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
         method: [{required: true, message: '请输入显示名称', trigger: 'blur'}],

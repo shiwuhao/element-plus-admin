@@ -16,8 +16,8 @@
                   @change-page="changePage">
         <el-table-column label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+            <el-button type="text" size="small" @click="editItem({item:scope.row})">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem({item:scope.row})">
               <template #reference>
                 <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>
               </template>
@@ -36,7 +36,7 @@ import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
 import {listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs, provide} from "vue";
+import {defineComponent, reactive, toRefs, provide, watch, ref} from "vue";
 
 export default defineComponent({
   name: "index",
@@ -46,8 +46,8 @@ export default defineComponent({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
         {prop: 'title', label: '显示名称', minWidth: 100},
-        {prop: 'name', label: '唯一标识', minWidth: 100},
-        {prop: 'method', label: '请求方式', minWidth: 100},
+        {prop: 'alias', label: '别名标识', minWidth: 100},
+        {prop: 'type_label', label: '类型', minWidth: 100},
         {prop: 'url', label: 'url', minWidth: 100},
         {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],
@@ -69,9 +69,14 @@ export default defineComponent({
 
     provide('resourceApi', resourceApi);
 
+    const editItem2 = (e) => {
+      console.log(e);
+    }
+
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
+      editItem2,
       autoGenerateApi,
     }
   },
