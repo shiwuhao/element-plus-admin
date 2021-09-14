@@ -1,11 +1,10 @@
 <template>
-  <el-row>
-    <el-col>
-      <el-card :body-style="{ padding: '0px' }" :shadow="shadow" class="common-card">
+      <el-card :shadow="shadow" class="common-card">
         <template #header v-if="header">
           <div class="card-header">
             <span>{{ cardName }}</span>
-            <el-button class="button" type="text">{{ btnName }}</el-button>
+              <el-button class="button" type="text" v-if="headerType === 'btn'">{{ btnName }}</el-button>
+              <i v-else-if="headerType === 'icon'" :class="iconName"></i>
           </div>
         </template>
         <div class="text item" :cardData='applicationList'>
@@ -23,12 +22,9 @@
           </div>
         </div>
       </el-card>
-    </el-col>
-  </el-row>
 </template>
 <script>
 import {defineComponent, ref, toRefs} from 'vue';
-
 export default defineComponent({
   props: {
     cardName: {
@@ -76,6 +72,14 @@ export default defineComponent({
     imageUrl: {
       type: String,
       default: ''
+    },
+    headerType: {
+      type: String,
+      default: 'btn'
+    },
+    iconName: {
+      type: String,
+      default: ''
     }
   },
   setup(props) {
@@ -88,20 +92,22 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@media only screen and (max-width: 1024px) {
-  .el-row {
-    width: 100%;
-  }
-}
-@media screen and (min-width: 640px) {
-  .el-row {
-    width: 31%;
-    margin-right: 15px;
-  }
-}
+//@media only screen and (max-width: 1024px) {
+//  .el-row {
+//    width: 100%;
+//  }
+//}
+//@media screen and (min-width: 640px) {
+//  .el-row {
+//    width: 31%;
+//    margin-right: 15px;
+//  }
+//}
 .common-card {
   margin-bottom: 14px;
-
+  .card-header {
+    @include flex($justify-content: space-between)
+  }
   .time {
     @include description($font-size: 13px,$color:#999);
   }
