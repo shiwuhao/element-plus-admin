@@ -50,10 +50,10 @@
 import {defineComponent, reactive, toRefs, ref} from 'vue';
 import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
-import Team from './team';
-import Article from './article'
-import Application from './application';
-import Project from './project';
+import Team from './Team';
+import Article from './Article'
+import Application from './Application';
+import Project from './Project';
 import {personalInfo, activeTab} from './data';
 // const path = require('path');
 // const files = require.context('./',false,/\.vue$/);
@@ -133,9 +133,6 @@ export default defineComponent({
       }
     }
   }
-  .personal-center-right-flex {
-    @include flex($wrap: wrap)
-  }
 }
 
 .el-divider--horizontal {
@@ -148,6 +145,11 @@ export default defineComponent({
 
   span {
     font-size: $font-size-small;
+  }
+}
+.personal-center-right-flex {
+  ::v-deep .el-card__body {
+    padding: 0;
   }
 }
 </style>

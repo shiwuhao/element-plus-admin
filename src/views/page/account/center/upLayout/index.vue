@@ -56,10 +56,10 @@
 import {defineComponent, reactive, toRefs, ref} from 'vue';
 import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
-import Team from './team';
-import Article from './article'
-import Application from './application';
-import Project from './project';
+import Team from './Team';
+import Article from './Article'
+import Application from './Application';
+import Project from './Project';
 import {personalInfo, activeTab} from './data';
 
 export default defineComponent({
