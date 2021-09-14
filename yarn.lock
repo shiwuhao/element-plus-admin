@@ -4,7 +4,6 @@
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.14.5":
   version "7.14.5"
-  resolved "https://registry.nlark.com/@babel/code-frame/download/@babel/code-frame-7.14.5.tgz"
   resolved "https://registry.nlark.com/@babel/code-frame/download/@babel/code-frame-7.14.5.tgz?cache=0&sync_timestamp=1623280639364&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fcode-frame%2Fdownload%2F%40babel%2Fcode-frame-7.14.5.tgz#23b08d740e83f49c5e59945fbf1b43e80bbf4edb"
   integrity sha1-I7CNdA6D9JxeWZRfvxtD6Au/Tts=
   dependencies:
@@ -8407,7 +8406,7 @@ svg-baker@^1.5.0, svg-baker@^1.7.0:
     query-string "^4.3.2"
     traverse "^0.6.6"
 
-svg-sprite-loader@^6.0.5:
+svg-sprite-loader@^6.0.0, svg-sprite-loader@^6.0.5:
   version "6.0.9"
   resolved "https://registry.nlark.com/svg-sprite-loader/download/svg-sprite-loader-6.0.9.tgz#f1a1089c38600ebd5fb8d09dfa3c83aa4434a2b4"
   integrity sha1-8aEInDhgDr1fuNCd+jyDqkQ0orQ=
