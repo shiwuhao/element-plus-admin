@@ -11,10 +11,7 @@
           >
           <template #text-custom>
             <h2>{{ item.value }}</h2>
-            <div>
-              <component :is="item.component"/>
-              <Echarts :chartData="echartsData.order" :height="height"/>
-            </div>
+            <component :is="item.component"/>
             <el-divider></el-divider>
             <p><span class="subTitle">{{ item.subTitle }}</span><span>{{ item.total }}</span></p>
           </template>
@@ -28,36 +25,14 @@ import {defineComponent, reactive, ref} from 'vue';
 import {Card} from '@/components/Card';
 import {growCardData} from "@/views/dashboard/analysis/data";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {Echarts} from '@/components/Echarts';
+import Calculation from './components/Calculation';
+import LineChart from './components/LineChart';
+import BarChart from './components/BarChart';
+import PieChart from './components/PieChart';
 export default defineComponent({
-  components: {Card,Echarts},
+  components: {Card,Calculation,LineChart,BarChart,PieChart},
   setup() {
     const {getIsMobile} = useRootSetting();
-     const echartsData = reactive({
-       order: {
-         xAxis: [
-           {
-             "show" : false,
-             type: 'category',
-             boundaryGap: false,
-             // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-           }
-         ],
-         yAxis: [
-           {
-             type: 'value',
-             "show" : false,
-           }
-         ],
-         series: [
-           {
-             type: 'bar',
-             showSymbol: false,
-             data: [140, 232, 101, 264, 90, 340, 250]
-           },
-         ]
-       },
-     })
     return {
       header: ref(true),
       btnName: ref('操作'),
@@ -65,8 +40,7 @@ export default defineComponent({
       iconName: ref('el-icon-warning-outline'),
       height: ref('200px'),
       growCardData,
-      getIsMobile,
-      echartsData,
+      getIsMobile
     }
   }
 })
