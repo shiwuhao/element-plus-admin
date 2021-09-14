@@ -5,7 +5,7 @@ const itemApi = (item = {}) => axios.get(`/permissions/${item.id}`);
 const updateApi = (item = {}) => axios.put(`/permissions/${item.id}`, {
   pid: item.pid,
   type: item.type,
-  alias: item.alias,
+  name: item.name,
   title: item.title,
   url: item.url,
   method: item.method,
@@ -14,7 +14,7 @@ const updateApi = (item = {}) => axios.put(`/permissions/${item.id}`, {
 const storeApi = (item = {}) => axios.post(`/permissions`, {
   pid: item.pid,
   type: item.type,
-  alias: item.alias,
+  name: item.name,
   title: item.title,
   url: item.url,
   method: item.method,

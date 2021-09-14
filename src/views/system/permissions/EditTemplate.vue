@@ -43,7 +43,14 @@
           </el-input>
         </el-form-item>
         <el-form-item label="菜单图标" prop="icon" v-if="item.type === 'menu'">
-          <el-input v-model="item.icon"></el-input>
+          <e-icon-picker v-model="item.icon"/>
+<!--          <el-select v-model="item.icon">-->
+<!--            <el-icon :size="20">-->
+<!--              <edit />-->
+<!--            </el-icon>-->
+<!--            <el-option value="el-icon-ice-cream-square"><span class="el-icon-ice-cream-square"></span></el-option>-->
+<!--          </el-select>-->
+<!--          &lt;!&ndash;          <el-input v-model="item.icon"></el-input>&ndash;&gt;-->
         </el-form-item>
         <el-form-item label="前端路由" prop="url" v-if="item.type === 'menu'">
           <el-input v-model="item.url"></el-input>
@@ -63,12 +70,15 @@
 import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
+import * as icons from '@element-plus/icons';
+console.log(icons)
 
 export default {
   name: "editTemplate",
-  components: {BasicDrawer},
+  components: {BasicDrawer,icons},
   setup() {
     const state = shallowReactive({
+      icons: icons,
       rules: {
         pid: [{required: true, message: '请选择父级节点', trigger: 'change'}],
         type: [{required: true, message: '请选择菜单类型', trigger: 'change'}],

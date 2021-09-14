@@ -2,6 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
+import {setupEIconPicker} from './plugins/eIconPicker'
 import {setupRouter} from './router'
 import {setupStore} from './store'
 import '@/mock/index';
@@ -14,6 +15,8 @@ import {initProjectConfig} from "@/logics/initProjectConfig";
   setupElementPlus(app);
 
   setupContentment(app);
+
+  setupEIconPicker(app);
 
   setupStore(app);
 

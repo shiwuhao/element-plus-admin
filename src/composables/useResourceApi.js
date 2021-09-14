@@ -9,9 +9,7 @@ export function useResourceApi({
                                  deleteApi,
                                  query = {},
                                  item = {},
-                                 paginate = {
-                                   layout: 'prev, pager, next, ->, total',
-                                 },
+                                 paginate = {},
                                  uniqueId = 'id'
                                }) {
   const formRef = ref(null);
@@ -21,12 +19,16 @@ export function useResourceApi({
     item: item,
     query: query,
     lists: [],
-    paginate: paginate,
     dialog: false,
+    paginate: {
+      layout: 'prev, pager, next, ->, total',
+      ...paginate
+    },
     currentIndex: null,
     listLoading: false,
     itemLoading: false,
     confirmLoading: false,
+    refreshLists: false,// 操作后刷新列表
   });
 
   // 节流
@@ -66,48 +68,53 @@ export function useResourceApi({
   }
 
   // 修改项
-  const editItem = async ({index = null, item = {}}) => {
+  const editItem = async ({index = null, item = null}) => {
     state.dialog = true;
     state.currentIndex = index;
+    state.refreshLists = !!item; // 传入item改为更新后刷新列表
     const _item = index ? state.lists[state.currentIndex] : item;
     await getItem(_item);
   }
 
   // 删除项
-  const deleteItem = async ({index = null, item = {}}) => {
+  const deleteItem = async ({index = null, item = null}) => {
     state.currentIndex = index;
+    state.refreshLists = !!item; // 传入item改为更新后刷新列表
     const _item = index ? state.lists[state.currentIndex] : item;
     await deleteApi(_item).then(r => r);
-    index && state.lists.splice(state.currentIndex, 1);
+    state.refreshLists ? await getList() : (index >= 0 && state.lists.splice(state.currentIndex, 1));
   }
 
   // 更新项
-  const updateItem = async () => {
-    state.confirmLoading = true
+  const _updateItem = async () => {
     const {data: {data}} = await updateApi(state.item).then(r => r);
-    state.confirmLoading = false;
-    return data;
+    if (state.refreshLists) {
+      await getList();
+    } else if (state.currentIndex >= 0) {
+      state.lists[state.currentIndex] = data;
+    }
+    cancelItem();
   }
 
   // 保存项
-  const storeItem = async () => {
-    state.confirmLoading = true
+  const _storeItem = async () => {
     const {data: {data}} = await storeApi(state.item).then(r => r);
-    state.confirmLoading = false;
-    return data;
+    state.refreshLists ? await getList() : state.lists.unshift(data);
+    cancelItem();
   }
 
   // 确认提交
   const confirmItem = () => {
     formRef.value.validate(async (valid) => {
       if (valid) {
-        const {[uniqueId]: id} = state.item;
-        const data = id ? await updateItem() : await storeItem();
-        if (data) {
-          id ? state.lists[state.currentIndex] = data : state.lists.unshift(data);
+        try {
+          state.confirmLoading = true;
+          const {[uniqueId]: id} = state.item;
+          id ? await _updateItem() : await _storeItem();
+          state.confirmLoading = false;
+        } catch (e) {
+          state.confirmLoading = false;
         }
-        getList();
-        cancelItem();
       }
     })
   }
@@ -139,8 +146,6 @@ export function useResourceApi({
     getItem,
     addItem,
     editItem,
-    updateItem,
-    storeItem,
     deleteItem,
     confirmItem,
     cancelItem,
