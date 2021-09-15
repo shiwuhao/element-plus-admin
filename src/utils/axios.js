@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Qs from 'qs';
 import store from "@/store";
+import {ElMessage} from "element-plus";
 
 const handleParamInUrl = (url, params) => {
   return url.replace(/:(\w+)/g, (_, key) => {
@@ -40,34 +41,33 @@ instance.interceptors.response.use((response) => {
 
   return response;
 }, (err) => {
+  const {response: {status, data: {message}}} = err;
 
-  if (err && err.response) {
+  let noticeConfig = {};
 
-    let message = [];
-    let noticeConfig = {};
+  switch (status) {
+    case 400:
+      break;
+    case 403:
+      noticeConfig = {title: 403, desc: err.response.data.message, duration: 0};
+      break;
+    case 401:
+      if (err.config.url.indexOf('login') > 0) {
+        noticeConfig = {title: 401, desc: err.response.data.message, duration: 0};
+      }
+      break;
+    case 404:
+      noticeConfig = {title: 404, desc: err.response.data.message, duration: 0};
+      break;
+    case 422:
 
-    switch (err.response.status) {
-      case 400:
-        break;
-      case 403:
-        noticeConfig = {title: 403, desc: err.response.data.message, duration: 0};
-        break;
-      case 401:
-        if (err.config.url.indexOf('login') > 0) {
-          noticeConfig = {title: 401, desc: err.response.data.message, duration: 0};
-        }
-        break;
-      case 404:
-        noticeConfig = {title: 404, desc: err.response.data.message, duration: 0};
-        break;
-      case 422:
-
-        noticeConfig = {title: '表单验证失败', desc: message.join('<br/>')};
-        break;
-      default:
-        noticeConfig = {title: err.response.status, desc: err.response.data.message};
-    }
+      noticeConfig = {title: '表单验证失败', desc: message.join('<br/>')};
+      break;
+    default:
+      noticeConfig = {title: message};
   }
+  ElMessage.error(message)
+
   return Promise.reject(err)
 });
 
