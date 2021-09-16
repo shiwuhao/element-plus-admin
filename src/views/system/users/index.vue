@@ -18,8 +18,8 @@
           </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+            <el-button type="text" size="small" @click="editItem(scope.row)">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
               <template #reference>
                 <el-button type="text" size="small">删除</el-button>
               </template>
@@ -38,13 +38,13 @@ import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
 import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/users";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs, provide} from "vue";
+import {defineComponent, toRefs, provide, shallowReactive} from "vue";
 
 export default defineComponent({
   name: "index",
   components: {BasicQuery, BasicTable, EditTemplate, PageWrapper},
   setup() {
-    const state = reactive({
+    const state = shallowReactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
         {prop: 'username', label: '用户名', minWidth: 100},

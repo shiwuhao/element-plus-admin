@@ -11,7 +11,7 @@ export function useResourceApi({
                                  item = {},
                                  paginate = {},
                                  uniqueId = 'id',
-                                 refreshLists = false,
+                                 refreshAfterConfirm = true,// 确认提交后刷新
                                }) {
   const formRef = ref(null);
   const queryRef = ref(null);
@@ -25,11 +25,10 @@ export function useResourceApi({
       layout: 'prev, pager, next, ->, total',
       ...paginate
     },
-    currentIndex: null,
     listLoading: false,
     itemLoading: false,
     confirmLoading: false,
-    refreshLists: refreshLists,// 操作后刷新列表
+    refreshAfterConfirm: refreshAfterConfirm,
   });
 
   // 节流
@@ -69,54 +68,48 @@ export function useResourceApi({
   }
 
   // 修改项
-  const editItem = async ({index = null, item = null}) => {
+  const editItem = async (item) => {
     state.dialog = true;
-    state.currentIndex = index;
-    state.refreshLists = !!item; // 传入item改为更新后刷新列表
-    const _item = index ? state.lists[state.currentIndex] : item;
-    await getItem(_item);
+    await getItem(item);
   }
 
   // 删除项
-  const deleteItem = async ({index = null, item = null}) => {
-    state.currentIndex = index;
-    state.refreshLists = !!item; // 传入item改为更新后刷新列表
-    const _item = index ? state.lists[state.currentIndex] : item;
-    await deleteApi(_item).then(r => r);
-    state.refreshLists ? await getList() : (index >= 0 && state.lists.splice(state.currentIndex, 1));
+  const deleteItem = async (item) => {
+    await deleteApi(item).then(r => r);
+    state.refreshAfterConfirm && await getList();
+    return Promise.resolve();
   }
 
   // 更新项
   const _updateItem = async () => {
-    const {data: {data}} = await updateApi(state.item).then(r => r);
-    if (state.refreshLists) {
-      await getList();
-    } else if (state.currentIndex >= 0) {
-      state.lists[state.currentIndex] = data;
-    }
+    await updateApi(state.item).then(r => r);
+    state.refreshAfterConfirm && await getList();
     cancelItem();
   }
 
   // 保存项
   const _storeItem = async () => {
-    const {data: {data}} = await storeApi(state.item).then(r => r);
-    state.refreshLists ? await getList() : state.lists.unshift(data);
+    await storeApi(state.item).then(r => r);
+    state.refreshAfterConfirm && await getList();
     cancelItem();
   }
 
   // 确认提交
   const confirmItem = () => {
-    formRef.value.validate(async (valid) => {
-      if (valid) {
-        try {
-          state.confirmLoading = true;
-          const {[uniqueId]: id} = state.item;
-          id ? await _updateItem() : await _storeItem();
-          state.confirmLoading = false;
-        } catch (e) {
-          state.confirmLoading = false;
+    return new Promise(resolve => {
+      formRef.value.validate(async (valid) => {
+        if (valid) {
+          try {
+            state.confirmLoading = true;
+            const {[uniqueId]: id} = state.item;
+            id ? await _updateItem() : await _storeItem();
+            state.confirmLoading = false;
+          } catch (e) {
+            state.confirmLoading = false;
+          }
+          resolve();
         }
-      }
+      })
     })
   }
 
