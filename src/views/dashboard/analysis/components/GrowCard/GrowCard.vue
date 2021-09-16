@@ -25,12 +25,12 @@ import {defineComponent, reactive, ref} from 'vue';
 import {Card} from '@/components/Card';
 import {growCardData} from "@/views/dashboard/analysis/data";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import Calculation from './components/Calculation';
+import ScatterChart from './components/ScatterChart';
 import LineChart from './components/LineChart';
 import BarChart from './components/BarChart';
 import PieChart from './components/PieChart';
 export default defineComponent({
-  components: {Card,Calculation,LineChart,BarChart,PieChart},
+  components: {Card,ScatterChart,LineChart,BarChart,PieChart},
   setup() {
     const {getIsMobile} = useRootSetting();
     return {

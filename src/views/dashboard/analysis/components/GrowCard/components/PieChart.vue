@@ -1,22 +1,35 @@
 <template>
-  <div>{{echartsData}}</div>
+  饼图
+  <Echarts :chartData="chartData"  ref="echarts" :id="id"/>
 </template>
 <script>
-import {defineComponent, onMounted, reactive} from 'vue';
-import {ECharts} from '@/components/Echarts';
-import {getRequest} from '@/libs/api';
+import {defineComponent, onMounted, reactive, ref,nextTick} from 'vue';
+import {Echarts} from '@/components/Echarts';
 export default defineComponent({
-  components: {ECharts},
+  components: {Echarts},
   setup(){
-    const echartsData = reactive([]);
+    const echarts = ref(null);
     onMounted(()=>{
-      getRequest('/js/echarts.json').then(res => {
-        echartsData.value = res.data.data
+      nextTick(()=>{
+        echarts.value.initChart()
       })
     })
-
+    const chartData = reactive({
+      series: [{
+        type: 'pie',
+        data: [
+          {value: 1048, name: '搜索引擎'},
+          {value: 735, name: '直接访问'},
+          {value: 580, name: '邮件营销'},
+          {value: 484, name: '联盟广告'},
+          {value: 300, name: '视频广告'}
+        ]
+      }]
+    })
     return {
-      echartsData
+      chartData,
+      echarts,
+      id: ref('pie-echarts')
     }
   }
 })
