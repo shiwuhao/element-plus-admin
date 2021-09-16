@@ -10,7 +10,8 @@ export function useResourceApi({
                                  query = {},
                                  item = {},
                                  paginate = {},
-                                 uniqueId = 'id'
+                                 uniqueId = 'id',
+                                 refreshLists = false,
                                }) {
   const formRef = ref(null);
   const queryRef = ref(null);
@@ -28,7 +29,7 @@ export function useResourceApi({
     listLoading: false,
     itemLoading: false,
     confirmLoading: false,
-    refreshLists: false,// 操作后刷新列表
+    refreshLists: refreshLists,// 操作后刷新列表
   });
 
   // 节流
@@ -121,7 +122,7 @@ export function useResourceApi({
 
   // 取消提交
   const cancelItem = () => {
-    state.item = {};
+    state.item = item;
     state.dialog = false;
     nextTick(() => formRef.value.clearValidate()).then(r => r);
   }

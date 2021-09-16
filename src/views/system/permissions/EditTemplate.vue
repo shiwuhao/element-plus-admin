@@ -24,13 +24,13 @@
             style="width: 100%;"
           ></el-cascader>
         </el-form-item>
-        <el-form-item label="唯一标识" prop="name">
+        <el-form-item label="英文标识" prop="name">
           <el-input v-model="item.name" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="显示名称" prop="title">
           <el-input v-model="item.title" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="后端URL" prop="url" v-if="item.type === 'permission'">
+        <el-form-item label="后端URL" prop="url" v-if="item.type === 'action'">
           <el-input v-model="item.url">
             <template #prepend>
               <el-select v-model="item.method" placeholder="请求方式" style="width: 120px">
@@ -42,18 +42,16 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item label="菜单图标" prop="icon" v-if="item.type === 'menu'">
-          <e-icon-picker v-model="item.icon"/>
-<!--          <el-select v-model="item.icon">-->
-<!--            <el-icon :size="20">-->
-<!--              <edit />-->
-<!--            </el-icon>-->
-<!--            <el-option value="el-icon-ice-cream-square"><span class="el-icon-ice-cream-square"></span></el-option>-->
-<!--          </el-select>-->
-<!--          &lt;!&ndash;          <el-input v-model="item.icon"></el-input>&ndash;&gt;-->
-        </el-form-item>
         <el-form-item label="前端路由" prop="url" v-if="item.type === 'menu'">
-          <el-input v-model="item.url"></el-input>
+          <el-select v-model="item.url" placeholder="请求方式" style="width: 100%" filterable>
+            <el-option v-for="(item,index) in getPermissionRoutes" :key="index" :value="item.path">
+              <span style="float: left">{{ item.path }}</span>
+              <span style="float: right">{{ item.meta.title }}</span>
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="菜单图标" v-if="item.type === 'menu'">
+          <e-icon-picker v-model="item.icon" size="small"/>
         </el-form-item>
       </el-form>
     </template>
@@ -68,29 +66,31 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {toRefs, shallowReactive, inject} from "vue";
+import {toRefs, shallowReactive, inject, reactive, computed} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
 import * as icons from '@element-plus/icons';
+import {useRouter} from "vue-router";
+
 console.log(icons)
 
 export default {
   name: "editTemplate",
-  components: {BasicDrawer,icons},
+  components: {BasicDrawer, icons},
   setup() {
     const state = shallowReactive({
       icons: icons,
       rules: {
         pid: [{required: true, message: '请选择父级节点', trigger: 'change'}],
         type: [{required: true, message: '请选择菜单类型', trigger: 'change'}],
-        icon: [{required: true, message: '请选择图表', trigger: 'change'}],
-        name: [{required: true, message: '请输入唯一标识', trigger: 'blur'}],
+        name: [{required: true, pattern: /^(\w|:){3,50}$/, message: '标识为必填项，3-50个英文字符', trigger: 'blur'}],
         title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
         method: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
         url: [{required: true, message: '请输入后端url地址', trigger: 'blur'}],
       }
     })
 
-    const {getTreePermissions} = useConfig();
+
+    const {getTreePermissions, getPermissionRoutes} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
 
     return {
@@ -102,7 +102,8 @@ export default {
       confirmLoading,
       cancelItem,
       confirmItem,
-      getTreePermissions
+      getTreePermissions,
+      getPermissionRoutes,
     }
   }
 }

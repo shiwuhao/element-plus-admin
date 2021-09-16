@@ -8,12 +8,18 @@
       <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery"></BasicQuery>
     </el-card>
     <el-card shadow="none" class="mt10">
-      <BasicTable :columns="columns"
+      <BasicTable row-key="id" lazy
+                  :columns="columns"
                   :data="lists"
                   :paginate="paginate"
                   :loading="listLoading"
-                  row-key="id"
+                  :load="loadChildren"
+                  :tree-props="{children: 'children', hasChildren: 'children_count'}"
                   @change-page="changePage">
+        <template #title="scope">
+          <span :class="scope.row.icon"></span>
+          <span style="margin-left: 5px;">{{ scope.row.title }}</span>
+        </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">
             <el-button type="text" size="small" @click="editItem({item:scope.row})">编辑</el-button>
@@ -34,7 +40,7 @@
 import {PageWrapper} from "@/components/Page"
 import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
-import {listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
+import {childrenListApi, listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
 import {useResourceApi} from "@/composables/useResourceApi";
 import {defineComponent, reactive, toRefs, provide, watch, ref} from "vue";
 
@@ -45,10 +51,11 @@ export default defineComponent({
     const state = reactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
-        {prop: 'title', label: '显示名称', minWidth: 100},
-        {prop: 'alias', label: '别名标识', minWidth: 100},
-        {prop: 'type_label', label: '类型', minWidth: 100},
-        {prop: 'url', label: 'url', minWidth: 100},
+        {prop: 'title', label: '显示名称', minWidth: 100, slot: 'title'},
+        {prop: 'name', label: '英文标识', minWidth: 100},
+        {prop: 'type_label', label: '类型', minWidth: 30},
+        {prop: 'method', label: '请求方式', minWidth: 30},
+        {prop: 'url', label: '路由', minWidth: 100},
         {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],
       schemas: [
@@ -64,20 +71,22 @@ export default defineComponent({
       updateApi,
       storeApi,
       deleteApi,
-      item: {type: 'menu'}
+      item: {type: 'menu'},
+      refreshLists: true
     });
 
     provide('resourceApi', resourceApi);
 
-    const editItem2 = (e) => {
-      console.log(e);
+    const loadChildren = async (tree, treeNode, resolve) => {
+      const {data: {data}} = await childrenListApi(tree.id);
+      resolve(data);
     }
 
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
-      editItem2,
       autoGenerateApi,
+      loadChildren,
     }
   },
 })

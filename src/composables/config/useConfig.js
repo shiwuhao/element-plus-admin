@@ -1,5 +1,6 @@
-import {computed} from 'vue'
+import {computed, reactive} from 'vue'
 import store from "@/store";
+import {useRouter} from "vue-router";
 
 export function useConfig() {
   const getGroups = computed(() => store.getters.getConfigs.groups);
@@ -12,6 +13,8 @@ export function useConfig() {
   });
   const getRoles = computed(() => store.getters.getConfigs.roles);
 
+  const getPermissionRoutes = reactive(useRouter().getRoutes().filter(item => item.meta.menu));
+
   return {
     getGroups,
     getTypes,
@@ -19,5 +22,6 @@ export function useConfig() {
     getPermissions,
     getTreePermissions,
     getRoles,
+    getPermissionRoutes,
   }
 }
