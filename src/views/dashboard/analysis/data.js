@@ -1,12 +1,14 @@
 export const growCardData = [
   {
+    id: 1,
     title: '总销售额',
     value: 12640,
     total: 12432,
     subTitle: '日销售额',
-    component: 'Calculation'
+    component: 'ScatterChart'
   },
   {
+    id: 2,
     title: '访问量',
     value: 8846,
     total: 1234,
@@ -14,6 +16,7 @@ export const growCardData = [
     component: 'LineChart'
   },
   {
+    id: 3,
     title: '支付笔数',
     value: 6560,
     total: '60%',
@@ -21,6 +24,7 @@ export const growCardData = [
     component: 'BarChart'
   },
   {
+    id: 4,
     title: '运营活动效果',
     value: '78%',
     total: '12%',
