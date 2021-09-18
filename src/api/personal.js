@@ -1,30 +1,28 @@
 import axios from '@/utils/axios';
 
-const personal = {};
-
-/**
- * 登录
- * @param params
- * @returns {*}
- */
-personal.login = (params = {}) => {
+// 登录
+const login = (params = {}) => {
   return axios.post('/login', params);
 };
 
-/**
- * 登出
- * @returns {*}
- */
-personal.logout = () => {
+// 登出
+const logout = () => {
   return axios.post('/logout');
 };
 
-/**
- * 登录用户信息
- * @returns {Promise<AxiosResponse<T>>}
- */
-personal.userInfo = () => {
-  return axios.get('/user');
+// 个人信息
+const info = () => {
+  return axios.get('/personal/info');
 };
 
-export default personal;
+// 菜单 权限节点
+const permissions = () => {
+  return axios.get('/personal/permissions');
+};
+
+export {
+  login,
+  logout,
+  info,
+  permissions,
+};
