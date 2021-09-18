@@ -1,30 +1,34 @@
 <template>
-      <el-card :shadow="shadow" class="common-card">
-        <template #header v-if="header">
-          <div class="card-header">
-            <span>{{ cardName }}</span>
-              <el-button class="button" type="text" v-if="headerType === 'btn'">{{ btnName }}</el-button>
-              <i v-else-if="headerType === 'icon'" :class="iconName"></i>
-          </div>
-        </template>
-        <div class="text item" :cardData='applicationList'>
-          <slot name="text-custom"></slot>
+  <el-card :shadow="shadow" class="common-card">
+    <template #header v-if="header">
+      <div class="card-header">
+        <span>{{ cardName }}</span>
+        <el-button class="button" type="text" v-if="headerType === 'btn'">{{ btnName }}</el-button>
+        <i v-else-if="headerType === 'icon'" :class="iconName"></i>
+        <div v-else class="card-header-custom">
+          <slot name="header-custom"></slot>
         </div>
-        <div :class="imageCard === true ? 'application-image-card':'application-card'">
-          <img :src="imageUrl" class="image">
-          <div style="padding: 14px;" class="project-card">
-            <span class="project-card-title">{{ title }}</span>
-            <p class="project-card-description">{{ description }}</p>
-            <div class="bottom">
-              <time class="time">{{ time }}</time>
-              <slot name="image-custom"></slot>
-            </div>
-          </div>
+      </div>
+    </template>
+    <div class="text item" :cardData='applicationList'>
+      <slot name="text-custom"></slot>
+    </div>
+    <div :class="imageCard === true ? 'application-image-card':'application-card'">
+      <img :src="imageUrl" class="image">
+      <div style="padding: 14px;" class="project-card">
+        <span class="project-card-title">{{ title }}</span>
+        <p class="project-card-description">{{ description }}</p>
+        <div class="bottom">
+          <time class="time">{{ time }}</time>
+          <slot name="image-custom"></slot>
         </div>
-      </el-card>
+      </div>
+    </div>
+  </el-card>
 </template>
 <script>
 import {defineComponent, ref, toRefs} from 'vue';
+
 export default defineComponent({
   props: {
     cardName: {
@@ -105,11 +109,13 @@ export default defineComponent({
 //}
 .common-card {
   margin-bottom: 14px;
+
   .card-header {
     @include flex($justify-content: space-between)
   }
+
   .time {
-    @include description($font-size: 13px,$color:#999);
+    @include description($font-size: 13px, $color: #999);
   }
 
   .bottom {
@@ -138,7 +144,7 @@ export default defineComponent({
 
   .project-card {
     .project-card-title {
-      @include description($font-size: 16px,$color: $color-text-black);
+      @include description($font-size: 16px, $color: $color-text-black);
     }
 
     .project-card-description {

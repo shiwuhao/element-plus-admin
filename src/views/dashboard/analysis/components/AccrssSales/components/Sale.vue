@@ -1,11 +1,30 @@
 <template>
-  销售量
-  <Echarts :chartData="chartData" :height="height" ref="echarts" :id="id"/>
+  <el-row :gutter="20">
+    <el-col :span="18">
+      <Echarts
+        :chartData="chartData"
+        :height="height"
+        ref="echarts"
+        :id="id"
+        :title="title"
+      />
+    </el-col>
+    <el-col :span="6" class="right-access">
+      <h3>门店{{title.text}}排名</h3>
+      <ul>
+        <li v-for="(item,index) in shopData" :key="index">
+          <span><i>{{ index + 1 }}</i>{{ item.title }}</span>
+          <span>{{ item.num }}</span>
+        </li>
+      </ul>
+    </el-col>
+  </el-row>
 </template>
 <script>
 import {defineComponent, onMounted, reactive, ref,nextTick} from 'vue';
 import {Echarts} from '@/components/Echarts';
 import {getRequest} from '@/libs/api';
+import {shopData} from '../../../data';
 export default defineComponent({
   components: {Echarts},
   setup(){
@@ -25,7 +44,7 @@ export default defineComponent({
       series: [{
         type: 'bar',
         backgroundStyle: {
-          color: 'rgba(180, 180, 180, 0.2)'
+          color: '#1890ff'
         }
       }]
     })
@@ -42,12 +61,48 @@ export default defineComponent({
       })
     }
     return {
+      shopData,
       chartData,
       formatEcharts,
       height: ref('300px'),
       echarts,
-      id: ref('access-echarts')
+      id: ref('sale-echarts'),
+      title: reactive({
+        text: '销售量'
+      })
     }
   }
 })
 </script>
+<style lang="scss" scoped>
+.right-access {
+  ul {
+    padding: 0;
+
+    li {
+      list-style: none;
+      line-height: 42px;
+
+      span {
+        &:first-child {
+          i {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            background-color: #314659;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            margin-right: 5px;
+          }
+        }
+
+        &:last-child {
+          float: right;
+        }
+      }
+    }
+  }
+}
+</style>

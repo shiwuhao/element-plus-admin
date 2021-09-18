@@ -32,3 +32,68 @@ export const growCardData = [
     component: 'PieChart'
   }
 ]
+export const shopData = [
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  },
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  },
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  },
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  },
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  },
+  {
+    title: '那里是天堂',
+    num: '323,234'
+  }
+]
+export const tableData = [
+  {
+    date: '2016-05-02',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1518 弄',
+  },
+  {
+    date: '2016-05-04',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1517 弄',
+  },
+  {
+    date: '2016-05-01',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1519 弄',
+  },
+  {
+    date: '2016-05-03',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1516 弄',
+  }
+]
+export const saleCategory = [
+  {
+    name: 'first',
+    label: '全部渠道',
+    component: 'AllChannel'
+  },
+  {
+    name: 'second',
+    label: '线上',
+    component: 'OnlineChannel'
+  },
+  {
+    name: 'third',
+    label: '门店',
+    component: 'ShopChannel'
+  }
+]
