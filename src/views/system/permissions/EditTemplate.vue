@@ -30,16 +30,17 @@
         <el-form-item label="显示名称" prop="title">
           <el-input v-model="item.title" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="请求方式" prop="method" v-if="item.type === 'action'">
+          <el-radio-group v-model="item.method" size="small">
+            <el-radio-button label="GET"></el-radio-button>
+            <el-radio-button label="POST"></el-radio-button>
+            <el-radio-button label="PUT"></el-radio-button>
+            <el-radio-button label="DELETE"></el-radio-button>
+            <el-radio-button label="*">ALL</el-radio-button>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item label="后端URL" prop="url" v-if="item.type === 'action'">
           <el-input v-model="item.url">
-            <template #prepend>
-              <el-select v-model="item.method" placeholder="请求方式" style="width: 120px">
-                <el-option label="get" value="get"></el-option>
-                <el-option label="post" value="post"></el-option>
-                <el-option label="put" value="put"></el-option>
-                <el-option label="delete" value="delete"></el-option>
-              </el-select>
-            </template>
           </el-input>
         </el-form-item>
         <el-form-item label="前端路由" prop="url" v-if="item.type === 'menu'">
@@ -66,29 +67,23 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {toRefs, shallowReactive, inject, reactive, computed} from "vue";
+import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
-import * as icons from '@element-plus/icons';
-import {useRouter} from "vue-router";
-
-console.log(icons)
 
 export default {
   name: "editTemplate",
-  components: {BasicDrawer, icons},
+  components: {BasicDrawer},
   setup() {
     const state = shallowReactive({
-      icons: icons,
       rules: {
         pid: [{required: true, message: '请选择父级节点', trigger: 'change'}],
         type: [{required: true, message: '请选择菜单类型', trigger: 'change'}],
         name: [{required: true, pattern: /^(\w|:){3,50}$/, message: '标识为必填项，3-50个英文字符', trigger: 'blur'}],
         title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
-        method: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
+        method: [{required: true, message: '请选择请求方式', trigger: 'change'}],
         url: [{required: true, message: '请输入后端url地址', trigger: 'blur'}],
       }
     })
-
 
     const {getTreePermissions, getPermissionRoutes} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');

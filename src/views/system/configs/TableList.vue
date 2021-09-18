@@ -10,8 +10,8 @@
                 @change-page="changePage">
       <el-table-column label="操作" width="120">
         <template #default="scope">
-          <el-button type="text" size="small" @click="editItem(scope.$index)">编辑</el-button>
-          <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+          <el-button type="text" size="small" @click="editItem(scope.row)">编辑</el-button>
+          <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
             <template #reference>
               <el-button type="text" size="small">删除</el-button>
             </template>

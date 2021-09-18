@@ -8,14 +8,14 @@ const updateApi = (item = {}) => axios.put(`/users/${item.id}`, {
   nickname: item.nickname,
   password: item.password,
   status: item.status,
-  roles:item.roles,
+  role_ids:item.role_ids,
 });
 const storeApi = (item = {}) => axios.post(`/users`, {
   username: item.username,
   nickname: item.nickname,
   password: item.password,
   status: item.status,
-  roles:item.roles,
+  role_ids:item.role_ids,
 });
 const deleteApi = (item = {}) => axios.delete(`/users/${item.id}`);
 

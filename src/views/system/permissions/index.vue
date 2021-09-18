@@ -22,8 +22,8 @@
         </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">
-            <el-button type="text" size="small" @click="editItem({item:scope.row})">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem({item:scope.row})">
+            <el-button type="text" size="small" @click="editItem(scope.row)">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
               <template #reference>
                 <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>
               </template>
@@ -41,22 +41,22 @@ import {PageWrapper} from "@/components/Page"
 import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
 import {childrenListApi, listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
+import {defineComponent, toRefs, provide, shallowReactive} from "vue";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs, provide, watch, ref} from "vue";
 
 export default defineComponent({
   name: "index",
   components: {BasicQuery, BasicTable, EditTemplate, PageWrapper},
   setup() {
-    const state = reactive({
+    const state = shallowReactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
-        {prop: 'title', label: '显示名称', minWidth: 100, slot: 'title'},
-        {prop: 'name', label: '英文标识', minWidth: 100},
-        {prop: 'type_label', label: '类型', minWidth: 30},
-        {prop: 'method', label: '请求方式', minWidth: 30},
-        {prop: 'url', label: '路由', minWidth: 100},
-        {prop: 'created_at', label: '创建时间', minWidth: 100},
+        {prop: 'title', label: '显示名称', minWidth: 180, slot: 'title'},
+        {prop: 'name', label: '英文标识', minWidth: 140},
+        {prop: 'type_label', label: '类型', minWidth: 60},
+        {prop: 'method', label: '请求方式', minWidth: 80},
+        {prop: 'url', label: '路由', minWidth: 150},
+        {prop: 'created_at', label: '创建时间', minWidth: 135},
       ],
       schemas: [
         {field: 'id', placeholder: '权限ID', component: 'Input'},
@@ -65,22 +65,39 @@ export default defineComponent({
       ],
     })
 
-    const resourceApi = useResourceApi({
+    let resourceApi = useResourceApi({
       listApi,
       itemApi,
       updateApi,
       storeApi,
       deleteApi,
       item: {type: 'menu'},
-      refreshLists: true
+      refreshAfterConfirm: false,
     });
 
-    provide('resourceApi', resourceApi);
+    const maps = new Map();
+    const {confirmItem, deleteItem, getList, item} = resourceApi;
 
     const loadChildren = async (tree, treeNode, resolve) => {
+      maps.set(tree.id, {tree, treeNode, resolve});
       const {data: {data}} = await childrenListApi(tree.id);
       resolve(data);
     }
+
+    const _confirmItem = async () => {
+      const {tree, treeNode, resolve} = {...maps.get(item.value.pid)};
+      await confirmItem();
+      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
+    }
+
+    const _deleteItem = async (item) => {
+      const {tree, treeNode, resolve} = {...maps.get(item.pid)};
+      await deleteItem(item);
+      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
+    }
+
+    resourceApi = {...resourceApi, ...{confirmItem: _confirmItem, deleteItem: _deleteItem}}
+    provide('resourceApi', resourceApi);
 
     return {
       ...toRefs(state),

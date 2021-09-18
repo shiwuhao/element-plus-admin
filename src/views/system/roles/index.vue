@@ -15,9 +15,9 @@
         <el-table-column label="操作" width="120">
           <template #default="scope">
             <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'"
-                       @click="editItem(scope.$index)">编辑
+                       @click="editItem(scope.row)">编辑
             </el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.$index)">
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
               <template #reference>
                 <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>
               </template>
@@ -36,13 +36,13 @@ import {BasicTable, BasicQuery} from "@/components/Table"
 import EditTemplate from "./EditTemplate";
 import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/roles";
 import {useResourceApi} from "@/composables/useResourceApi";
-import {defineComponent, reactive, toRefs, provide} from "vue";
+import {defineComponent, toRefs, provide, shallowReactive} from "vue";
 
 export default defineComponent({
   name: "index",
   components: {BasicQuery, BasicTable, EditTemplate, PageWrapper},
   setup() {
-    const state = reactive({
+    const state = shallowReactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
         {prop: 'title', label: '角色名称', minWidth: 100},
@@ -63,7 +63,6 @@ export default defineComponent({
       updateApi,
       storeApi,
       deleteApi,
-      item: {status: 0},
     });
 
     provide('resourceApi', resourceApi);

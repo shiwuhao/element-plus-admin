@@ -1,6 +1,7 @@
-import {computed, reactive} from 'vue'
+import {computed, reactive, shallowReactive, toRaw} from 'vue'
 import store from "@/store";
 import {useRouter} from "vue-router";
+import {listToTree} from "@/utils/utils";
 
 export function useConfig() {
   const getGroups = computed(() => store.getters.getConfigs.groups);
@@ -8,12 +9,14 @@ export function useConfig() {
   const getComponents = computed(() => store.getters.getConfigs.components);
   const getPermissions = computed(() => store.getters.getConfigs.permissions);
   const getTreePermissions = computed(() => {
-    const root = [{id: 0, pid: 0, title: '根节点'}];
-    return root.concat(store.getters.getConfigs.permissions);
+    const children = listToTree(toRaw(store.getters.getConfigs.permissions));
+    return [{id: 0, pid: 0, title: '根节点', children: children}];
   });
+
+
   const getRoles = computed(() => store.getters.getConfigs.roles);
 
-  const getPermissionRoutes = reactive(useRouter().getRoutes().filter(item => item.meta.menu));
+  const getPermissionRoutes = shallowReactive(useRouter().getRoutes().filter(item => item.meta.menu));
 
   return {
     getGroups,
