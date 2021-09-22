@@ -5,6 +5,7 @@ $color-text-gray: #00000073;
 $color-border-dashed: #e8eaec;
 $font-size-small: 14px;
 $font-size-middle: 20px;
+$btn-color-blue: #409eff;
 //大标题
 @mixin title($font-size: $font-size-middle,$font-weight: 500,$color: $color-text-black,$height: null) {
   font-size: $font-size;
