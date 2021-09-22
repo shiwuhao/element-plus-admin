@@ -1,13 +1,16 @@
 <template>
   <page-wrapper>
     <template #title>
-      <el-switch class="sub-title" v-model="mode" size="mini" active-text="配置模式" inactive-text="管理模式"></el-switch>
+      <el-radio-group v-model="mode" size="mini">
+        <el-radio-button label="manage">管理模式</el-radio-button>
+        <el-radio-button label="config">配置模式</el-radio-button>
+      </el-radio-group>
     </template>
     <template #extra>
       <el-button type="primary" size="mini" :disabled="!mode" @click="handleAdd">新增</el-button>
     </template>
-    <table-list v-if="mode" ref="tableListRef"></table-list>
-    <group-list v-if="!mode"></group-list>
+    <table-list v-if="mode === 'config'" ref="tableListRef"></table-list>
+    <group-list v-if="mode === 'manage'"></group-list>
   </page-wrapper>
 
 </template>
@@ -22,7 +25,7 @@ export default {
   name: "index",
   components: {PageWrapper, TableList, GroupList},
   setup() {
-    const mode = ref(false);
+    const mode = ref('manage');
     const tableListRef = ref(null);
 
     const handleAdd = () => tableListRef.value.addItem();

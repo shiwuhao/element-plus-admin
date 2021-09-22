@@ -7,7 +7,6 @@
     v-model="dialog"
     @close="cancelItem">
     <template #default>
-      {{item}}
       <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
         <el-form-item label="节点类型" prop="type">
           <el-radio-group v-model="item.type" size="mini">
@@ -67,10 +66,8 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer";
-import {toRefs, shallowReactive, inject, computed, toRaw, reactive} from "vue";
+import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
-import {listToTree} from "@/utils/utils";
-import store from "@/store";
 import {childrenListApi} from "@/api/permissions";
 
 export default {

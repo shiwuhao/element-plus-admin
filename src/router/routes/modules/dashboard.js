@@ -11,13 +11,13 @@ export default [
       {
         path: 'workplace',
         name: 'workplace',
-        meta: {title: '工作台', menu: true, cache: true, affix: false},
+        meta: {title: '工作台', menu: true, cache: true, affix: true},
         component: () => import('@/views/dashboard/workplace'),
       },
       {
         path: 'analysis',
         name: 'analysis',
-        meta: {title: '分析页', menu: true, cache: true, affix: true},
+        meta: {title: '分析页', menu: true, cache: true, affix: false},
         component: () => import('@/views/dashboard/analysis'),
       },
       {
