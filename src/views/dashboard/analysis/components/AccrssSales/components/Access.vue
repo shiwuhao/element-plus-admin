@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="18">
+    <el-col :span="getIsMobile? 24:18">
       <Echarts
         :chartData="chartData"
         :height="height"
@@ -9,7 +9,7 @@
         :title="title"
       />
     </el-col>
-    <el-col :span="6" class="right-access">
+    <el-col :span="getIsMobile?24:6" class="right-access">
       <h3>门店{{title.text}}排名</h3>
       <ul>
         <li v-for="(item,index) in shopData" :key="index">
@@ -25,11 +25,12 @@ import {defineComponent, onMounted, reactive, ref, nextTick} from 'vue';
 import {Echarts} from '@/components/Echarts';
 import {getRequest} from '@/libs/api';
 import {shopData} from '../../../data';
-
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default defineComponent({
   components: {Echarts},
   setup() {
     const echarts = ref(null);
+    const {getIsMobile} = useRootSetting();
     onMounted(() => {
       getRequest('/js/echarts.json').then(res => {
         formatEcharts(res.data.data)
@@ -70,7 +71,8 @@ export default defineComponent({
       id: ref('access-echarts'),
       title: reactive({
         text: '访问量'
-      })
+      }),
+      getIsMobile
     }
   }
 })

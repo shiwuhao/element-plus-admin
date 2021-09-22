@@ -1,5 +1,5 @@
 <template>
-  333
+  门店
   <Echarts :chartData="chartData"  ref="echarts" :id="id"/>
 </template>
 <script>
@@ -29,7 +29,7 @@ export default defineComponent({
     return {
       chartData,
       echarts,
-      id: ref('pie-echarts')
+      id: ref('shop-echarts')
     }
   }
 })
