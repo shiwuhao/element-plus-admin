@@ -1,5 +1,5 @@
 <template>
-  <Card :cardName="cardName" :header="header" class="m10" >
+  <Card :cardName="cardName" :header="header" class="m10 top-search-card" >
     <template #text-custom>
       <el-table :data="tableData" stripe style="width: 100%">
         <el-table-column prop="date" label="日期" width="180"> </el-table-column>
@@ -29,5 +29,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 ::v-deep .card-header {
   height: 32px;
+}
+.top-search-card {
+  margin-bottom: 10px;
 }
 </style>
