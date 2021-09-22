@@ -1,6 +1,5 @@
 <template>
-  111
-    <Echarts :chartData="chartData"  ref="echarts" :id="id"/>
+    <Echarts :chartData="chartData"  ref="echarts" :id="id" :height="height" :title="title"/>
 </template>
 <script>
 import {defineComponent, onMounted, reactive, ref,nextTick} from 'vue';
@@ -17,6 +16,7 @@ export default defineComponent({
     const chartData = reactive({
       series: [{
         type: 'pie',
+        radius: ['40%', '70%'],
         data: [
           {value: 1048, name: '搜索引擎'},
           {value: 735, name: '直接访问'},
@@ -29,7 +29,9 @@ export default defineComponent({
     return {
       chartData,
       echarts,
-      id: ref('pie-echarts')
+      id: ref('allChannel-echarts'),
+      height: ref('200px'),
+      title: ref('销售额')
     }
   }
 })
