@@ -1,5 +1,6 @@
 import {basicRoutes, asyncRoutes} from '@/router/routes';
 import {permissions} from "@/api/personal";
+import {listToTree} from "@/utils/utils";
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -8,6 +9,10 @@ import {permissions} from "@/api/personal";
  * @returns {boolean|*}
  */
 function hasPermission(menus, route) {
+  // return true;
+  let res = menus.some(menu => menu.url === route.path)
+  console.log(res);
+  return !!res;
   if (route.meta && route.meta.roles) {
     return menus.some(menu => route.path === menu.url)
   } else {
@@ -28,6 +33,7 @@ function filterAsyncRoutes(routes, menus) {
     let tmp = {...defaultRouteMeta, ...route};
     if (hasPermission(menus, tmp)) {
       if (tmp.children) {
+        console.log(222);
         tmp.children = filterAsyncRoutes(tmp.children, menus);
       }
       res.push(tmp);
@@ -60,32 +66,27 @@ function filterMenus(routes, parentPath = '') {
 const permission = {
   namespaced: true,
   state: {
-    menus: [],
-    routes: [],
-    addRoutes: [],
+    menus: [],// 菜单
+    roles: [],// 角色
+    actions: [],// 动作
+    isLoaded: false,
   },
   mutations: {
-    SET_ROUTES(state, routes) {
-      state.addRoutes = routes;
-      state.routes = basicRoutes.concat(routes);
-      state.menus = filterMenus(state.addRoutes);
-    },
-    SET_MENUS(state, menus) {
-      state.menus = filterMenus(menus);
-    },
-    SET_ACTION(state, actions) {
+    SET_PERMISSIONS(state, {roles, menus, actions}) {
+      state.menus = menus;
+      state.roles = roles;
       state.actions = actions;
-    }
+      state.isLoaded = true;
+    },
   },
   actions: {
     getPermissions: async ({commit}) => {
-      const {data:{data:{menus,actions}}} = await permissions();
-      const accessedRoutes = filterAsyncRoutes(asyncRoutes, menus);
-      console.log(accessedRoutes);
-      commit('SET_MENUS', accessedRoutes);
-      commit('SET_ACTION', actions);
-      return Promise.resolve(accessedRoutes);
+      const {data: {data: {roles = [], menus = [], actions = []}}} = await permissions();
+      const _menus = listToTree(menus.map(item => ({path: item.url, ...item})));
+      commit('SET_PERMISSIONS', {roles, menus: _menus, actions});
+      return Promise.resolve(asyncRoutes);
     },
+
     // 生成访问路由
     generateRoutes({commit}, roles) {
       return new Promise(resolve => {

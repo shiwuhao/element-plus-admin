@@ -1,4 +1,4 @@
-import personal from '@/api/personal';
+import * as personal from '@/api/personal';
 
 const user = {
   namespaced: true,
@@ -30,7 +30,7 @@ const user = {
       commit('setUser', undefined);
     },
     async getUserInfo({commit}) {
-      const {data: {data}} = await personal.userInfo();
+      const {data: {data}} = await personal.info();
       commit('setUser', data);
       commit('setRoles', data.roles);
       return data;

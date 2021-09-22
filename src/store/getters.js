@@ -13,5 +13,6 @@ const getters = {
   getCachedViews: state => state.tagView.cachedViews,
   getVisitedViews: state => state.tagView.visitedViews,
   getMenus: state => state.permission.menus,
+  getIsLoaded: state => state.permission.isLoaded,
 };
 export default getters

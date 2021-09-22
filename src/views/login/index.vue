@@ -124,10 +124,14 @@ export default {
       const valid = await this.$refs.loginForm.validate();
       if (!valid) return;
       this.loading = true;
-      const {access_token} = await this.$store.dispatch('user/login', this.loginForm);
-      if (access_token) {
-        await this.$router.push({path: this.redirect || '/', query: this.otherQuery});
-        this.loading = false
+      try {
+        const {access_token} = await this.$store.dispatch('user/login', this.loginForm);
+        if (access_token) {
+          await this.$router.push({path: this.redirect || '/', query: this.otherQuery});
+          this.loading = false
+        }
+      } catch (e) {
+        this.loading = false;
       }
     },
     showPwd() {

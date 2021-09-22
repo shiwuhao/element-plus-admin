@@ -5,9 +5,15 @@ export default [
     path: '/dashboard',
     component: Layout,
     name: 'dashboard',
-    redirect: '/dashboard/analysis',
+    redirect: '/dashboard/workplace',
     meta: {title: '主页', icon: 'el-icon-s-home', menu: true, cache: true},
     children: [
+      {
+        path: 'workplace',
+        name: 'workplace',
+        meta: {title: '工作台', menu: true, cache: true, affix: false},
+        component: () => import('@/views/dashboard/workplace'),
+      },
       {
         path: 'analysis',
         name: 'analysis',
@@ -19,12 +25,6 @@ export default [
         name: 'monitor',
         meta: {title: '监控页', menu: true, cache: true, affix: false},
         component: () => import('@/views/dashboard/monitor'),
-      },
-      {
-        path: 'workplace',
-        name: 'workplace',
-        meta: {title: '工作台', menu: true, cache: true, affix: false},
-        component: () => import('@/views/dashboard/workplace'),
       },
     ]
   },
