@@ -2,7 +2,6 @@ const getters = {
   getConfigs: state => state.config.configs,
   getAccessToken: state => state.user.access_token,
   getUser: state => state.user.user,
-  getRoles: state => state.user.roles,
   getProjectConfig: state => state.app.projectConfig,
   getPageLoading: state => state.app.pageLoading,
   getMenuSetting: state => state.app.projectConfig.menuSetting,
@@ -12,7 +11,9 @@ const getters = {
   getDarkMode: state => state.app.projectConfig.darkMode,
   getCachedViews: state => state.tagView.cachedViews,
   getVisitedViews: state => state.tagView.visitedViews,
+  getRoles: state => state.permission.roles,
   getMenus: state => state.permission.menus,
+  getActions: state => state.permission.actions,
   getIsLoaded: state => state.permission.isLoaded,
 };
 export default getters

@@ -1,42 +1,33 @@
-import {basicRoutes, asyncRoutes} from '@/router/routes';
+import {asyncRoutes, menuRoutes} from '@/router/routes';
 import {permissions} from "@/api/personal";
 import {listToTree} from "@/utils/utils";
 
 /**
- * 通过meta.role判断是否与当前用户权限匹配
- * @param menus
+ * 判断是否有路由权限
  * @param route
- * @returns {boolean|*}
+ * @param permission
+ * @returns {boolean}
  */
-function hasPermission(menus, route) {
-  // return true;
-  let res = menus.some(menu => menu.url === route.path)
-  console.log(res);
-  return !!res;
-  if (route.meta && route.meta.roles) {
-    return menus.some(menu => route.path === menu.url)
-  } else {
-    return true;
-  }
+function hasPermission(route, permission) {
+  return true;
 }
 
 /**
- * 递归过滤异步路由表，返回符合用户角色权限的路由表
+ * 通过权限节点过滤路由
  * @param routes
- * @param menus
+ * @param permission
  * @returns {[]}
  */
-function filterAsyncRoutes(routes, menus) {
+function filterAsyncRoutes(routes, permission) {
   const res = [];
   const defaultRouteMeta = {meta: {menu: true, cache: true, affix: false}};
   routes.forEach(route => {
-    let tmp = {...defaultRouteMeta, ...route};
-    if (hasPermission(menus, tmp)) {
-      if (tmp.children) {
-        console.log(222);
-        tmp.children = filterAsyncRoutes(tmp.children, menus);
+    let _route = {...defaultRouteMeta, ...route};
+    if (hasPermission(_route, permission)) {
+      if (_route.children) {
+        _route.children = filterAsyncRoutes(_route.children, permission);
       }
-      res.push(tmp);
+      res.push(_route);
     }
   });
   return res
@@ -69,7 +60,7 @@ const permission = {
     menus: [],// 菜单
     roles: [],// 角色
     actions: [],// 动作
-    isLoaded: false,
+    isLoaded: false, // 是否已加载，该字段禁止缓存
   },
   mutations: {
     SET_PERMISSIONS(state, {roles, menus, actions}) {
@@ -81,25 +72,14 @@ const permission = {
   },
   actions: {
     getPermissions: async ({commit}) => {
-      const {data: {data: {roles = [], menus = [], actions = []}}} = await permissions();
-      const _menus = listToTree(menus.map(item => ({path: item.url, ...item})));
-      commit('SET_PERMISSIONS', {roles, menus: _menus, actions});
-      return Promise.resolve(asyncRoutes);
-    },
-
-    // 生成访问路由
-    generateRoutes({commit}, roles) {
-      return new Promise(resolve => {
-        let accessedRoutes;
-        if (roles.some(item => item === 'Administrator')) {
-          accessedRoutes = asyncRoutes || []
-        } else {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-        }
-
-        commit('SET_ROUTES', accessedRoutes);
-        resolve(accessedRoutes);
-      });
+      const {data: {data: permission}} = await permissions();
+      const {roles = [], menus = [], actions = []} = permission;
+      const backendMenu = listToTree(menus.map(item => ({path: item.url, ...item})));// 后端菜单
+      const frontedMenu = filterMenus(menuRoutes);// 前端菜单
+      commit('SET_PERMISSIONS', {roles, menus: [...backendMenu, ...frontedMenu], actions});
+      // 按需是否过滤权限路由 @TODO
+      const permissionRoutes = filterAsyncRoutes(asyncRoutes, permission);
+      return Promise.resolve(permissionRoutes);
     },
   }
 };
