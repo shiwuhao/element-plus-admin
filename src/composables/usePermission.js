@@ -1,6 +1,6 @@
-import {computed, isRef, unref} from "vue";
+import {computed, isRef} from "vue";
 import store from "@/store";
-import {isArray, isObject, isString} from "@/utils/is";
+import {isString} from "@/utils/is";
 
 export function usePermission() {
   const {getters} = store;
@@ -9,39 +9,21 @@ export function usePermission() {
   const getMenus = computed(() => getters.getMenus);
 
   const hasPermission = (name) => {
+    const checks = isString(name) ? [name] : name;
+    const actions = isRef(getActions) ? getActions.value : getActions;
 
-    const contains = (name) => {
-      console.log(unref(getActions))
-      return unref(getActions).some(item => item === name);
-    }
-
-    let permissions;
-    let requireAll = false;
-
-    if (isString(name)) {
-      permissions = [name];
-    } else if (isArray(name)) {
-      permissions = name;
-    } else if (isObject(name)) {
-      let {permissions: _permissions, requireAll: _requireAll} = name;
-      permissions = _permissions;
-      requireAll = _requireAll;
-    }
-
-    permissions.forEach(item => {
-      let has = contains(item);
-      if (requireAll === true && has === false) return false;
-      if (requireAll === false && has === true) return true;
+    return actions.some((item) => {
+      return checks.includes(item);
     })
-
-
-    return requireAll;
   }
-  const hasRole = (roleName) => {
-    return true;
-  }
-  const hasMenu = (menuName) => {
-    return true;
+
+  const hasRole = (name) => {
+    const checks = isString(name) ? [name] : name;
+    const roles = isRef(getRoles) ? getRoles.value : getRoles;
+
+    return roles.some((item) => {
+      return checks.includes(item);
+    })
   }
 
   return {
@@ -50,6 +32,5 @@ export function usePermission() {
     getMenus,
     hasPermission,
     hasRole,
-    hasMenu,
   }
 }

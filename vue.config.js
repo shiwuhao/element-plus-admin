@@ -10,15 +10,16 @@ module.exports = {
   assetsDir: 'static',
   devServer: {
     port: 8080,
-    // proxy: {
-    //   '/api': {
-    //     target: process.env.VUE_APP_API_URL,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/api': '/mock'
-    //     }
-    //   }
-    // }
+    proxy: {
+      '/backend': {
+        target: 'http://localhost:8090',
+        changeOrigin: true,
+        // pathRewrite: {
+        //   '^/api': '/mock'
+        // }
+      }
+    },
+    // before:require('./mock/server')
   },
   productionSourceMap: false,
   configureWebpack: {

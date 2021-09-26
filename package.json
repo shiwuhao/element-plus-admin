@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --scripts=mock",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mock": "node ./mock/MockServer.js"
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
@@ -38,6 +39,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "express": "^4.17.1",
     "mockjs": "^1.1.0",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",

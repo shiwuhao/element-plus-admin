@@ -75,7 +75,7 @@ const permission = {
       const {data: {data: permission}} = await permissions();
       const {roles = [], menus = [], actions = []} = permission;
       const backendMenu = listToTree(menus.map(item => ({path: item.url, ...item})));// 后端菜单
-      const frontedMenu = filterMenus(menuRoutes);// 前端菜单
+      const frontedMenu = filterMenus(menuRoutes);// 前端菜单,demo展示使用
       commit('SET_PERMISSIONS', {roles, menus: [...backendMenu, ...frontedMenu], actions});
       // 按需是否过滤权限路由 @TODO
       const permissionRoutes = filterAsyncRoutes(asyncRoutes, permission);

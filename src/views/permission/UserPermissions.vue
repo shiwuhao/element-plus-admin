@@ -13,7 +13,7 @@
     </template>
     <el-tabs v-model="currentTab">
       <el-tab-pane label="菜单" name="menus">
-        <el-tree :data="getMenus" :props="{label: 'title'}"/>
+        <pre>{{getMenus}}</pre>
       </el-tab-pane>
       <el-tab-pane label="角色" name="roles">
         <pre>{{ getRoles }}</pre>
@@ -24,7 +24,12 @@
     </el-tabs>
   </el-card>
 </template>
-
+<style lang="scss" scoped>
+.el-tab-pane{
+  height: 200px;
+  overflow-x: auto;
+}
+</style>
 <script>
 import Menu from '@/layouts/menu/index';
 import {PageWrapper} from "@/components/Page"
