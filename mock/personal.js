@@ -1,55 +1,89 @@
-import Mock from 'mockjs';
+import {responsePageSuccess, responseSuccess} from "./_utils.js";
 
-const code = 200;
-
-const baseData = {
-  code: code,
-  data: {},
-  msg: '',
+const permissions = {
+  "menus": [{
+    "id": 1,
+    "pid": 0,
+    "title": "Dashboard",
+    "icon": "fa fa-home",
+    "url": "\/dashboard",
+    "type": "menu",
+    "unique": "get,\/dashboard"
+  }, {
+    "id": 9,
+    "pid": 5,
+    "title": "\u914d\u7f6e\u7ba1\u7406",
+    "icon": "el-icon-setting",
+    "url": "\/system\/configs",
+    "type": "menu",
+    "unique": "get,\/system\/configs"
+  }, {
+    "id": 8,
+    "pid": 5,
+    "title": "\u6743\u9650\u7ba1\u7406",
+    "icon": "fa fa-linode",
+    "url": "\/system\/menus",
+    "type": "menu",
+    "unique": "get,\/system\/menus"
+  }, {
+    "id": 7,
+    "pid": 5,
+    "title": "\u89d2\u8272\u7ba1\u7406",
+    "icon": "fa fa-sitemap",
+    "url": "\/system\/roles",
+    "type": "menu",
+    "unique": "get,\/system\/roles"
+  }, {
+    "id": 6,
+    "pid": 5,
+    "title": "\u7528\u6237\u7ba1\u7406",
+    "icon": "el-icon-user-solid",
+    "url": "\/system\/users",
+    "type": "menu",
+    "unique": "get,\/system\/users"
+  }, {
+    "id": 5,
+    "pid": 0,
+    "title": "\u7cfb\u7edf\u7ba1\u7406",
+    "icon": "el-icon-menu",
+    "url": "\/system",
+    "type": "menu",
+    "unique": "get,\/system"
+  }, {
+    "id": 4,
+    "pid": 1,
+    "title": "\u5206\u6790\u9875",
+    "icon": "el-icon-data-analysis",
+    "url": "\/dashboard\/analysis",
+    "type": "menu",
+    "unique": "get,\/dashboard\/analysis"
+  }, {
+    "id": 3,
+    "pid": 1,
+    "title": "\u76d1\u63a7\u9875",
+    "icon": "el-icon-monitor",
+    "url": "\/dashboard\/monitor",
+    "type": "menu",
+    "unique": "get,\/dashboard\/monitor"
+  }, {
+    "id": 2,
+    "pid": 1,
+    "title": "\u5de5\u4f5c\u53f0",
+    "icon": "fa fa-dashboard",
+    "url": "\/dashboard\/workplace",
+    "type": "menu",
+    "unique": "get,\/dashboard\/workplace"
+  }],
+  "roles": ["Administrator"],
+  "actions": ["Role:update", "User:index", "User:store", "User:show", "User:update", "User:destroy", "Role:index", "Role:store", "Role:show", "Config:destroy", "Role:destroy", "Permission:index", "Permission:store", "Permission:autoGenerate", "Permission:show", "Permission:update", "Permission:destroy", "Config:update", "Config:show", "Config:groupUpdate", "Config:group", "Config:store", "Config:index", "Config:configItems"]
 };
-// 登录
-const loginData = {
-  ...baseData, ...{
-    data: {
-      access_token: '12312312321',
+
+export default [
+  {
+    url: '/backend/personal/permissions',
+    method: 'get',
+    response: () => {
+      return responseSuccess(permissions)
     }
   }
-};
-
-// 任务列表
-const userInfoData = {
-  ...baseData, ...{
-    data: {
-      user: {
-        email: 'shiwuhao@juzifenqi.com',
-        real_name: '石武浩',
-        display_name: '石武浩',
-        avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-      },
-      roles: ['Administrator'],
-    },
-  }
-};
-
-const userListData = Mock.mock({
-  'data|35': [{
-    'id|+1': 1,
-    'email': '@email',
-    'name': '@name',
-    'role': '@role',
-    'created_at': '@datetime',
-  }],
-  'meta': {
-    current_page: 2,
-    from: 16,
-    last_page: 5,
-    path: "http://user-operate.juzifenqi.com:8080/api/users",
-    per_page: 35,
-    to: 30,
-    total: 73,
-  }
-});
-Mock.mock(/\/api\/user-info/, 'get', userInfoData);// 用户信息
-Mock.mock(/\/api\/users/, 'get', userListData);// 登录
-Mock.mock(/\/api\/login/, 'post', loginData)//登录
-Mock.mock(/\/api\/logout/, 'post')//登出
+];

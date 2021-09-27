@@ -3,7 +3,7 @@ import Qs from 'qs';
 import store from "@/store";
 import {ElMessage} from "element-plus";
 
-import router from "@/router";
+import {router} from "@/router";
 
 const handleParamInUrl = (url, params) => {
   return url.replace(/:(\w+)/g, (_, key) => {

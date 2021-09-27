@@ -5,9 +5,9 @@ import * as path from 'path';
 import vuePlugin from '@vitejs/plugin-vue';
 // @see https://cn.vitejs.dev/config/
 export default ({
-  command,
-  mode
-}) => {
+                  command,
+                  mode
+                }) => {
   let rollupOptions = {};
 
 
@@ -30,14 +30,18 @@ export default ({
     'process.env.NODE_ENV': '"development"',
   }
 
-  let esbuild = {}
+  let esbuild = {
+    "compilerOptions": {
+      "target": "ES2019"
+    }
+  }
 
   return {
     base: './', // index.html文件所在位置
     root: './', // js导入的资源路径，src
     resolve: {
       alias,
-      extensions:['.vue','.js']
+      extensions: ['.vue', '.js']
     },
     define: define,
     server: {
@@ -45,7 +49,7 @@ export default ({
       proxy,
     },
     build: {
-      target: 'es2015',
+      target: 'esnext',
       minify: 'terser', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用terser
       manifest: false, // 是否产出maifest.json
       sourcemap: false, // 是否产出soucemap.json
@@ -57,10 +61,16 @@ export default ({
     plugins: [
       legacyPlugin({
         targets: ['Android > 39', 'Chrome >= 60', 'Safari >= 10.1', 'iOS >= 10.3', 'Firefox >= 54', 'Edge >= 15'],
-      }), viteMockServe({
+      }),
+      viteMockServe({
         mockPath: 'mock',
         localEnabled: command === 'serve',
-      }), vuePlugin(),
+        injectCode: `
+        import { setupProdMockServer } from './mock/mockProdServer';
+        setupProdMockServer();
+      `,
+      }),
+      vuePlugin(),
     ],
     css: {
       preprocessorOptions: {

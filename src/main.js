@@ -3,7 +3,7 @@ import App from './App.vue'
 import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
 import {setupEIconPicker} from './plugins/eIconPicker'
-import {setupRouter} from './router'
+import {router,setupRouter} from './router'
 import {setupStore} from './store'
 // import '@/mock/index';
 import {setupRouterGuard} from "@/router/guard";
@@ -28,6 +28,8 @@ import {setupGlobalDirectives} from "@/directives";
   setupRouterGuard();
 
   setupGlobalDirectives(app);
+
+  await router.isReady();
 
   app.mount('#app')
 })();
