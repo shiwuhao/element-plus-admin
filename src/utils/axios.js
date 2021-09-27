@@ -15,7 +15,7 @@ const handleParamInUrl = (url, params) => {
 
 const instance = axios.create({
   // eslint-disable-next-line no-undef
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {Accept: 'text/json'},
 })
 
