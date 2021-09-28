@@ -9,8 +9,8 @@ const lists = (() => {
       title: ['超级管理员', '管理员', '电销人员', '电销管理'][index],
       remark: '',
       status: 1,
-      status_label: "\u6b63\u5e38",
-      permission_ids: [1, 2, 3, 4, 5, 6, 7,],
+      status_label: "开启",
+      permission_ids: [4, 2, 9, 17, 16, 15, 14, 13, 12, 11, 10, 8, 28, 29, 30, 31, 32, 33, 7, 26, 23, 24, 25, 27],
       created_at: "2021-09-24 07:32:54",
     });
   }
@@ -30,9 +30,9 @@ export default [
   {
     url: '/backend/roles',
     method: 'post',
-    response: ({query}) => {
-      const {page} = query;
-      return responsePageSuccess(lists, page)
+    response: () => {
+      const item = lists[0];
+      return responseSuccess(item)
     }
   },
   {
@@ -40,7 +40,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },
@@ -49,7 +49,7 @@ export default [
     method: 'put',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },
@@ -58,7 +58,7 @@ export default [
     method: 'delete',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },

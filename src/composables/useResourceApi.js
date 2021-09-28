@@ -82,13 +82,13 @@ export function useResourceApi({
   }
 
   // 更新项
-  const _updateItem = async () => {
+  const updateItem = async () => {
     await updateApi(state.item).then(r => r);
     state.refreshAfterConfirm && await getList();
   }
 
   // 保存项
-  const _storeItem = async () => {
+  const storeItem = async () => {
     await storeApi(state.item).then(r => r);
     state.refreshAfterConfirm && await getList();
   }
@@ -101,7 +101,7 @@ export function useResourceApi({
           try {
             state.confirmLoading = true;
             const {[uniqueId]: id} = state.item;
-            id ? await _updateItem() : await _storeItem();
+            id ? await updateItem() : await storeItem();
             cancelItem();
             state.confirmLoading = false;
           } catch (e) {
@@ -140,6 +140,8 @@ export function useResourceApi({
     getItem,
     addItem,
     editItem,
+    updateItem,
+    storeItem,
     deleteItem,
     confirmItem,
     cancelItem,

@@ -55,7 +55,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },
@@ -64,7 +64,7 @@ export default [
     method: 'put',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },
@@ -73,7 +73,7 @@ export default [
     method: 'delete',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === id);
+      const item = lists.find(item => item.id === (id | 0));
       return responseSuccess(item)
     }
   },

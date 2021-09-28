@@ -93,7 +93,7 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  emits: ['on-reset', 'on-submit'],
+  emits: ['reset', 'submit'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}, autoWidth} = toRefs(props);
     const getSchema = schemas;
@@ -114,7 +114,9 @@ export default defineComponent({
     const resetFields = () => elForm.value.resetFields();
     const clearValidate = () => elForm.value.clearValidate();
 
-    const handleSubmit = () => emit('submit');
+    const handleSubmit = () => {
+      emit('submit');
+    }
     const handleReset = () => {
       elForm.value.resetFields();
       emit('reset');
