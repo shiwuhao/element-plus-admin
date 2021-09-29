@@ -3720,6 +3720,16 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+echarts-liquidfill@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.nlark.com/echarts-liquidfill/download/echarts-liquidfill-3.1.0.tgz#4ec70f3697382d0404c95fff9f3e8dd85c8377da"
+  integrity sha1-TscPNpc4LQQEyV//nz6N2FyDd9o=
+
+echarts-wordcloud@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/echarts-wordcloud/download/echarts-wordcloud-2.0.0.tgz#52ef817895801ffe9e99dd1bacab7686b2dec04a"
+  integrity sha1-Uu+BeJWAH/6emd0brKt2hrLewEo=
+
 echarts@^5.2.0:
   version "5.2.0"
   resolved "https://registry.nlark.com/echarts/download/echarts-5.2.0.tgz?cache=0&sync_timestamp=1630472157165&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fecharts%2Fdownload%2Fecharts-5.2.0.tgz#9f1fbfbf048c15ab630bf0a74525c4c534d6cebc"
