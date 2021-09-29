@@ -22,3 +22,15 @@ export function listToTree(oldArr, pid = 'pid', children = 'children') {
   oldArr = oldArr.filter(ele => ele[pid] === 0);
   return oldArr;
 }
+//转换时间
+export function transformTime(time){
+  let getTime = new Date(time).getTime();
+  const date = new Date(getTime);
+  const Y = date.getFullYear() + '-';
+  const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  const D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + '  ';
+  const h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+  const m = (date.getMinutes() <10 ? '0'+date.getMinutes() : date.getMinutes()) ;
+  const newTime = Y + M + D + h + m;
+  return newTime;
+}
