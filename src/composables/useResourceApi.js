@@ -16,6 +16,7 @@ export function useResourceApi({
   const formRef = ref(null);
   const queryRef = ref(null);
   const tableRef = ref(null);
+  const defaultItem = JSON.parse(JSON.stringify(item));
   const state = reactive({
     item: item,
     query: query,
@@ -81,17 +82,15 @@ export function useResourceApi({
   }
 
   // 更新项
-  const _updateItem = async () => {
+  const updateItem = async () => {
     await updateApi(state.item).then(r => r);
     state.refreshAfterConfirm && await getList();
-    cancelItem();
   }
 
   // 保存项
-  const _storeItem = async () => {
+  const storeItem = async () => {
     await storeApi(state.item).then(r => r);
     state.refreshAfterConfirm && await getList();
-    cancelItem();
   }
 
   // 确认提交
@@ -102,7 +101,8 @@ export function useResourceApi({
           try {
             state.confirmLoading = true;
             const {[uniqueId]: id} = state.item;
-            id ? await _updateItem() : await _storeItem();
+            id ? await updateItem() : await storeItem();
+            cancelItem();
             state.confirmLoading = false;
           } catch (e) {
             state.confirmLoading = false;
@@ -115,7 +115,7 @@ export function useResourceApi({
 
   // 取消提交
   const cancelItem = () => {
-    state.item = item;
+    state.item = defaultItem;
     state.dialog = false;
     nextTick(() => formRef.value.clearValidate()).then(r => r);
   }
@@ -140,6 +140,8 @@ export function useResourceApi({
     getItem,
     addItem,
     editItem,
+    updateItem,
+    storeItem,
     deleteItem,
     confirmItem,
     cancelItem,

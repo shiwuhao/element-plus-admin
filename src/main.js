@@ -3,12 +3,13 @@ import App from './App.vue'
 import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
 import {setupEIconPicker} from './plugins/eIconPicker'
-import {setupRouter} from './router'
+import {router,setupRouter} from './router'
 import {setupStore} from './store'
 // import '@/mock/index';
 import {setupRouterGuard} from "@/router/guard";
 import {initProjectConfig} from "@/logics/initProjectConfig";
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
+import {setupGlobalDirectives} from "@/directives";
 
 (async () => {
   const app = createApp(App);
@@ -27,7 +28,9 @@ import SvgIcon from '@/components/SvgIcon/SvgIcon';
 
   setupRouterGuard();
 
-  // await router.isReady();
+  setupGlobalDirectives(app);
+
+  await router.isReady();
 
   app.mount('#app')
   app.component('svg-icon',SvgIcon)

@@ -10,7 +10,18 @@ import permission from "./modules/permission";
 import user from "./modules/user";
 
 const store = createStore({
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState({
+    paths: [
+      'setting',
+      'config',
+      'app',
+      'user',
+      'tagView',
+      'permission.menus',
+      'permission.routes',
+      'permission.addRoutes'
+    ]
+  })],
   modules: {
     setting, config, app, tagView, permission, user
   },

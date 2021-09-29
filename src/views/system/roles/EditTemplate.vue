@@ -23,7 +23,7 @@
             <el-radio-button :label="0">禁用</el-radio-button>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="访问授权" prop="permissions">
+        <el-form-item label="访问授权" prop="permission_ids">
           <el-tree
             v-if="dialog"
             :data="getTreePermissions"
@@ -62,14 +62,14 @@ export default {
         name: [{required: true, pattern: /^(\w|:){3,50}$/, message: '标识为必填项，3-50个英文字符', trigger: 'blur'}],
         title: [{required: true, message: '请输入显示名称', trigger: 'blur'}],
         status: [{required: true, message: '请选择状态', trigger: 'blur'}],
-        permissions: [{required: true, message: '请选择权限节点', type: 'array', trigger: 'change'}],
+        permission_ids: [{required: true, message: '请选择权限节点', type: 'array', trigger: 'change'}],
       }
     })
 
     const {getTreePermissions} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
-    const handlePermissionCheck = (checkedData, {checkedKeys}) => item.value.permissions = checkedKeys;
-    watch(item, () => state.defaultCheckedKeys = item.value.permissions);
+    const handlePermissionCheck = (checkedData, {checkedKeys}) => item.value.permission_ids = checkedKeys;
+    watch(item, () => state.defaultCheckedKeys = item.value.permission_ids);
 
     return {
       ...toRefs(state),

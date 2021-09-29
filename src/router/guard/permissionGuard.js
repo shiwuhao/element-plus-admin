@@ -13,8 +13,8 @@ export function createPermissionGuard(router) {
       next();
     } else if (getters.getAccessToken) { // 已登录 拉取用户信息,过滤权限路由,动态注册路由
       if (!getters.getUser) await dispatch('user/getUserInfo');
-      if (!router.hasRoute('dashboard')) {
-        const accessRoutes = await dispatch('permission/generateRoutes', getters.getRoles);
+      if (!getters.getIsLoaded) {
+        const accessRoutes = await dispatch('permission/getPermissions');
         accessRoutes.forEach(item => router.addRoute(item))
         next({...to, replace: true});
       } else {

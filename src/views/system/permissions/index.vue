@@ -98,6 +98,7 @@ export default defineComponent({
 
     resourceApi = {...resourceApi, ...{confirmItem: _confirmItem, deleteItem: _deleteItem}}
     provide('resourceApi', resourceApi);
+    provide('childrenListApi', childrenListApi);
 
     return {
       ...toRefs(state),

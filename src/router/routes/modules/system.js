@@ -20,9 +20,9 @@ export default [
         component: () => import('@/views/system/roles/index'),
       },
       {
-        path: 'permissions',
-        name: 'permissions',
-        meta: {title: '权限管理', menu: true, affix: false},
+        path: 'menus',
+        name: 'menus',
+        meta: {title: '菜单管理', menu: true, affix: false},
         component: () => import('@/views/system/permissions/index'),
       },
       {

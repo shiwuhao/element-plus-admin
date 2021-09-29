@@ -3,6 +3,8 @@ import Qs from 'qs';
 import store from "@/store";
 import {ElMessage} from "element-plus";
 
+import {router} from "@/router";
+
 const handleParamInUrl = (url, params) => {
   return url.replace(/:(\w+)/g, (_, key) => {
     const _p = params[key];
@@ -13,7 +15,7 @@ const handleParamInUrl = (url, params) => {
 
 const instance = axios.create({
   // eslint-disable-next-line no-undef
-  baseURL: process.env.VUE_APP_API_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {Accept: 'text/json'},
 })
 
@@ -41,7 +43,7 @@ instance.interceptors.response.use((response) => {
 
   return response;
 }, (err) => {
-  const {response: {status, data: {message}}} = err;
+  const {response: {status, data: {message}}, config: {url}} = err;
 
   let noticeConfig = {};
 
@@ -52,8 +54,8 @@ instance.interceptors.response.use((response) => {
       noticeConfig = {title: 403, desc: err.response.data.message, duration: 0};
       break;
     case 401:
-      if (err.config.url.indexOf('login') > 0) {
-        noticeConfig = {title: 401, desc: err.response.data.message, duration: 0};
+      if (url.indexOf('login') === -1) {
+        router.push({name: 'login'});
       }
       break;
     case 404:

@@ -4,10 +4,10 @@
  */
 export function useGlobalSetting() {
 
-  const logo = process.env.VUE_APP_LOGO;
-  const title = process.env.VUE_APP_TITLE;
-  const apiUrl = process.env.VUE_APP_API_URL;
-  const uploadUrl = process.env.VUE_APP_UPLOAD_URL;
+  const logo = import.meta.env.VITE_LOGO;
+  const title = import.meta.env.VITE_TITLE;
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const uploadUrl = import.meta.env.VITE_UPLOAD_URL;
 
   return {
     logo,

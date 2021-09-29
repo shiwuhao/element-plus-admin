@@ -1,4 +1,4 @@
-import router from "@/router";
+import {router} from "@/router";
 import {createProgressGuard} from "@/router/guard/progressGuard";
 import {createPageLoadingGuard} from "@/router/guard/pageLoadingGuard";
 import {createPageGuard} from "@/router/guard/pageGuard";

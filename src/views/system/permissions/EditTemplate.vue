@@ -17,9 +17,8 @@
         <el-form-item label="父级节点" prop="pid">
           <el-cascader
             v-model="item.pid"
-            :options="getTreePermissions"
             :show-all-levels="false"
-            :props="{ checkStrictly: true,value:'id',label:'title',emitPath:false }"
+            :props="{ checkStrictly: true,value:'id',label:'title',emitPath:false,lazy: true,lazyLoad:lazyLoad }"
             clearable
             style="width: 100%;"
           ></el-cascader>
@@ -69,6 +68,7 @@
 import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
+import {childrenListApi} from "@/api/permissions";
 
 export default {
   name: "editTemplate",
@@ -85,8 +85,18 @@ export default {
       }
     })
 
-    const {getTreePermissions, getPermissionRoutes} = useConfig();
+    const {getPermissionRoutes} = useConfig();
+    const childrenListApi = inject('childrenListApi');
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
+
+    const lazyLoad = async ({level, data}, resolve) => {
+      if (level === 0) {
+        resolve([{id: 0, pid: 0, title: '根节点', children: []}]);
+      } else {
+        const {data: {data: lists}} = await childrenListApi(data.id);
+        resolve(lists)
+      }
+    }
 
     return {
       ...toRefs(state),
@@ -97,8 +107,8 @@ export default {
       confirmLoading,
       cancelItem,
       confirmItem,
-      getTreePermissions,
       getPermissionRoutes,
+      lazyLoad
     }
   }
 }

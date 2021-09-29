@@ -1,35 +1,33 @@
-import {basicRoutes, asyncRoutes} from '@/router/routes';
+import {asyncRoutes, menuRoutes} from '@/router/routes';
+import {permissions} from "@/api/personal";
+import {listToTree} from "@/utils/utils";
 
 /**
- * 通过meta.role判断是否与当前用户权限匹配
- * @param roles
+ * 判断是否有路由权限
  * @param route
- * @returns {boolean|*}
+ * @param permission
+ * @returns {boolean}
  */
-function hasPermission(roles, route) {
-  if (route.meta && route.meta.roles) {
-    return roles.some(role => route.meta.roles.includes(role))
-  } else {
-    return true;
-  }
+function hasPermission(route, permission) {
+  return true;
 }
 
 /**
- * 递归过滤异步路由表，返回符合用户角色权限的路由表
+ * 通过权限节点过滤路由
  * @param routes
- * @param roles
+ * @param permission
  * @returns {[]}
  */
-function filterAsyncRoutes(routes, roles) {
+function filterAsyncRoutes(routes, permission) {
   const res = [];
   const defaultRouteMeta = {meta: {menu: true, cache: true, affix: false}};
   routes.forEach(route => {
-    let tmp = {...defaultRouteMeta, ...route};
-    if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, roles);
+    let _route = {...defaultRouteMeta, ...route};
+    if (hasPermission(_route, permission)) {
+      if (_route.children) {
+        _route.children = filterAsyncRoutes(_route.children, permission);
       }
-      res.push(tmp);
+      res.push(_route);
     }
   });
   return res
@@ -59,31 +57,29 @@ function filterMenus(routes, parentPath = '') {
 const permission = {
   namespaced: true,
   state: {
-    menus: [],
-    routes: [],
-    addRoutes: [],
+    menus: [],// 菜单
+    roles: [],// 角色
+    actions: [],// 动作
+    isLoaded: false, // 是否已加载，该字段禁止缓存
   },
   mutations: {
-    SET_ROUTES(state, routes) {
-      state.addRoutes = routes;
-      state.routes = basicRoutes.concat(routes);
-      state.menus = filterMenus(state.addRoutes);
+    SET_PERMISSIONS(state, {roles, menus, actions}) {
+      state.menus = menus;
+      state.roles = roles;
+      state.actions = actions;
+      state.isLoaded = true;
     },
   },
   actions: {
-    // 生成访问路由
-    generateRoutes({commit}, roles) {
-      return new Promise(resolve => {
-        let accessedRoutes;
-        if (roles.some(item => item === 'Administrator')) {
-          accessedRoutes = asyncRoutes || []
-        } else {
-          accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
-        }
-
-        commit('SET_ROUTES', accessedRoutes);
-        resolve(accessedRoutes);
-      });
+    getPermissions: async ({commit}) => {
+      const {data: {data: permission}} = await permissions();
+      const {roles = [], menus = [], actions = []} = permission;
+      const backendMenu = listToTree(menus.map(item => ({path: item.url, ...item})));// 后端菜单
+      const frontedMenu = filterMenus(menuRoutes);// 前端菜单,demo展示使用
+      commit('SET_PERMISSIONS', {roles, menus: [...backendMenu, ...frontedMenu], actions});
+      // 按需是否过滤权限路由 @TODO
+      const permissionRoutes = filterAsyncRoutes(asyncRoutes, permission);
+      return Promise.resolve(permissionRoutes);
     },
   }
 };
