@@ -29,6 +29,7 @@ module.exports = {
     "no-debugger": "off",
     "vue/script-setup-uses-vars": "off",
     "vue/no-multiple-template-root": "off",
-    "vue/no-v-model-argument": 'off'
+    "vue/no-v-model-argument": 'off',
+    "no-cond-assign": "off",
   }
 };
