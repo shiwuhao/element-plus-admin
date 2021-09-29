@@ -1,4 +1,5 @@
 import {responsePageSuccess, responseSuccess} from "../_utils";
+import {lists as roles} from "./roles.js";
 
 const lists = (() => {
   const result = [];
@@ -12,6 +13,7 @@ const lists = (() => {
       source: "1",
       status: 1,
       status_label: "\u6b63\u5e38",
+      roles: [roles[Math.floor((Math.random() * roles.length))]],
       created_at: "2021-09-24 07:32:54",
     });
   }
@@ -55,7 +57,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },
@@ -64,7 +66,7 @@ export default [
     method: 'put',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },
@@ -73,7 +75,7 @@ export default [
     method: 'delete',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },

@@ -1,6 +1,6 @@
 import {responsePageSuccess, responseSuccess} from "../_utils";
 
-const lists = (() => {
+export const lists = (() => {
   const result = [];
   for (let index = 0; index < 4; index++) {
     result.push({
@@ -40,7 +40,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },
@@ -49,7 +49,7 @@ export default [
     method: 'put',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },
@@ -58,7 +58,7 @@ export default [
     method: 'delete',
     response: ({query}) => {
       const {id} = query;
-      const item = lists.find(item => item.id === (id | 0));
+      const item = lists.find(item => item.id == id);
       return responseSuccess(item)
     }
   },

@@ -576,7 +576,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {group} = query
-      const items = lists.filter(item => item.group = group);
+      const items = lists.filter(item => item.group === group);
       return responseSuccess(items)
     }
   },

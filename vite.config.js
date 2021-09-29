@@ -66,7 +66,7 @@ export default ({
         mockPath: 'mock',
         localEnabled: command === 'serve',
         injectCode: `
-        import { setupProdMockServer } from './mock/mockProdServer';
+        import { setupProdMockServer } from './mock/index';
         setupProdMockServer();
       `,
       }),
