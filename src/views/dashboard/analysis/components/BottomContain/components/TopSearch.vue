@@ -1,5 +1,5 @@
 <template>
-  <Card :cardName="cardName" :header="header" class="m10 top-search-card" >
+  <Card :cardName="cardName" class="m10 top-search-card" >
     <template #text-custom>
       <el-table :data="tableData" stripe style="width: 100%">
         <el-table-column prop="date" label="日期" width="180"> </el-table-column>
@@ -20,7 +20,6 @@ export default defineComponent({
 
     return {
       cardName: ref('线上热门搜索'),
-      header: ref(true),
       tableData
     }
   }

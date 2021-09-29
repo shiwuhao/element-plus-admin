@@ -1,5 +1,5 @@
 <template>
-  <Card :cardName="cardName" :header="header" class="m10" :headerType="headerType">
+  <Card :cardName="cardName"  class="m10" :headerType="headerType">
     <template #header-custom>
       <el-button
         v-for="item in saleCategory"
@@ -41,7 +41,6 @@ export default defineComponent({
     // })
     return {
       cardName: ref('销售额类别占比'),
-      header: ref(true),
       headerType: ref('custom'),
       saleCategory,
       changeChannel,
@@ -55,6 +54,7 @@ export default defineComponent({
 ::v-deep .card-header-custom {
   .el-button {
     margin-left: 0;
+    margin-right: 5px;
     span {
       font-size: 14px;
       font-weight: 400;

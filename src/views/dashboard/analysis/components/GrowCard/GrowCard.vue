@@ -3,7 +3,6 @@
     <el-row :gutter="20">
       <el-col  v-for="(item,index) in growCardData" :key="index" :span="getIsMobile?24:6">
         <Card
-          :header="header"
           :cardName="item.title"
           :btnName="btnName"
           :headerType="headerType"
@@ -34,7 +33,6 @@ export default defineComponent({
   setup() {
     const {getIsMobile} = useRootSetting();
     return {
-      header: ref(true),
       btnName: ref('操作'),
       headerType: ref('icon'),
       iconName: ref('el-icon-warning-outline'),
