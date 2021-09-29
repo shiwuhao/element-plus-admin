@@ -4,7 +4,8 @@
       <el-tooltip class="item" effect="dark"  placement="top-start" v-bind="{...$props,...$attrs}">
          <i :class="iconName" class="divider-iconName" :style="{color:color}"></i>
       </el-tooltip>
-      <span class="divider-title">{{ title }}</span>
+      <slot name="title">{{title}}</slot>
+<!--      <span class="divider-title">{{ title }}</span>-->
     </div>
     <el-divider v-bind="{...$props,...$attrs}">
       {{ text }}
