@@ -18,7 +18,7 @@ export default [
         path: 'analysis',
         name: 'analysis',
         meta: {title: '分析页', menu: true, cache: true, affix: true},
-        component: () => import('@/views/dashboard/analysis/index'),
+        component: () => import('@/views/dashboard/analysis'),
       },
       {
         path: 'monitor',
