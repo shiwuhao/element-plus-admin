@@ -47,7 +47,7 @@ export default defineComponent({
     },
     header: {
       type: Boolean,
-      default: false
+       default: true
     },
     bodyStyle: {
       type: Object,
