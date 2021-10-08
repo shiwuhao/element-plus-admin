@@ -1,6 +1,7 @@
 import dashboard from "@/router/routes/modules/dashboard";
 import system from "@/router/routes/modules/system";
 import component from "@/router/routes/modules/component";
+import feature from "@/router/routes/modules/feature.js";
 import permission from "@/router/routes/modules/permission";
 import basic from "@/router/routes/basic";
 
@@ -8,6 +9,7 @@ import basic from "@/router/routes/basic";
 export const menuRoutes = [
   ...permission,
   ...component,
+  ...feature,
 ];
 
 export const asyncRoutes = [

@@ -107,6 +107,12 @@ export default [
         meta: {title: '页面包裹', menu: true, affix: false},
         component: () => import('@/views/component/page-wrapper/index'),
       },
+      {
+        path: 'icon-picker',
+        name: 'icon-picker',
+        meta: {title: '图标选择器', menu: true, affix: false},
+        component: () => import('@/views/component/icon-picker/index'),
+      },
     ]
   }
 ];
