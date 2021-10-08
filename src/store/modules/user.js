@@ -9,7 +9,7 @@ const user = {
   },
   mutations: {
     setAccessToken: (state, accessToken) => {
-      state.access_token = accessToken;
+      state.accessToken = accessToken;
     },
     setUser: (state, user) => {
       state.user = user;
@@ -19,6 +19,9 @@ const user = {
     }
   },
   actions: {
+    async setToken({commit}, accessToken){
+      await commit('setAccessToken', accessToken);
+    },
     async login({commit}, params) {
       const {data: {data}} = await personal.login(params);
       commit('setAccessToken', data.access_token);
