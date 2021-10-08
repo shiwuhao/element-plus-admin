@@ -9,6 +9,7 @@ import {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
 import {initProjectConfig} from "@/logics/initProjectConfig";
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
+import 'virtual:svg-icons-register';
 import {setupGlobalDirectives} from "@/directives";
 
 (async () => {
@@ -31,7 +32,6 @@ import {setupGlobalDirectives} from "@/directives";
   setupGlobalDirectives(app);
 
   await router.isReady();
-
-  app.mount('#app')
   app.component('svg-icon',SvgIcon)
+  app.mount('#app')
 })();
