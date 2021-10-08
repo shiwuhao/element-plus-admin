@@ -9,7 +9,7 @@
 import {defineComponent, onMounted, reactive, ref} from 'vue';
 import {Card} from '@/components/Card';
 import {Echarts} from '@/components/Echarts';
-require('echarts-wordcloud');
+import 'echarts-wordcloud';
 export default defineComponent({
   components: {Card,Echarts},
   setup(){

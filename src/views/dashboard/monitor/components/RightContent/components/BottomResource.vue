@@ -9,7 +9,7 @@
 import {defineComponent, ref, reactive, onMounted} from 'vue';
 import {Card} from '@/components/Card';
 import {Echarts} from '@/components/Echarts';
-require('echarts-liquidfill');
+import 'echarts-liquidfill';
 export default defineComponent({
   components: {Card, Echarts},
   setup() {
