@@ -1,47 +1,49 @@
 <template>
-  <svg :class="className" xmlns="http://www.w3.org/2000/svg">
+  <svg :class="svgClass" aria-hidden="true" >
     <title v-if="title">{{ title }}</title>
-    <use :xlink:href="iconPath" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    <use :xlink:href="iconName" :fill="color"/>
   </svg>
 </template>
 
 <script>
-export default {
+import {computed, defineComponent,toRefs} from 'vue';
+export default defineComponent({
   name: 'svg-icon',
-
-  props: {
-    name: {
+  props:{
+    iconClass: {
       type: String,
-      required: true
+      required: true,
     },
-
-    title: {
+    className: {
       type: String,
-      default: null
-    }
+      default: '',
+    },
+    color: {
+      type: String,
+      default: '#889aa4',
+    },
   },
-
-  computed: {
-    iconPath() {
-      let icon = require(`@/assets/icons/svg/${this.name}.svg`);
-      if (Object.prototype.hasOwnProperty.call(icon, 'default')) {
-        icon = icon.default;
+  setup(props){
+    const {iconClass,className} = toRefs(props);
+    const iconName = computed(()=>`#icon-${iconClass.value}`)
+    const svgClass = computed(()=> {
+      if (className.value) {
+        return `svg-icon ${className.value}`
       }
-
-      return icon.url;
-    },
-
-    className() {
-      return 'svg-icon svg-icon--' + this.name;
+      return 'svg-icon'
+    })
+    return {
+      iconName,
+      svgClass
     }
   }
-};
+})
 </script>
-
 <style>
-  .svg-icon {
-    fill: currentColor;
-    height: 24px;
-    width: 24px;
-  }
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: middle;
+}
 </style>

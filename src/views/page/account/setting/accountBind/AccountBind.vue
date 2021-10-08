@@ -3,13 +3,13 @@
     <el-descriptions :title="item.title" v-for="item in accountBindList" :key="item.key">
       <el-descriptions-item>
         <template #label>
-          <svg-icon :name="item.avatar"/>
+          <svg-icon :iconClass="item.avatar"/>
           {{item.label}}
         </template>
         {{ item.value }}
       </el-descriptions-item>
       <template #extra>
-        <span  class="el-descriptions-title">绑定</span>
+        <span class="el-descriptions-title">绑定</span>
       </template>
     </el-descriptions>
   </div>
