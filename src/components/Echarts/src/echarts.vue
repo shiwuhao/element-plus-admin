@@ -3,8 +3,7 @@
 </template>
 <script>
 import {defineComponent, computed, toRefs, watch, ref, reactive, onMounted, onUnmounted, nextTick} from 'vue';
-
-let Echarts = require('echarts')
+import * as Echarts from 'echarts'
 export default defineComponent({
   props: {
     id: {
@@ -79,6 +78,7 @@ export default defineComponent({
           height: baseDom.opts.height
         })
         Object.assign(option, chartData.value)
+       // console.log(option)
         setTimeout(() => {
           myChart.value.setOption(option)
         }, 500)
