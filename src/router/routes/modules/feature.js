@@ -13,6 +13,18 @@ export default [
         name: 'full-screen',
         meta: {title: '全屏', menu: true, affix: false},
         component: () => import('@/views/feature/full-screen/index.vue'),
+      },
+      {
+        path: 'context-menu',
+        name: 'context-menu',
+        meta: {title: '右键菜单', menu: true, affix: false},
+        component: () => import('@/views/feature/context-menu/index.vue'),
+      },
+      {
+        path: 'clipboard',
+        name: 'clipboard',
+        meta: {title: '剪贴板', menu: true, affix: false},
+        component: () => import('@/views/feature/clipboard/index.vue'),
       }
     ]
   }
