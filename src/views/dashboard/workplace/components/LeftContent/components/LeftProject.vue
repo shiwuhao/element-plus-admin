@@ -14,6 +14,7 @@
             :time="item.time"
             :description="item.content"
             :imageUrl="item.url"
+            :header="header"
           >
             <template #image-custom>
               <span>{{ item.name }}</span>
@@ -41,7 +42,8 @@ export default defineComponent({
       leftTopData,
       shadow: ref('hover'),
       imageCard: ref(true),
-      getIsMobile
+      getIsMobile,
+      header: ref(false)
     }
   }
 })

@@ -1,10 +1,10 @@
 <template>
   <TopTrade/>
   <el-row :gutter="20">
-    <el-col :span="16">
+    <el-col :span="14">
       <BottomCategory/>
     </el-col>
-    <el-col :span="8">
+    <el-col :span="10">
       <BottomHotSearch/>
     </el-col>
   </el-row>
