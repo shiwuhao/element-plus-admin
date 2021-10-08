@@ -18,6 +18,9 @@
 		"core-js": "^3.6.5",
 		"css-color-function": "^1.3.3",
 		"e-icon-picker": "^2.0.6",
+		"echarts": "^5.2.1",
+		"echarts-liquidfill": "^3.1.0",
+		"echarts-wordcloud": "^2.0.0",
 		"element-plus": "^1.1.0-beta.9",
 		"lodash": "^4.17.21",
 		"nprogress": "^0.2.0",
@@ -47,6 +50,7 @@
 		"sass-loader": "^10.0.4",
 		"vite": "^2.5.10",
 		"vite-plugin-mock": "2",
+		"vite-plugin-svg-icons": "^1.0.5",
 		"vue-cli-plugin-element-plus": "~0.0.13"
 	},
 	"browserslist": [
