@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="20">
     <el-col v-for="(item,ind) in applicationList" :key="ind" :span="getIsMobile?24:6">
-      <Card shadow="hover">
+      <Card shadow="hover" :header="header">
         <template #text-custom>
           <div class="card-application">
             <div class="card-application-top">
@@ -61,7 +61,8 @@ export default defineComponent({
       disabled: ref(false),
       applicationList,
       applicationActions,
-      getIsMobile
+      getIsMobile,
+      header: ref(false)
     }
   }
 })

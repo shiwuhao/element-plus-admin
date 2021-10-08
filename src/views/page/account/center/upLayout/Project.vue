@@ -5,6 +5,7 @@
     :description="item.content"
     :time="item.time"
     :imageUrl="item.image"
+    :header="header"
     shadow="hover"
     v-for="(item,index) in projectList" :key="index"
   >
@@ -21,10 +22,10 @@ import {projectList} from './data';
 export default defineComponent({
   components: {Card},
   setup() {
-    const imageCard = ref(true)
     return {
-      imageCard,
-      projectList
+      imageCard: ref(true),
+      projectList,
+      header: ref(false)
     }
   }
 })

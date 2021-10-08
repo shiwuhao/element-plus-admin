@@ -1,5 +1,5 @@
 <template>
-  <Card v-for="(item,ind) in applicationList" :key="ind" shadow="hover">
+  <Card v-for="(item,ind) in applicationList" :key="ind" shadow="hover" :header="header">
     <template #text-custom>
       <div class="card-application">
         <div class="card-application-top">
@@ -51,11 +51,11 @@ import {Divider} from '@/components/Divider';
 export default defineComponent({
   components: {Card, Divider},
   setup() {
-    const disabled = ref(false)
     return {
-      disabled,
       applicationList,
-      applicationActions
+      applicationActions,
+      header: ref(false),
+      disabled: ref(false)
     }
   }
 })

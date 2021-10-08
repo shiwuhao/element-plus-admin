@@ -8,6 +8,7 @@
         :time="item.time"
         :imageUrl="item.image"
         shadow="hover"
+        :header="header"
         class="personal-center-right-project"
       >
         <template #image-custom>
@@ -29,7 +30,8 @@ export default defineComponent({
     return {
       imageCard: ref(true),
       projectList,
-      getIsMobile
+      getIsMobile,
+      header: ref(false)
     }
   }
 })
