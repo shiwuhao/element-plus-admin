@@ -53,12 +53,12 @@
             添加用户：拥有（Administrator）角色可见
           </el-button>
         </el-col>
-        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-role="'test'">
+        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-role="'Test'">
           <el-button type="danger">
             删除用户：拥有（test）角色可见
           </el-button>
         </el-col>
-        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-role="['Administrator','test']">
+        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-role="['Administrator','Test']">
           <el-button type="success">
             拥有（Administrator ||test）任一角色可见
           </el-button>
@@ -72,14 +72,14 @@
             添加用户：拥有（Administrator）角色可见
           </el-button>
         </el-col>
-        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-if="hasRole('test')">
+        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-if="hasRole('Test')">
           <el-button type="danger">
-            删除用户：拥有（test）角色可见
+            删除用户：拥有（Test）角色可见
           </el-button>
         </el-col>
-        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-if="hasRole(['Administrator','test'])">
+        <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-if="hasRole(['Administrator','Test'])">
           <el-button type="success">
-            拥有（Administrator ||test）任一角色可见
+            拥有（Administrator || Test）任一角色可见
           </el-button>
         </el-col>
       </el-row>
@@ -95,7 +95,7 @@
 <script>
 import UserPermissions from "@/views/permission/UserPermissions";
 import {PageWrapper} from "@/components/Page"
-import {defineComponent, toRefs, reactive} from "vue";
+import {defineComponent} from "vue";
 import {usePermission} from "@/composables/usePermission";
 
 

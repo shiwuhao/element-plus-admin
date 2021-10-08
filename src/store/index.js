@@ -15,7 +15,7 @@ const store = createStore({
       'setting',
       'config',
       'app',
-      'user',
+      'user.accessToken',
       'tagView',
       'permission.menus',
       'permission.routes',

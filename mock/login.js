@@ -1,6 +1,6 @@
 import {responseSuccess} from "./_utils.js";
 
-const token = {access_token: 'mockAdminToken'};
+const token = {access_token: 'mockToken1'};
 
 export default [
   {

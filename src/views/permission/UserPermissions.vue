@@ -13,7 +13,8 @@
     </template>
     <el-tabs v-model="currentTab">
       <el-tab-pane label="菜单" name="menus">
-        <pre>{{getMenus}}</pre>
+        demo数据中包含了预览的前台路由菜单,具体参考src/store/modules/permission.js
+        <pre>{{ getMenus }}</pre>
       </el-tab-pane>
       <el-tab-pane label="角色" name="roles">
         <pre>{{ getRoles }}</pre>
@@ -25,7 +26,7 @@
   </el-card>
 </template>
 <style lang="scss" scoped>
-.el-tab-pane{
+.el-tab-pane {
   height: 200px;
   overflow-x: auto;
 }
@@ -33,9 +34,10 @@
 <script>
 import Menu from '@/layouts/menu/index';
 import {PageWrapper} from "@/components/Page"
-import {defineComponent, toRefs, reactive} from "vue";
+import {defineComponent, toRefs, reactive, computed} from "vue";
 import {usePermission} from "@/composables/usePermission";
 import {useUser} from "@/composables/useUser";
+import {useStore} from 'vuex'
 
 
 export default defineComponent({
@@ -44,24 +46,31 @@ export default defineComponent({
   setup() {
     const state = reactive({
       currentTab: 'menus',
-      currentUser: 1,
       changeUsers: [
-        {id: 1, username: '用户1'},
-        {id: 2, username: '用户2'}
+        {id: 1, username: '用户1', token: 'mockToken1'},
+        {id: 2, username: '用户2', token: 'mockToken2'}
       ],
     })
 
-    const permissions = usePermission();
     const user = useUser();
+    const {dispatch} = useStore();
+    const permissions = usePermission();
 
-    const changeUser = () => {
-
+    const changeUser = async (id) => {
+      const user = state.changeUsers.find(item => item.id === id);
+      await dispatch('user/setToken', user['token']);
+      await dispatch('permission/getPermissions');
     }
+
+    const currentUser = computed(() => {
+      return state.changeUsers.find(item => item.token === user.getToken.value)['id'];
+    })
 
     return {
       ...toRefs(state),
       ...toRefs(permissions),
       ...toRefs(user),
+      currentUser,
       changeUser,
     }
   },

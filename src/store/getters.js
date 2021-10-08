@@ -1,6 +1,6 @@
 const getters = {
   getConfigs: state => state.config.configs,
-  getAccessToken: state => state.user.access_token,
+  getAccessToken: state => state.user.accessToken,
   getUser: state => state.user.user,
   getProjectConfig: state => state.app.projectConfig,
   getPageLoading: state => state.app.pageLoading,

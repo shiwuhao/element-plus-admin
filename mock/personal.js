@@ -1,6 +1,6 @@
 import {responsePageSuccess, responseSuccess} from "./_utils.js";
 
-const permissions = {
+const permissions1 = {
   "menus": [{
     "id": 1,
     "pid": 0,
@@ -77,6 +77,48 @@ const permissions = {
   "roles": ["Administrator"],
   "actions": ["Role:update", "User:index", "User:store", "User:show", "User:update", "User:destroy", "Role:index", "Role:store", "Role:show", "Config:destroy", "Role:destroy", "Permission:index", "Permission:store", "Permission:autoGenerate", "Permission:show", "Permission:update", "Permission:destroy", "Config:update", "Config:show", "Config:groupUpdate", "Config:group", "Config:store", "Config:index", "Config:configItems"]
 };
+const permissions2 = {
+  "menus": [
+    {
+      "id": 1,
+      "pid": 0,
+      "title": "Dashboard",
+      "icon": "fa fa-home",
+      "url": "/dashboard",
+      "type": "menu",
+      "unique": "get,/dashboard"
+    },
+    {
+      "id": 4,
+      "pid": 1,
+      "title": "分析页",
+      "icon": "el-icon-data-analysis",
+      "url": "/dashboard/analysis",
+      "type": "menu",
+      "unique": "get,/dashboard/analysis"
+    },
+    {
+      "id": 3,
+      "pid": 1,
+      "title": "监控页",
+      "icon": "el-icon-monitor",
+      "url": "/dashboard/monitor",
+      "type": "menu",
+      "unique": "get,/dashboard/monitor"
+    },
+    {
+      "id": 2,
+      "pid": 1,
+      "title": "工作台",
+      "icon": "fa fa-dashboard",
+      "url": "/dashboard/workplace",
+      "type": "menu",
+      "unique": "get,/dashboard/workplace"
+    }
+  ],
+  "roles": ["Test"],
+  "actions": ["User:index", "User:store"]
+};
 
 const userInfo1 = {
   "id": 1,
@@ -106,14 +148,16 @@ export default [
   {
     url: '/backend/personal/info',
     method: 'get',
-    response: ({headers:{authorization}}) => {
-      return responseSuccess(userInfo1)
+    response: ({headers: {authorization}}) => {
+      const userInfo = authorization === 'Bearer mockToken1' ? userInfo1 : userInfo2;
+      return responseSuccess(userInfo)
     }
   },
   {
     url: '/backend/personal/permissions',
     method: 'get',
-    response: () => {
+    response: ({headers: {authorization}}) => {
+      const permissions = authorization === 'Bearer mockToken1' ? permissions1 : permissions2;
       return responseSuccess(permissions)
     }
   }
