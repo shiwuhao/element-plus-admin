@@ -3,6 +3,7 @@ import legacyPlugin from '@vitejs/plugin-legacy';
 import {viteMockServe} from 'vite-plugin-mock';
 import * as path from 'path';
 import vuePlugin from '@vitejs/plugin-vue';
+import viteSvgIcons from 'vite-plugin-svg-icons';
 // @see https://cn.vitejs.dev/config/
 export default ({
                   command,
@@ -71,12 +72,20 @@ export default ({
       `,
       }),
       vuePlugin(),
+      viteSvgIcons({
+        // 配置路劲在你的src里的svg存放文件
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/svg')],
+        symbolId: 'icon-[dir]-[name]',
+      })
     ],
     css: {
       preprocessorOptions: {
         less: {
           // 支持内联 JavaScript
           javascriptEnabled: true,
+        },
+        scss: {
+          additionalData:  '@import "./src/styles/common.scss";'
         }
       }
     },
