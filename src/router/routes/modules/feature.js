@@ -29,7 +29,7 @@ export default [
       {
         path: 'click-out-side',
         name: 'click-out-side',
-        meta: {title: '点击外部', menu: true, affix: false},
+        meta: {title: '单击外部', menu: true, affix: false},
         component: () => import('@/views/feature/click-out-side/index.vue'),
       },
       {
