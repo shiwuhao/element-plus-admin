@@ -913,6 +913,13 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@drauu/core@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.nlark.com/@drauu/core/download/@drauu/core-0.2.0.tgz#b79259e50e2ab43912cd0f6483fa2f6901fb86f1"
+  integrity sha1-t5JZ5Q4qtDkSzQ9kg/ovaQH7hvE=
+  dependencies:
+    perfect-freehand "^1.0.4"
+
 "@element-plus/icons@^0.0.11":
   version "0.0.11"
   resolved "https://registry.nlark.com/@element-plus/icons/download/@element-plus/icons-0.0.11.tgz#9b187c002774548b911850d17fa5fc2f9a515f57"
@@ -993,7 +1000,12 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@popperjs/core@^2.10.1", "@popperjs/core@^2.4.4", "@popperjs/core@^2.9.2":
+"@popperjs/core@^2.10.1":
+  version "2.10.2"
+  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
+  integrity sha1-B5jAM1Hw3qGlpMq93yalWny+5ZA=
+
+"@popperjs/core@^2.4.4", "@popperjs/core@^2.9.2":
   version "2.10.1"
   resolved "https://registry.nlark.com/@popperjs/core/download/@popperjs/core-2.10.1.tgz?cache=0&sync_timestamp=1630646793367&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40popperjs%2Fcore%2Fdownload%2F%40popperjs%2Fcore-2.10.1.tgz#728ecd95ab207aab8a9a4e421f0422db329232be"
   integrity sha1-co7NlasgequKmk5CHwQi2zKSMr4=
@@ -1666,55 +1678,49 @@
   resolved "https://registry.nlark.com/@vue/web-component-wrapper/download/@vue/web-component-wrapper-1.3.0.tgz#b6b40a7625429d2bd7c2281ddba601ed05dc7f1a"
   integrity sha1-trQKdiVCnSvXwigd26YB7QXcfxo=
 
-"@vueuse/core@^4.9.1":
-  version "4.11.2"
-  resolved "https://registry.nlark.com/@vueuse/core/download/@vueuse/core-4.11.2.tgz#d4f54bd38e7c289c6f6357992c02423774cb26d9"
-  integrity sha1-1PVL0458KJxvY1eZLAJCN3TLJtk=
+"@vueuse/core@6.5.3":
+  version "6.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-6.5.3.tgz#15848eaccad18652df4cb4b6ccae7bd7921a0c7e"
+  integrity sha1-FYSOrMrRhlLfTLS2zK5715IaDH4=
   dependencies:
-    "@vueuse/shared" "4.11.2"
+    "@vueuse/shared" "6.5.3"
     vue-demi "*"
 
 "@vueuse/core@~6.1.0":
   version "6.1.0"
-  resolved "https://registry.nlark.com/@vueuse/core/download/@vueuse/core-6.1.0.tgz#8137c291cf49b11c2deda4d5079096e55b36fc28"
+  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-6.1.0.tgz#8137c291cf49b11c2deda4d5079096e55b36fc28"
   integrity sha1-gTfCkc9JsRwt7aTVB5CW5Vs2/Cg=
   dependencies:
     "@vueuse/shared" "6.1.0"
     vue-demi "*"
 
-"@vueuse/integrations@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.nlark.com/@vueuse/integrations/download/@vueuse/integrations-5.3.0.tgz#a2a829fc536954e91123c4e5b4d77b1f50aaeafe"
-  integrity sha1-oqgp/FNpVOkRI8TltNd7H1Cq6v4=
+"@vueuse/integrations@^6.5.3":
+  version "6.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/integrations/download/@vueuse/integrations-6.5.3.tgz#4a65074080e04121c6f297652af5ad2c1bb3a140"
+  integrity sha1-SmUHQIDgQSHG8pdlKvWtLBuzoUA=
   dependencies:
-    "@vueuse/shared" "5.3.0"
+    "@vueuse/core" "6.5.3"
     vue-demi "*"
   optionalDependencies:
-    axios "^0.21.1"
-    focus-trap "^6.6.0"
+    axios "^0.21.4"
+    drauu "^0.2.0"
+    focus-trap "^6.7.0"
     jwt-decode "^3.1.2"
     nprogress "^0.2.0"
     qrcode "^1.4.4"
     universal-cookie "^4.0.4"
 
-"@vueuse/shared@4.11.2":
-  version "4.11.2"
-  resolved "https://registry.nlark.com/@vueuse/shared/download/@vueuse/shared-4.11.2.tgz#1d56e08937600e3e65abf76f27cb4a1bc182adfd"
-  integrity sha1-HVbgiTdgDj5lq/dvJ8tKG8GCrf0=
-  dependencies:
-    vue-demi "*"
-
-"@vueuse/shared@5.3.0":
-  version "5.3.0"
-  resolved "https://registry.nlark.com/@vueuse/shared/download/@vueuse/shared-5.3.0.tgz#2b9583f80f1284242f808925e7e141310e400e45"
-  integrity sha1-K5WD+A8ShCQvgIkl5+FBMQ5ADkU=
-  dependencies:
-    vue-demi "*"
-
 "@vueuse/shared@6.1.0":
   version "6.1.0"
-  resolved "https://registry.nlark.com/@vueuse/shared/download/@vueuse/shared-6.1.0.tgz#1375fd41acefe52f9a1842f3c6a8a348786535ba"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-6.1.0.tgz#1375fd41acefe52f9a1842f3c6a8a348786535ba"
   integrity sha1-E3X9Qazv5S+aGELzxqijSHhlNbo=
+  dependencies:
+    vue-demi "*"
+
+"@vueuse/shared@6.5.3":
+  version "6.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-6.5.3.tgz#6503fa4bfbf45d0616bacedb8a4bd003f01da73b"
+  integrity sha1-ZQP6S/v0XQYWus7bikvQA/Adpzs=
   dependencies:
     vue-demi "*"
 
@@ -2122,6 +2128,11 @@ async-validator@^3.4.0:
   resolved "https://registry.nlark.com/async-validator/download/async-validator-3.5.2.tgz?cache=0&sync_timestamp=1630393210134&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fasync-validator%2Fdownload%2Fasync-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
   integrity sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA=
 
+async-validator@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.nlark.com/async-validator/download/async-validator-4.0.3.tgz?cache=0&sync_timestamp=1630393210134&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fasync-validator%2Fdownload%2Fasync-validator-4.0.3.tgz#c8ecd6b28fc8e18b14be4ec7c704641f999d377d"
+  integrity sha1-yOzWso/I4YsUvk7HxwRkH5mdN30=
+
 async@^2.6.2:
   version "2.6.3"
   resolved "https://registry.nlark.com/async/download/async-2.6.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fasync%2Fdownload%2Fasync-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
@@ -2162,7 +2173,7 @@ aws4@^1.8.0:
   resolved "https://registry.npm.taobao.org/aws4/download/aws4-1.11.0.tgz?cache=0&sync_timestamp=1604101244098&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faws4%2Fdownload%2Faws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=
 
-axios@^0.21.1:
+axios@^0.21.1, axios@^0.21.4:
   version "0.21.4"
   resolved "https://registry.nlark.com/axios/download/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
   integrity sha1-xnuQ3AVo5cHPKwuFjEO6KOLtpXU=
@@ -3414,7 +3425,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dayjs@1.x:
+dayjs@1.x, dayjs@^1.10.7:
   version "1.10.7"
   resolved "https://registry.nlark.com/dayjs/download/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=
@@ -3719,6 +3730,13 @@ dotenv@^8.2.0:
   resolved "https://registry.nlark.com/dotenv/download/dotenv-8.6.0.tgz?cache=0&sync_timestamp=1621628681571&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fdotenv%2Fdownload%2Fdotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
   integrity sha1-Bhr2ZNGff02PxuT/m1hM4jety4s=
 
+drauu@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.nlark.com/drauu/download/drauu-0.2.0.tgz#ee4e8fae8df8aac01bb297bca01a91c7bc948b35"
+  integrity sha1-7k6Pro34qsAbspe8oBqRx7yUizU=
+  dependencies:
+    "@drauu/core" "0.2.0"
+
 duplexer@^0.1.1:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/duplexer/download/duplexer-0.1.2.tgz#3abe43aef3835f8ae077d136ddce0f276b0400e6"
@@ -3788,18 +3806,17 @@ element-plus@^1.0.2-beta.42:
     resize-observer-polyfill "^1.5.1"
 
 element-plus@^1.1.0-beta.9:
-  version "1.1.0-beta.12"
-  resolved "https://registry.nlark.com/element-plus/download/element-plus-1.1.0-beta.12.tgz#2fd646f3c2f787dfb282d091ec6aa6945d1bec6a"
-  integrity sha1-L9ZG88L3h9+ygtCR7GqmlF0b7Go=
+  version "1.1.0-beta.19"
+  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.1.0-beta.19.tgz#234f3bc3f1d822a7102045e7ee1239b675f27acc"
+  integrity sha1-I087w/HYIqcQIEXn7hI5tnXyesw=
   dependencies:
-    "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.10.1"
     "@vueuse/core" "~6.1.0"
-    async-validator "^3.4.0"
-    dayjs "1.x"
+    async-validator "^4.0.3"
+    dayjs "^1.10.7"
     lodash "^4.17.21"
-    mitt "^2.1.0"
-    normalize-wheel "^1.0.1"
+    memoize-one "^5.2.1"
+    normalize-wheel-es "^1.1.0"
     resize-observer-polyfill "^1.5.1"
 
 elliptic@^6.5.3:
@@ -4467,10 +4484,10 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-focus-trap@^6.6.0:
-  version "6.6.1"
-  resolved "https://registry.nlark.com/focus-trap/download/focus-trap-6.6.1.tgz?cache=0&sync_timestamp=1628963443143&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffocus-trap%2Fdownload%2Ffocus-trap-6.6.1.tgz#761ce2c82ddd72beeb049e968bc8414e25b704aa"
-  integrity sha1-dhziyC3dcr7rBJ6Wi8hBTiW3BKo=
+focus-trap@^6.7.0:
+  version "6.7.1"
+  resolved "https://registry.npmmirror.com/focus-trap/download/focus-trap-6.7.1.tgz#d474f86dbaf3c7fbf0d53cf0b12295f4f4068d10"
+  integrity sha1-1HT4bbrzx/vw1TzwsSKV9PQGjRA=
   dependencies:
     tabbable "^5.2.1"
 
@@ -5962,6 +5979,11 @@ media-typer@0.3.0:
   resolved "https://registry.nlark.com/media-typer/download/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
+memoize-one@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.nlark.com/memoize-one/download/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
+  integrity sha1-gzeqPEM1WBg57AHD1ZQJDOvo8A4=
+
 memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.npm.taobao.org/memory-fs/download/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
@@ -6392,6 +6414,11 @@ normalize-url@^3.0.0:
   version "3.3.0"
   resolved "https://registry.nlark.com/normalize-url/download/normalize-url-3.3.0.tgz#b2e1c4dc4f7c6d57743df733a4f5978d18650559"
   integrity sha1-suHE3E98bVd0PfczpPWXjRhlBVk=
+
+normalize-wheel-es@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmmirror.com/normalize-wheel-es/download/normalize-wheel-es-1.1.0.tgz#db017af1dd5d4c6222c07ae38bc224049d25861e"
+  integrity sha1-2wF68d1dTGIiwHrji8IkBJ0lhh4=
 
 normalize-wheel@^1.0.1:
   version "1.0.1"
@@ -6837,6 +6864,11 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+perfect-freehand@^1.0.4:
+  version "1.0.15"
+  resolved "https://registry.npmmirror.com/perfect-freehand/download/perfect-freehand-1.0.15.tgz#d3e4769e0420c0d467c0147487a34793f0b421e7"
+  integrity sha1-0+R2ngQgwNRnwBR0h6NHk/C0Iec=
 
 performance-now@^2.1.0:
   version "2.1.0"
