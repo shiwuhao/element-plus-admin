@@ -31,7 +31,7 @@ export default defineConfig(({command}) => {
         mockPath: 'mock',
         localEnabled: command === 'serve',
         injectCode: `
-        import { setupProdMockServer } from './mock/index';
+        import { setupProdMockServer } from './mock/index.js';
         setupProdMockServer();
       `,
       }),
