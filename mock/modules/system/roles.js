@@ -1,4 +1,4 @@
-import {responsePageSuccess, responseSuccess} from "../_utils";
+import {responsePageSuccess, responseSuccess} from "../../_utils.js";
 
 export const lists = (() => {
   const result = [];

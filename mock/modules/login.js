@@ -1,4 +1,4 @@
-import {responseSuccess} from "./_utils.js";
+import {responseSuccess} from "../_utils.js";
 
 const token = {access_token: 'mockToken1'};
 

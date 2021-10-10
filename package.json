@@ -10,7 +10,6 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "@tinymce/tinymce-vue": "^4",
-    "@vitejs/plugin-legacy": "^1.6.1",
     "@vueuse/core": "6.5.3",
     "@vueuse/integrations": "^6.5.3",
     "axios": "^0.21.1",

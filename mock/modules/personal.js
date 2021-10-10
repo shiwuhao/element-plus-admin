@@ -1,4 +1,4 @@
-import {responsePageSuccess, responseSuccess} from "./_utils.js";
+import {responsePageSuccess, responseSuccess} from "../_utils.js";
 
 const permissions1 = {
   "menus": [{

@@ -1,4 +1,4 @@
-import {responsePageSuccess, responseSuccess} from "../_utils";
+import {responsePageSuccess, responseSuccess} from "../../_utils.js";
 
 const items = {
   "groups": [{"value": "basic", "label": "\u57fa\u7840"}, {"value": "system", "label": "\u7cfb\u7edf"}],
