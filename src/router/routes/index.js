@@ -5,6 +5,7 @@ import feature from "@/router/routes/modules/feature.js";
 import permission from "@/router/routes/modules/permission";
 import basic from "@/router/routes/basic";
 
+
 // 需要前端生成菜单的路由
 export const menuRoutes = [
   ...permission,
