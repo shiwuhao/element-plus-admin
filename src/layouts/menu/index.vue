@@ -72,6 +72,9 @@ export default {
     height: 100%;
     border: 0;
 
+    .el-sub-menu__title i {
+      width: auto;
+    }
 
     & > .el-submenu > .el-submenu__title {
       padding-left: 15px !important;
