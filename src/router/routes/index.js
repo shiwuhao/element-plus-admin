@@ -3,6 +3,7 @@ import system from "@/router/routes/modules/system";
 import component from "@/router/routes/modules/component";
 import feature from "@/router/routes/modules/feature.js";
 import permission from "@/router/routes/modules/permission";
+import page from "@/router/routes/modules/page.js";
 import basic from "@/router/routes/basic";
 
 
@@ -11,6 +12,7 @@ export const menuRoutes = [
   ...permission,
   ...component,
   ...feature,
+  ...page,
 ];
 
 export const asyncRoutes = [

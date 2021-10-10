@@ -5,14 +5,14 @@ export default [
   {
     path: '/page',
     component: Layout,
-    redirect: '/feature',
-    meta: {title: '功能', icon: 'el-icon-set-up', menu: true},
+    redirect: '/error-page',
+    meta: {title: '页面', icon: 'el-icon-tickets', menu: true},
     children: [
       {
-        path: 'context-menu',
-        name: 'context-menu',
-        meta: {title: '右键菜单', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/context-menu/index.vue'),
+        path: 'error-page',
+        name: 'error-page',
+        meta: {title: '错误页', menu: true, affix: false},
+        component: () => import('@/views/demo/page/error-page/401.vue'),
       },
     ]
   }
