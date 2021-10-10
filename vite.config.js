@@ -1,84 +1,43 @@
-/* eslint-disable */
-import legacyPlugin from '@vitejs/plugin-legacy';
-import {viteMockServe} from 'vite-plugin-mock';
-import * as path from 'path';
-import vuePlugin from '@vitejs/plugin-vue';
-// @see https://cn.vitejs.dev/config/
-export default ({
-                  command,
-                  mode
-                }) => {
-  let rollupOptions = {};
+import path from "path";
+import {defineConfig} from "vite";
+import vue from "@vitejs/plugin-vue";
+import Components from "unplugin-vue-components/vite";
+import {ElementPlusResolver} from "unplugin-vue-components/resolvers";
+import {viteMockServe} from "vite-plugin-mock";
 
 
-  let optimizeDeps = {};
-
-
-  let alias = {
-    '@': path.resolve(__dirname, './src'),
-    'vue$': 'vue/dist/vue.runtime.esm-bundler.js',
-  }
-
-  let proxy = {
-    // '/backend': {
-    //   "target": "http://localhost:8090",
-    //   "changeOrigin": true
-    // },
-  }
-
-  let define = {
-    'process.env.NODE_ENV': '"development"',
-  }
-
-  let esbuild = {
-    "compilerOptions": {
-      "target": "ES2019"
-    }
-  }
-
+export default defineConfig(({command}) => {
   return {
-    base: './', // index.html文件所在位置
-    root: './', // js导入的资源路径，src
     resolve: {
-      alias,
-      extensions: ['.vue', '.js']
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        "~/": `${path.resolve(__dirname, "src")}/`,
+      },
+      extensions: ['.vue', '.js'],
     },
-    define: define,
-    server: {
-      // 代理
-      proxy,
+    define: {
+      'process.env.NODE_ENV': '"development"',
     },
-    build: {
-      target: 'esnext',
-      minify: 'terser', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用terser
-      manifest: false, // 是否产出maifest.json
-      sourcemap: false, // 是否产出soucemap.json
-      outDir: 'build', // 产出目录
-      rollupOptions,
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "~/styles/index.scss" as *;`,
+        },
+      },
     },
-    esbuild,
-    optimizeDeps,
     plugins: [
-      legacyPlugin({
-        targets: ['Android > 39', 'Chrome >= 60', 'Safari >= 10.1', 'iOS >= 10.3', 'Firefox >= 54', 'Edge >= 15'],
-      }),
+      vue(),
       viteMockServe({
         mockPath: 'mock',
         localEnabled: command === 'serve',
-        injectCode: `
-        import { setupProdMockServer } from './mock/index';
-        setupProdMockServer();
-      `,
       }),
-      vuePlugin(),
+      // Components({
+      //   resolvers: [
+      //     ElementPlusResolver({
+      //       importStyle: "sass",
+      //     }),
+      //   ],
+      // }),
     ],
-    css: {
-      preprocessorOptions: {
-        less: {
-          // 支持内联 JavaScript
-          javascriptEnabled: true,
-        }
-      }
-    },
   }
-}
+});

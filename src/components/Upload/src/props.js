@@ -2,7 +2,7 @@ const basicProps = {
   action: {
     type: String,
     default: () => {
-      return process.env.VUE_APP_UPLOAD_URL;
+      return import.meta.env.VITE_UPLOAD_URL;
     },
     required: true,
   },
