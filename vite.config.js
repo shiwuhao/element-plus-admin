@@ -30,14 +30,18 @@ export default defineConfig(({command}) => {
       viteMockServe({
         mockPath: 'mock',
         localEnabled: command === 'serve',
+        injectCode: `
+        import { setupProdMockServer } from './mock/index';
+        setupProdMockServer();
+      `,
       }),
-      // Components({
-      //   resolvers: [
-      //     ElementPlusResolver({
-      //       importStyle: "sass",
-      //     }),
-      //   ],
-      // }),
+      Components({
+        resolvers: [
+          ElementPlusResolver({
+            importStyle: "sass",
+          }),
+        ],
+      }),
     ],
   }
 });
