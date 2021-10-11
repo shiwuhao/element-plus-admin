@@ -63,5 +63,21 @@ export default {
   &.el-menu:not(.el-menu--horizontal) {
     height: 100%;
   }
+
+  :deep(.el-menu--horizontal) {
+    > .el-sub-menu .el-sub-menu__title {
+      height: 49px !important;
+      line-height: 49px !important;
+    }
+  }
+
+  &.el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
+    height: 49px !important;
+    line-height: 49px !important;
+  }
+}
+&.el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
+  height: 49px !important;
+  line-height: 49px !important;
 }
 </style>
