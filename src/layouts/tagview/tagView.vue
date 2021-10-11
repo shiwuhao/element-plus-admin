@@ -1,24 +1,26 @@
 <template>
   <div class="tag-view">
-    <scroll-panel class="scroll-container" ref="scrollPane">
-      <el-tag
-        class="tag-item"
-        :ref="(el) => el && getViewRefs.push(el)"
-        v-for="item in getVisitedViews"
-        :key="item.path"
-        :route="item"
-        :type="viewIsActive(item) ? '' : 'info'"
-        :closable="!(item.meta && item.meta.affix)"
-        :effect="viewIsActive(item) ? 'dark' : 'light'"
-        size="small"
-        @close="closeView(item)"
-        @click="goView(item)"
-        @contextmenu.prevent="getSelectView = item"
-        v-contextmenu:contextmenu
-      >
-        {{ item.title }}
-      </el-tag>
-    </scroll-panel>
+    <el-scrollbar>
+      <div class="scroll-container flex-row-left">
+        <el-tag
+          class="tag-item"
+          :ref="(el) => el && getViewRefs.push(el)"
+          v-for="item in getVisitedViews"
+          :key="item.path"
+          :route="item"
+          :type="viewIsActive(item) ? '' : 'info'"
+          :closable="!(item.meta && item.meta.affix)"
+          :effect="viewIsActive(item) ? 'dark' : 'light'"
+          size="small"
+          @close="closeView(item)"
+          @click="goView(item)"
+          @contextmenu.prevent="getSelectView = item"
+          v-contextmenu:contextmenu
+        >
+          {{ item.title }}
+        </el-tag>
+      </div>
+    </el-scrollbar>
     <v-contextmenu ref="contextmenu">
       <v-contextmenu-item @click="refreshView(getSelectView)">刷新</v-contextmenu-item>
       <v-contextmenu-item v-if="!viewIsAffix(getSelectView)" @click="closeView(getSelectView)">关闭</v-contextmenu-item>
@@ -89,6 +91,7 @@ export default {
   padding: 0 10px;
 
   .scroll-container {
+    height: 30px;
     background: white;
     line-height: 27px;
 
