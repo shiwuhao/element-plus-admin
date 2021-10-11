@@ -1,13 +1,14 @@
 import path from "path";
 import store from "@/store";
 import {useRouter} from "vue-router";
-import {computed, nextTick, ref, unref} from 'vue';
+import {computed, nextTick, onMounted, ref, unref, watch} from 'vue';
 
 export function useTagView() {
 
   const {getters, dispatch} = store;
   const {push, replace, currentRoute, getRoutes} = useRouter();
 
+  const scrollbarRef = ref();
   const getViewRefs = ref([]);
   const getSelectView = ref();
   const getVisitedViews = computed(() => getters.getVisitedViews);
@@ -118,11 +119,10 @@ export function useTagView() {
    * @returns {Promise<void>}
    */
   async function moveToCurrentTagView() {
-    const tags = getViewRefs;
     await nextTick(async () => {
-      for (const tag of tags.value) {
+      for (const tag of getViewRefs.value) {
         if (tag.$attrs.route.path === unref(currentRoute).path) {
-          // this.$refs.scrollPane.moveToTarget(tag);
+          moveToTarget(tag)
           if (tag.$attrs.route.fullPath !== unref(currentRoute).fullPath) {
             await dispatch('tagView/updateVisitedView', unref(currentRoute))
           }
@@ -130,6 +130,44 @@ export function useTagView() {
         }
       }
     })
+  }
+
+  /**
+   * 移动到指定标签位置
+   * @param currentTag
+   */
+  function moveToTarget(currentTag) {
+    let offsetLeft = 0;
+    const tagList = getViewRefs.value;
+
+    if (tagList.length > 0) {
+      const firstTag = tagList[0];
+      const lastTag = tagList[tagList.length - 1];
+
+      if (currentTag === firstTag) {
+        offsetLeft = 0;
+      } else if (currentTag === lastTag) {
+        offsetLeft = lastTag.$el.offsetLeft;
+      } else {
+        const currentIndex = tagList.findIndex(item => item === currentTag);
+        const prevTag = tagList[currentIndex - 1]
+        const nextTag = tagList[currentIndex + 1]
+
+        const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - 2;
+        const afterNextTagOffsetLeft = nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + 2
+
+        const containerWidth = parseInt(scrollbarRef.value.$el.offsetWidth);
+        const scrollWrapper = scrollbarRef.value.$refs.wrap;
+
+        if (afterNextTagOffsetLeft > scrollWrapper.scrollLeft + containerWidth) {
+          offsetLeft = afterNextTagOffsetLeft - containerWidth;
+        } else if (beforePrevTagOffsetLeft < scrollWrapper.scrollLeft) {
+          offsetLeft = beforePrevTagOffsetLeft
+        }
+      }
+
+      scrollbarRef.value.setScrollLeft(offsetLeft);
+    }
   }
 
   /**
@@ -169,11 +207,23 @@ export function useTagView() {
     return view.meta && view.meta.affix;
   }
 
+  // 初始化
+  onMounted(async () => {
+    await initViews();
+    await addView();
+    await moveToCurrentTagView();
+  })
+
+  watch(currentRoute, async () => {
+    await addView();
+    await moveToCurrentTagView()
+  });
+
   return {
+    scrollbarRef,
     getViewRefs,
     getSelectView,
     getVisitedViews,
-    initViews,
     goView,
     addView,
     closeView,

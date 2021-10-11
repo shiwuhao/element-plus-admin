@@ -1,6 +1,6 @@
 <template>
   <div class="tag-view">
-    <el-scrollbar>
+    <el-scrollbar ref="scrollbarRef">
       <div class="scroll-container flex-row-left">
         <el-tag
           class="tag-item"
@@ -30,53 +30,15 @@
   </div>
 </template>
 <script>
-import scrollPanel from "./scrollPanel";
 import {useTagView} from "@/layouts/tagview/useTagView";
-import {onMounted, watch} from "vue";
-import {useRouter} from 'vue-router';
-
+import {toRefs} from "vue";
 
 export default {
   name: 'TagView',
-  components: {scrollPanel},
   setup() {
-    const {
-      getViewRefs,
-      getSelectView,
-      getVisitedViews,
-      initViews,
-      goView,
-      addView,
-      refreshView,
-      closeView,
-      closeOtherView,
-      closeAllView,
-      viewIsActive,
-      viewIsAffix
-    } = useTagView();
-
-    // 初始化
-    onMounted(() => {
-      initViews();
-      addView();
-    })
-
-    // 监控路由
-    const {currentRoute} = useRouter();
-    watch(currentRoute, () => addView());
-
+    const tagView = useTagView();
     return {
-      getViewRefs,
-      getVisitedViews,
-      getSelectView,
-      goView,
-      addView,
-      refreshView,
-      closeView,
-      closeOtherView,
-      closeAllView,
-      viewIsActive,
-      viewIsAffix,
+      ...toRefs(tagView),
     }
   }
 };
@@ -84,7 +46,6 @@ export default {
 <style lang="scss" scoped>
 .tag-view {
   background: white;
-  //box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   border-bottom: 1px solid #E4E7ED;
   height: 30px;
   text-align: left;
