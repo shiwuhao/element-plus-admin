@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
-    :title="cardTitle"
-    :sub-title="cardTitle"
+    :title="$route['meta']['title']"
+    :sub-title="$route['meta']['title']"
     content-background>
     <el-card shadow="none">
       <BasicTable :data="tableData" :columns="tableColumns" border size="small">
@@ -21,35 +21,36 @@ import {BasicTable} from "@/components/Table";
 import {PageWrapper} from '@/components/Page';
 
 import {getBasicColumns, getBasicData} from './tableData.js';
+import {reactive, toRefs} from "vue";
+import {ElMessage} from "element-plus";
 
 export default {
   name: 'Basic',
   components: {BasicTable, PageWrapper},
-  data() {
-    return {
-      cardTitle: this.$route.meta.title,
+  setup() {
+    const state = reactive({
       tableColumns: getBasicColumns(),
       tableData: getBasicData(),
-    }
-  },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
+    });
+
+    const handleEdit = (index, row) => console.log(index, row);
+    const handleDelete = (index, row) => {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.tableData.splice(index, 1);
-        this.$message.success('删除成功!');
+        state.tableData.splice(index, 1);
+        ElMessage.success('删除成功!')
       }).catch(() => {
-        this.$message.info('已取消删除');
+        ElMessage.info('已取消删除!')
       });
-    },
-    onSubmit() {
-      console.log('submit!');
+    }
+
+    return {
+      ...toRefs(state),
+      handleEdit,
+      handleDelete
     }
   }
 }

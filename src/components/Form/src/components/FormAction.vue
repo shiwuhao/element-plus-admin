@@ -59,8 +59,8 @@ export default {
       default: false,
     },
     showAdvancedLength: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      default: 3,
     },
     isAdvanced: {
       type: Boolean,

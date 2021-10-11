@@ -1,16 +1,17 @@
 <template>
   <el-form ref="elForm" :model="formModel" v-bind="{...$props,...$attrs}">
     <el-row :gutter="30" v-if="getSchema.length > 0">
-      <template v-for="(schema,index) in getSchema" :key="schema.field">
-        <FormItem :schema="schema" v-model="formModel[schema.field]"
-                  v-show="showAdvancedButton ? index < showAdvancedLength || getActionProps.isAdvanced : true">
-          <template #[item]="data" v-for="item in Object.keys($slots)">
-            <slot :name="item" v-bind="{...schema,...data}"></slot>
-          </template>
-        </FormItem>
-      </template>
+      <FormItem v-for="(schema,index) in getSchema"
+                :schema="schema"
+                v-model="formModel[schema[field]]"
+                :key="index"
+                v-show="showAdvancedButton ? index < showAdvancedLength || getIsAdvanced : true">
+        <template #[item]="data" v-for="item in Object.keys($slots)">
+          <slot :name="item" v-bind="{...schema,...data}"></slot>
+        </template>
+      </FormItem>
       <FormAction v-bind="getActionProps" @toggle-advanced="toggleAdvanced">
-        <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
+        <template v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']" #[item]="data">
           <slot :name="item" v-bind="data"></slot>
         </template>
       </FormAction>
@@ -100,15 +101,19 @@ export default defineComponent({
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
     const elForm = ref(null);
+
+    const getIsAdvanced = ref(false);
     const getActionProps = computed(() => {
-      return {isAdvanced: false, ...unref(actionProps)};
+      return {isAdvanced: getIsAdvanced.value, ...unref(actionProps)};
     });
 
     watch(() => formModel.value, (newVal) => {
       emit('update:modelValue', newVal);
     }, {deep: true})
 
-    const toggleAdvanced = () => getActionProps.value.isAdvanced = !getActionProps.value.isAdvanced;
+    const toggleAdvanced = () => {
+      getIsAdvanced.value = !getIsAdvanced.value;
+    }
     const validate = () => elForm.value.validate();
     const validateField = () => elForm.value.validateField();
     const resetFields = () => elForm.value.resetFields();
@@ -132,6 +137,7 @@ export default defineComponent({
       showAdvancedButton,
       showAdvancedLength,
       getActionProps,
+      getIsAdvanced,
       elForm,
       toggleAdvanced,
       validate,

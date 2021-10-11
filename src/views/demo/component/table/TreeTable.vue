@@ -1,7 +1,7 @@
 <template>
   <PageWrapper
-    :title="cardTitle"
-    :sub-title="cardTitle"
+    :title="$route['meta']['title']"
+    :sub-title="$route['meta']['title']"
     content-background>
     <el-card shadow="none">
       <BasicTable :data="tableData" :columns="tableColumns" row-key="id" size="small">
@@ -21,26 +21,36 @@ import {BasicTable} from "@/components/Table";
 import {PageWrapper} from '@/components/Page';
 
 import {getBasicColumns, getTreeData} from './tableData.js';
+import {reactive, toRefs} from "vue";
+import {ElMessage} from "element-plus";
 
 export default {
   name: 'TreeTable',
   components: {BasicTable, PageWrapper},
-  data() {
-    return {
-      cardTitle: this.$route.meta.title,
+  setup() {
+    const state = reactive({
       tableColumns: getBasicColumns(),
       tableData: getTreeData(),
+    });
+
+    const handleEdit = (index, row) => console.log(index, row);
+    const handleDelete = (index, row) => {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        state.tableData.splice(index, 1);
+        ElMessage.success('删除成功!')
+      }).catch(() => {
+        ElMessage.info('已取消删除!')
+      });
     }
-  },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
-    onSubmit() {
-      console.log('submit!');
+
+    return {
+      ...toRefs(state),
+      handleEdit,
+      handleDelete
     }
   }
 }

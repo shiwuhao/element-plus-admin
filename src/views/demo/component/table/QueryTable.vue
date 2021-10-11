@@ -1,15 +1,9 @@
 <template>
   <PageWrapper
-    :title="$route.meta.title"
-    :sub-title="$route.meta.title">
+    :title="$route['meta']['title']"
+    :sub-title="$route['meta']['title']">
     <el-card shadow="none">
-      <basic-form :schemas="schemas"
-                  :action-props="actionProps"
-                  auto-width
-                  size="small"
-                  @search="search"
-                  @reset="reset">
-      </basic-form>
+      <BasicQuery :schemas="schemas" :col-props="{span:6}" advanced @submit="handleSearch"></BasicQuery>
     </el-card>
     <el-card shadow="none" class="mt10">
       <BasicTable :data="tableData" :columns="tableColumns" border size="small">
@@ -23,153 +17,69 @@
     </el-card>
   </PageWrapper>
 </template>
-<style lang="scss" scoped>
-:deep(.el-form-item) {
-  margin-bottom: 2px !important;
-}
-</style>
 
 <script>
-
 import {PageWrapper} from '@/components/Page';
-import {BasicTable} from "@/components/Table";
-import {BasicForm} from '@/components/Form';
+import {BasicTable, BasicQuery} from "@/components/Table";
 import {getBasicColumns, getBasicData} from './tableData.js';
 import {cascaderOptions, selectOptions} from "@/views/demo/component/form/formData.js";
-
-const colProps = {
-  xs: {span: 24},
-  sm: {span: 12},
-  md: {span: 12},
-  lg: {span: 6},
-  xl: {span: 4},
-};
+import {reactive, toRefs} from "vue";
+import {ElMessage, ElMessageBox} from "element-plus";
 
 export default {
   name: 'QueryTable',
   components: {
-    BasicForm, BasicTable, PageWrapper
+    BasicTable, PageWrapper, BasicQuery
   },
-  data() {
-    return {
-      searchForm: {},
+  setup() {
+    const state = reactive({
       tableColumns: getBasicColumns(),
       tableData: getBasicData(),
       schemas: [
-        {
-          field: 'input',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps
-        },
-        {
-          field: 'input2',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps
-        },
-        {
-          field: 'input3',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps
-        },
-        {
-          field: 'input4',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps
-        },
-        {
-          field: 'input5',
-          component: 'Input',
-          componentProps: {
-            placeholder: '这是一个Input表单',
-          },
-          colProps: colProps
-        },
-        {
-          field: 'select',
-          component: 'Select',
-          componentProps: {
-            placeholder: '这是一个Select',
-            options: selectOptions
-          },
-          colProps: colProps
-        },
-        {
-          field: 'select2',
-          component: 'Select',
-          componentProps: {
-            placeholder: '这是一个Select',
-            options: selectOptions
-          },
-          colProps: colProps
-        },
+        {field: 'id', placeholder: '用户ID', component: 'Input'},
+        {field: 'username', placeholder: '用户名', component: 'Input'},
+        {field: 'nickname', placeholder: '昵称', component: 'Input'},
+        {field: 'select', placeholder: '昵称', component: 'Select', componentProps: {options: selectOptions}},
         {
           field: 'cascader',
+          placeholder: '昵称',
           component: 'Cascader',
-          componentProps: {
-            placeholder: '这是一个Cascader',
-            collapseTags: true,
-            options: cascaderOptions,
-            change: () => {
-              console.log(111);
-            }
-          },
-          colProps: colProps
+          componentProps: {collapseTags: true, options: cascaderOptions,}
         },
       ],
-      actionProps: {
-        colProps: colProps,
-        isAdvanced: false,
-        actionPosition: 'left',
-        showAdvancedButton: true,
-        showAdvancedLength: 3,
-        resetButtonOption: {
-          text: '重置'
-        },
-        submitButtonOption: {
-          text: '搜索'
-        }
-      },
+      searchForm: {},
       form: {},
       customSlot: '',
-    }
-  },
-  methods: {
-    search(form) {
-      this.form = {...form, ...{customSlot: this.customSlot}};
-    },
-    reset() {
-      this.form = {};
-      this.customSlot = '';
-    },
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+    });
+
+    const handleEdit = (index, row) => console.log(index, row);
+    const handleDelete = (index, row) => {
+      ElMessageBox.confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.tableData.splice(index, 1);
-        this.$message.success('删除成功!');
+        state.tableData.splice(index, 1);
+        ElMessage.success('删除成功!')
       }).catch(() => {
-        this.$message.info('已取消删除');
+        ElMessage.info('已取消删除!')
       });
-    },
-    onSubmit() {
-      console.log('submit!');
+    }
+
+    const handleSearch = (form) => {
+      state.form = {...form, ...{customSlot: this.customSlot}};
+    }
+
+    const handleReset = () => {
+      console.log('reset')
+    }
+
+    return {
+      ...toRefs(state),
+      handleEdit,
+      handleDelete,
+      handleSearch,
+      handleReset
     }
   }
 }

@@ -12,39 +12,30 @@ import SidebarLogo from "@/layouts/menu/SidebarLogo";
 import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
-import {computed, watch, unref, ref} from "vue";
+import {computed} from "vue";
 import {useRouter} from 'vue-router';
 
 export default {
   name: 'LayoutMenu',
-  components: {
-    SubMenu, SidebarLogo
-  },
+  components: {SubMenu, SidebarLogo},
   setup() {
     const {currentRoute} = useRouter();
-    let {getMenuSetting} = useMenuSetting();
+    const {getMenuSetting} = useMenuSetting();
 
-    // defaultActive
     const defaultActive = computed(() => {
       const {meta, path} = currentRoute.value;
-      return meta && meta.activeMenu ? meta.activeMenu : path;
+      return meta && meta['activeMenu'] ? meta['activeMenu'] : path;
     })
 
-    // menu
     const {getMenus} = useLayoutMenus();
     const {getShowSidebarLogo, getIsTopMenuMode} = useRootSetting();
     const menuSetting = computed(() => {
-      if (unref(getIsTopMenuMode)) {
-        return {
-          ...unref(getMenuSetting), ...{
-            mode: 'horizontal',
-            backgroundColor: null,
-            textColor: '#303133',
-          }
-        }
+      if (getIsTopMenuMode.value) {
+        return {...getMenuSetting.value, ...{mode: 'horizontal', backgroundColor: null, textColor: '#303133'}}
       }
-      return {...unref(getMenuSetting)};
+      return getMenuSetting.value;
     });
+
     return {
       menuSetting,
       defaultActive,
@@ -64,20 +55,12 @@ export default {
     height: 100%;
   }
 
-  //:deep(.el-menu--horizontal) {
-  //  > .el-sub-menu .el-sub-menu__title {
-  //    height: 49px !important;
-  //    line-height: 49px !important;
-  //  }
-  //}
-  //
-  //&.el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
-  //  height: 49px !important;
-  //  line-height: 49px !important;
-  //}
+  &.el-menu.el-menu--horizontal {
+    :deep(.el-sub-menu .el-sub-menu__title) {
+      height: 49px !important;
+      line-height: 49px !important;
+    }
+  }
 }
-//&.el-menu--horizontal > .el-sub-menu .el-sub-menu__title {
-//  height: 49px !important;
-//  line-height: 49px !important;
-//}
+
 </style>

@@ -86,12 +86,11 @@ export default {
     .page-header-title {
       font-size: 20px;
       font-weight: bolder;
-
-      .page-header-sub-title {
-        padding-left: 14px;
-        font-size: 12px;
-        color: #cccccc;
-      }
+    }
+    .page-header-sub-title {
+      padding-left: 14px;
+      font-size: 12px;
+      color: #909399;
     }
 
   }
