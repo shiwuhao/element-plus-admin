@@ -110,8 +110,8 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-.el-tag + .el-tag {
-  margin: 0 0 10px 8px;
+.el-tag {
+  margin: 0 10px 10px 0;
 }
 ::v-deep .el-input__inner {
   height: 24px;
@@ -131,6 +131,6 @@ export default defineComponent({
 .input-new-tag {
   width: 90px;
   margin-left: 10px;
-  vertical-align: bottom;
+  vertical-align: sub;
 }
 </style>

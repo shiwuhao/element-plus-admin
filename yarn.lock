@@ -3740,9 +3740,9 @@ echarts-wordcloud@^2.0.0:
   resolved "https://registry.npm.taobao.org/echarts-wordcloud/download/echarts-wordcloud-2.0.0.tgz?cache=0&sync_timestamp=1610780382631&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fecharts-wordcloud%2Fdownload%2Fecharts-wordcloud-2.0.0.tgz#52ef817895801ffe9e99dd1bacab7686b2dec04a"
   integrity sha1-Uu+BeJWAH/6emd0brKt2hrLewEo=
 
-echarts@^5.2.1:
+echarts@5.2.1:
   version "5.2.1"
-  resolved "https://registry.nlark.com/echarts/download/echarts-5.2.1.tgz?cache=0&sync_timestamp=1632191214180&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fecharts%2Fdownload%2Fecharts-5.2.1.tgz#bd58ec011cd82def4a714e4038ef4b73b8417bc3"
+  resolved "https://registry.nlark.com/echarts/download/echarts-5.2.1.tgz#bd58ec011cd82def4a714e4038ef4b73b8417bc3"
   integrity sha1-vVjsARzYLe9KcU5AOO9Lc7hBe8M=
   dependencies:
     tslib "2.3.0"
@@ -8811,7 +8811,7 @@ ts-pnp@^1.1.6:
 
 tslib@2.3.0:
   version "2.3.0"
-  resolved "https://registry.nlark.com/tslib/download/tslib-2.3.0.tgz?cache=0&sync_timestamp=1628722580350&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  resolved "https://registry.nlark.com/tslib/download/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha1-gDuM2rPhK6WBpMpByIObuw2ssJ4=
 
 tslib@^1.9.0:

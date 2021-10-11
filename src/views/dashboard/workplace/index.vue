@@ -3,23 +3,42 @@
   <div class="m10">
     <el-row :gutter="20">
       <el-col :span="getIsMobile?24:16">
-        <LeftContent/>
+         <el-row>
+           <el-col>
+             <LeftProject/>
+           </el-col>
+           <el-col>
+             <LeftDynamic/>
+           </el-col>
+         </el-row>
       </el-col>
       <el-col :span="getIsMobile?24:8">
-        <RightContent/>
+         <el-row>
+           <el-col>
+             <RightNavigation/>
+           </el-col>
+           <el-col>
+             <RightEcharts/>
+           </el-col>
+           <el-col>
+             <RightTeam/>
+           </el-col>
+         </el-row>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
 import {defineComponent} from 'vue';
-import HeaderContent from './components/HeaderContent/HeaderContent';
-import LeftContent from './components/LeftContent/LeftContent';
-import RightContent from './components/RightContent/RightContent';
+import HeaderContent from './components/HeaderContent.vue';
+import LeftDynamic from "@/views/dashboard/workplace/components/LeftDynamic.vue";
+import LeftProject from "@/views/dashboard/workplace/components/LeftProject.vue";
+import RightEcharts from "@/views/dashboard/workplace/components/RightEcharts.vue";
+import RightNavigation from "@/views/dashboard/workplace/components/RightNavigation.vue";
+import RightTeam from "@/views/dashboard/workplace/components/RightTeam.vue";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
-
 export default defineComponent({
-  components: {HeaderContent, LeftContent, RightContent},
+  components: {HeaderContent, LeftDynamic, LeftProject,RightEcharts,RightNavigation,RightTeam},
   setup() {
     const {getIsMobile} = useRootSetting()
     return {

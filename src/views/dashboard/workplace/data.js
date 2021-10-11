@@ -81,5 +81,41 @@ export const leftBottomData = [
       },
     template: "在 @{group} 新建项目 @{project}",
     updatedAt: "2021-09-24T07:50:13.731Z"
+  },
+  {
+    id: "trend-3",
+    user:
+      {
+        "name": "王小小",
+        "avatar": "https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png"
+      },
+    group:
+      {
+        "name": "就很好", "link": "http://github.com/"
+      },
+    project:
+      {
+        "name": "六月迭代", "link": "http://github.com/"
+      },
+    template: "在 @{group} 新建项目 @{project}",
+    updatedAt: "2021-09-24T07:50:13.731Z"
+  },
+  {
+    id: "trend-3",
+    user:
+      {
+        "name": "王小小",
+        "avatar": "https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png"
+      },
+    group:
+      {
+        "name": "就很好", "link": "http://github.com/"
+      },
+    project:
+      {
+        "name": "六月迭代", "link": "http://github.com/"
+      },
+    template: "在 @{group} 新建项目 @{project}",
+    updatedAt: "2021-09-24T07:50:13.731Z"
   }
 ]

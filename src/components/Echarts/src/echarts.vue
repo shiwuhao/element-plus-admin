@@ -55,6 +55,12 @@ export default defineComponent({
       tooltip: {
         // trigger: 'axis'
       },
+      xAxis: {
+        show: false
+      },
+      yAxis: {
+        show: false
+      },
       toolbox: {},
       legend: {
         show: false
@@ -76,11 +82,12 @@ export default defineComponent({
         myChart.value = Echarts.init(echartsId.value, baseDom.opts.theme, {
           width: baseDom.opts.width,
           height: baseDom.opts.height
-        })
-        Object.assign(option, chartData.value)
-       // console.log(option)
+        });
+
+       const options =  Object.assign(option, chartData.value)
+        console.log(options)
         setTimeout(() => {
-          myChart.value.setOption(option)
+          myChart.value.setOption(options)
         }, 500)
       })
     }
@@ -95,22 +102,22 @@ export default defineComponent({
         deep: true
       }
     );
-    // const resizeChart = () => {
-    //   myChart.value && myChart.value.resize()
-    // }
-    // onMounted(() => {
-    //   //resize 改变图表尺寸，在容器大小发生改变时需要手动调用（因为侧边栏是可以收缩的，所以这里图表根据是否收缩来改变图表尺寸）
-    // //  window.addEventListener('resize', resizeChart)
-    // })
-    // onUnmounted(() => {
-    //   window.removeEventListener('resize', resizeChart)
-    // })
+    const resizeChart = () => {
+      myChart.value && myChart.value.resize()
+    }
+    onMounted(() => {
+      //resize 改变图表尺寸，在容器大小发生改变时需要手动调用（因为侧边栏是可以收缩的，所以这里图表根据是否收缩来改变图表尺寸）
+      window.addEventListener('resize', resizeChart)
+    })
+    onUnmounted(() => {
+      window.removeEventListener('resize', resizeChart)
+    })
     window.onresize = ()=> {
       myChart.value.resize()
     }
     return {
       initChart,
-      //resizeChart,
+      resizeChart,
       echartsId,
       baseDom,
       option,
