@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .drawer-container {
-  ::v-deep .el-drawer {
+  :deep(.el-drawer) {
     .drawer__title {
       font-weight: bolder;
     }

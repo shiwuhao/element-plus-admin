@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .CodeMirror {
+:deep(.CodeMirror) {
   height: 100%;
 
   .CodeMirror-scroll {
