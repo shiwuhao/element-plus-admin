@@ -23,16 +23,16 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="6">
-        <Card card-name="水球图">
+        <Card card-name="柱状图">
           <template #text-custom>
-            <LiquidFillChart/>
+            <BarChart :chartData="chartData" />
           </template>
         </Card>
       </el-col>
       <el-col :span="8">
-        <Card card-name="词云图">
+        <Card card-name="折线图">
           <template #text-custom>
-            <WordCloudChart/>
+              <LineChart/>
           </template>
         </Card>
       </el-col>
@@ -47,19 +47,22 @@
   </div>
 </template>
 <script>
-import {defineComponent} from 'vue';
+import {defineComponent, reactive} from 'vue';
 import BubbleChart from '@/views/demo/component/echarts/components/BubbleChart/index.vue';
 import CurveChart from '@/views/demo/component/echarts/components/CurveChart/index.vue';
 import GaugeChart from '@/views/demo/component/echarts/components/GaugeChart/index.vue';
-import LiquidFillChart from '@/views/demo/component/echarts/components/LiquidFillChart/index.vue';
-import WordCloudChart from '@/views/demo/component/echarts/components/WordCloudChart/index.vue';
 import PieChart from '@/views/demo/component/echarts/components/MorePieChart/index.vue';
+import BarChart from '@/views/demo/component/echarts/components/BarChart/index.vue';
+import LineChart from '@/views/demo/component/echarts/components/LineChart/index.vue';
 import {Card} from '@/components/Card';
 
 export default defineComponent({
-  components: {Card, BubbleChart, CurveChart, GaugeChart, LiquidFillChart, WordCloudChart, PieChart},
+  components: {Card, BubbleChart, CurveChart, GaugeChart, PieChart,BarChart,LineChart},
   setup() {
-    return {}
+
+    return {
+      //chartData
+    }
   }
 })
 </script>

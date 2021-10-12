@@ -20,24 +20,21 @@
 import {defineComponent, ref} from 'vue'
 import {Card} from '@/components/Card';
 import {saleCategory} from "../data.js";
-import LiquidFillChart from '@/views/demo/component/echarts/components/LiquidFillChart';
 import RadarChart from '@/views/demo/component/echarts/components/RadarChart';
 import PieChart from '@/views/demo/component/echarts/components/PieChart';
 export default defineComponent({
-  components: {Card, LiquidFillChart, RadarChart, PieChart},
+  components: {Card, RadarChart, PieChart},
   setup() {
-    const currentTabComponent = ref('LiquidFillChart');
     const activeName = ref('first');
     const changeChannel = (component,name) => {
-      currentTabComponent.value = component;
-      activeName.value = name
+      // currentTabComponent.value = component;
+      // activeName.value = name
     }
     return {
       cardName: ref('销售额类别占比'),
       headerType: ref('custom'),
       saleCategory,
       changeChannel,
-      currentTabComponent,
       activeName
     }
   }

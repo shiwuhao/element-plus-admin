@@ -17,7 +17,6 @@ import {tableData} from '../data.js';
 export default defineComponent({
   components: {Card},
   setup() {
-
     return {
       cardName: ref('线上热门搜索'),
       tableData

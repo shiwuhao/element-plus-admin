@@ -1,26 +1,26 @@
 import {onMounted, ref, shallowReactive, toRefs} from "vue";
-// import 'echarts-wordcloud';
-
+// https://www.makeapie.com/editor.html?c=xAqxk9ZhVv
 export function usePieChart() {
   const echarts = ref(null);
   const data = [
     {
-      name: '装备制造',
+      name: '饼图1',
       value: 54
     },{
-      name: '现代材料',
+      name: '饼图2',
       value: 44
     },{
-      name: '新能源',
+      name: '饼图3',
       value: 35
     },{
-      name: '新一代信息技术',
+      name: '饼图4',
       value: 30
     },{
-      name: '商贸物流',
+      name: '饼图5',
       value: 20
     }]
-  const seriesArr=[];
+  const seriesArr = [];
+  const titleArr = [];
   const colors=[['#389af4', '#dfeaff'],['#ff8c37', '#ffdcc3'],['#ffc257', '#ffedcc'], ['#fd6f97', '#fed4e0'],['#a181fc', '#e3d9fe']];
   data.forEach((item,index)=>{
     seriesArr.push(
@@ -73,14 +73,29 @@ export function usePieChart() {
           }
         }]
       }
-    )
+    );
+      titleArr.push(
+        {
+          text:item.name,
+          left: index * 20 + 10 +'%',
+          top: '65%',
+          textAlign: 'center',
+          textStyle: {
+            fontWeight: 'normal',
+            fontSize: '16',
+            color: colors[index][0],
+            textAlign: 'center',
+          },
+        }
+      );
   })
   const state = shallowReactive(
     {
       id: 'id_' + new Date().getTime(),
       height: '700px',
       chartData: {
-        series: seriesArr
+        series: seriesArr,
+        title: titleArr
       }
     })
 

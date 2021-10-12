@@ -85,6 +85,7 @@ export default defineComponent({
         });
 
        const options =  Object.assign(option, chartData.value)
+        console.log(options)
         setTimeout(() => {
           myChart.value.setOption(options)
         }, 500)
