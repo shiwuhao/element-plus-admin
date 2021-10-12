@@ -49,7 +49,7 @@ export default defineComponent({
 })
 </script>
 <style scoped lang="scss">
-::v-deep.page-wrapper .page-header-content:not(:empty) {
+:deep(.page-wrapper .page-header-content:not(:empty)){
   padding-top: 0;
 }
 .personal-center-article {
@@ -61,10 +61,10 @@ export default defineComponent({
     }
   }
   .divider-empty{
-    ::v-deep .el-divider--horizontal {
+    :deep(.el-divider--horizontal) {
       margin: 12px 0;
     }
-    ::v-deep .divider-content {
+    :deep(.divider-content) {
       display: none;
     }
   }
@@ -74,7 +74,7 @@ export default defineComponent({
   .divider-wrap {
     @include flex;
     margin-left: -24px;
-    ::v-deep .divider-iconName {
+    :deep(.divider-iconName) {
       margin-right: 5px;
     }
   }

@@ -90,7 +90,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .personal-center {
-  ::v-deep .personal-center-article {
+  :deep(.personal-center-article) {
     &:first-child {
       margin-top: 15px;
     }
@@ -132,7 +132,7 @@ export default defineComponent({
   border-top: 1px dashed $color-border-dashed;
 }
 
-::v-deep .page-wrapper .page-header {
+:deep(.page-wrapper .page-header) {
   padding: 0;
 
   span {
@@ -140,7 +140,7 @@ export default defineComponent({
   }
 }
 .personal-center-right-flex {
-  ::v-deep .el-card__body {
+  :deep(.el-card__body) {
     padding: 0;
   }
 }

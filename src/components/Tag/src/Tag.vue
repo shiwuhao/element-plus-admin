@@ -113,7 +113,7 @@ export default defineComponent({
 .el-tag {
   margin: 0 10px 10px 0;
 }
-::v-deep .el-input__inner {
+:deep(.el-input__inner) {
   height: 24px;
   vertical-align: super;
 }

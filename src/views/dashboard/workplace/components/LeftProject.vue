@@ -49,7 +49,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .common-card {
+:deep(.common-card) {
   .application-image-card {
     position: relative;
 

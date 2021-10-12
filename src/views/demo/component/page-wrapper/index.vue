@@ -208,7 +208,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  ::v-deep.wrapper {
+  :deep(.wrapper) {
     //padding-bottom: 0 !important;
   }
 }

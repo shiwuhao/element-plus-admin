@@ -48,7 +48,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .el-card__header {
+:deep(.el-card__header) {
   padding: 16px 20px !important;
 
   .card-header {

@@ -27,7 +27,7 @@ export default defineComponent({
 .el-card {
   //height: 100%;
 }
-::v-deep .card-header {
+:deep(.card-header) {
   span {
     font-size: 16px;
     color: $color-text-black;

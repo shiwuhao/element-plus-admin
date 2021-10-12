@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep.el-form .el-form-item--small.el-form-item {
+:deep(.el-form .el-form-item--small.el-form-item) {
   margin-bottom: 5px !important;
 }
 </style>

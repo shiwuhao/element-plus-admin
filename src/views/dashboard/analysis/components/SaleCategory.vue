@@ -44,7 +44,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .card-header-custom {
+:deep(.card-header-custom) {
   .el-button {
     margin-left: 0;
     margin-right: 5px;

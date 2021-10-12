@@ -26,10 +26,10 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .el-descriptions {
+:deep(.el-descriptions) {
   position: relative;
 }
-::v-deep .el-descriptions__title,::v-deep .el-descriptions__label {
+:deep(.el-descriptions__title),:deep(.el-descriptions__label) {
   margin-left: 72px;
 }
 .svg-icon {

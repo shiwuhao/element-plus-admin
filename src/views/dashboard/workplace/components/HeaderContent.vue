@@ -83,11 +83,11 @@ export default defineComponent({
         color: $color-text-black;
       }
     }
-    ::v-deep .el-divider--vertical {
+    :deep(.el-divider--vertical) {
       height: 44px;
       margin-top: 12px;
     }
-    ::v-deep .basic-divider {
+    :deep(.basic-divider) {
       &:last-child {
         .el-divider--vertical {
           height: inherit;
@@ -105,7 +105,7 @@ export default defineComponent({
   }
 }
 .mobile-workspace-header {
-  ::v-deep .flex-row-justify {
+  :deep(.flex-row-justify) {
     flex-wrap: wrap;
     justify-content: center;
   }

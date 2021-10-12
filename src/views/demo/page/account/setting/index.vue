@@ -40,7 +40,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .setting-card {
   .setting-tabs {
-    ::v-deep .el-tabs__nav-wrap {
+    :deep(.el-tabs__nav-wrap) {
       width: 224px;
 
       .el-tabs__nav {
@@ -54,7 +54,7 @@ export default defineComponent({
       margin-top: 20px;
       padding-left: 18px;
 
-      ::v-deep .el-descriptions {
+      :deep(.el-descriptions) {
         margin-bottom: 40px;
 
         .el-descriptions__header {
@@ -86,7 +86,7 @@ export default defineComponent({
   }
 
   .mobile-setting-tabs {
-    ::v-deep .el-tabs__nav-wrap {
+    :deep(.el-tabs__nav-wrap) {
       width: 100%;
     }
 

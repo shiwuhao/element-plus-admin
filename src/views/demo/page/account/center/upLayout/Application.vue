@@ -72,10 +72,10 @@ export default defineComponent({
     padding: 10px 0;
     box-sizing: border-box;
     overflow: auto;
-    ::v-deep .el-dropdown {
+    :deep(.el-dropdown) {
       padding: 0 23px;
     }
-    ::v-deep .basic-divider {
+    :deep(.basic-divider) {
       .divider-content {
         padding: 0 20px;
       }

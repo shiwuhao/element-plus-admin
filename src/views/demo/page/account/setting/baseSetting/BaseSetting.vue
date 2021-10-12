@@ -160,7 +160,7 @@ export default defineComponent({
 .base-setting,.mobile-base-setting {
   padding-left: 18px;
 
-  ::v-deep .el-select--small {
+  :deep(.el-select--small) {
     width: 100%;
   }
 

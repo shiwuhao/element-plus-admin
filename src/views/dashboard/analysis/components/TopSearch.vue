@@ -26,7 +26,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .card-header {
+:deep(.card-header){
   height: 32px;
 }
 .top-search-card {

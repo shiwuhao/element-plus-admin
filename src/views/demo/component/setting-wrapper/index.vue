@@ -54,7 +54,7 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-::v-deep .el-collapse-item__header {
+:deep(.el-collapse-item__header) {
   padding: 15px;
 }
 .setting-wrap-custom {

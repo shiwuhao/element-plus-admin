@@ -101,13 +101,13 @@ export default defineComponent({
   height: auto;
 }
 .personal-center {
-  ::v-deep .personal-center-article {
+  :deep(.personal-center-article) {
     &:first-child {
       margin-top: 15px;
     }
   }
   .personal-center-left {
-    ::v-deep .el-card__body {
+    :deep(.el-card__body) {
       width: 100%;
       display: flex;
       box-sizing: border-box;
@@ -167,7 +167,7 @@ export default defineComponent({
 }
 
 
-::v-deep .page-wrapper .page-header {
+:deep(.page-wrapper .page-header) {
   padding: 0;
 
   span {
