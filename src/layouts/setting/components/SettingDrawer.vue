@@ -29,10 +29,10 @@
           <div class="setting-group">
             <h3 class="setting-title">内容区域</h3>
             <div>
-              <div class="drawer-item flex-row-center">
-                <span>dark</span>
-                <el-switch :model-value="dark" class="drawer-switch" @change="toggleDark"/>
-              </div>
+<!--              <div class="drawer-item flex-row-center">-->
+<!--                <span>dark</span>-->
+<!--                <el-switch :model-value="dark" class="drawer-switch" @change="toggleDark"/>-->
+<!--              </div>-->
               <div class="drawer-item flex-row-center">
                 <span>Tag视图</span>
                 <el-switch :model-value="getEnableTagView" class="drawer-switch" @change="toggleEnableTagView"/>

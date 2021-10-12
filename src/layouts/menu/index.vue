@@ -31,7 +31,7 @@ export default {
     const {getShowSidebarLogo, getIsTopMenuMode} = useRootSetting();
     const menuSetting = computed(() => {
       if (getIsTopMenuMode.value) {
-        return {...getMenuSetting.value, ...{mode: 'horizontal', backgroundColor: null, textColor: '#303133'}}
+        return {...getMenuSetting.value, ...{mode: 'horizontal',collapse:false, backgroundColor: null, textColor: '#303133'}}
       }
       return getMenuSetting.value;
     });
@@ -53,6 +53,9 @@ export default {
 .menu-container {
   &.el-menu:not(.el-menu--horizontal) {
     height: 100%;
+    &:not(.el-menu--collapse) {
+      width: 220px;
+    }
   }
 
   &.el-menu.el-menu--horizontal {

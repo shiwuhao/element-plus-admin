@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu-item class="container" index="/">
-      <img :src="logo" class="sidebar-logo">
+      <img :src="logo ? logo : '/src/assets/logo.png'" class="sidebar-logo">
       <template #title>
         <span class="sidebar-title">{{ title }} </span>
       </template>

@@ -5,7 +5,6 @@ import {setupContentment} from './plugins/contextmenu'
 import {setupEIconPicker} from './plugins/eIconPicker'
 import {router, setupRouter} from './router'
 import {setupStore} from './store'
-// import '@/mock/index';
 import {setupRouterGuard} from "@/router/guard";
 import {initProjectConfig} from "@/logics/initProjectConfig";
 import SvgIcon from '@/components/SvgIcon/SvgIcon';

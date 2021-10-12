@@ -55,22 +55,28 @@ export default [
         component: LayoutContent,
         children: [
           {
-            path: 'basic',
-            name: 'basic',
+            path: 'basicTable',
+            name: 'basicTable',
             meta: {title: '基础表格', menu: true, affix: false},
-            component: () => import('@/views/demo/component/table/Basic'),
+            component: () => import('@/views/demo/component/table/BasicTable.vue'),
           },
           {
             path: 'treeTable',
             name: 'treeTable',
             meta: {title: '树形表格', menu: true, affix: false},
-            component: () => import('@/views/demo/component/table/TreeTable'),
+            component: () => import('@/views/demo/component/table/TreeTable.vue'),
           },
           {
             path: 'queryTable',
             name: 'search-form',
             meta: {title: '查询表格', menu: true, affix: false},
-            component: () => import('@/views/demo/component/table/QueryTable'),
+            component: () => import('@/views/demo/component/table/QueryTable.vue'),
+          },
+          {
+            path: 'customTable',
+            name: 'customTable',
+            meta: {title: '自定义列', menu: true, affix: false},
+            component: () => import('@/views/demo/component/table/CustomTable.vue'),
           },
         ],
       },
