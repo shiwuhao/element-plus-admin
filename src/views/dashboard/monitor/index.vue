@@ -25,7 +25,7 @@
       <el-col :span="6">
         <Card card-name="柱状图">
           <template #text-custom>
-            <BarChart :chartData="chartData" />
+            <BarChart/>
           </template>
         </Card>
       </el-col>
@@ -47,7 +47,7 @@
   </div>
 </template>
 <script>
-import {defineComponent, reactive} from 'vue';
+import {defineComponent} from 'vue';
 import BubbleChart from '@/views/demo/component/echarts/components/BubbleChart/index.vue';
 import CurveChart from '@/views/demo/component/echarts/components/CurveChart/index.vue';
 import GaugeChart from '@/views/demo/component/echarts/components/GaugeChart/index.vue';
@@ -61,7 +61,7 @@ export default defineComponent({
   setup() {
 
     return {
-      //chartData
+
     }
   }
 })
