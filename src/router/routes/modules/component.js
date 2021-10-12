@@ -124,13 +124,13 @@ export default [
             path: 'line',
             name: 'line',
             meta: {title: '折线图', menu: true, affix: false},
-            component: () => import('@/views/demo/component/echarts/components/LineChart/index.vue'),
+            component: () => import('@/views/demo/component/echarts/line.vue'),
           },
           {
             path: 'pie',
             name: 'pie',
             meta: {title: '饼图', menu: true, affix: false},
-            component: () => import('@/views/demo/component/echarts/components/PieChart/index.vue'),
+            component: () => import('@/views/demo/component/echarts/pie.vue'),
           }
         ]
       },

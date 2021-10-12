@@ -28,7 +28,7 @@ import {PageWrapper} from '@/components/Page'
 import Notice from "@/views/demo/component/echarts/Notice";
 import {useECharts} from "@/composables/useECharts";
 import {onMounted} from "vue";
-import {getBar1Option, getBar2Option, getBarAnimationDelayOption} from "@/views/demo/component/echarts/chartData";
+import {getLineOption1, getLineOption2, getLineOption3} from "@/views/demo/component/echarts/chartData";
 
 export default {
   name: "bar",
@@ -39,9 +39,9 @@ export default {
     const {elRef: chartElRef3, setOptions: setOptions3} = useECharts();
 
     onMounted(() => {
-      setOptions1(getBar1Option());
-      setOptions2(getBarAnimationDelayOption());
-      setOptions3(getBar2Option());
+      setOptions1(getLineOption1());
+      setOptions2(getLineOption2());
+      setOptions3(getLineOption3());
     })
 
     return {
