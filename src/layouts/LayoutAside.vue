@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-aside width="auto">
+    <el-aside :width="getCollapsed ? 'auto' : '220px'">
       <LayoutSidebar/>
     </el-aside>
     <el-main class="main">
@@ -17,6 +17,7 @@ import LayoutHeader from './header/index';
 import LayoutContent from './content/index';
 import LayoutSidebar from "@/layouts/sidebar";
 import LayoutMenu from '@/layouts/menu'
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting.js";
 
 export default {
   name: 'Layout2',
@@ -25,6 +26,12 @@ export default {
     LayoutHeader,
     LayoutContent,
     LayoutMenu,
+  },
+  setup() {
+    const {getCollapsed} = useMenuSetting();
+    return {
+      getCollapsed
+    }
   }
 };
 </script>
@@ -38,7 +45,8 @@ export default {
   width: 100%;
   height: 100vh;
   padding: 0 0;
-  .content{
+
+  .content {
     //margin-top: 10px;
   }
 }
