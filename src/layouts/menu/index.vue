@@ -31,7 +31,7 @@ export default {
     const {getShowSidebarLogo, getIsTopMenuMode} = useRootSetting();
     const menuSetting = computed(() => {
       if (getIsTopMenuMode.value) {
-        return {...getMenuSetting.value, ...{mode: 'horizontal', backgroundColor: null, textColor: '#303133'}}
+        return {...getMenuSetting.value, ...{mode: 'horizontal',collapse:false, backgroundColor: null, textColor: '#303133'}}
       }
       return getMenuSetting.value;
     });
