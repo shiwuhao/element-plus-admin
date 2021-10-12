@@ -53,10 +53,9 @@ export default {
 .menu-container {
   &.el-menu:not(.el-menu--horizontal) {
     height: 100%;
-  }
-
-  &:not(.el-menu--collapse) {
-    width: 220px;
+    &:not(.el-menu--collapse) {
+      width: 220px;
+    }
   }
 
   &.el-menu.el-menu--horizontal {
