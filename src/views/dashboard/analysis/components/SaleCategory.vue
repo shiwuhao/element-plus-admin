@@ -22,20 +22,23 @@ import {Card} from '@/components/Card';
 import {saleCategory} from "../data.js";
 import RadarChart from '@/views/demo/component/echarts/components/RadarChart';
 import PieChart from '@/views/demo/component/echarts/components/PieChart';
+import LineChart from '@/views/demo/component/echarts/components/LineChart';
 export default defineComponent({
-  components: {Card, RadarChart, PieChart},
+  components: {Card, RadarChart, PieChart,LineChart},
   setup() {
+    const currentTabComponent = ref('LineChart');
     const activeName = ref('first');
     const changeChannel = (component,name) => {
-      // currentTabComponent.value = component;
-      // activeName.value = name
+      currentTabComponent.value = component;
+      activeName.value = name
     }
     return {
       cardName: ref('销售额类别占比'),
       headerType: ref('custom'),
       saleCategory,
       changeChannel,
-      activeName
+      activeName,
+      currentTabComponent
     }
   }
 })

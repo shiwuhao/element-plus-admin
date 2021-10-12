@@ -84,7 +84,7 @@ export const saleCategory = [
   {
     name: 'first',
     label: '全部渠道',
-    component: 'LiquidFillChart'
+    component: 'LineChart'
   },
   {
     name: 'second',
