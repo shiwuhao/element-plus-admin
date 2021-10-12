@@ -55,8 +55,8 @@ export default {
     height: 100%;
   }
 
-  &.el-menu:not(.el-menu--collapse) {
-    //min-width: 220px;
+  &:not(.el-menu--collapse) {
+    width: 220px;
   }
 
   &.el-menu.el-menu--horizontal {

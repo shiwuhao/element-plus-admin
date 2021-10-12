@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-aside :width="getCollapsed ? 'auto' : '220px'">
+    <el-aside width='auto'>
       <LayoutSidebar/>
     </el-aside>
     <el-main class="main">
