@@ -7,7 +7,6 @@ export function usePermission() {
   const getRoles = computed(() => getters.getRoles);
   const getActions = computed(() => getters.getActions);
   const getMenus = computed(() => getters.getMenus);
-  console.log(getRoles);
 
   const hasPermission = (name) => {
     const checks = isString(name) ? [name] : name;

@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      logo: process.env.VUE_APP_LOGO
+      logo: import.meta.env.VITE_LOGO
     }
   },
   props: {

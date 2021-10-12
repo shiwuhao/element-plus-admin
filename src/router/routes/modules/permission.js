@@ -11,13 +11,13 @@ export default [
         path: 'page',
         name: 'permission-page',
         meta: {title: '页面权限', menu: true, affix: false},
-        component: () => import('@/views/permission/page'),
+        component: () => import('@/views/demo/permission/page'),
       },
       {
         path: 'button',
         name: 'permission-button',
         meta: {title: '按钮权限', menu: true, affix: false},
-        component: () => import('@/views/permission/button'),
+        component: () => import('@/views/demo/permission/button'),
       },
     ]
   },

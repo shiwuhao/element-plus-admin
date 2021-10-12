@@ -1,5 +1,5 @@
 import store from "@/store";
-import {ProjectConfig} from "@/settings/config";
+import {ProjectConfig} from "@/enums/config.js";
 
 
 export function initProjectConfig() {

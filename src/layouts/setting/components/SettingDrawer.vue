@@ -185,7 +185,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .drawer-container {
-  padding: 0 24px 24px 24px;
   font-size: 14px;
   line-height: 1.5;
   word-wrap: break-word;
