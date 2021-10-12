@@ -17,7 +17,7 @@
 <script>
 import {defineComponent, ref} from 'vue';
 import {Card} from '@/components/Card';
-import {projectList} from './data';
+import {projectList} from './data.js';
 
 export default defineComponent({
   components: {Card},

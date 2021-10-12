@@ -16,7 +16,7 @@
 </template>
 <script>
 import {defineComponent} from 'vue';
-import {accountBindList} from '../data';
+import {accountBindList} from '../data.js';
 export default defineComponent({
   setup(){
     return {

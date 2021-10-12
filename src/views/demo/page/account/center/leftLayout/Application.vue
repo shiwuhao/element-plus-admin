@@ -50,9 +50,9 @@
 <script>
 import {defineComponent, ref} from 'vue';
 import {Card} from '@/components/Card';
-import {applicationList, applicationActions} from './data';
+import {applicationList, applicationActions} from './data.js';
 import {Divider} from '@/components/Divider';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 export default defineComponent({
   components: {Card, Divider},
   setup() {

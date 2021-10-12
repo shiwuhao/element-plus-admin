@@ -11,7 +11,7 @@
             {{ item.user }}
             <span class="article-word">发布在</span>
             <a :href="item.url" class="article-link">{{ item.url }}</a>
-            <time :class="getIsMobile?'mobile-article-time':'article-time'">{{ item.time}}</time>
+            <time class="article-time">{{ item.time}}</time>
           </span>
         </div>
       </template>
@@ -29,21 +29,18 @@
   </div>
 </template>
 <script>
-import {articleList,articleAction} from './data';
+import {articleList,articleAction} from './data.js';
 import {defineComponent} from 'vue';
 import {PageWrapper} from '@/components/Page';
 import {Tag} from '@/components/Tag';
 import {Divider} from '@/components/Divider';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default defineComponent({
   name: 'article-page',
   components: {PageWrapper,Tag,Divider},
   setup() {
-    const {getIsMobile} = useRootSetting();
     return {
       articleList,
-      articleAction,
-      getIsMobile
+      articleAction
     }
   }
 })
@@ -72,7 +69,8 @@ export default defineComponent({
     margin-top: 2px;
   }
   .divider-wrap {
-    @include flex;
+    display: flex;
+    align-items: center;
     margin-left: -24px;
     ::v-deep .divider-iconName {
       margin-right: 5px;
@@ -83,12 +81,13 @@ export default defineComponent({
 
     .article-icon {
       font-size: 18px;
-      @include middleWay($vertical-align: text-top);
+      vertical-align: text-top;
       margin-right: 5px;
     }
 
     .article-title, .article-link {
-      color: $color-text-blue;
+      //color: #1890ff
+      color: $color-text-blue
     }
 
     .article-link {
@@ -96,17 +95,13 @@ export default defineComponent({
       margin-left: 5px;
     }
 
-    .article-word, .article-time,.mobile-article-time {
-      color: $color-text-gray;
+    .article-word, .article-time {
+      color: rgba(0, 0, 0, .25);
     }
 
-    .article-time{
+    .article-time {
       margin-left: 15px;
-      @include middleWay;
-    }
-    .mobile-article-time {
-      display: inline-block;
-      margin: 7px 0 0 24px;
+      vertical-align: middle;
     }
   }
 }

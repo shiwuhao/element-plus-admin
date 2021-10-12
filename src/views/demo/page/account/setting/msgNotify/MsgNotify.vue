@@ -10,7 +10,7 @@
 </template>
 <script>
 import {defineComponent, reactive, ref} from 'vue';
-import {msgNotifyList} from '../data';
+import {msgNotifyList} from '../data.js';
 export default defineComponent({
   setup(){
     const value = ref(true)

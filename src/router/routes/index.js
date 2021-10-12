@@ -5,22 +5,15 @@ import feature from "@/router/routes/modules/feature.js";
 import permission from "@/router/routes/modules/permission";
 import page from "@/router/routes/modules/page.js";
 import basic from "@/router/routes/basic";
-<<<<<<< HEAD
-import page from "@/router/routes/modules/page";
-=======
 
 
->>>>>>> master
 // 需要前端生成菜单的路由
 export const menuRoutes = [
   ...permission,
   ...component,
-<<<<<<< HEAD
-  ...page
-=======
+  ...page,
   ...feature,
   ...page,
->>>>>>> master
 ];
 
 export const asyncRoutes = [

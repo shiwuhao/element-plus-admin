@@ -51,11 +51,11 @@
 import {defineComponent, reactive, toRefs, ref, shallowReactive} from 'vue';
 import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
-import Team from './Team';
-import Article from './Article'
-import Application from './Application';
-import Project from './Project';
-import {personalInfo, activeTab} from './data';
+import Team from './Team.vue';
+import Article from './Article.vue'
+import Application from './Application.vue';
+import Project from './Project.vue';
+import {personalInfo, activeTab} from './data.js';
 export default defineComponent({
   name: "PersonalCenter",
   components: {

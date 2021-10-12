@@ -112,13 +112,13 @@ export default [
             path: 'circle',
             name: 'echarts-circle',
             meta: {title: '元', menu: true, affix: false},
-            component: () => import('@/views/component/echarts/components/circle/index.vue'),
+            component: () => import('@/views/demo/component/echarts/components/circle/index.vue'),
           },
           {
             path: 'circle2',
             name: 'echarts-circle2',
             meta: {title: '元2', menu: true, affix: false},
-            component: () => import('@/views/component/echarts/components/circle/index.vue'),
+            component: () => import('@/views/demo/component/echarts/components/circle/index.vue'),
           },
         ]
       },

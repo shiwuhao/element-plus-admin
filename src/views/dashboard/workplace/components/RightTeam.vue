@@ -14,7 +14,7 @@
 </template>
 <script>
 import {defineComponent, reactive, toRefs,ref} from "vue";
-import {teams} from '@/views/page/account/center/leftLayout/data.js';
+import {teams} from '@/views/demo/page/account/center/leftLayout/data.js';
 import {Card} from '@/components/Card';
 export default defineComponent({
   components:{Card},

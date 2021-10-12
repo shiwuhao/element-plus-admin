@@ -20,9 +20,9 @@
 import {defineComponent, ref} from 'vue'
 import {Card} from '@/components/Card';
 import {saleCategory} from "../data.js";
-import LiquidFillChart from '@/views/component/echarts/components/LiquidFillChart';
-import RadarChart from '@/views/component/echarts/components/RadarChart';
-import PieChart from '@/views/component/echarts/components/PieChart';
+import LiquidFillChart from '@/views/demo/component/echarts/components/LiquidFillChart';
+import RadarChart from '@/views/demo/component/echarts/components/RadarChart';
+import PieChart from '@/views/demo/component/echarts/components/PieChart';
 export default defineComponent({
   components: {Card, LiquidFillChart, RadarChart, PieChart},
   setup() {

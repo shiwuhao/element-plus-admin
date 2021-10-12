@@ -17,12 +17,12 @@
 </template>
 <script>
 import {defineComponent, ref} from 'vue';
-import BaseSetting from './baseSetting/BaseSetting';
-import SafeSetting from './safeSetting/SafeSetting';
-import AccountBind from './accountBind/AccountBind';
-import MsgNotify from './msgNotify/MsgNotify';
-import {settingList} from './data';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import BaseSetting from './baseSetting/BaseSetting.vue';
+import SafeSetting from './safeSetting/SafeSetting.vue';
+import AccountBind from './accountBind/AccountBind.vue';
+import MsgNotify from './msgNotify/MsgNotify.vue';
+import {settingList} from './data.js';
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default defineComponent({
   components: {BaseSetting, SafeSetting, AccountBind, MsgNotify},

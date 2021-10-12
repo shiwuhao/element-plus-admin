@@ -16,7 +16,7 @@
 </template>
 <script>
 import {defineComponent, reactive} from 'vue';
-import BarChart from '@/views/component/echarts/components/BarChart';
+import BarChart from '@/views/demo/component/echarts/components/BarChart';
 import {shopData} from '../data.js';
 import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 export default defineComponent({

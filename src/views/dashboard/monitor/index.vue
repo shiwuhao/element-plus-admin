@@ -48,12 +48,12 @@
 </template>
 <script>
 import {defineComponent} from 'vue';
-import BubbleChart from '@/views/component/echarts/components/BubbleChart/index.vue';
-import CurveChart from '@/views/component/echarts/components/CurveChart/index.vue';
-import GaugeChart from '@/views/component/echarts/components/GaugeChart/index.vue';
-import LiquidFillChart from '@/views/component/echarts/components/LiquidFillChart/index.vue';
-import WordCloudChart from '@/views/component/echarts/components/WordCloudChart/index.vue';
-import PieChart from '@/views/component/echarts/components/MorePieChart/index.vue';
+import BubbleChart from '@/views/demo/component/echarts/components/BubbleChart/index.vue';
+import CurveChart from '@/views/demo/component/echarts/components/CurveChart/index.vue';
+import GaugeChart from '@/views/demo/component/echarts/components/GaugeChart/index.vue';
+import LiquidFillChart from '@/views/demo/component/echarts/components/LiquidFillChart/index.vue';
+import WordCloudChart from '@/views/demo/component/echarts/components/WordCloudChart/index.vue';
+import PieChart from '@/views/demo/component/echarts/components/MorePieChart/index.vue';
 import {Card} from '@/components/Card';
 
 export default defineComponent({

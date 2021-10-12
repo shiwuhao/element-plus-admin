@@ -25,10 +25,10 @@
 import {defineComponent} from 'vue';
 import {Card} from '@/components/Card';
 import {growCardData} from './data.js';
-import LineChart from '@/views/component/echarts/components/LineChart';
-import BarChart from '@/views/component/echarts/components/BarChart';
-import ScatterChart from '@/views/component/echarts/components/ScatterChart';
-import PieChart from '@/views/component/echarts/components/PieChart';
+import LineChart from '@/views/demo/component/echarts/components/LineChart';
+import BarChart from '@/views/demo/component/echarts/components/BarChart';
+import ScatterChart from '@/views/demo/component/echarts/components/ScatterChart';
+import PieChart from '@/views/demo/component/echarts/components/PieChart';
 import AccessSales from "@/views/dashboard/analysis/components/AccessSales.vue";
 import BottomContain from "@/views/dashboard/analysis/components/BottomContain.vue";
 export default defineComponent({

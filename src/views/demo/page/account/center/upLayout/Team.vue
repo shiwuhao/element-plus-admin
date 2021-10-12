@@ -8,7 +8,7 @@
 </template>
 <script>
 import {defineComponent, reactive, toRefs} from "vue";
-import {teams} from './data';
+import {teams} from './data.js';
 
 export default defineComponent({
   setup(props) {

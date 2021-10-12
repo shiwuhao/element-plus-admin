@@ -58,9 +58,9 @@
 <script>
 import {defineComponent, ref, reactive, toRefs, shallowReactive, onMounted} from 'vue';
 import {BasicUpload} from "@/components/Upload";
-import {getRequest} from '@/libs/api';
+import {getRequest} from '@/libs/api.js';
 import {ElMessage} from 'element-plus';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 export default defineComponent({
   components: {BasicUpload},
   setup() {

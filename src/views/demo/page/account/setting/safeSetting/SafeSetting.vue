@@ -55,8 +55,8 @@
 </template>
 <script>
 import {defineComponent, ref} from 'vue';
-import SettingWrapper from "@/views/component/setting-wrapper/index";
-import {safeSettingList} from '../data';
+import SettingWrapper from "@/views/demo/component/setting-wrapper";
+import {safeSettingList} from '../data.js';
 
 export default defineComponent({
   components: {SettingWrapper},

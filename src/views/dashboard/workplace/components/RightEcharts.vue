@@ -10,7 +10,7 @@
 <script>
 import {defineComponent} from 'vue';
 import {Card} from '@/components/Card';;
-import RadarChart from '@/views/component/echarts/components/RadarChart';
+import RadarChart from '@/views/demo/component/echarts/components/RadarChart';
 export default defineComponent({
   components: {Card,RadarChart},
   setup() {
