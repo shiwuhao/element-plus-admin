@@ -104,9 +104,29 @@ export default [
       {
         path: 'echarts',
         name: 'echarts',
-        redirect: '/component/echarts/circle',
+        redirect: '/component/echarts/components/BarChart/index.vue',
         meta: {title: '图表', menu: true, affix: false,icon: 'el-icon-edit-outline'},
         component: LayoutContent,
+        children: [
+          {
+            path: 'bar',
+            name: 'bar',
+            meta: {title: '柱状图', menu: true, affix: false},
+            component: () => import('@/views/demo/component/echarts/components/BarChart/index.vue'),
+          },
+          {
+            path: 'line',
+            name: 'line',
+            meta: {title: '折线图', menu: true, affix: false},
+            component: () => import('@/views/demo/component/echarts/components/LineChart/index.vue'),
+          },
+          {
+            path: 'pie',
+            name: 'pie',
+            meta: {title: '饼图', menu: true, affix: false},
+            component: () => import('@/views/demo/component/echarts/components/PieChart/index.vue'),
+          }
+        ]
       },
       {
         path: 'page-wrapper',

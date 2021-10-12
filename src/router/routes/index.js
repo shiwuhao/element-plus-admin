@@ -12,8 +12,7 @@ export const menuRoutes = [
   ...permission,
   ...component,
   ...page,
-  ...feature,
-  ...page,
+  ...feature
 ];
 
 export const asyncRoutes = [
