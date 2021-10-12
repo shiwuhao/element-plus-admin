@@ -108,17 +108,17 @@ export default [
         ],
       },
       {
-        path: 'echarts',
-        name: 'echarts',
+        path: 'charts',
+        name: 'charts',
         redirect: '/component/echarts/components/BarChart/index.vue',
-        meta: {title: '图表', menu: true, affix: false,icon: 'el-icon-edit-outline'},
+        meta: {title: '图表', menu: true, affix: false,icon: 'el-icon-pie-chart'},
         component: LayoutContent,
         children: [
           {
             path: 'bar',
             name: 'bar',
             meta: {title: '柱状图', menu: true, affix: false},
-            component: () => import('@/views/demo/component/echarts/components/BarChart/index.vue'),
+            component: () => import('@/views/demo/component/echarts/bar.vue'),
           },
           {
             path: 'line',

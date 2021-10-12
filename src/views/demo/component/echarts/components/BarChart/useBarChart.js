@@ -1,5 +1,6 @@
 import {onMounted, ref, shallowReactive, toRefs} from "vue";
-export function useBarChart(){
+
+export function useBarChart() {
   const echarts = ref(null);
   const state = shallowReactive(
     {
@@ -29,6 +30,7 @@ export function useBarChart(){
   onMounted(() => {
     echarts.value.initChart();
   })
+
   return {
     echarts,
     ...toRefs(state),
