@@ -10,6 +10,7 @@ export function useRootSetting() {
   const {dispatch, getters} = store;
   const getProjectConfig = computed(() => getters.getProjectConfig);
   const {getEnableTagView} = useTagViewSetting();
+  const {setMenuSetting} = useMenuSetting();
 
   const getIsMobile = computed(() => {
     const {width} = useWindowSize();
@@ -88,7 +89,6 @@ export function useRootSetting() {
     const menuMode = mode === 'top-menu' ? 'horizontal' : 'vertical';
     await setRootSetting({navbarMode: mode});
 
-    const {setMenuSetting} = useMenuSetting();
     await setMenuSetting({mode: menuMode});
   }
 

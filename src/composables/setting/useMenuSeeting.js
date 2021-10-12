@@ -31,6 +31,7 @@ export function useMenuSetting() {
 
   return {
     toggleCollapsed,
+    setMenuSetting,
     getMenuSetting,
     getCollapsed,
     getDarkMode,
