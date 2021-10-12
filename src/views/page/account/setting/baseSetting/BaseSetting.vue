@@ -20,7 +20,7 @@
           </el-form-item>
           <el-form-item label="所在省市" prop="area">
             <el-cascader
-              :options="area.options"
+              :options="options"
               clearable
               placeholder="请选择省市"
               filterable
@@ -45,7 +45,7 @@
       </el-col>
       <el-col :span="8" class="base-setting-image">
         <h3>头像</h3>
-        <el-avatar :src="src" :size="size"></el-avatar>
+        <el-avatar :src="avatar.src" :size="avatar.size"></el-avatar>
         <BasicUpload
           icon="el-icon-upload"
           size="medium"
@@ -65,15 +65,16 @@ export default defineComponent({
   components: {BasicUpload},
   setup() {
     const {getIsMobile} = useRootSetting();
-    const labelPosition = ref('top');
     const formRef = ref(null);
-    const confirmLoading = ref(false);
-    const form = reactive({})
-    const avatar = reactive({
-      src: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-      size: 140
+    const state = shallowReactive({
+      confirmLoading: false,
+      form: {},
+      avatar: {
+        src: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+        size: 140
+      },
+      options: []
     })
-    const {src, size} = avatar;
     //非递归监听，监听第一层数据 shallowReactive
     const field = shallowReactive({
       rules: {
@@ -86,9 +87,7 @@ export default defineComponent({
         address: [{required: true, message: '请输入街道地址', trigger: 'blur'}]
       }
     })
-    const area = reactive({
-      options: []
-    })
+    const {form,options,confirmLoading,avatar:{size,src}} = state;
     const submitForm = () => {
       formRef.value.validate(async (valid) => {
         if (valid) {
@@ -97,11 +96,11 @@ export default defineComponent({
       })
     }
     const storeForm = async () => {
-      confirmLoading.value = true;
+      state.confirmLoading= true;
       getRequest('/js/baseSetting.json').then(res => {
-        confirmLoading.value = false
+        state.confirmLoading = false
         ElMessage.success('提交成功')
-        form.value = res.data.data
+       state.form = res.data.data
       })
     }
     const resetForm = () => {
@@ -113,20 +112,18 @@ export default defineComponent({
     })
     const getEditData = () => {
       getRequest('/js/baseSetting.json').then(res => {
-        form.value = res.data.data
-        editForm(form.value)
+        state.form = res.data.data
+        editForm(state.form)
       })
     }
     const getArea = () => {
       getRequest('/js/province.json').then(res => {
-        area.value = formatArea(res.data.data)
-        area.options = area.value
+          formatArea(res.data.data)
       })
     }
     const editForm = (data) => {
       const {email, name, introduce, region, area, address, phone} = data;
-      [form.email, form.name, form.introduce, form.region, form.area, form.address, form.phone]
-        =
+      [form.email, form.name, form.introduce, form.region, form.area, form.address, form.phone]=
         [email, name, introduce, region, area, address, phone]
     }
     const formatArea = (data) => {
@@ -145,19 +142,15 @@ export default defineComponent({
           })
         })
       })
-      return options
+      state.options = options
     }
     return {
-      labelPosition,
-      form,
       formRef,
       submitForm,
       resetForm,
       editForm,
-      confirmLoading,
-      area,
       getIsMobile,
-      ...toRefs(avatar),
+      ...toRefs(state),
       ...toRefs(field),
     }
   }

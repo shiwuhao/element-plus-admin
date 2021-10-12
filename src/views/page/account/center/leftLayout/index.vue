@@ -7,10 +7,11 @@
             <div :class="`${prefixCls}-left-avatar`">
               <el-avatar
                 icon="el-icon-user-solid"
-                :shape="shape"
-                :size="size"
-                :fit="fit"
-                :src="url">
+                :fit="avatar.fit"
+                :src="avatar.url"
+                :shape="avatar.shape"
+                :size="avatar.size"
+              >
               </el-avatar>
             </div>
             <div :class="`${prefixCls}-left-text`">
@@ -26,7 +27,7 @@
           </div>
           <el-divider></el-divider>
           <PageWrapper title="标签"/>
-          <Tag :dynamicTags="tags" :addTagVisible='addTagVisible' :closable="closable"/>
+          <Tag :dynamicTags="tags" :closable="closable" :add-tag-visible="addTagVisible"/>
           <el-divider></el-divider>
           <PageWrapper title="团队"/>
           <Team />
@@ -47,7 +48,7 @@
   </div>
 </template>
 <script>
-import {defineComponent, reactive, toRefs, ref} from 'vue';
+import {defineComponent, reactive, toRefs, ref, shallowReactive} from 'vue';
 import {Tag} from '@/components/Tag';
 import {PageWrapper} from '@/components/Page';
 import Team from './Team';
@@ -55,13 +56,6 @@ import Article from './Article'
 import Application from './Application';
 import Project from './Project';
 import {personalInfo, activeTab} from './data';
-// const path = require('path');
-// const files = require.context('./',false,/\.vue$/);
-// const modules = {};
-// files.keys().forEach(key=>{
-//   const name = path.basename(key,'.vue')
-//   modules[name] = files(key).default || files(key)
-// })
 export default defineComponent({
   name: "PersonalCenter",
   components: {
@@ -73,25 +67,23 @@ export default defineComponent({
     Project
   },
   setup() {
-    const tags = ref(['标签一', '标签二', '标签三'])
-    const addTagVisible = ref(true)
-    const closable = ref(true)
-    const activeName = ref('1')
-    const avatar = reactive({
-      fit: 'fill',
-      shape: 'circle',
-      size: 100,
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+    const state = shallowReactive({
+      tags: ['标签一', '标签二', '标签三'],
+      addTagVisible: true,
+      closable: true,
+      activeName: '1',
+      avatar: {
+        fit: 'fill',
+        shape: 'circle',
+        size: 100,
+        url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      }
     })
     return {
       prefixCls: 'personal-center',
-      tags,
-      closable,
-      addTagVisible,
-      activeName,
       personalInfo,
       activeTab,
-      ...toRefs(avatar)
+      ...toRefs(state)
     }
   }
 })
