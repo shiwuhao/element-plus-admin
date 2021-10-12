@@ -15,7 +15,6 @@
 import {useStore} from 'vuex';
 import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {unref} from "vue";
 
 export default {
   name: "Content",
@@ -27,13 +26,13 @@ export default {
     const {getOpenKeepAlive} = useRootSetting();
 
     function getTransitionName(route) {
-      if (!unref(getEnableTransition)) return null;
+      if (!getEnableTransition.value) return null;
       let name = '';
       if (getOpenKeepAlive) {
         name = route.meta.loaded ? 'fade-slide' : null;
       }
 
-      return name || route.meta.transitionName || unref(getBasicTransition);
+      return name || route.meta.transitionName || getBasicTransition.value;
     }
 
     return {
