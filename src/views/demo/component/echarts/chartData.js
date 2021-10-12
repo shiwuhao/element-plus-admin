@@ -1,5 +1,9 @@
 export const getBar1Option = () => {
   return {
+    title: {
+      text: '带背景色的柱状图',
+      subtext: 'Fake Data'
+    },
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -23,7 +27,7 @@ export const getBar1Option = () => {
 export const getBar2Option = () => {
   return  {
     title: {
-      text: 'Rainfall vs Evaporation',
+      text: '蒸发量和降水量',
       subtext: 'Fake Data'
     },
     tooltip: {
@@ -102,7 +106,7 @@ export const getBarAnimationDelayOption = () => {
   }
   let option = {
     title: {
-      text: 'Bar Animation Delay'
+      text: '条形动画延迟'
     },
     legend: {
       data: ['bar', 'bar2']

@@ -1,14 +1,23 @@
 <template>
   <PageWrapper :title="$route['meta']['title']">
-    <el-row>
-      <el-col :span="8">
-        <div ref="chartElRef1" style="width: 500px;height: 500px;"></div>
+    <template #content>
+      <ChartPageWrapperNotice/>
+    </template>
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+        <el-card shadow="none">
+          <div ref="chartElRef1" style="width: 100%;height: 500px;"></div>
+        </el-card>
       </el-col>
-      <el-col :span="8">
-        <div ref="chartElRef2" style="width: 500px;height: 500px;"></div>
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+        <el-card shadow="none">
+          <div ref="chartElRef2" style="width: 100%;height: 500px;"></div>
+        </el-card>
       </el-col>
-      <el-col :span="8">
-        <div ref="chartElRef3" style="width: 500px;height: 500px;"></div>
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+        <el-card shadow="none">
+          <div ref="chartElRef3" style="width: 100%;height: 500px;"></div>
+        </el-card>
       </el-col>
     </el-row>
   </PageWrapper>
@@ -16,13 +25,14 @@
 
 <script>
 import {PageWrapper} from '@/components/Page'
+import ChartPageWrapperNotice from "@/views/demo/component/echarts/ChartPageWrapperNotice";
 import {useECharts} from "@/composables/useECharts";
 import {onMounted} from "vue";
 import {getBar1Option, getBar2Option, getBarAnimationDelayOption} from "@/views/demo/component/echarts/chartData";
 
 export default {
   name: "bar",
-  components: {PageWrapper},
+  components: {PageWrapper, ChartPageWrapperNotice},
   setup() {
     const {elRef: chartElRef1, setOptions: setOptions1} = useECharts();
     const {elRef: chartElRef2, setOptions: setOptions2} = useECharts();
