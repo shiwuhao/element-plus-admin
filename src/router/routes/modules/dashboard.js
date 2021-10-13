@@ -21,6 +21,12 @@ export default [
         component: () => import('@/views/dashboard/analysis/index.vue'),
       },
       {
+        path: 'analysis2',
+        name: 'analysis2',
+        meta: {title: '分析页2', menu: true, cache: true, affix: true},
+        component: () => import('@/views/dashboard/analysis/index2.vue'),
+      },
+      {
         path: 'monitor',
         name: 'monitor',
         meta: {title: '监控页', menu: true, cache: true, affix: false},

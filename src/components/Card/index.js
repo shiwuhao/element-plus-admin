@@ -1,2 +1,7 @@
 import Card from '@/components/Card/src/card';
-export {Card}
+import BasicCard from '@/components/Card/src/BasicCard'
+
+export {
+  BasicCard,
+  Card
+}
