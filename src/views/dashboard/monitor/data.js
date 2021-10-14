@@ -1,89 +1,129 @@
-export const tradeData = [
-  {
-    title: '今日交易总额',
-    value: '124,543,233'
-  },
-  {
-    title: '销售目标完成率',
-    value: '92'
-  },
-  {
-    title: '活动剩余时间',
-    value: '124,543,233'
-  },
-  {
-    title: '每秒交易总额',
-    value: '234'
+export const getServerStatusData = () => {
+  return {
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow'
+      }
+    },
+    legend: {},
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: ['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00']
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: 'MEMORY USAGE',
+        type: 'bar',
+        emphasis: {
+          focus: 'series'
+        },
+        data: [70, 80, 77, 62, 95, 10, 20, 95, 10, 20, 44, 10, 20, 95,]
+      },
+      {
+        name: 'CPU USAGE',
+        type: 'bar',
+        stack: 'Ad',
+        emphasis: {
+          focus: 'series'
+        },
+        data: [50, 70, 35, 60, 100, 33, 58, 80, 77, 62, 95, 10, 33, 80]
+      },
+    ]
+  };
+}
+
+export const getDiskStatusData = () => {
+  return {
+    tooltip: {},
+    series: [
+      {
+        type: 'pie',
+        radius: ['60%', '100%'],
+        label: {
+          show: false,
+        },
+        data: [
+          {value: 1048, name: 'wechat'},
+          {value: 735, name: 'H5'},
+          {value: 580, name: 'App'},
+        ],
+      }
+    ]
   }
-]
-export const  monitorTrade = [
-  [
-    [28604, 77, 17096869, 'Australia', 1990],
-    [31163, 77.4, 27662440, 'Canada', 1990],
-    [1516, 68, 1154605773, 'China', 1990],
-    [13670, 74.7, 10582082, 'Cuba', 1990],
-    [28599, 75, 4986705, 'Finland', 1990],
-    [29476, 77.1, 56943299, 'France', 1990],
-    [31476, 75.4, 78958237, 'Germany', 1990],
-    [28666, 78.1, 254830, 'Iceland', 1990],
-    [1777, 57.7, 870601776, 'India', 1990],
-    [29550, 79.1, 122249285, 'Japan', 1990],
-    [2076, 67.9, 20194354, 'North Korea', 1990],
-    [12087, 72, 42972254, 'South Korea', 1990],
-    [24021, 75.4, 3397534, 'New Zealand', 1990],
-    [43296, 76.8, 4240375, 'Norway', 1990],
-    [10088, 70.8, 38195258, 'Poland', 1990],
-    [19349, 69.6, 147568552, 'Russia', 1990],
-    [10670, 67.3, 53994605, 'Turkey', 1990],
-    [26424, 75.7, 57110117, 'United Kingdom', 1990],
-    [37062, 75.4, 252847810, 'United States', 1990]
-  ],
-  [
-    [44056, 81.8, 23968973, 'Australia', 2015],
-    [43294, 81.7, 35939927, 'Canada', 2015],
-    [13334, 76.9, 1376048943, 'China', 2015],
-    [21291, 78.5, 11389562, 'Cuba', 2015],
-    [38923, 80.8, 5503457, 'Finland', 2015],
-    [37599, 81.9, 64395345, 'France', 2015],
-    [44053, 81.1, 80688545, 'Germany', 2015],
-    [42182, 82.8, 329425, 'Iceland', 2015],
-    [5903, 66.8, 1311050527, 'India', 2015],
-    [36162, 83.5, 126573481, 'Japan', 2015],
-    [1390, 71.4, 25155317, 'North Korea', 2015],
-    [34644, 80.7, 50293439, 'South Korea', 2015],
-    [34186, 80.6, 4528526, 'New Zealand', 2015],
-    [64304, 81.6, 5210967, 'Norway', 2015],
-    [24787, 77.3, 38611794, 'Poland', 2015],
-    [23038, 73.13, 143456918, 'Russia', 2015],
-    [19360, 76.5, 78665830, 'Turkey', 2015],
-    [38225, 81.4, 64715810, 'United Kingdom', 2015],
-    [53354, 79.1, 321773631, 'United States', 2015]
-  ]
-]
-export const monitorCategory = [
-  {
-    name: '病假',
-    value: 20
-  },{
-    name: '事假',
-    value: 10
-  },{
-    name: '婚假',
-    value: 30
-  },{
-    name: '丧假',
-    value: 40
-  },{
-    name: '年休假',
-    value: 40
-  },{
-    name: '产假',
-    value: 40
-  },{
-    name: '调休',
-    value: 40
-  },{
-    name: '陪产假',
-    value: 40
-  }
-]
+}
+
+export const getThroughputData = () =>{
+  return {
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: 'Email',
+        type: 'line',
+        stack: 'Total',
+        data: [120, 132, 101, 134, 90, 230, 210]
+      },
+      {
+        name: 'Union Ads',
+        type: 'line',
+        stack: 'Total',
+        data: [220, 182, 191, 234, 290, 330, 310]
+      },
+      {
+        name: 'Video Ads',
+        type: 'line',
+        stack: 'Total',
+        data: [150, 232, 201, 154, 190, 330, 410]
+      },
+      {
+        name: 'Direct',
+        type: 'line',
+        stack: 'Total',
+        data: [320, 332, 301, 334, 390, 330, 320]
+      },
+      {
+        name: 'Search Engine',
+        type: 'line',
+        stack: 'Total',
+        data: [820, 932, 901, 934, 1290, 1330, 1320]
+      }
+    ]
+  };
+}
