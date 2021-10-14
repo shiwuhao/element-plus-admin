@@ -1,67 +1,39 @@
 <template>
-  <el-row :gutter="20">
-    <el-col :span="getIsMobile? 24:18">
-      <BarChart ref="barChart"/>
+  <el-row>
+    <el-col :span="16">
+      <div ref="elRef" style="height: 380px;width: 100%;"></div>
     </el-col>
-    <el-col :span="getIsMobile?24:6" class="right-access">
-      <h3>门店{{title.text}}排名</h3>
-      <ul>
-        <li v-for="(item,index) in shopData" :key="index">
-          <span><i>{{ index + 1 }}</i>{{ item.title }}</span>
-          <span>{{ item.num }}</span>
-        </li>
-      </ul>
+    <el-col :span="8">
+      <BasicTable :columns="rankColumn" :data="rankData" size="small"></BasicTable>
     </el-col>
   </el-row>
 </template>
 <script>
-import {defineComponent, reactive} from 'vue';
-import BarChart from '@/views/demo/component/echarts/components/BarChart';
-import {shopData} from '../data.js';
-import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
-export default defineComponent({
-  components: {BarChart},
+import {onMounted, shallowReactive, toRefs} from 'vue';
+import {getVisitData, rankColumn, rankData} from '../data.js';
+import {BasicCard} from "@/components/Card";
+import {BasicTable} from "@/components/Table";
+import {useECharts} from "@/composables/useECharts";
+
+export default {
+  name: "Sale",
+  components: {BasicCard, BasicTable,},
   setup() {
-    const {getIsMobile} = useRootSetting();
+    const state = shallowReactive({
+      rankData: rankData(),
+      rankColumn: rankColumn()
+    })
+
+    const {elRef, setOptions} = useECharts();
+
+    onMounted(() => {
+      setOptions(getVisitData())
+    })
+
     return {
-      shopData,
-      title: reactive({
-        text: '访问量'
-      }),
-      getIsMobile
-    }
-  }
-})
-</script>
-<style lang="scss" scoped>
-.right-access {
-  ul {
-    padding: 0;
-
-    li {
-      list-style: none;
-      line-height: 42px;
-
-      span {
-        &:first-child {
-          i {
-            width: 20px;
-            height: 20px;
-            line-height: 20px;
-            display: inline-block;
-            background-color: #314659;
-            border-radius: 50%;
-            color: #fff;
-            text-align: center;
-            margin-right: 5px;
-          }
-        }
-
-        &:last-child {
-          float: right;
-        }
-      }
+      elRef,
+      ...toRefs(state),
     }
   }
 }
-</style>
+</script>

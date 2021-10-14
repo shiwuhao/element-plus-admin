@@ -5,10 +5,12 @@ import {
   BarChart,
   LineChart,
   PieChart,
+  FunnelChart,
 } from 'echarts/charts';
 
 // 引入提示框，标题，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
+  PolarComponent,
   TitleComponent,
   ToolboxComponent,
   GridComponent,
@@ -39,6 +41,8 @@ echarts.use([
   CanvasRenderer,
   LineChart,
   PieChart,
+  PolarComponent,
+  FunnelChart,
 ])
 
 export default echarts;

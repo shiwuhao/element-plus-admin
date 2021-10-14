@@ -1,19 +1,17 @@
 <template>
-  <div class="m10">
-    <el-row :gutter="10">
-      <el-col :span="6" v-for="(item,index) in growData" :key="index">
-        <BasicCard :title="item.title" :notice="item.notice">
-          <el-row gutter="10">
-            <el-col :span="10">{{ item.value }}</el-col>
-            <el-col :span="14">
-              <div :ref="item.elRef" :style="item.chartStyle"></div>
-            </el-col>
-          </el-row>
-          <template #footer>{{ item.description }}</template>
-        </BasicCard>
-      </el-col>
-    </el-row>
-  </div>
+  <el-row :gutter="10">
+    <el-col :span="6" v-for="(item,index) in growData" :key="index">
+      <BasicCard :title="item.title" :notice="item.notice">
+        <el-row gutter="10">
+          <el-col :span="10">{{ item.value }}</el-col>
+          <el-col :span="14">
+            <div :ref="item.elRef" :style="item.chartStyle"></div>
+          </el-col>
+        </el-row>
+        <template #footer>{{ item.description }}</template>
+      </BasicCard>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
