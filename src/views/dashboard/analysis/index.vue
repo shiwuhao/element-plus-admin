@@ -11,13 +11,13 @@
       </el-col>
     </el-row>
     <el-row :gutter="10">
-      <el-col :span="8">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
         <AreaStackGradientChart/>
       </el-col>
-      <el-col :span="8">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
         <BarPolarStackChart/>
       </el-col>
-      <el-col :span="8">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
         <FunnelChart/>
       </el-col>
     </el-row>
