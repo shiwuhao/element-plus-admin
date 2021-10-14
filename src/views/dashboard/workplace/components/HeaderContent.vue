@@ -11,8 +11,8 @@
         </el-avatar>
         <div>
 
-          <h3>早安，coco，开心每一天！</h3>
-          <p>前端开发工程师-某某事业部-某某技术部</p>
+          <h3>Hello World！</h3>
+          <p>Hello World！</p>
         </div>
       </div>
     </template>
