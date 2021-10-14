@@ -1,23 +1,15 @@
 <template>
   <div class="m10">
-    <el-row class="mb10">
-      <el-col>
-        <GrowCard/>
-      </el-col>
-    </el-row>
-    <el-row class="mb10">
-      <el-col>
-        <VisitCard/>
-      </el-col>
-    </el-row>
+    <GrowCard />
+    <VisitCard/>
     <el-row :gutter="10">
-      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24" class="mb10">
         <AreaStackGradientChart/>
       </el-col>
-      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24" class="mb10">
         <BarPolarStackChart/>
       </el-col>
-      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24">
+      <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24" class="mb10">
         <FunnelChart/>
       </el-col>
     </el-row>

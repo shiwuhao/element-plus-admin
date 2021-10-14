@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="10">
-    <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-for="(item,index) in growData" :key="index">
+    <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-for="(item,index) in growData" :key="index" class="mb10">
       <BasicCard :title="item.title" :notice="item.notice">
         <el-row gutter="10">
           <el-col :span="10">{{ item.value }}</el-col>
@@ -49,9 +49,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//@media screen and (min-width: 768px) {
-//  .el-col{
+//:deep(.el-col) {
+//  @media screen and (max-width: 1200px) {
 //    margin-bottom: 10px;
 //  }
 //}
+
 </style>

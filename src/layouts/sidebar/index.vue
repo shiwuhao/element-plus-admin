@@ -1,8 +1,9 @@
 <template>
   <el-drawer
+    custom-class="drawer-menu"
     v-if="getIsMobile"
     :model-value="!getCollapsed"
-    :size="200"
+    :size="219"
     :with-header="false"
     :destroy-on-close="true"
     direction="ltr"
@@ -37,6 +38,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.drawer-menu .el-drawer__body {
+  padding: 0 !important;
+}
 </style>

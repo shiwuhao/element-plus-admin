@@ -2,31 +2,21 @@ import Mock from "mockjs";
 
 export const getFunnelData = () => {
   return {
-    title: {
-      text: 'Funnel'
-    },
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b} : {c}%'
     },
-    toolbox: {
-      feature: {
-        dataView: {readOnly: false},
-        restore: {},
-        saveAsImage: {}
-      }
-    },
     legend: {
-      data: ['Show', 'Click', 'Visit', 'Inquiry', 'Order']
+      data: ['Show', 'Click', 'Visit', 'Inquiry', 'Order', 'Order2', 'Order3', 'Order4']
     },
     series: [
       {
         name: 'Funnel',
         type: 'funnel',
-        left: '10%',
+        left: '0%',
         top: 60,
-        bottom: 60,
-        width: '80%',
+        bottom: 10,
+        width: '100%',
         min: 0,
         max: 100,
         minSize: '0%',
@@ -54,11 +44,14 @@ export const getFunnelData = () => {
           }
         },
         data: [
-          {value: 60, name: 'Visit'},
-          {value: 40, name: 'Inquiry'},
-          {value: 20, name: 'Order'},
-          {value: 80, name: 'Click'},
-          {value: 100, name: 'Show'}
+          {value: 80, name: 'Visit2'},
+          {value: 70, name: 'Visit'},
+          {value: 60, name: 'Inquiry'},
+          {value: 50, name: 'Order'},
+          {value: 40, name: 'Click'},
+          {value: 30, name: 'Show'},
+          {value: 20, name: 'Order2'},
+          {value: 10, name: 'Order3'},
         ]
       }
     ]
@@ -125,7 +118,7 @@ export const getGradientStackedData = (echarts) => {
       }
     },
     legend: {
-      data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
+      data: ['Line 1', 'Line 2', 'Line 3']
     },
     toolbox: {
       feature: {
@@ -142,7 +135,7 @@ export const getGradientStackedData = (echarts) => {
       {
         type: 'category',
         boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
       }
     ],
     yAxis: [
@@ -176,7 +169,7 @@ export const getGradientStackedData = (echarts) => {
         emphasis: {
           focus: 'series'
         },
-        data: [140, 232, 101, 264, 90, 340, 250]
+        data: [140, 232, 101, 264, 90]
       },
       {
         name: 'Line 2',
@@ -203,7 +196,7 @@ export const getGradientStackedData = (echarts) => {
         emphasis: {
           focus: 'series'
         },
-        data: [120, 282, 111, 234, 220, 340, 310]
+        data: [120, 282, 111, 234, 220]
       },
       {
         name: 'Line 3',
@@ -230,66 +223,8 @@ export const getGradientStackedData = (echarts) => {
         emphasis: {
           focus: 'series'
         },
-        data: [320, 132, 201, 334, 190, 130, 220]
+        data: [320, 132, 201, 334, 190]
       },
-      {
-        name: 'Line 4',
-        type: 'line',
-        stack: 'Total',
-        smooth: true,
-        lineStyle: {
-          width: 0
-        },
-        showSymbol: false,
-        areaStyle: {
-          opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: 'rgba(255, 0, 135)'
-            },
-            {
-              offset: 1,
-              color: 'rgba(135, 0, 157)'
-            }
-          ])
-        },
-        emphasis: {
-          focus: 'series'
-        },
-        data: [220, 402, 231, 134, 190, 230, 120]
-      },
-      {
-        name: 'Line 5',
-        type: 'line',
-        stack: 'Total',
-        smooth: true,
-        lineStyle: {
-          width: 0
-        },
-        showSymbol: false,
-        label: {
-          show: true,
-          position: 'top'
-        },
-        areaStyle: {
-          opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: 'rgba(255, 191, 0)'
-            },
-            {
-              offset: 1,
-              color: 'rgba(224, 62, 76)'
-            }
-          ])
-        },
-        emphasis: {
-          focus: 'series'
-        },
-        data: [220, 302, 181, 234, 210, 290, 150]
-      }
     ]
   };
 }
@@ -461,43 +396,6 @@ export const getVisitData = () => {
           data: [[{type: 'min'}, {type: 'max'}]]
         }
       },
-      {
-        name: 'Baidu',
-        type: 'bar',
-        barWidth: 5,
-        stack: 'Search Engine',
-        emphasis: {
-          focus: 'series'
-        },
-        data: [620, 732, 701, 734, 1090, 1130, 1120]
-      },
-      {
-        name: 'Google',
-        type: 'bar',
-        stack: 'Search Engine',
-        emphasis: {
-          focus: 'series'
-        },
-        data: [120, 132, 101, 134, 290, 230, 220]
-      },
-      {
-        name: 'Bing',
-        type: 'bar',
-        stack: 'Search Engine',
-        emphasis: {
-          focus: 'series'
-        },
-        data: [60, 72, 71, 74, 190, 130, 110]
-      },
-      {
-        name: 'Others',
-        type: 'bar',
-        stack: 'Search Engine',
-        emphasis: {
-          focus: 'series'
-        },
-        data: [62, 82, 91, 84, 109, 110, 120]
-      },
     ]
   };
 }
@@ -507,11 +405,13 @@ export const rankColumn = () => {
     {
       label: '排名',
       prop: 'rank',
-      width: 80
+      width: 50
     },
     {
       label: '城市',
       prop: 'city',
+      showOverflowTooltip: true,
+      width: 100,
     },
     {
       label: '门店',
