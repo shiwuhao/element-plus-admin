@@ -24,10 +24,10 @@ export default {
   setup() {
     const state = shallowReactive({
       tableColumn: [
-        {prop: 'job', label: 'Job', width: 220},
-        {prop: 'runtime', label: 'Runtime', width: 80},
-        {prop: 'failed_at', label: 'Failed At', width: 110},
-        {prop: 'action', label: 'Action', slot: 'action', width: 80},
+        {prop: 'job', label: 'Job', minWidth: 90},
+        {prop: 'runtime', label: 'Runtime', minWidth: 70},
+        {prop: 'failed_at', label: 'Failed At', minWidth: 110},
+        {prop: 'action', label: 'Action', slot: 'action', minWidth: 80},
       ],
       tableData: [
         {job: 'SendSms', runtime: '4', failed_at: '10-14 16:23:09', Retry: 'A Few Seconds'},

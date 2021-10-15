@@ -31,7 +31,7 @@
           14
         </BasicCard>
       </el-col>
-      <el-col :span="24" class="mb10">
+      <el-col :span="24">
         <BasicTable :columns="tableColumn" :data="tableData"></BasicTable>
       </el-col>
     </el-row>
@@ -51,17 +51,17 @@ export default {
   setup() {
     const state = shallowReactive({
       tableColumn: [
-        {prop: 'queue', label: 'Queue'},
-        {prop: 'processes', label: 'Processes'},
-        {prop: 'jobs', label: 'Jobs'},
-        {prop: 'wait', label: 'Wait'},
+        {prop: 'queue', label: 'Queue', minWidth: 100},
+        {prop: 'processes', label: 'Processes', minWidth: 80},
+        {prop: 'jobs', label: 'Jobs', minWidth: 100},
+        {prop: 'wait', label: 'Wait', minWidth: 120},
       ],
       tableData: [
         {queue: 'default', processes: '4', jobs: 1000, wait: 'A Few Seconds'},
         {queue: 'hot', processes: '5', jobs: 5000, wait: 'A Few Seconds'},
         {queue: 'promotion', processes: '6', jobs: 1000, wait: 'A Few Seconds'},
         {queue: 'first', processes: '8', jobs: 2000, wait: 'A Few Seconds'},
-        {queue: 'second', processes: '4', jobs: 500, wait: 'A Few Seconds'},
+        {queue: 'second', processes: '8', jobs: 2000, wait: 'A Few Seconds'},
       ]
     })
 

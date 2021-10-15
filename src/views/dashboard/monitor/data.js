@@ -80,11 +80,6 @@ export const getThroughputData = () =>{
       bottom: '3%',
       containLabel: true
     },
-    toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
-    },
     xAxis: {
       type: 'category',
       boundaryGap: false,
@@ -118,12 +113,6 @@ export const getThroughputData = () =>{
         stack: 'Total',
         data: [320, 332, 301, 334, 390, 330, 320]
       },
-      {
-        name: 'Search Engine',
-        type: 'line',
-        stack: 'Total',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
-      }
     ]
   };
 }

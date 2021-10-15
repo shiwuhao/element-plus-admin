@@ -5,14 +5,14 @@
         <div ref="elRef" style="height: 300px;width: 100%;"></div>
       </el-col>
       <el-col :span="12" :xs="24" class="mt10">
-        <el-row>
+        <el-row :gutter="10">
           <el-col :span="8" :xs="6">
             <div ref="elRef2" style="height: 100px;width: 100%;"></div>
           </el-col>
           <el-col :span="16" :xs="18">
             <div style="font-size: 12px;color: #cccccc;">DISK USAGE</div>
             <div>
-              <span>20.04GB / 256GB</span>
+              <span>20GB / 256GB</span>
               <el-progress :text-inside="true" :stroke-width="5" :percentage="7"/>
             </div>
             <div style="font-size: 14px;color: #cccccc;">
@@ -30,14 +30,14 @@
         </el-row>
       </el-col>
       <el-col :span="12" :xs="24" class="mt10">
-        <el-row>
+        <el-row :gutter="10">
           <el-col :span="8" :xs="6">
             <div ref="elRef3" style="height: 100px;width: 100%;"></div>
           </el-col>
           <el-col :span="16" :xs="18">
             <div style="font-size: 12px;color: #cccccc;">BANDWIDTH</div>
             <div>
-              <span>83.76GB / 10TB</span>
+              <span>83GB / 10TB</span>
               <el-progress :text-inside="true" :stroke-width="5" :percentage="10"/>
             </div>
             <div style="font-size: 14px;color: #cccccc;">
@@ -47,16 +47,13 @@
               </div>
               <div class="flex-row-justify">
                 <span>FTP</span>
-                <span>1.25GB</span>
+                <span>12.25GB</span>
               </div>
             </div>
             <div class="mt10" style="font-size: 12px;color: #cccccc;">Last updated 1 min ago</div>
           </el-col>
         </el-row>
       </el-col>
-    </el-row>
-    <el-row :gutter="50" class="mt10">
-
     </el-row>
   </BasicCard>
 </template>
