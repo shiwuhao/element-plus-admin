@@ -1,40 +1,25 @@
 <template>
   <PageWrapper>
     <template #content>
-      <UserInfo />
+      <UserInfo/>
     </template>
-  </PageWrapper>
-  <div class="m10">
-    <el-row :gutter="20">
-      <el-col :span="getIsMobile?24:16">
-         <el-row>
-           <el-col>
-             <LeftProject/>
-           </el-col>
-           <el-col>
-             <LeftDynamic/>
-           </el-col>
-         </el-row>
+    <el-row :gutter="10">
+      <el-col :xs="24" :sm="24" :md="24" :lg="18" :xl="16">
+        <Project/>
+        <LeftDynamic/>
       </el-col>
-      <el-col :span="getIsMobile?24:8">
-         <el-row>
-           <el-col>
-             <RightNavigation/>
-           </el-col>
-           <el-col>
-             <RightEcharts/>
-           </el-col>
-           <el-col>
-             <RightTeam/>
-           </el-col>
-         </el-row>
+      <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="8">
+        <RightNavigation/>
+        <RightEcharts/>
+        <RightTeam/>
       </el-col>
     </el-row>
-  </div>
+  </PageWrapper>
 </template>
 <script>
 import {PageWrapper} from '@/components/Page'
 import UserInfo from "@/views/dashboard/workplace/components/UserInfo";
+import Project from "@/views/dashboard/workplace/components/Project";
 
 import {defineComponent} from 'vue';
 import HeaderContent from './components/HeaderContent.vue';
@@ -44,12 +29,15 @@ import RightEcharts from "@/views/dashboard/workplace/components/RightEcharts.vu
 import RightNavigation from "@/views/dashboard/workplace/components/RightNavigation.vue";
 import RightTeam from "@/views/dashboard/workplace/components/RightTeam.vue";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
+
 export default defineComponent({
   components: {
     PageWrapper,
     UserInfo,
+    Project,
 
-    HeaderContent, LeftDynamic, LeftProject,RightEcharts,RightNavigation,RightTeam},
+    HeaderContent, LeftDynamic, LeftProject, RightEcharts, RightNavigation, RightTeam
+  },
   setup() {
     const {getIsMobile} = useRootSetting()
     return {

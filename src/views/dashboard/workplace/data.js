@@ -20,7 +20,7 @@ export const leftTopData = (() => {
       time: '2小时前',
       url: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
       image: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
-      content: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
+      desc: '希望是一个好东西，也许是最好',
       name: '中二少女团'
     });
   }

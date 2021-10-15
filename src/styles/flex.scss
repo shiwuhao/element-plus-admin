@@ -109,3 +109,58 @@
   justify-content: space-between;
   align-items: center;
 }
+
+/***********************华丽的分割线*************************/
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.row-left {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.row-start {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.row-center {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.row-end {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.row-between {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.col-top {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.col-center {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.col-bottom {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.flex-wrap {
+  flex-wrap: wrap
+}
+
+// 两端对齐
+.justify-between {
+  //justify-content: space-between;
+}
