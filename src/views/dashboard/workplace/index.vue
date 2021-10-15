@@ -1,5 +1,9 @@
 <template>
-  <HeaderContent/>
+  <PageWrapper>
+    <template #content>
+      <UserInfo />
+    </template>
+  </PageWrapper>
   <div class="m10">
     <el-row :gutter="20">
       <el-col :span="getIsMobile?24:16">
@@ -29,6 +33,9 @@
   </div>
 </template>
 <script>
+import {PageWrapper} from '@/components/Page'
+import UserInfo from "@/views/dashboard/workplace/components/UserInfo";
+
 import {defineComponent} from 'vue';
 import HeaderContent from './components/HeaderContent.vue';
 import LeftDynamic from "@/views/dashboard/workplace/components/LeftDynamic.vue";
@@ -38,7 +45,11 @@ import RightNavigation from "@/views/dashboard/workplace/components/RightNavigat
 import RightTeam from "@/views/dashboard/workplace/components/RightTeam.vue";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default defineComponent({
-  components: {HeaderContent, LeftDynamic, LeftProject,RightEcharts,RightNavigation,RightTeam},
+  components: {
+    PageWrapper,
+    UserInfo,
+
+    HeaderContent, LeftDynamic, LeftProject,RightEcharts,RightNavigation,RightTeam},
   setup() {
     const {getIsMobile} = useRootSetting()
     return {

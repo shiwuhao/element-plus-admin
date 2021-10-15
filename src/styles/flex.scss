@@ -78,6 +78,14 @@
   align-items: center;
 }
 
+// 垂直顶部对齐
+//.flex-col-left {
+//  display: flex;
+//  flex-direction: column;
+//  justify-content: flex-start;
+//  align-items: flex-end;
+//}
+
 // 垂直底部
 .flex-col-bottom {
   display: flex;

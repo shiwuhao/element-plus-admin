@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="page-header">
       <div class="flex-row-justify">
-        <div>
+        <div class="page-header-wrap" v-if="title">
           <span class="page-header-title">
             <slot name="title">{{ title }}</slot>
           </span>
@@ -83,20 +83,22 @@ export default {
     padding: 16px;
     background-color: white;
 
-    .page-header-title {
-      font-size: 20px;
-      font-weight: bolder;
-    }
-    .page-header-sub-title {
-      padding-left: 14px;
-      font-size: 12px;
-      color: #909399;
-    }
+    .page-header-wrap {
+      padding-bottom: 10px;
+      .page-header-title {
+        font-size: 20px;
+        font-weight: bolder;
+      }
 
+      .page-header-sub-title {
+        padding-left: 14px;
+        font-size: 12px;
+        color: #909399;
+      }
+    }
   }
 
   .page-header-content:not(:empty) {
-    padding-top: 12px;
     font-size: 14px;
   }
 

@@ -19,7 +19,7 @@ const user = {
     }
   },
   actions: {
-    async setToken({commit}, accessToken){
+    async setToken({commit}, accessToken) {
       await commit('setAccessToken', accessToken);
     },
     async login({commit}, params) {
@@ -35,7 +35,6 @@ const user = {
     async getUserInfo({commit}) {
       const {data: {data}} = await personal.info();
       commit('setUser', data);
-      commit('setRoles', data.roles);
       return data;
     },
   }
