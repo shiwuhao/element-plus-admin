@@ -1,10 +1,10 @@
-import {responsePageSuccess, responseSuccess} from "../_utils.js";
+import {responseSuccess} from "../_utils.js";
 
 const permissions1 = {
   "menus": [{
     "id": 1,
     "pid": 0,
-    "title": "Dashboard",
+    "title": "仪表盘",
     "icon": "fa fa-home",
     "url": "/dashboard",
     "type": "menu",
@@ -12,7 +12,7 @@ const permissions1 = {
   }, {
     "id": 9,
     "pid": 5,
-    "title": "\u914d\u7f6e\u7ba1\u7406",
+    "title": "配置管理",
     "icon": "el-icon-setting",
     "url": "/system/configs",
     "type": "menu",
@@ -20,7 +20,7 @@ const permissions1 = {
   }, {
     "id": 8,
     "pid": 5,
-    "title": "\u6743\u9650\u7ba1\u7406",
+    "title": "权限管理",
     "icon": "fa fa-linode",
     "url": "/system/menus",
     "type": "menu",
@@ -28,7 +28,7 @@ const permissions1 = {
   }, {
     "id": 7,
     "pid": 5,
-    "title": "\u89d2\u8272\u7ba1\u7406",
+    "title": "角色管理",
     "icon": "fa fa-sitemap",
     "url": "/system/roles",
     "type": "menu",
@@ -36,7 +36,7 @@ const permissions1 = {
   }, {
     "id": 6,
     "pid": 5,
-    "title": "\u7528\u6237\u7ba1\u7406",
+    "title": "用户管理",
     "icon": "el-icon-user-solid",
     "url": "/system/users",
     "type": "menu",
@@ -44,7 +44,7 @@ const permissions1 = {
   }, {
     "id": 5,
     "pid": 0,
-    "title": "\u7cfb\u7edf\u7ba1\u7406",
+    "title": "系统",
     "icon": "el-icon-menu",
     "url": "/system",
     "type": "menu",
@@ -52,7 +52,7 @@ const permissions1 = {
   }, {
     "id": 4,
     "pid": 1,
-    "title": "\u5206\u6790\u9875",
+    "title": "分析页",
     "icon": "el-icon-data-analysis",
     "url": "/dashboard/analysis",
     "type": "menu",
@@ -60,7 +60,7 @@ const permissions1 = {
   }, {
     "id": 3,
     "pid": 1,
-    "title": "\u76d1\u63a7\u9875",
+    "title": "监控页",
     "icon": "el-icon-monitor",
     "url": "/dashboard/monitor",
     "type": "menu",
@@ -68,7 +68,7 @@ const permissions1 = {
   }, {
     "id": 2,
     "pid": 1,
-    "title": "\u5de5\u4f5c\u53f0",
+    "title": "工作台",
     "icon": "fa fa-dashboard",
     "url": "/dashboard/workplace",
     "type": "menu",

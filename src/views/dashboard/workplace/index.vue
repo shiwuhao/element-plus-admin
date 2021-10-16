@@ -5,13 +5,13 @@
     </template>
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="24" :lg="18" :xl="16">
-        <Project/>
-        <LeftDynamic/>
+        <Project class="mb-2"/>
+        <Dynamic class="mb-2"/>
       </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="8">
-        <RightNavigation/>
-        <RightEcharts/>
-        <RightTeam/>
+        <QuickNav class="mb-2"/>
+        <Carousel class="mb-2"/>
+        <ProjectStatistic class="mb-2"/>
       </el-col>
     </el-row>
   </PageWrapper>
@@ -20,26 +20,19 @@
 import {PageWrapper} from '@/components/Page'
 import UserInfo from "@/views/dashboard/workplace/components/UserInfo";
 import Project from "@/views/dashboard/workplace/components/Project";
+import Dynamic from "@/views/dashboard/workplace/components/Dynamic";
+import QuickNav from "@/views/dashboard/workplace/components/QuickNav";
+import Carousel from "@/views/dashboard/workplace/components/Carousel";
+import ProjectStatistic from "@/views/dashboard/workplace/components/ProjectStatistic";
 
 import {defineComponent} from 'vue';
-import HeaderContent from './components/HeaderContent.vue';
-import LeftDynamic from "@/views/dashboard/workplace/components/LeftDynamic.vue";
-import LeftProject from "@/views/dashboard/workplace/components/LeftProject.vue";
-import RightEcharts from "@/views/dashboard/workplace/components/RightEcharts.vue";
-import RightNavigation from "@/views/dashboard/workplace/components/RightNavigation.vue";
-import RightTeam from "@/views/dashboard/workplace/components/RightTeam.vue";
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
 
 export default defineComponent({
-  components: {
-    PageWrapper,
-    UserInfo,
-    Project,
-
-    HeaderContent, LeftDynamic, LeftProject, RightEcharts, RightNavigation, RightTeam
-  },
+  components: {PageWrapper, UserInfo, Project, Dynamic, QuickNav, Carousel, ProjectStatistic},
   setup() {
-    const {getIsMobile} = useRootSetting()
+    const {getIsMobile} = useRootSetting();
+
     return {
       getIsMobile
     }

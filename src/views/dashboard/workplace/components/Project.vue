@@ -1,53 +1,36 @@
 <template>
   <el-card header="项目" shadow="none">
-    <!--    <el-row :gutter="10">-->
-    <!--      <el-col :span="8" v-for="(item,index) in leftTopData" :key="index">-->
-    <el-space fill wrap size="medium" :fillRatio="32" direction="horizontal">
-      <el-card shadow="hover" v-for="(item,index) in leftTopData" :key="index" style="padding: 0 5px">
-        <div class="flex">
-          <el-avatar :src="item.image" :size="30"></el-avatar>
-          <span class="text-lg ml-4">{{ item.title }}</span>
-        </div>
-        <div class="text-secondary h-2"> {{ item.desc }}</div>
-        <div class="flex row-between text-secondary">
-          <span>{{ item.name }}</span>
-          <span>{{ item.time }}</span>
-        </div>
-      </el-card>
-    </el-space>
-    <!--      </el-col>-->
-    <!--    </el-row>-->
+    <el-row :gutter="0">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" v-for="(item,index) in projects" :key="index">
+        <el-card class="card" shadow="hover">
+          <div class="flex">
+            <el-avatar :src="item.image" :size="24"></el-avatar>
+            <span class="ml-2">{{ item.title }}</span>
+          </div>
+          <div class="text-secondary text-overflow mtb-1">
+            {{ item.desc }}
+          </div>
+          <div class="flex row-between text-secondary">
+            <span>{{ item.name }}</span>
+            <span>{{ item.time }}</span>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </el-card>
 </template>
 <script>
-import {defineComponent, ref} from 'vue';
-import {Card} from "@/components/Card";
-import {ElCard} from "element-plus"
-
-
-import {leftTopData} from "@/views/dashboard/workplace/data.js";
-import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {defineComponent, shallowReactive, toRefs} from 'vue';
+import {getProjectData} from "@/views/dashboard/workplace/data.js";
 
 export default defineComponent({
-  components: {Card},
   setup() {
-    const {getIsMobile} = useRootSetting();
-    const direction = ref('horizontal');
-    const fillRatio = ref(33)
-    const size = ref(33)
-    return {
-      cardName: ref('进行中的项目'),
-      headerType: ref('btn'),
-      btnName: ref('全部项目'),
-      leftTopData,
-      shadow: ref('hover'),
-      imageCard: ref(true),
-      getIsMobile,
-      header: ref(false),
+    const state = shallowReactive({
+      projects: getProjectData(),
+    })
 
-      direction,
-      fillRatio,
-      size
+    return {
+      ...toRefs(state),
     }
   }
 })
