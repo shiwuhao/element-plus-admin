@@ -41,6 +41,7 @@ export default {
         {job: 'CallTask', runtime: '4', failed_at: '10-14 16:23:09', Retry: 'A Few Seconds'},
         {job: 'SendPush', runtime: '4', failed_at: '10-14 16:23:09', Retry: 'A Few Seconds'},
         {job: 'Callback', runtime: '4', failed_at: '10-14 16:23:09', Retry: 'A Few Seconds'},
+        {job: 'Callback', runtime: '4', failed_at: '10-14 16:23:09', Retry: 'A Few Seconds'},
       ]
     })
 

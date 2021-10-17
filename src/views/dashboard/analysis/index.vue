@@ -1,6 +1,6 @@
 <template>
   <div class="m10">
-    <GrowCard />
+    <GrowCard/>
     <VisitCard/>
     <el-row :gutter="10">
       <el-col :xl="8" :lg="8" :md="12" :sm="12" :xs="24" class="mb10">

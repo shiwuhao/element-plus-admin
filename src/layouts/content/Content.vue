@@ -2,7 +2,7 @@
   <router-view>
     <template v-slot="{ Component, route }">
       <div>
-        <transition :name="getTransitionName(route)">
+        <transition :name="getTransitionName(route)" mode="out-in">
           <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
             <component :is="Component" :key="route.fullPath" />
           </keep-alive>

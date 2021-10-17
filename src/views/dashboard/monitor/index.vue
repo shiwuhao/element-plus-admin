@@ -2,21 +2,13 @@
   <div class="m10">
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="24" :lg="16" :xl="16" class="mb10">
-        <ServerStatus/>
+        <ServerStatus class="mb-2"/>
+        <QueueStatus class="mb-2"/>
+<!--        <Throughput/>-->
       </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="mb10">
-        <Information/>
-      </el-col>
-    </el-row>
-    <el-row :gutter="10">
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="mb10">
-        <QueueStatus/>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="mb10">
-        <FailedJobs/>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" class="mb10">
-        <Throughput/>
+        <Information class="mb-2"/>
+        <FailedJobs class="mb-2"/>
       </el-col>
     </el-row>
   </div>

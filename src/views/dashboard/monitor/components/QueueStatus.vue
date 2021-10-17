@@ -1,35 +1,17 @@
 <template>
   <BasicCard title="Queue Status">
     <el-row :gutter="10">
-      <el-col :span="12" class="mb10">
-        <BasicCard title="JOBS PER MINUTE">
-          117
-        </BasicCard>
-      </el-col>
-      <el-col :span="12" class="mb10">
-        <BasicCard title="JOBS PAST HOUR">
-          5,805
-        </BasicCard>
-      </el-col>
-      <el-col :span="12" class="mb10">
-        <BasicCard title="STATUS">
-          Active
-        </BasicCard>
-      </el-col>
-      <el-col :span="12" class="mb10">
-        <BasicCard title="TOTAL PROCESSES">
-          14
-        </BasicCard>
-      </el-col>
-      <el-col :span="12" class="mb10">
-        <BasicCard title="TOTAL PROCESSES">
-          14
-        </BasicCard>
-      </el-col>
-      <el-col :span="12" class="mb10">
-        <BasicCard title="TOTAL PROCESSES">
-          14
-        </BasicCard>
+      <el-col :span="24" class="mb-2">
+        <el-row>
+          <el-col :span="6" v-for="(item,index) in queueStatus" :key="index">
+            <el-card class="card" shadow="hover">
+              <div class="flex row-center col-center">
+                <span class="text-sm text-secondary">{{ item.label }}</span>
+                <span class="text-xl">{{ item.value }}</span>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
       </el-col>
       <el-col :span="24">
         <BasicTable :columns="tableColumn" :data="tableData"></BasicTable>
@@ -62,6 +44,16 @@ export default {
         {queue: 'promotion', processes: '6', jobs: 1000, wait: 'A Few Seconds'},
         {queue: 'first', processes: '8', jobs: 2000, wait: 'A Few Seconds'},
         {queue: 'second', processes: '8', jobs: 2000, wait: 'A Few Seconds'},
+      ],
+      queueStatus: [
+        {label: 'JOBS PER MINUTE', value: 117},
+        {label: 'JOBS PAST HOUR', value: '5,808'},
+        {label: 'FAILED JOBS PAST 7 DAYS', value: '701'},
+        {label: 'STATUS', value: 'Active'},
+        {label: 'TOTAL PROCESSES', value: '14'},
+        {label: 'MAX WAIT TIME', value: '--'},
+        {label: 'MAX RUNTIME', value: 'First'},
+        {label: 'MAX THROUGHPUT', value: 'First'},
       ]
     })
 
