@@ -15,7 +15,7 @@ export function useECharts(chartRef = null, theme = 'light') {
   const initCharts = (theme) => {
     const el = elRef.value;
     chartInstance = echarts.init(el, theme);
-    useEventListener(window, 'resize', resizeFn)
+    useEventListener(window, 'resize', resizeFn);
   }
 
   // 获取实例
@@ -27,7 +27,7 @@ export function useECharts(chartRef = null, theme = 'light') {
   }
 
   // 设置配置项
-  const setOptions = (options) => {
+  const setOptions = async (options) => {
     const el = elRef.value;
     if (el && el.offsetHeight === 0) {
       useTimeoutFn(() => {
@@ -36,7 +36,7 @@ export function useECharts(chartRef = null, theme = 'light') {
       return;
     }
 
-    nextTick(() => {
+    await nextTick(() => {
       useTimeoutFn(() => {
         if (!chartInstance) {
           initCharts(theme);
@@ -52,7 +52,7 @@ export function useECharts(chartRef = null, theme = 'light') {
   }
 
   tryOnUnmounted(() => {
-    window.removeEventListener('resize', resizeFn);
+    window.removeEventListener('resize', resizeFn, true);
     if (!chartInstance) return;
     chartInstance.dispose();
     chartInstance = null;
