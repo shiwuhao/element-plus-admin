@@ -3,7 +3,7 @@
     <el-row :gutter="10">
       <el-col :span="24" class="mb-2">
         <el-row>
-          <el-col :span="6" v-for="(item,index) in queueStatus" :key="index">
+          <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="6" v-for="(item,index) in queueStatus" :key="index">
             <el-card class="card" shadow="hover">
               <div class="flex row-center col-center">
                 <span class="text-sm text-secondary">{{ item.label }}</span>
@@ -48,7 +48,7 @@ export default {
       queueStatus: [
         {label: 'JOBS PER MINUTE', value: 117},
         {label: 'JOBS PAST HOUR', value: '5,808'},
-        {label: 'FAILED JOBS PAST 7 DAYS', value: '701'},
+        {label: 'FAILED JOBS', value: '701'},
         {label: 'STATUS', value: 'Active'},
         {label: 'TOTAL PROCESSES', value: '14'},
         {label: 'MAX WAIT TIME', value: '--'},
