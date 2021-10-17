@@ -60,7 +60,7 @@
         </el-col>
         <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-role="['Administrator','Test']">
           <el-button type="success">
-            拥有（Administrator ||test）任一角色可见
+            拥有（Administrator || Test）任一角色可见
           </el-button>
         </el-col>
       </el-row>
@@ -90,6 +90,7 @@
 <style lang="scss" scoped>
 .el-button {
   width: 100%;
+  margin: 5px 0;
 }
 </style>
 <script>

@@ -1,12 +1,12 @@
 <template>
   <div class="page-wrapper">
     <div class="page-header">
-      <div class="flex-row-justify">
+      <div class="flex row-between">
         <div class="page-header-wrap" v-if="title">
-          <span class="page-header-title">
+          <span class="page-header-title text-xl">
             <slot name="title">{{ title }}</slot>
           </span>
-          <span class="page-header-sub-title">
+          <span class="text-secondary text-xs ml-2">
             <slot name="sub-title">{{ subTitle }}</slot>
           </span>
         </div>
@@ -14,12 +14,11 @@
           <slot name="extra"></slot>
         </div>
       </div>
-
-      <div class="page-header-content">
+      <div class="page-content">
         <slot name="content"> {{ content }}</slot>
       </div>
     </div>
-    <div class="page-wrapper-content"
+    <div class="page-wrapper-content m-2"
          ref="contentRef"
          :class="{'content-bg' :$props.contentBackground}"
          :style="{minHeight:$props.contentFullHeight ? contentHeight+'px' : 'auto'}">
@@ -77,6 +76,7 @@ export default {
 <style lang="scss" scoped>
 .page-wrapper {
   align-items: stretch;
+  font-size: 14px;
 
   .page-header {
     flex: 1;
@@ -84,26 +84,13 @@ export default {
     background-color: white;
 
     .page-header-wrap {
-      padding-bottom: 10px;
       .page-header-title {
-        font-size: 20px;
         font-weight: bolder;
-      }
-
-      .page-header-sub-title {
-        padding-left: 14px;
-        font-size: 12px;
-        color: #909399;
       }
     }
   }
-
-  .page-header-content:not(:empty) {
-    font-size: 14px;
-  }
-
-  .page-wrapper-content {
-    margin: 16px;
+  .page-content:not(:empty){
+    margin-top: .5rem;
   }
 
   .content-bg {

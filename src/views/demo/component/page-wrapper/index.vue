@@ -1,8 +1,7 @@
 <template>
   <page-wrapper
     class="page"
-    :title="$route.meta.title"
-    content="内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情"
+    :title="$route['meta']['title']"
     content-background
     content-full-height
   >
@@ -11,8 +10,13 @@
       <el-button type="primary" size="mini">按钮2</el-button>
       <el-button type="primary" size="mini">按钮3</el-button>
     </template>
+    <template #content>
+      <div class="text-sm text-secondary">
+        内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情内容详情
+      </div>
+    </template>
     <el-card shadow="none">
-      <el-descriptions class="margin-top" column="3" :size="size" border>
+      <el-descriptions class="margin-top" :column="getIsMobile ? 1: 3" size="mini" border>
         <el-descriptions-item>
           <template #label>
             <i class="el-icon-user"></i>
@@ -56,7 +60,7 @@
           江苏省苏州市吴中区吴中大道 1188 号
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions class="margin-top" column="3" :size="size" border>
+      <el-descriptions class="margin-top" :column="getIsMobile ? 1: 3" size="mini" border>
         <el-descriptions-item>
           <template #label>
             <i class="el-icon-user"></i>
@@ -100,7 +104,7 @@
           江苏省苏州市吴中区吴中大道 1188 号
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions class="margin-top" column="3" :size="size" border>
+      <el-descriptions class="margin-top" :column="getIsMobile ? 1: 3" size="mini" border>
         <el-descriptions-item>
           <template #label>
             <i class="el-icon-user"></i>
@@ -144,7 +148,7 @@
           江苏省苏州市吴中区吴中大道 1188 号
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions class="margin-top" column="3" :size="size" border>
+      <el-descriptions class="margin-top" :column="getIsMobile ? 1: 3" size="mini" border>
         <el-descriptions-item>
           <template #label>
             <i class="el-icon-user"></i>
@@ -194,12 +198,15 @@
 
 <script>
 import {PageWrapper} from '@/components/Page';
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 
 export default {
   name: "index",
   components: {PageWrapper},
   data() {
+    const {getIsMobile} = useRootSetting();
     return {
+      getIsMobile,
       activeName: 'first',
     }
   }

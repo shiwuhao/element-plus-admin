@@ -3,10 +3,10 @@
     <el-col :span="24">
       <el-card shadow="none">
         <el-tabs v-model="activeName">
-          <el-tab-pane label="销售额" name="first">
+          <el-tab-pane label="销售额" name="first" :lazy="true">
             <Sale/>
           </el-tab-pane>
-          <el-tab-pane label="访问量" name="second">
+          <el-tab-pane label="访问量" name="second" :lazy="true">
             <Sale/>
           </el-tab-pane>
         </el-tabs>
