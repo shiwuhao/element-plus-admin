@@ -10,9 +10,7 @@ export function useECharts(chartRef = null, theme = 'light') {
   // 初始化
   const initCharts = (theme) => {
     const el = elRef.value;
-    console.log(111)
     chartInstance = echarts.init(el, theme)
-    console.log(12111)
   }
 
   // 获取实例
@@ -38,9 +36,7 @@ export function useECharts(chartRef = null, theme = 'light') {
         if (!chartInstance) {
           initCharts(theme);
         }
-        console.log(333)
         chartInstance.setOption(options);
-        console.log(444, chartInstance)
       }, 100)
     })
   }

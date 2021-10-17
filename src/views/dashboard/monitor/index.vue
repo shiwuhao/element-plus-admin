@@ -32,9 +32,5 @@ import {defineComponent} from 'vue';
 
 export default defineComponent({
   components: {ServerStatus, QueueStatus, FailedJobs, Throughput, Information},
-  setup() {
-
-    return {}
-  }
 })
 </script>

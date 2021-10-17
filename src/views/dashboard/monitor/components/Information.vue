@@ -101,17 +101,6 @@ import {onMounted} from "vue";
 export default {
   name: "ServerStatus",
   components: {BasicCard},
-  setup() {
-    const {elRef, setOptions} = useECharts();
-
-    onMounted(() => {
-      setOptions(getThroughputData());
-    })
-
-    return {
-      elRef,
-    }
-  }
 }
 </script>
 
