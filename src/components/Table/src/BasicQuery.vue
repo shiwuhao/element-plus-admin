@@ -1,5 +1,5 @@
 <template>
-  <BasicForm v-bind="$props" :schemas="schemaOptions" :action-props="actionProps"></BasicForm>
+  <BasicForm class="query-form" v-bind="$props" :schemas="schemaOptions" :action-props="actionProps"></BasicForm>
 </template>
 
 <script>
@@ -66,7 +66,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-form .el-form-item--small.el-form-item) {
-  margin-bottom: 5px !important;
+.query-form {
+  :deep(.el-form-item) {
+    margin-bottom: 5px !important;
+  }
 }
 </style>
