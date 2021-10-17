@@ -25,7 +25,7 @@ import BarPolarStackChart from "./components/BarPolarStackChart";
 import FunnelChart from "./components/FunnelChart";
 
 export default {
-  name: "index2",
+  name: "index",
   components: {GrowCard, VisitCard, AreaStackGradientChart, BarPolarStackChart, FunnelChart},
   setup() {
 
