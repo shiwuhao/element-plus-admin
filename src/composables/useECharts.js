@@ -1,16 +1,21 @@
 import echarts from "@/utils/lib/echarts";
 import {nextTick, ref} from "vue";
-import {tryOnUnmounted, useTimeoutFn} from "@vueuse/core"
+import {tryOnUnmounted, useDebounceFn, useTimeoutFn} from "@vueuse/core";
+import {useEventListener} from '@vueuse/core';
+
 
 export function useECharts(chartRef = null, theme = 'light') {
-
   const elRef = chartRef ? chartRef : ref(null);
   let chartInstance = null;
+  let resizeFn = useDebounceFn(() => {
+    resize();
+  }, 200);
 
   // 初始化
   const initCharts = (theme) => {
     const el = elRef.value;
-    chartInstance = echarts.init(el, theme)
+    chartInstance = echarts.init(el, theme);
+    useEventListener(window, 'resize', resizeFn)
   }
 
   // 获取实例
@@ -47,6 +52,7 @@ export function useECharts(chartRef = null, theme = 'light') {
   }
 
   tryOnUnmounted(() => {
+    window.removeEventListener('resize', resizeFn);
     if (!chartInstance) return;
     chartInstance.dispose();
     chartInstance = null;
