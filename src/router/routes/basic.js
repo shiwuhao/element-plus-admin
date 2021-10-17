@@ -32,26 +32,26 @@ export default [
   {
     path: '/404',
     meta: {title: '404', menu: false, cache: false},
-    component: () => import('@/views/error-page/404'),
+    component: () => import('@/views/demo/page/error-page/404'),
   },
   {
     path: '/401',
     meta: {title: '401', menu: false, cache: false},
-    component: () => import('@/views/error-page/401'),
+    component: () => import('@/views/demo/page/error-page/401'),
   },
-  {
-    path: '/profile',
-    component: Layout,
-    meta: {title: '个人中心', menu: false, cache: false},
-    redirect: '/profile/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: {title: 'Profile', icon: 'user', cache: false}
-      }
-    ]
-  },
+  // {
+  //   path: '/profile',
+  //   component: Layout,
+  //   meta: {title: '个人中心', menu: false, cache: false},
+  //   redirect: '/profile/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/profile/index'),
+  //       name: 'Profile',
+  //       meta: {title: 'Profile', icon: 'user', cache: false}
+  //     }
+  //   ]
+  // },
 ]
 ;

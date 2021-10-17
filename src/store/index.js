@@ -12,14 +12,14 @@ import user from "./modules/user";
 const store = createStore({
   plugins: [createPersistedState({
     paths: [
-      'setting',
-      'config',
-      'app',
+      // 'setting',
+      // 'config',
+      // 'app',
       'user.accessToken',
-      'tagView',
-      'permission.menus',
-      'permission.routes',
-      'permission.addRoutes'
+      // 'tagView',
+      // 'permission.menus',
+      // 'permission.routes',
+      // 'permission.addRoutes'
     ]
   })],
   modules: {

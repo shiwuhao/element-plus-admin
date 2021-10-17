@@ -34,3 +34,6 @@ export function transformTime(time){
   const newTime = Y + M + D + h + m;
   return newTime;
 }
+export const getAssetsSrc = (path) => {
+  return new URL(`/src/assets/${path}`, import.meta.url).href;
+}

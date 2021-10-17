@@ -10,12 +10,12 @@
             <div ref="elRef2" style="height: 100px;width: 100%;"></div>
           </el-col>
           <el-col :span="16" :xs="18">
-            <div style="font-size: 12px;color: #cccccc;">DISK USAGE</div>
-            <div>
+            <div class="text-xs text-secondary">DISK USAGE</div>
+            <div class="mt-1">
               <span>20GB / 256GB</span>
-              <el-progress :text-inside="true" :stroke-width="5" :percentage="7"/>
+              <el-progress class="mt-2" :text-inside="true" :stroke-width="5" :percentage="7"/>
             </div>
-            <div style="font-size: 14px;color: #cccccc;">
+            <div class="text-sm text-secondary mt-1">
               <div class="flex-row-justify">
                 <span>/dev/disk1</span>
                 <span>19.56GB</span>
@@ -25,22 +25,22 @@
                 <span>23.56GB</span>
               </div>
             </div>
-            <div class="mt10" style="font-size: 12px;color: #cccccc;">Last updated 1 min ago</div>
+            <div class="mt-2 text-xs text-secondary">Last updated 1 min ago</div>
           </el-col>
         </el-row>
       </el-col>
       <el-col :span="12" :xs="24" class="mt10">
         <el-row :gutter="10">
           <el-col :span="8" :xs="6">
-            <div ref="elRef3" style="height: 100px;width: 100%;"></div>
+            <div ref="elRef2" style="height: 100px;width: 100%;"></div>
           </el-col>
           <el-col :span="16" :xs="18">
-            <div style="font-size: 12px;color: #cccccc;">BANDWIDTH</div>
-            <div>
+            <div class="text-xs text-secondary">BANDWIDTH</div>
+            <div class="mt-1">
               <span>83GB / 10TB</span>
-              <el-progress :text-inside="true" :stroke-width="5" :percentage="10"/>
+              <el-progress class="mt-2" :text-inside="true" :stroke-width="5" :percentage="20"/>
             </div>
-            <div style="font-size: 14px;color: #cccccc;">
+            <div class="text-sm text-secondary mt-1">
               <div class="flex-row-justify">
                 <span>HTTP</span>
                 <span>35.47GB</span>
@@ -50,7 +50,7 @@
                 <span>12.25GB</span>
               </div>
             </div>
-            <div class="mt10" style="font-size: 12px;color: #cccccc;">Last updated 1 min ago</div>
+            <div class="mt-2 text-xs text-secondary">Last updated 1 min ago</div>
           </el-col>
         </el-row>
       </el-col>

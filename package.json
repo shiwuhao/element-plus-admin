@@ -2,11 +2,13 @@
   "name": "element-plus-admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://shiwuhao.github.io/element-plus-admin",
   "scripts": {
     "dev": "vite",
     "start": "vite",
     "preview": "vite preview",
-    "vite-build": "vite build"
+    "vite-build": "vite build",
+    "docs:deploy": "cp ./dist/index.html ./dist/404.html && gh-pages -d dist"
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
@@ -43,8 +45,10 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
+    "gh-pages": "^3.2.3",
     "mockjs": "^1.1.0",
     "path": "^0.12.7",
+    "process": "^0.11.10",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "vite": "^2.5.10",
