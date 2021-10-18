@@ -48,7 +48,9 @@ export function useECharts(chartRef = null, theme = 'light') {
 
   // 调整大小
   const resize = () => {
-    chartInstance.resize();
+    if (chartInstance) {
+      chartInstance.resize();
+    }
   }
 
   tryOnUnmounted(() => {
