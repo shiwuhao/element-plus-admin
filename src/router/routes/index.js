@@ -11,8 +11,8 @@ import basic from "@/router/routes/basic";
 export const menuRoutes = [
   ...permission,
   ...component,
+  ...feature,
   ...page,
-  ...feature
 ];
 
 export const asyncRoutes = [

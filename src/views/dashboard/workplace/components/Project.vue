@@ -35,31 +35,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="scss" scoped>
-//:deep(.common-card) {
-//  .application-image-card {
-//    position: relative;
-//
-//    .image {
-//      width: 24px;
-//      height: 24px;
-//      border-radius: 50%;
-//      position: absolute;
-//      top: 12px;
-//      left: 13px;
-//    }
-//
-//    .project-card-title {
-//      margin-left: 32px;
-//    }
-//
-//    .bottom {
-//      span {
-//        font-size: $font-size-small;
-//        color: $color-text-gray;
-//      }
-//    }
-//  }
-//}
-
-</style>

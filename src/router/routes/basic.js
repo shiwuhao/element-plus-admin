@@ -32,12 +32,12 @@ export default [
   {
     path: '/404',
     meta: {title: '404', menu: false, cache: false},
-    component: () => import('@/views/demo/page/error-page/404'),
+    component: () => import('@/views/demo/page/error/404'),
   },
   {
     path: '/401',
     meta: {title: '401', menu: false, cache: false},
-    component: () => import('@/views/demo/page/error-page/401'),
+    component: () => import('@/views/demo/page/error/401'),
   },
   // {
   //   path: '/profile',

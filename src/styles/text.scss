@@ -34,6 +34,11 @@ body {
   line-height: 24px;
 }
 
+.text-df {
+  font-size: 14px;
+  line-height: 24px;
+}
+
 .text-sm {
   font-size: 13px;
   line-height: 19.5px;
@@ -44,7 +49,11 @@ body {
   line-height: 18px;
 }
 
-.text-overflow{
+.text-bo {
+  font-weight: bolder;
+}
+
+.text-overflow {
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
