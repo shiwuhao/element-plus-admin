@@ -5,7 +5,7 @@
       @close="drawerClose">
       <template #title>
         <div class="drawer__title" ref="headerRef">
-          <slot name="title">{{ $attrs.tinputValueitle }}</slot>
+          <slot name="title">{{ $attrs.title }}</slot>
         </div>
       </template>
       <template #default>
