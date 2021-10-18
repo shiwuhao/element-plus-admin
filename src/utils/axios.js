@@ -14,7 +14,6 @@ const handleParamInUrl = (url, params) => {
 }
 
 const instance = axios.create({
-  // eslint-disable-next-line no-undef
   baseURL: import.meta.env.VITE_API_URL,
   headers: {Accept: 'text/json'},
 })
@@ -22,7 +21,7 @@ const instance = axios.create({
 // 请求拦截
 instance.interceptors.request.use(function (config) {
 
-  config.url = handleParamInUrl(config.url, config.params);
+  // config.url = handleParamInUrl(config.url, config.params);
   if (config.method === "post") {
     config.data = Qs.stringify(config.data);
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -46,6 +45,7 @@ instance.interceptors.response.use((response) => {
   const {response: {status, data: {message}}, config: {url}} = err;
 
   let noticeConfig = {};
+  let _message = message;
 
   switch (status) {
     case 400:
@@ -59,16 +59,18 @@ instance.interceptors.response.use((response) => {
       }
       break;
     case 404:
-      noticeConfig = {title: 404, desc: err.response.data.message, duration: 0};
+      _message = 'Not Found';
       break;
     case 422:
-
-      noticeConfig = {title: '表单验证失败', desc: message.join('<br/>')};
+      _message = '表单验证失败'
+      noticeConfig = {title: '', desc: message.join('<br/>')};
       break;
     default:
       noticeConfig = {title: message};
   }
-  ElMessage.error(message)
+  if (_message) {
+    ElMessage.error(_message)
+  }
 
   return Promise.reject(err)
 });

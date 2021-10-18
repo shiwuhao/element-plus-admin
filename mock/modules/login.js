@@ -12,7 +12,7 @@ export default [
   },
   {
     url: '/backend/logout',
-    method: 'get',
+    method: 'post',
     response: () => {
       return responseSuccess([])
     }

@@ -2,13 +2,13 @@
   <div class="page-wrapper">
     <div class="page-header">
       <div class="flex row-between">
-        <div class="page-header-wrap" v-if="title">
-          <span class="page-header-title text-xl">
+        <div class="page-header-wrap">
+          <div class="page-header-title text-xl">
             <slot name="title">{{ title }}</slot>
-          </span>
-          <span class="text-secondary text-xs ml-2">
+          </div>
+          <div class="text-secondary text-xs ml-2">
             <slot name="sub-title">{{ subTitle }}</slot>
-          </span>
+          </div>
         </div>
         <div>
           <slot name="extra"></slot>
@@ -89,7 +89,8 @@ export default {
       }
     }
   }
-  .page-content:not(:empty){
+
+  .page-content:not(:empty) {
     margin-top: .5rem;
   }
 

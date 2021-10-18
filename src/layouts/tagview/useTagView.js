@@ -20,7 +20,8 @@ export function useTagView() {
   async function initViews() {
     const affixViews = filterAffixViews(getRoutes());
     for (const view of affixViews) {
-      view.name && await dispatch('tagView/addVisitedView', view);
+      const {name,path,fullPath,meta} = view;
+      view.name && await dispatch('tagView/addVisitedView', {name,path,fullPath,meta});
     }
   }
 
@@ -40,7 +41,8 @@ export function useTagView() {
    * @returns {Promise<void>}
    */
   async function addView() {
-    unref(currentRoute).name && await dispatch('tagView/addView', unref(currentRoute));
+    const {name,path,fullPath,meta} = currentRoute.value
+    name && await dispatch('tagView/addView', {name,path,fullPath,meta});
   }
 
   /**
@@ -48,10 +50,10 @@ export function useTagView() {
    * @param view
    * @returns {Promise<void>}
    */
-  async function closeView(view) {
-    const {visitedViews} = await dispatch('tagView/delView', view);
-    if (viewIsActive(view)) {
-      await toLastView(visitedViews, view);
+  async function closeView({name,path,fullPath,meta}) {
+    const {visitedViews} = await dispatch('tagView/delView', {name,path,fullPath,meta});
+    if (viewIsActive({name,path,fullPath,meta})) {
+      await toLastView(visitedViews, {name,path,fullPath,meta});
     }
   }
 
@@ -60,9 +62,8 @@ export function useTagView() {
    * @param view
    * @returns {Promise<void>}
    */
-  async function refreshView(view) {
-    await dispatch('tagView/delCachedView', view);
-    const {fullPath} = view;
+  async function refreshView({name,path,fullPath,meta}) {
+    await dispatch('tagView/delCachedView', {name,path,fullPath,meta});
     await nextTick(() => {
       replace({path: '/redirect' + fullPath});
     })
@@ -73,11 +74,11 @@ export function useTagView() {
    * @param view
    * @returns {Promise<void>}
    */
-  async function closeOtherView(view) {
-    if (view.fullPath !== unref(currentRoute).fullPath) {
-      await push(view);
+  async function closeOtherView({name,path,fullPath,meta}) {
+    if (fullPath !== currentRoute.value.fullPath) {
+      await push({name,path,fullPath,meta});
     }
-    await dispatch('tagView/delOtherViews', view);
+    await dispatch('tagView/delOtherViews', currentRoute);
     await moveToCurrentTagView();
   }
 
@@ -86,9 +87,9 @@ export function useTagView() {
    * @param view
    * @returns {Promise<void>}
    */
-  async function closeAllView(view) {
+  async function closeAllView({name,path,fullPath,meta}) {
     const {visitedViews} = await dispatch('tagView/delAllViews');
-    await toLastView(visitedViews, view);
+    await toLastView(visitedViews, {name,path,fullPath,meta});
   }
 
   /**
@@ -176,13 +177,13 @@ export function useTagView() {
    * @param view
    * @returns {Promise<void>}
    */
-  async function toLastView(visitedViews, view) {
+  async function toLastView(visitedViews, {name,path,fullPath,meta}) {
     const latestView = visitedViews.slice(-1)[0];
     if (latestView) {
       await push({path: '/redirect' + latestView.fullPath})
     } else {
-      if (view.name === 'Dashboard') {
-        await replace({path: '/redirect' + view.fullPath})
+      if (name === 'Dashboard') {
+        await replace({path: '/redirect' + fullPath})
       } else {
         await push('/')
       }
@@ -194,8 +195,8 @@ export function useTagView() {
    * @param view
    * @returns {boolean}
    */
-  function viewIsActive(view) {
-    return view.path === unref(currentRoute).path;
+  function viewIsActive({path}) {
+    return path === currentRoute.value.path;
   }
 
   /**
@@ -203,8 +204,8 @@ export function useTagView() {
    * @param view
    * @returns {boolean|*}
    */
-  function viewIsAffix(view) {
-    return view.meta && view.meta.affix;
+  function viewIsAffix({meta}) {
+    return meta && meta.affix;
   }
 
   // 初始化
