@@ -3,7 +3,7 @@
     <el-row :gutter="30" v-if="getSchema.length > 0">
       <FormItem v-for="(schema,index) in getSchema"
                 :schema="schema"
-                v-model="formModel[schema[field]]"
+                v-model="formModel[schema['field']]"
                 :key="index"
                 v-show="showAdvancedButton ? index < showAdvancedLength || getIsAdvanced : true">
         <template #[item]="data" v-for="item in Object.keys($slots)">
@@ -106,6 +106,10 @@ export default defineComponent({
     const getActionProps = computed(() => {
       return {isAdvanced: getIsAdvanced.value, ...unref(actionProps)};
     });
+
+    watch(() => modelValue.value, (newVal) => {
+      formModel.value = Object.assign(newVal);
+    }, {deep: true})
 
     watch(() => formModel.value, (newVal) => {
       emit('update:modelValue', newVal);
