@@ -38,7 +38,7 @@ export default {
   setup() {
     const tagView = useTagView();
     return {
-      ...toRefs(tagView),
+      ...tagView,
     }
   }
 };

@@ -14,7 +14,7 @@
           </div>
           <div class="ml-2">
             <div>{{ item.title }}</div>
-            <div class="text-sm text-secondary text-overflow">{{ item.desc }}</div>
+            <div class="text-sm text-secondary text-overflow-l2">{{ item.desc }}</div>
           </div>
         </div>
         <div class="flex col-top text-sm text-secondary">

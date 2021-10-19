@@ -2,7 +2,7 @@
   <el-row :gutter="10">
     <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-for="(item,index) in growData" :key="index" class="mb10">
       <BasicCard :title="item.title" :notice="item.notice">
-        <el-row gutter="10">
+        <el-row :gutter="10">
           <el-col :span="10">{{ item.value }}</el-col>
           <el-col :span="14">
             <div :ref="item.elRef" :style="item.chartStyle"></div>

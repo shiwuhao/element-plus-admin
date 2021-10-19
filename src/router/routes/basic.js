@@ -1,4 +1,4 @@
-import Layout from "@/layouts/index.vue";
+import Layout from "@/layouts";
 
 export default [
   {
@@ -14,7 +14,7 @@ export default [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index')
+        component: () => import('@/views/redirect')
       }
     ]
   },
@@ -22,7 +22,7 @@ export default [
     path: '/login',
     name: 'login',
     meta: {title: 'login', menu: false, cache: false},
-    component: () => import('@/views/login/index'),
+    component: () => import('@/views/login'),
   },
   {
     path: '/auth-redirect',

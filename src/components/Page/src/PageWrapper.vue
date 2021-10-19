@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="page-header">
       <div class="flex row-between">
-        <div class="page-header-wrap">
+        <div class="page-header-wrap flex row-left">
           <div class="page-header-title text-xl">
             <slot name="title">{{ title }}</slot>
           </div>

@@ -1,43 +1,31 @@
 import {createStore} from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import CircularJSON from 'circular-json'
 import getters from "./getters"
 
-import setting from "./modules/setting";
-import config from "./modules/config";
-import app from "./modules/app";
-import tagView from "./modules/tagView";
-import permission from "./modules/permission";
-import user from "./modules/user";
+
+// module
+const modules = {};
+const moduleFiles = import.meta.globEager('./modules/*.js');
+Object.keys(moduleFiles).forEach((key) => {
+  const moduleName = key.slice(key.lastIndexOf('/') + 1, -3);
+  modules[moduleName] = moduleFiles[key].default;
+});
+
+// vuex plugin
+const localStoragePlugin = createPersistedState({
+  storage: localStorage,
+  paths: ['setting', 'config', 'app', 'tagView']
+});
+
+// vuex plugin
+const sessionStoragePlugin = createPersistedState({
+  storage: sessionStorage,
+  paths: ['user.accessToken',]
+});
 
 const store = createStore({
-  plugins: [createPersistedState({
-    // storage: {
-    //   getItem: (key) => {
-    //       let  aa =CircularJSON.parse(localStorage.getItem(key));
-    //       return aa;
-    //   },
-    //   setItem: (key, value) => {
-    //     localStorage.setItem(key, CircularJSON.stringify(value));
-    //   },
-    //   removeItem: (key) => {
-    //     localStorage.removeItem(key);
-    //   }
-    // },
-    paths: [
-      'setting',
-      'config',
-      'app',
-      'user.accessToken',
-      'tagView',
-      // 'permission.menus',
-      // 'permission.routes',
-      // 'permission.addRoutes'
-    ]
-  })],
-  modules: {
-    setting, config, app, tagView, permission, user
-  },
+  plugins: [localStoragePlugin, sessionStoragePlugin],
+  modules: modules,
   getters: getters,
 })
 

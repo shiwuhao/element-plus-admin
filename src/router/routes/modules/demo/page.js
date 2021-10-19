@@ -1,4 +1,4 @@
-import Layout from "@/layouts/index.vue";
+import Layout from "@/layouts";
 import LayoutContent from "@/layouts/content/Content.vue"
 
 export default [
@@ -17,13 +17,13 @@ export default [
           {
             path: 'center',
             name: 'personal-center',
-            component: () => import('@/views/demo/page/personal/center/index.vue'),
+            component: () => import('@/views/demo/page/personal/center'),
             meta: {title: '个人中心', menu: true, affix: false}
           },
           {
             path: 'setting',
             name: 'personal-setting',
-            component: () => import('@/views/demo/page/account/setting/index.vue'),
+            component: () => import('@/views/demo/page/account/setting'),
             meta: {title: '个人设置', menu: true, affix: false}
           },
         ]

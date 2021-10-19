@@ -1,7 +1,6 @@
 <template>
   <PageWrapper
     :title="cardTitle"
-    :sub-title="cardTitle"
     content="收缩表单多用于列表筛选">
     <el-card class="mt10" shadow="none" header="基础收缩示例">
       <BasicForm v-model="form"

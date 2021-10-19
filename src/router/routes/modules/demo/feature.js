@@ -1,4 +1,4 @@
-import Layout from "@/layouts/index";
+import Layout from "@/layouts";
 import LayoutContent from "@/layouts/content/Content"
 
 export default [
@@ -12,49 +12,49 @@ export default [
         path: 'context-menu',
         name: 'context-menu',
         meta: {title: '右键菜单', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/context-menu/index.vue'),
+        component: () => import('@/views/demo/feature/context-menu'),
       },
       {
         path: 'full-screen',
         name: 'full-screen',
         meta: {title: '全屏', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/full-screen/index.vue'),
+        component: () => import('@/views/demo/feature/full-screen'),
       },
       {
         path: 'clipboard',
         name: 'clipboard',
         meta: {title: '剪贴板', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/clipboard/index.vue'),
+        component: () => import('@/views/demo/feature/clipboard'),
       },
       {
         path: 'click-out-side',
         name: 'click-out-side',
         meta: {title: '单击外部', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/click-out-side/index.vue'),
+        component: () => import('@/views/demo/feature/click-out-side'),
       },
       {
         path: 'qr-code',
         name: 'qr-code',
         meta: {title: '二维码', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/qr-code/index.vue'),
+        component: () => import('@/views/demo/feature/qr-code'),
       },
       {
         path: 'drauu',
         name: 'drauu',
         meta: {title: '画图', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/drauu/index.vue'),
+        component: () => import('@/views/demo/feature/drauu'),
       },
       {
         path: 'debounce',
         name: 'debounce',
         meta: {title: '防抖', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/debounce/index.vue'),
+        component: () => import('@/views/demo/feature/debounce'),
       },
       {
         path: 'throttle',
         name: 'throttle',
         meta: {title: '节流', menu: true, affix: false},
-        component: () => import('@/views/demo/feature/throttle/index.vue'),
+        component: () => import('@/views/demo/feature/throttle'),
       },
     ]
   }

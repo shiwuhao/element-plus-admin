@@ -1,4 +1,4 @@
-import Layout from "@/layouts/index";
+import Layout from "@/layouts";
 import LayoutContent from "@/layouts/content/Content"
 
 export default [
@@ -138,13 +138,13 @@ export default [
         path: 'page-wrapper',
         name: 'page-wrapper',
         meta: {title: '页面包裹', menu: true, affix: false},
-        component: () => import('@/views/demo/component/page-wrapper/index'),
+        component: () => import('@/views/demo/component/page-wrapper'),
       },
       {
         path: 'icon-picker',
         name: 'icon-picker',
         meta: {title: '图标选择器', menu: true, affix: false},
-        component: () => import('@/views/demo/component/icon-picker/index'),
+        component: () => import('@/views/demo/component/icon-picker'),
       },
     ]
   }

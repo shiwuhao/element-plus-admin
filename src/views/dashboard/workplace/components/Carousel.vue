@@ -1,12 +1,5 @@
 <template>
-  <el-carousel height="300px">
-    <el-carousel-item>
-      <el-image :src="getAssetsSrc('cover1.jpg')"></el-image>
-    </el-carousel-item>
-    <el-carousel-item>
-      <el-image :src="getAssetsSrc('cover2.jpg')"></el-image>
-    </el-carousel-item>
-  </el-carousel>
+  <el-image :src="getAssetsSrc('cover2.jpg')" style="width: 100%;"></el-image>
 </template>
 <script>
 import {getAssetsSrc} from "@/utils/utils";

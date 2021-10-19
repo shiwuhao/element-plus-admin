@@ -6,7 +6,7 @@
           <el-col :xs="12" :sm="12" :md="8" :lg="8" :xl="6" v-for="(item,index) in queueStatus" :key="index">
             <el-card class="card" shadow="hover">
               <div class="flex row-center col-center">
-                <span class="text-sm text-secondary">{{ item.label }}</span>
+                <span class="text-sm text-secondary text-overflow">{{ item.label }}</span>
                 <span class="text-xl">{{ item.value }}</span>
               </div>
             </el-card>

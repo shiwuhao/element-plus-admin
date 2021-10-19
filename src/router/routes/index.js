@@ -1,24 +1,21 @@
-import dashboard from "@/router/routes/modules/dashboard";
-import system from "@/router/routes/modules/system";
-import component from "@/router/routes/modules/component";
-import feature from "@/router/routes/modules/feature.js";
-import permission from "@/router/routes/modules/permission";
-import page from "@/router/routes/modules/page.js";
 import basic from "@/router/routes/basic";
 
 
-// 需要前端生成菜单的路由
-export const menuRoutes = [
-  ...permission,
-  ...component,
-  ...feature,
-  ...page,
-];
+// demo中生成菜单
+const demoRoutes = [];
+const demoFiles = import.meta.globEager('./modules/demo/*.js');
+Object.keys(demoFiles).forEach((key) => demoRoutes.push(...demoFiles[key].default));
 
-export const asyncRoutes = [
-  ...dashboard,
-  ...system,
-  ...menuRoutes
-];
+// module
+const moduleRoutes = [];
+const moduleFiles = import.meta.globEager('./modules/*.js');
+Object.keys(moduleFiles).forEach((key) => moduleRoutes.push(...moduleFiles[key].default));
 
-export const basicRoutes = [...basic];
+const asyncRoutes = [...demoRoutes, ...moduleRoutes];
+const basicRoutes = [...basic];
+
+export {
+  basicRoutes,
+  asyncRoutes,
+  demoRoutes,
+};
