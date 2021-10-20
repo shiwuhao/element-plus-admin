@@ -16,11 +16,11 @@
               <el-progress class="mt-2" :text-inside="true" :stroke-width="5" :percentage="7"/>
             </div>
             <div class="text-sm text-secondary mt-1">
-              <div class="flex-row-justify">
+              <div class="flex-row between">
                 <span>/dev/disk1</span>
                 <span>19.56GB</span>
               </div>
-              <div class="flex-row-justify">
+              <div class="flex-row between">
                 <span>/dev/disk2</span>
                 <span>23.56GB</span>
               </div>
@@ -41,11 +41,11 @@
               <el-progress class="mt-2" :text-inside="true" :stroke-width="5" :percentage="20"/>
             </div>
             <div class="text-sm text-secondary mt-1">
-              <div class="flex-row-justify">
+              <div class="flex-row between">
                 <span>HTTP</span>
                 <span>35.47GB</span>
               </div>
-              <div class="flex-row-justify">
+              <div class="flex-row between">
                 <span>FTP</span>
                 <span>12.25GB</span>
               </div>

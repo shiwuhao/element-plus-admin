@@ -13,7 +13,7 @@
         <div class="drawer-container">
           <div class="setting-group">
             <h3 class="setting-title">导航栏模式</h3>
-            <div class="flex-row-left">
+            <div class="flex-row">
               <template v-for="(item,index) in navbarModes" :key="index">
                 <el-tooltip effect="dark" :content="item.title" placement="top-start">
                   <div class="setting-item" @click="toggleNavbarMode(item.type)">
@@ -29,11 +29,11 @@
           <div class="setting-group">
             <h3 class="setting-title">内容区域</h3>
             <div>
-<!--              <div class="drawer-item flex-row-center">-->
-<!--                <span>dark</span>-->
-<!--                <el-switch :model-value="dark" class="drawer-switch" @change="toggleDark"/>-->
-<!--              </div>-->
-              <div class="drawer-item flex-row-center">
+              <div class="drawer-item">
+                <span>dark</span>
+                <el-switch :model-value="dark" class="drawer-switch" @change="toggleDark"/>
+              </div>
+              <div class="drawer-item">
                 <span>Tag视图</span>
                 <el-switch :model-value="getEnableTagView" class="drawer-switch" @change="toggleEnableTagView"/>
               </div>

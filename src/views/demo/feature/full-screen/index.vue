@@ -12,7 +12,7 @@
     </el-card>
     <div class="mt10"></div>
     <el-card header="Dom" shadow="none">
-      <div class="flex-col-center" ref="elDom" style="background: white;">
+      <div class="flex-col center align-center" ref="elDom" style="background: white;">
         <el-button type="success" @click="toggleElement">toggleElement</el-button>
       </div>
     </el-card>

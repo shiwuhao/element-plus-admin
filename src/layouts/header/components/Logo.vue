@@ -1,6 +1,6 @@
 <template>
-  <div class="container flex-row-left">
-    <div class="flex-row-left">
+  <div class="container flex-row">
+    <div class="flex-row align-center">
       <img class="logo" :src="logo">
       <span class="title">{{ title }} </span>
     </div>

@@ -1,9 +1,9 @@
 <template>
   <el-card header="快捷导航" shadow="none">
     <el-row>
-      <el-col :span="8" v-for="(item,index) in getMenus" :key="index" class="item flex row-center">
+      <el-col :span="8" v-for="(item,index) in getMenus" :key="index" class="item">
         <el-card class="card" shadow="hover">
-          <div class="flex col-center row-center">
+          <div class="flex-col align-center">
             <span class="text-xl"><i :class="item.icon" :style="{color:item.color}"></i></span>
             <span>{{ item.title }}</span>
           </div>

@@ -1,8 +1,8 @@
 <template>
   <el-card header="动态" shadow="none">
     <el-row>
-      <el-col :span="24" v-for="(item,index) in projects" :key="index" class="item flex row-between">
-        <div class="flex mr10" style="width: 80%">
+      <el-col :span="24" v-for="(item,index) in projects" :key="index" class="item flex-row between align-center">
+        <div class="flex-row mr10" style="width: 80%">
           <div>
             <el-image
               style="width: 60px; height: 60px"
@@ -10,16 +10,15 @@
               :preview-src-list="[item.image]"
             >
             </el-image>
-<!--            <el-avatar :src="item.image" :size="32"></el-avatar>-->
           </div>
           <div class="ml-2">
             <div>{{ item.title }}</div>
-            <div class="text-sm text-secondary text-overflow-l2">{{ item.desc }}</div>
+            <div class="text-sm text-secondary text-overflow-2">{{ item.desc }}</div>
           </div>
         </div>
-        <div class="flex col-top text-sm text-secondary">
+        <div class="flex-col between align-center text-sm text-secondary">
           <span>{{ item.name }}</span>
-          <span>{{ item.time }}</span>
+          <span class="text-overflow-1">{{ item.time }}</span>
         </div>
       </el-col>
     </el-row>

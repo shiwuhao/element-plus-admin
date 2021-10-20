@@ -1,8 +1,8 @@
 <template>
   <el-affix :offset="0" :position="getHeaderFixed ? 'top' : 'bottom' ">
-    <div class="header-container flex-row-justify">
+    <div class="header-container flex-row between">
       <!-- left start-->
-      <div class="header-left flex-row-left">
+      <div class="header-left flex-row align-center">
         <Logo v-if="getShowHeaderLogo" class="action-item"/>
         <HeaderTrigger v-if="getShowHeaderTrigger" class="action-item"/>
         <Breadcrumb v-if="getShowBreadcrumb"/>
@@ -16,7 +16,7 @@
       <!--  menu end  -->
 
       <!--  right start  -->
-      <div class="header-right flex-row-right">
+      <div class="header-right flex-row">
         <Notify class="action-item"/>
         <FullScreen class="action-item"/>
         <UserDropdown class="action-item"/>

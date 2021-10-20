@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex-col-center" @click="toggle">
+  <div class="container flex-col center" @click="toggle">
     <el-tooltip effect="dark" :content="getTitle" placement="bottom">
       <i class="iconfont" :class="[!isFullscreen ? 'icon-fullscreen' : 'icon-fullscreen-exit']"></i>
     </el-tooltip>

@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="none">
-    <div class="card-header flex-row-justify">
+    <div class="card-header flex-row between">
       <span>{{ title }}</span>
       <el-tooltip effect="dark" :content="notice" placement="top">
         <el-icon style="cursor: pointer">

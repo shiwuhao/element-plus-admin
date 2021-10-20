@@ -1,6 +1,6 @@
 <template>
   <div class="container" @click="openSettingDrawer">
-    <div class="icon-setting-wrap flex-col-center">
+    <div class="icon-setting-wrap flex-col center">
       <i class="el-icon-setting"></i>
     </div>
     <SettingDrawer/>

@@ -1,7 +1,7 @@
 <template>
   <div class="tag-view">
     <el-scrollbar ref="scrollbarRef">
-      <div class="scroll-container flex-row-left">
+      <div class="scroll-container flex-row align-center">
         <el-tag
           class="tag-item"
           :ref="(el) => el && getViewRefs.push(el)"

@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex-col-center" @click="toggleCollapsed">
+  <div class="container flex-col center" @click="toggleCollapsed">
     <span :class="getDarkMode">
     <i :class="[getCollapsed ? 'el-icon-s-unfold' : 'el-icon-s-fold']"></i>
   </span>

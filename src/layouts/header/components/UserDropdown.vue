@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <el-dropdown size="small" trigger="click">
-      <div :class="theme" class="avatar flex-row-center">
-        <el-avatar :size="30" :src="getUser.avatar">{{ getUser.display_name }}</el-avatar>
-        <span class="name" style="width: max-content">{{ getUser.display_name }}</span>
+      <div :class="theme" class="avatar flex-row align-center">
+        <el-avatar :size="30" :src="getUser.avatar">{{ getUser.nickname }}</el-avatar>
+        <span class="name" style="width: max-content">{{ getUser.nickname }}</span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -16,19 +16,22 @@
   </div>
 </template>
 <script>
-import {mapGetters} from 'vuex';
+import {useUser} from "@/composables/useUser";
 
 export default {
   props: ['theme'],
-  computed: {
-    ...mapGetters(['getUser']),
-  },
-  methods: {
-    async logout() {
+  setup() {
+    const {getUser} = useUser();
+
+    const logout = async () => {
       await this.$store.dispatch('user/logout');
       location.reload();
     }
-  }
+    return {
+      getUser,
+      logout
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
