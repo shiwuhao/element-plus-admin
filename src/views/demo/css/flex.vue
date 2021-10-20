@@ -6,7 +6,8 @@
       <div><code>.flex-row-re</code>水平方向，起点在右端</div>
       <div><code>.flex-col</code>垂直方向，起点在顶端</div>
       <div><code>.flex-col-re</code>垂直方向，起点在底端</div>
-      <div>使用方式 <code>.flex-xx [.主轴对齐方式] [.交叉轴对齐方式]</code>中括号为可选值</div>
+      <div>使用： <code>.flex-xx [主轴对齐方式=.start] [交叉轴对齐方式=.align-start]</code></div>
+      <div>示例：<code v-text='text'></code></div>
     </template>
     <el-card shadow="none" header="主轴为水平方向 flex-row " class="mb-2">
       <el-row :gutter="10">
@@ -466,7 +467,7 @@ export default {
   components: {PageWrapper},
   setup() {
     const state = reactive({
-      text: 'Element Plus uses BEM-styled CSS so that you can override styles easily. But if you need to replace styles at a large scale, e.g. change the theme color from blue to orange or green, maybe overriding them one by one is not a good idea. We provide four ways to change the style variables.Element Plus uses BEM-styled CSS so that you can override styles easily. But if you need to replace styles at a large scale, e.g. change the theme color from blue to orange or green, maybe overriding them one by one is not a good idea. We provide four ways to change the style variables.'
+      text: '<div class="flex-row center align-center"></div>',
     })
 
     return {
