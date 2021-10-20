@@ -1,11 +1,11 @@
 <template>
   <PageWrapper :title="$route['meta']['title']">
     <template #content>
-      flex布局常用伪类
-      <div><code>flex-row</code>水平方向，起点在左端</div>
-      <div><code>flex-row-re</code>水平方向，起点在右端</div>
-      <div><code>flex-col</code>垂直方向，起点在顶端</div>
-      <div><code>flex-col-re</code>垂直方向，起点在底端</div>
+      flex布局常用类
+      <div><code>.flex-row</code>水平方向，起点在左端</div>
+      <div><code>.flex-row-re</code>水平方向，起点在右端</div>
+      <div><code>.flex-col</code>垂直方向，起点在顶端</div>
+      <div><code>.flex-col-re</code>垂直方向，起点在底端</div>
       <div>使用方式 <code>.flex-xx [.主轴对齐方式] [.交叉轴对齐方式]</code>中括号为可选值</div>
     </template>
     <el-card shadow="none" header="主轴为水平方向 flex-row " class="mb-2">
