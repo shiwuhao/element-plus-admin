@@ -13,6 +13,12 @@ export default [
         meta: {title: '文本', menu: true, affix: false},
         component: () => import('@/views/demo/css/text'),
       },
+      {
+        path: 'flex',
+        name: 'flex',
+        meta: {title: '布局', menu: true, affix: false},
+        component: () => import('@/views/demo/css/flex'),
+      },
     ]
   }
 ];

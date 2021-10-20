@@ -111,56 +111,269 @@
 }
 
 /***********************华丽的分割线*************************/
-.flex {
+.flex-r {
   display: flex;
-  align-items: center;
+  flex-direction: row;
 }
 
-.row-left {
-  flex-direction: row;
+.r-start {
   justify-content: flex-start;
 }
 
-.row-start {
-  flex-direction: row;
-  justify-content: flex-start;
+.c-start {
+  align-items: flex-start;
 }
 
-.row-center {
-  flex-direction: row;
-  justify-content: center;
-}
-
-.row-end {
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.row-between {
+.flex-test2 {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
-.col-top {
+@mixin flex-common {
+  &.start {
+    justify-content: flex-start;
+  }
+
+  &.end {
+    justify-content: flex-end;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.between {
+    justify-content: space-between;
+  }
+
+  &.around {
+    justify-content: space-around;
+  }
+
+  &.align-start {
+    align-items: flex-start;
+  }
+
+  &.align-end {
+    align-items: flex-end;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-baseline {
+    align-items: baseline;
+  }
+
+  &.align-stretch {
+    align-items: stretch;
+  }
+}
+
+
+.flex-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+
+  @include flex-common();
+}
+
+.flex-col {
+  display: flex;
+  display: -webkit-flex;
   flex-direction: column;
-  justify-content: flex-start;
+
+  @include flex-common();
 }
 
-.col-center {
-  flex-direction: column;
-  justify-content: center;
+
+.flex-row-re {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row-reverse;
+
+  @include flex-common();
 }
 
-.col-bottom {
-  flex-direction: column;
-  justify-content: flex-end;
+.flex-col-re {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column-reverse;
+
+  @include flex-common();
 }
 
-.flex-wrap {
-  flex-wrap: wrap
-}
+//
+//.flex {
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.row-start {
+//  flex-direction: row;
+//  justify-content: flex-start;
+//}
+//
+//.row-center {
+//  flex-direction: row;
+//  justify-content: center;
+//}
+//
+//.row-end {
+//  flex-direction: row;
+//  justify-content: flex-end;
+//}
+//
+//.row-between {
+//  flex-direction: row;
+//  justify-content: space-between;
+//}
+//
+//.row-start-start {
+//  flex-direction: row;
+//  justify-content: flex-start;
+//  align-items: flex-start;
+//}
+//
+//.row-start-end {
+//  flex-direction: row;
+//  justify-content: flex-start;
+//  align-items: flex-end;
+//}
+//
+//.row-end-start {
+//  flex-direction: row;
+//  justify-content: flex-end;
+//  align-items: flex-start;
+//}
+//
+//.row-end-end {
+//  flex-direction: row;
+//  justify-content: flex-end;
+//  align-items: flex-end;
+//}
+//
+//
+//.row-start-reverse {
+//  flex-direction: row-reverse;
+//  justify-content: flex-start;
+//}
+//
+//.row-center-reverse {
+//  flex-direction: row-reverse;
+//  justify-content: center;
+//}
+//
+//.row-end-reverse {
+//  flex-direction: row-reverse;
+//  justify-content: flex-end;
+//}
+//
+//.row-between-reverse {
+//  flex-direction: row-reverse;
+//  justify-content: space-between;
+//}
+//
+//
+//.col-top {
+//  flex-direction: column;
+//  justify-content: flex-start;
+//}
+//
+//.col-center {
+//  flex-direction: column;
+//  justify-content: center;
+//}
+//
+//.col-bottom {
+//  flex-direction: column;
+//  justify-content: flex-end;
+//}
+//
+//.col-between {
+//  flex-direction: column;
+//  justify-content: space-between;
+//}
+//
+//.col-top-reverse {
+//  flex-direction: column-reverse;
+//  justify-content: flex-start;
+//}
+//
+//.col-center-reverse {
+//  flex-direction: column-reverse;
+//  justify-content: center;
+//}
+//
+//.col-bottom-reverse {
+//  flex-direction: column-reverse;
+//  justify-content: flex-end;
+//}
+//
+//.col-between-reverse {
+//  flex-direction: column-reverse;
+//  justify-content: space-between;
+//}
+//
+//.flex-wrap {
+//  flex-wrap: wrap
+//}
 
 // 两端对齐
 .justify-between {
   //justify-content: space-between;
 }
+
+
+/*
+
+横向布局 起点在左端常用布局伪类,命名规则
+s : flex-start
+e : flex-end
+c : center
+
+规则1
+.flex-rsc 左
+.flex-rcc 中
+.flex-rec 右
+.flex-rbc 两端
+
+.flex-rss 左上
+.flex-rse 左下
+.flex-res 右上
+.flex-ree 右下
+
+反向后面根-re
+.flex-ree-re 右下反向排列
+
+
+规则2
+.flex-r-sc 左
+.flex-r-cc 中
+.flex-r-ec 右
+.flex-r-bc 两端
+
+.flex-r-ss 左上
+.flex-r-se 左下
+.flex-r-es 右上
+.flex-r-ee 右下
+
+规则3 三个类一起使用
+flex-r r-start r-center 左
+flex-r r-center r-center 中
+flex-r r-end r-center 中
+flex-r r-between r-center 两端
+*/
+
+
+
+
+
+
+
+
+

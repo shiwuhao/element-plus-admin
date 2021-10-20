@@ -54,7 +54,7 @@ body {
 }
 
 
-.text-overflow-l {
+.text-overflow {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -62,8 +62,8 @@ body {
 }
 
 @for $i from 1 through 5 {
-  .text-overflow-l#{$i} {
-    @extend .text-overflow-l;
+  .text-overflow-#{$i} {
+    @extend .text-overflow;
     -webkit-line-clamp: #{$i};
     line-clamp: #{$i};
   }

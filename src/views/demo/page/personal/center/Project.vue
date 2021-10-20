@@ -6,7 +6,7 @@
           <el-avatar :src="item.image" :size="24"></el-avatar>
           <span class="ml-2">{{ item.title }}</span>
         </div>
-        <div class="text-secondary text-overflow mtb-1">
+        <div class="text-secondary text-overflow-3 mtb-1">
           {{ item.desc }}
         </div>
         <div class="flex row-between text-secondary">
