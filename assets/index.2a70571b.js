@@ -1,1 +1,0 @@
-import{y as a,g as n,o as c,c as p}from"./vendor.d1a101ef.js";import{_ as u}from"./index.f79016a2.js";const f={setup(){const{currentRoute:e,replace:r}=a(),{params:t,query:o}=n(e),{path:s}=t;r({path:"/"+s,query:o})}};function d(e,r,t,o,s,_){return c(),p("div")}var l=u(f,[["render",d]]);export{l as default};
