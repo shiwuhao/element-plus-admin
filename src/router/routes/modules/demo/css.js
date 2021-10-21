@@ -19,6 +19,12 @@ export default [
         meta: {title: '布局', menu: true, affix: false},
         component: () => import('@/views/demo/css/flex'),
       },
+      {
+        path: 'margin',
+        name: 'margin',
+        meta: {title: '边距', menu: true, affix: false},
+        component: () => import('@/views/demo/css/margin'),
+      },
     ]
   }
 ];

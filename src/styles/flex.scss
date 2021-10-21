@@ -53,6 +53,7 @@
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
+  flex-wrap: wrap;
 
   @include flex-common();
 }
@@ -74,3 +75,6 @@
   @include flex-common();
 }
 
+.flex-wrap{
+  flex-wrap: wrap;
+}
