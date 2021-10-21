@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls" class="m10">
+  <div :class="prefixCls" class="m-2">
     <el-row :gutter="20">
       <el-col :lg="6" :xs="24">
         <el-card :class="`${prefixCls}-left`">

@@ -6,7 +6,7 @@
     <el-card shadow="none">
       <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery"></BasicQuery>
     </el-card>
-    <el-card shadow="none" class="mt10">
+    <el-card shadow="none" class="mt-2">
       <BasicTable :columns="columns"
                   :data="lists"
                   :paginate="paginate"
@@ -14,7 +14,7 @@
                   @change-page="changePage">
 
           <template #roles="scope">
-            <el-tag class="mr10" v-for="(item,index) in scope.row.roles" :key="index" size="mini">{{item.title}}</el-tag>
+            <el-tag class="mr-2" v-for="(item,index) in scope.row.roles" :key="index" size="mini">{{item.title}}</el-tag>
           </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">

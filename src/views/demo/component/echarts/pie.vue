@@ -4,17 +4,17 @@
       <Notice/>
     </template>
     <el-row :gutter="10">
-      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb-2">
         <el-card shadow="none">
           <div ref="chartElRef1" style="width: 100%;height: 500px;"></div>
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb-2">
         <el-card shadow="none">
           <div ref="chartElRef2" style="width: 100%;height: 500px;"></div>
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb10">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="mb-2">
         <el-card shadow="none">
           <div ref="chartElRef3" style="width: 100%;height: 500px;"></div>
         </el-card>

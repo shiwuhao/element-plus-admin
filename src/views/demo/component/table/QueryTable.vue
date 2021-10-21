@@ -5,7 +5,7 @@
     <el-card shadow="none">
       <BasicQuery :schemas="schemas" :col-props="{span:6}" advanced @submit="handleSearch"></BasicQuery>
     </el-card>
-    <el-card shadow="none" class="mt10">
+    <el-card shadow="none" class="mt-2">
       <BasicTable :data="tableData" :columns="tableColumns" border size="small">
         <el-table-column label="操作" width="150" fixed="right">
           <template #default="scope">

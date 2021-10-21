@@ -11,7 +11,7 @@
         </el-button>
       </div>
 
-      <div class="relative inline-block mt10">
+      <div class="relative inline-block mt-2">
         <el-button type="primary" @click="dropdown = true">
           Open Dropdown
         </el-button>

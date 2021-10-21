@@ -4,7 +4,7 @@
       <el-radio-button label="dark">dark</el-radio-button>
       <el-radio-button label="classic">classic</el-radio-button>
     </el-radio-group>
-    <div class="mt10">
+    <div class="mt-2">
       <Markdown ref="markdownRef" v-model="codeData" :options="options"></Markdown>
     </div>
   </PageWrapper>

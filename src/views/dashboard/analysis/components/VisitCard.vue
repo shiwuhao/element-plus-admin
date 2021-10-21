@@ -1,5 +1,5 @@
 <template>
-  <el-row :gutter="10" class="mb10">
+  <el-row :gutter="10" class="mb-2">
     <el-col :span="24">
       <el-card shadow="none">
         <el-tabs v-model="activeName">

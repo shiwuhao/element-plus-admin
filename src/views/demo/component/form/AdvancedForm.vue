@@ -2,7 +2,7 @@
   <PageWrapper
     :title="cardTitle"
     content="收缩表单多用于列表筛选">
-    <el-card class="mt10" shadow="none" header="基础收缩示例">
+    <el-card class="mt-2" shadow="none" header="基础收缩示例">
       <BasicForm v-model="form"
                  :schemas="schemas"
                  :action-props="actionProps"
@@ -11,7 +11,7 @@
                  auto-width
                  label-position="right"></BasicForm>
     </el-card>
-    <el-card class="mt10" shadow="none" header="超过二行收起">
+    <el-card class="mt-2" shadow="none" header="超过二行收起">
       <BasicForm v-model="form2"
                  :schemas="schemas"
                  :action-props="actionProps2"
@@ -20,7 +20,7 @@
                  label-width="80px"
                  label-position="right"></BasicForm>
     </el-card>
-    <el-card class="mt10" shadow="none" header="按钮单独一行">
+    <el-card class="mt-2" shadow="none" header="按钮单独一行">
       <BasicForm v-model="form3"
                  :schemas="schemas"
                  :action-props="actionProps3"
@@ -29,7 +29,7 @@
                  label-width="80px"
                  label-position="right"></BasicForm>
     </el-card>
-    <el-card class="mt10" shadow="none" header="隐藏label">
+    <el-card class="mt-2" shadow="none" header="隐藏label">
       <BasicForm v-model="form4"
                  :schemas="schemas2"
                  :action-props="actionProps4"

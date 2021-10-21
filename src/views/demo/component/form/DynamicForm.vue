@@ -10,7 +10,7 @@
       <el-button size="mini" @click="deleteLastSchema">删除最后一个字段</el-button>
       <el-button size="mini" @click="autoWidth=!autoWidth">自动宽度{{ autoWidth }}</el-button>
     </div>
-    <BasicForm class="m10" v-model="form"
+    <BasicForm class="m-2" v-model="form"
                :schemas="schemas"
                @reset="handleReset"
                @submit="handleSubmit"

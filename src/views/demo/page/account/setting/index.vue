@@ -1,5 +1,5 @@
 <template>
-  <el-card class="setting-card m10">
+  <el-card class="setting-card m-2">
     <el-tabs :class="getIsMobile?'mobile-setting-tabs':'setting-tabs'"
              :tab-position="getIsMobile?'top':'left'"
              v-model="activeName"

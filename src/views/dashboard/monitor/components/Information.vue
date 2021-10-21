@@ -1,7 +1,7 @@
 <template>
   <BasicCard title="System Info">
     <el-descriptions
-      class="mb10"
+      class="mb-2"
       :column="1"
       border
     >

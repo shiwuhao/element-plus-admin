@@ -16,7 +16,7 @@
       <el-button type="primary" v-contextmenu:contextmenu1>右键点击此区域</el-button>
     </el-card>
 
-    <el-card header="Multiple" shadow="none" class="mt10">
+    <el-card header="Multiple" shadow="none" class="mt-2">
       <v-contextmenu ref="contextmenu2">
         <v-contextmenu-item>GitHub</v-contextmenu-item>
         <v-contextmenu-item>GitLab</v-contextmenu-item>

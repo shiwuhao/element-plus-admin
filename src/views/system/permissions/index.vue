@@ -7,7 +7,7 @@
     <el-card shadow="none">
       <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery"></BasicQuery>
     </el-card>
-    <el-card shadow="none" class="mt10">
+    <el-card shadow="none" class="mt-2">
       <BasicTable row-key="id" lazy
                   :columns="columns"
                   :data="lists"

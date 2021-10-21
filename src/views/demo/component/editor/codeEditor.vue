@@ -5,7 +5,7 @@
       <el-radio-button label="html">Html代码</el-radio-button>
       <el-radio-button label="javascript">Javascript代码</el-radio-button>
     </el-radio-group>
-    <CodeEditor v-model="codeData" class="mt10" style="height:100%;min-height: 750px"></CodeEditor>
+    <CodeEditor v-model="codeData" class="mt-2" style="height:100%;min-height: 750px"></CodeEditor>
   </PageWrapper>
 </template>
 

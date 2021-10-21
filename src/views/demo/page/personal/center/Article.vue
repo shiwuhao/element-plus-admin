@@ -1,7 +1,7 @@
 <template>
   <el-row>
     <el-col :span="24" v-for="(item,index) in lists" :key="index" class="item flex row-between">
-      <div class="flex mr10" style="width: 80%">
+      <div class="flex mr-2" style="width: 80%">
         <div>
           <el-image
             style="width: 60px; height: 60px"

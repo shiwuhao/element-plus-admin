@@ -1,45 +1,45 @@
 @for $i from 1 through 5 {
   .m-#{$i} {
-    margin: #{$i/4}rem;
+    margin: #{$i/ 4}rem;
   }
   .mt-#{$i} {
-    margin-top: #{$i/4}rem;
+    margin-top: #{$i/ 4}rem;
   }
   .mr-#{$i} {
-    margin-right: #{$i/4}rem;
+    margin-right: #{$i/ 4}rem;
   }
   .mb-#{$i} {
-    margin-bottom: #{$i/4}rem;
+    margin-bottom: #{$i/ 4}rem;
   }
   .ml-#{$i} {
-    margin-left: #{$i/4}rem;
+    margin-left: #{$i/ 4}rem;
   }
-  .mtb-#{$i} {
-    margin: #{$i/4}rem 0;
+  .my-#{$i} {
+    margin: #{$i/ 4}rem 0;
   }
-  .mlr-#{$i} {
-    margin: 0 #{$i/4}rem;
+  .mx-#{$i} {
+    margin: 0 #{$i/ 4}rem;
   }
 
   .p-#{$i} {
-    padding: #{$i/4}rem;
+    padding: #{$i/ 4}rem;
   }
   .pt-#{$i} {
-    padding-top: #{$i/4}rem;
+    padding-top: #{$i/ 4}rem;
   }
   .pr-#{$i} {
-    padding-right: #{$i/4}rem;
+    padding-right: #{$i/ 4}rem;
   }
   .pb-#{$i} {
-    padding-bottom: #{$i/4}rem;
+    padding-bottom: #{$i/ 4}rem;
   }
   .pl-#{$i} {
-    padding-left: #{$i/4}rem;
+    padding-left: #{$i/ 4}rem;
   }
-  .ptb-#{$i} {
-    padding: #{$i/4}rem 0;
+  .py-#{$i} {
+    padding: #{$i/ 4}rem 0;
   }
-  .plr-#{$i} {
-    padding: 0 #{$i/4}rem;
+  .px-#{$i} {
+    padding: 0 #{$i/ 4}rem;
   }
 }

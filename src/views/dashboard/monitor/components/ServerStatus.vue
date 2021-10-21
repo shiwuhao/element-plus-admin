@@ -4,7 +4,7 @@
       <el-col :xs="24">
         <div ref="elRef" style="height: 300px;width: 100%;"></div>
       </el-col>
-      <el-col :span="12" :xs="24" class="mt10">
+      <el-col :span="12" :xs="24" class="mt-2">
         <el-row :gutter="10">
           <el-col :span="8" :xs="6">
             <div ref="elRef2" style="height: 100px;width: 100%;"></div>
@@ -29,7 +29,7 @@
           </el-col>
         </el-row>
       </el-col>
-      <el-col :span="12" :xs="24" class="mt10">
+      <el-col :span="12" :xs="24" class="mt-2">
         <el-row :gutter="10">
           <el-col :span="8" :xs="6">
             <div ref="elRef3" style="height: 100px;width: 100%;"></div>

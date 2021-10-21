@@ -2,7 +2,7 @@
   <el-card header="动态" shadow="none">
     <el-row>
       <el-col :span="24" v-for="(item,index) in projects" :key="index" class="item flex-row between align-center">
-        <div class="flex-row mr10" style="width: 80%">
+        <div class="flex-row mr-2" style="width: 80%">
           <div>
             <el-image
               style="width: 60px; height: 60px"

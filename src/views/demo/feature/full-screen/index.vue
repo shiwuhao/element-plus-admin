@@ -10,7 +10,7 @@
       <el-button type="danger" @click="exit">退出全屏</el-button>
       <el-button type="success" @click="toggle">toggle全屏</el-button>
     </el-card>
-    <div class="mt10"></div>
+    <div class="mt-2"></div>
     <el-card header="Dom" shadow="none">
       <div class="flex-col center align-center" ref="elDom" style="background: white;">
         <el-button type="success" @click="toggleElement">toggleElement</el-button>

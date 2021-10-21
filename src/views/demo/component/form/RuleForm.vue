@@ -4,7 +4,7 @@
     :sub-title="cardTitle"
     content-background
     content-full-height>
-    <BasicForm class="p10"
+    <BasicForm class="p-2"
                ref="formRef"
                v-model="form"
                :schemas="schemas"

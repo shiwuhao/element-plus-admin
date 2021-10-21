@@ -7,7 +7,7 @@
 
     <UserPermissions/>
 
-    <el-card class="mt10">
+    <el-card class="mt-2">
       <el-divider content-position="left">指令方式判断权限 v-permission</el-divider>
       <el-row :gutter="10">
         <el-col :xl="6" :lg="6" :md="12" :sm="12" :xs="24" v-permission="'User:store'">

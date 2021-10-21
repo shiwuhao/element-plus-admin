@@ -1,7 +1,7 @@
 <template>
   <BasicCard title="Throughput">
     <el-row>
-      <el-col :xs="24" class="mb10">
+      <el-col :xs="24" class="mb-2">
         <div ref="elRef" style="height: 310px;width: 100%;"></div>
       </el-col>
     </el-row>
