@@ -1,4 +1,4 @@
-@for $i from 1 through 6 {
+@for $i from 0 through 6 {
   .m-#{$i} {
     margin: #{$i/ 4}rem;
   }
@@ -42,4 +42,7 @@
   .px-#{$i} {
     padding: 0 #{$i/ 4}rem;
   }
+}
+.w-full {
+  width: 100%
 }

@@ -1,37 +1,30 @@
 <template>
   <el-row>
-    <el-col :span="24" v-for="(item,index) in lists" :key="index" class="item flex row-between">
-      <div class="flex mr-2" style="width: 80%">
+    <el-col :span="24" v-for="(item,index) in lists" :key="index" class="item flex-row between">
+      <div class="flex-row mr-2 w-full">
         <div>
-          <el-image
-            style="width: 60px; height: 60px"
-            :src="item.image"
-            :preview-src-list="[item.image]"
-          >
-          </el-image>
-          <!--            <el-avatar :src="item.image" :size="32"></el-avatar>-->
+          <el-avatar :size="45" :src="item.image"></el-avatar>
         </div>
-        <div class="ml-2">
-          <div>{{ item.title }}</div>
-          <div class="text-sm text-secondary text-overflow">{{ item.desc }}</div>
+        <div class="ml-2 w-full">
+          <div class="flex-row between">
+            <h4 class="m-0">{{ item.title }}</h4>
+            <div class="text-sm text-secondary">{{ item.time }}</div>
+          </div>
+          <div class="text-df text-secondary text-overflow-2">{{ item.desc }}</div>
         </div>
-      </div>
-      <div class="flex col-top text-sm text-secondary">
-        <span>{{ item.name }}</span>
-        <span>{{ item.time }}</span>
       </div>
     </el-col>
   </el-row>
 </template>
 
 <script>
-import {defineComponent, ref, shallowReactive, toRefs} from 'vue';
+import {defineComponent, shallowReactive, toRefs} from 'vue';
 import {getProjectData} from "./data";
 
 export default defineComponent({
   setup() {
     const state = shallowReactive({
-      lists: getProjectData(12),
+      lists: getProjectData(15),
     })
 
     return {
@@ -42,7 +35,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .item {
-  padding: 10px 0;
+  @extend .py-4;
   border-bottom: solid 1px var(--el-border-color-lighter);
 
   &.item:last-child {

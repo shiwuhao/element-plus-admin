@@ -1,21 +1,32 @@
 <template>
   <el-card shadow="none">
-    <div class="info flex col-center">
+    <div class="info flex-col center align-center">
       <div>
         <el-avatar :src="getUser.avatar" :size="100"></el-avatar>
       </div>
       <div class="text-xl text-primary text-bo">{{ getUser.nickname }}</div>
       <div class="text-sm text-secondary">海纳百川，有容乃大</div>
-      <div class="mt-5 text-secondary" style="width: 90%;">
-        <p>交互专家</p>
-        <p>交互专家</p>
-        <p>交互专家</p>
+      <div class="task-wrap flex-row between align-center">
+        <div class="task-item flex-col">
+          <span class="label">待办</span>
+          <span class="value">90</span>
+        </div>
+        <el-divider direction="vertical"></el-divider>
+        <div class="task-item flex-col">
+          <span class="label">待办</span>
+          <span class="value">66</span>
+        </div>
+        <el-divider direction="vertical"></el-divider>
+        <div class="task-item flex-col">
+          <span class="label">待办</span>
+          <span class="value">80</span>
+        </div>
       </div>
     </div>
     <el-divider content-position="left">标签</el-divider>
     <div class="tag">
       <el-space wrap>
-        <el-tag v-for="tag in tags" :key="tag.name" closable :type="tag.type">
+        <el-tag v-for="tag in tags" :key="tag.name" :type="tag.type">
           {{ tag.name }}
         </el-tag>
       </el-space>
@@ -53,3 +64,17 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.task-wrap {
+  width: 80%;
+  padding: 30px;
+  .label{
+    @extend .text-df;
+    @extend .text-secondary;
+  }
+  .value{
+    @extend .text-xl;
+    font-weight: bolder;;
+  }
+}
+</style>

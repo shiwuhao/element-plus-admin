@@ -1,15 +1,17 @@
 <template>
   <el-row :gutter="10">
-    <el-col v-for="(item, index) in lists" :key="index" :span="6" style="padding-bottom: 5px;padding-top: 5px;">
-      <el-card :body-style="{ padding: '0px' }">
-        <el-image class="image" :src="item.image" :preview-src-list="[item.image]"
-        >
-        </el-image>
-        <div class="text-secondary m-2">
-          <span>{{ item.title }}</span>
-          <div class="bottom">
-            <time class="time">{{ item.time }}</time>
-            <el-button type="text" class="button">{{ item.name }}</el-button>
+    <el-col v-for="(item, index) in lists" :key="index" :xs="24" :sm="12" :md="12" :lg="8" :xl="8" class="py-1">
+      <el-card :body-style="{ padding: '10px' }" shadow="none">
+        <div>
+          <div class="flex-row">
+            <el-image class="image" :src="item.image" :preview-src-list="[item.image]"></el-image>
+            <div class="flex-col between w-full m-2">
+              <h4 class="m-0 text-overflow-1">{{ item.title }}</h4>
+              <div class="flex-row between text-xs text-secondary">
+                <div class="text-overflow-1">{{ item.time }}</div>
+                <div class="text-overflow-1">{{ item.name }}</div>
+              </div>
+            </div>
           </div>
         </div>
       </el-card>
@@ -23,7 +25,7 @@ import {getProjectData} from "./data";
 export default defineComponent({
   setup() {
     const state = shallowReactive({
-      lists: getProjectData(12),
+      lists: getProjectData(32),
     })
 
     return {
@@ -52,7 +54,7 @@ export default defineComponent({
 }
 
 .image {
-  width: 100%;
+  width: 100px;
   display: block;
 }
 </style>

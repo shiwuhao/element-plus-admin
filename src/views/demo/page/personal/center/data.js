@@ -5,9 +5,9 @@ export const getProjectData = (count = 27) => {
   for (let i = 0; i < count; i++) {
     result.push({
       title: Mock.Random.ctitle(),
-      time: Mock.Random.datetime('m-d H:m'),
-      image: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
-      desc: Mock.Random.cparagraph(),
+      time: '2021/12/12 12:12',
+      image: 'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLJt7bicBACKAWlkCacxl072UAfaOsxQgfbfpquHItiaPsDj4CoaC9Q02sI0DhSZdnKlQaUAb2E8Vicg/132',
+      desc: Mock.Random.cparagraph(1,10),
       name: Mock.Random.cname()
     });
   }
@@ -62,5 +62,9 @@ export const getTagData = () => {
     {name: 'Tag 9', type: 'danger'},
     {name: 'Tag 10', type: 'danger'},
     {name: 'Tag 11', type: 'danger'},
+    {name: 'Tag 3', type: 'info'},
+    {name: 'Tag 2', type: 'success'},
+    {name: 'Tag 3', type: 'info'},
+    {name: 'Tag 2', type: 'success'},
   ]
 }
