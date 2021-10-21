@@ -91,6 +91,9 @@ export default {
   }
 
   .action-item {
+    :deep(i){
+      font-size: 18px;
+    }
     cursor: pointer;
   }
 }
