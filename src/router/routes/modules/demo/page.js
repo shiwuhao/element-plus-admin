@@ -23,6 +23,12 @@ export default [
           {
             path: 'setting',
             name: 'personal-setting',
+            component: () => import('@/views/demo/page/personal/setting'),
+            meta: {title: '个人设置', menu: true, affix: false}
+          },
+          {
+            path: 'setting2',
+            name: 'personal-setting2',
             component: () => import('@/views/demo/page/account/setting'),
             meta: {title: '个人设置', menu: true, affix: false}
           },

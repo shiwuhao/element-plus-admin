@@ -6,7 +6,7 @@ export const getProjectData = (count = 27) => {
     result.push({
       title: Mock.Random.ctitle(),
       time: '2021/12/12 12:12',
-      image: 'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLJt7bicBACKAWlkCacxl072UAfaOsxQgfbfpquHItiaPsDj4CoaC9Q02sI0DhSZdnKlQaUAb2E8Vicg/132',
+      image: 'https://v3.cn.vuejs.org/logo.png',
       desc: Mock.Random.cparagraph(1,10),
       name: Mock.Random.cname()
     });

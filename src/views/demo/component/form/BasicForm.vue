@@ -1,7 +1,6 @@
 <template>
   <PageWrapper
-    :title="cardTitle"
-    :sub-title="cardTitle"
+    :title="$route['meta']['title']"
     content-full-height>
     <el-card shadow="none">
       <BasicForm
@@ -11,7 +10,7 @@
         @submit="handleSubmit"
         size="small"
         label-width="150px"
-        label-position="right"></BasicForm>
+        :label-position="getIsMobile ? 'top' : 'right'"></BasicForm>
     </el-card>
   </PageWrapper>
 </template>
@@ -20,15 +19,17 @@
 import {getFormData} from "@/views/demo/component/form/formData.js";
 import {BasicForm} from "@/components/Form";
 import {PageWrapper} from '@/components/Page';
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {reactive, ref, toRefs} from "vue";
 
 export default {
   name: 'Basic',
   components: {BasicForm, PageWrapper},
-  data() {
-    return {
-      cardTitle: this.$route.meta.title,
+  setup() {
+    const formRef = ref();
+    const {getIsMobile} = useRootSetting();
+    const state = reactive({
       schemas: getFormData(),
-
       form: {
         input: "wqewqfdas",
         input_number: 12321,
@@ -44,15 +45,25 @@ export default {
         date_time_picker: "2021-06-17 00:00:00",
         time_select: "11:00"
       },
+    });
+
+
+    const handleReset = () => {
+      formRef.value.resetFields();
+    };
+    const handleSubmit = () => {
+      formRef.value.validate((e) => {
+        console.log('e', e);
+      });
+    };
+
+    return {
+      ...toRefs(state),
+      formRef,
+      getIsMobile,
+      handleReset,
+      handleSubmit
     }
   },
-  methods: {
-    handleReset() {
-      console.log('reset-1111')
-    },
-    handleSubmit() {
-      console.log('submit-2222')
-    },
-  }
 }
 </script>

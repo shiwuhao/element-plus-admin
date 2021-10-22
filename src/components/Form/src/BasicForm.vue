@@ -94,7 +94,7 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  emits: ['reset', 'submit'],
+  // emits: ['reset', 'submit', 'update:modelValue'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}, autoWidth} = toRefs(props);
     const getSchema = schemas;

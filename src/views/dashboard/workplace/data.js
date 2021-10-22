@@ -6,7 +6,7 @@ export const getProjectData = () => {
     result.push({
       title: Mock.Random.ctitle(),
       time: Mock.Random.datetime('m-d H:m'),
-      image: Mock.Random.image('32x32'),
+      image: 'https://v3.cn.vuejs.org/logo.png',
       desc: Mock.Random.cparagraph(),
       name: Mock.Random.cname()
     });
@@ -20,7 +20,7 @@ export const getDynamicData = () => {
     result.push({
       title: Mock.Random.ctitle(),
       time: Mock.Random.datetime('m-d H:m'),
-      image: Mock.Random.image('60x60'),
+      image: 'https://v3.cn.vuejs.org/logo.png',
       desc: Mock.Random.cparagraph(100, 200),
       name: Mock.Random.cname()
     });

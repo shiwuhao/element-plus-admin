@@ -1,7 +1,8 @@
 <template>
   <el-col v-bind="colProps" v-show="getIsShow">
     <el-form-item v-bind="getFormProps">
-      <component v-if="!schema.slot" :is="getComponent" v-model="VModel" v-bind:="getComponentProps"></component>
+      <component v-if="!schema.slot" :is="getComponent" v-model="VModel" v-bind:="getComponentProps"
+                 class="w-full"></component>
       <slot v-else :name="schema.slot" v-bind="{schema:$props['schema']}"></slot>
       <template #[item]="data" v-for="item in Object.keys($slots)">
         <slot :name="item" v-bind="data"></slot>
@@ -33,7 +34,8 @@ export default {
   },
   setup(props, {emit}) {
     const {schema, modelValue} = toRefs(props);
-    const {component, colProps = {}, slot, render} = unref(schema);
+    const defaultColProps = {xs: 24, sm: 24, md: 12, lg: 12, xl: 12};
+    const {component, colProps = defaultColProps, slot, render} = unref(schema);
     const autoWidth = inject('autoWidth');
 
     const getComponentProps = computed(() => {
@@ -56,13 +58,13 @@ export default {
     const getComponent = isFunction(render) ? render(h, modelValue, schema) : componentMap.get(component);
     const VModel = ref(modelValue.value);
 
-    watch(() => modelValue.value, (newVal) => {
-      VModel.value = newVal;
-    })
+    // watch(() => modelValue.value, (newVal) => {
+    //   VModel.value = newVal;
+    // })
 
-    watch(() => VModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    })
+    // watch(() => VModel.value, (newVal) => {
+    //   emit('update:modelValue', newVal);
+    // })
 
     const getIsShow = computed(() => {
       const {show, isAdvanced} = unref(schema);

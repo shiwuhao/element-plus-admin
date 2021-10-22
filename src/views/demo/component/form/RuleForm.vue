@@ -1,7 +1,6 @@
 <template>
   <PageWrapper
-    :title="cardTitle"
-    :sub-title="cardTitle"
+    :title="$route['meta']['title']"
     content-background
     content-full-height>
     <BasicForm class="p-2"
@@ -13,23 +12,24 @@
                size="small"
                auto-width
                label-width="150px"
-               label-position="right"></BasicForm>
+               :label-position="getIsMobile ? 'top' : 'right'"></BasicForm>
   </PageWrapper>
 </template>
 
 <script>
 import {getRuleFormData} from "@/views/demo/component/form/formData.js";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {BasicForm} from "@/components/Form";
 import {PageWrapper} from '@/components/Page';
+import {reactive, toRefs} from "vue";
 
 export default {
   name: 'RuleForm',
   components: {BasicForm, PageWrapper},
-  data() {
-    return {
-      cardTitle: this.$route.meta.title,
+  setup() {
+    const {getIsMobile} = useRootSetting();
+    const state = reactive({
       schemas: getRuleFormData(),
-
       form: {
         input: "",
         input_number: 12321,
@@ -45,17 +45,19 @@ export default {
         date_time_picker: "2021-06-17 00:00:00",
         time_select: "11:00"
       },
+    });
+
+    const handleReset = () => {
+    }
+    const handleSubmit = () => {
+    }
+
+    return {
+      ...toRefs(state),
+      getIsMobile,
+      handleReset,
+      handleSubmit,
     }
   },
-  methods: {
-    handleReset() {
-      this.$refs['formRef'].resetFields();
-    },
-    handleSubmit() {
-      this.$refs['formRef'].validate((e) => {
-        console.log('e', e);
-      })
-    },
-  }
 }
 </script>
