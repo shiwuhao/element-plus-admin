@@ -78,6 +78,7 @@ export default {
       default: () => ({})
     }
   },
+  emits: ['toggle-advanced'],
   setup(props, {emit}) {
     const handleReset = inject('handleReset');
     const handleSubmit = inject('handleSubmit');

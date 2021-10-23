@@ -1,3 +1,3 @@
-import BasicForm from "./src/BasicForm";
+import BasicForm from "./src/Form";
 
 export {BasicForm};

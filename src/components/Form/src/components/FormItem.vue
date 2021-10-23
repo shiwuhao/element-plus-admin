@@ -36,15 +36,11 @@ export default {
     const {schema, modelValue} = toRefs(props);
     const defaultColProps = {xs: 24, sm: 24, md: 12, lg: 12, xl: 12};
     const {component, colProps = defaultColProps, slot, render} = unref(schema);
-    const autoWidth = inject('autoWidth');
 
     const getComponentProps = computed(() => {
       const {componentProps = {}, placeholder} = unref(schema);
       if (!isFunction(componentProps)) {
         const {style = {}} = componentProps;
-        if (autoWidth.value === true) {
-          style['width'] = '100%';
-        }
         return {placeholder, ...componentProps, style: style};
       }
       return componentProps({schema}) ?? {};
@@ -58,13 +54,13 @@ export default {
     const getComponent = isFunction(render) ? render(h, modelValue, schema) : componentMap.get(component);
     const VModel = ref(modelValue.value);
 
-    // watch(() => modelValue.value, (newVal) => {
-    //   VModel.value = newVal;
-    // })
+    watch(() => modelValue.value, (newVal) => {
+      VModel.value = newVal;
+    })
 
-    // watch(() => VModel.value, (newVal) => {
-    //   emit('update:modelValue', newVal);
-    // })
+    watch(() => VModel.value, (newVal) => {
+      emit('update:modelValue', newVal);
+    })
 
     const getIsShow = computed(() => {
       const {show, isAdvanced} = unref(schema);
@@ -89,7 +85,6 @@ export default {
       getFormProps,
       getIsShow,
       colProps,
-      autoWidth,
       slot,
     }
   },

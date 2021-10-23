@@ -3,8 +3,8 @@
     <el-row :gutter="30" v-if="getSchema.length > 0">
       <FormItem v-for="(schema,index) in getSchema"
                 :schema="schema"
-                v-model="formModel[schema['field']]"
                 :key="index"
+                v-model="formModel[schema['field']]"
                 v-show="showAdvancedButton ? index < showAdvancedLength || getIsAdvanced : true">
         <template #[item]="data" v-for="item in Object.keys($slots)">
           <slot :name="item" v-bind="{...schema,...data}"></slot>
@@ -23,7 +23,7 @@
 <script>
 import FormItem from "./components/FormItem";
 import FormAction from "./components/FormAction";
-import {defineComponent, toRefs, reactive, unref, watch, provide, ref, computed} from "vue";
+import {defineComponent, toRefs, unref, watch, provide, ref, computed} from "vue";
 
 export default defineComponent({
   name: "BasicForm",
@@ -85,16 +85,12 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    autoWidth: {
-      type: Boolean,
-      default: false
-    },
     actionProps: {
       type: Object,
       default: () => ({})
     }
   },
-  // emits: ['reset', 'submit', 'update:modelValue'],
+  emits: ['reset', 'submit', 'toggle-advanced'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}, autoWidth} = toRefs(props);
     const getSchema = schemas;
@@ -117,11 +113,13 @@ export default defineComponent({
 
     const toggleAdvanced = () => {
       getIsAdvanced.value = !getIsAdvanced.value;
+      emit('toggle-advanced', getIsAdvanced.value);
     }
-    const validate = () => elForm.value.validate();
-    const validateField = () => elForm.value.validateField();
+    const validate = (fn) => elForm.value.validate(fn);
+    const validateField = (fn) => elForm.value.validateField(fn);
     const resetFields = () => elForm.value.resetFields();
-    const clearValidate = () => elForm.value.clearValidate();
+    const scrollToField = (fn) => elForm.value.scrollToField(fn);
+    const clearValidate = (fn) => elForm.value.clearValidate(fn);
 
     const handleSubmit = () => {
       emit('submit');
@@ -133,7 +131,6 @@ export default defineComponent({
 
     provide('handleReset', handleReset);
     provide('handleSubmit', handleSubmit)
-    provide('autoWidth', autoWidth)
 
     return {
       getSchema,
@@ -147,7 +144,8 @@ export default defineComponent({
       validate,
       validateField,
       resetFields,
-      clearValidate
+      clearValidate,
+      scrollToField
     }
   },
 })
