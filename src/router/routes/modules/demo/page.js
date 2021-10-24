@@ -35,6 +35,19 @@ export default [
         ]
       },
       {
+        path: 'form',
+        name: 'form',
+        component: LayoutContent,
+        meta: {title: '表单页', menu: true, affix: false},
+        children:[
+          {
+            path: 'basic',
+            component: () => import('@/views/demo/page/form/basic'),
+            meta: {title: '基础表单', menu: true, affix: false}
+          },
+        ]
+      },
+      {
         path: 'error',
         name: 'error',
         component: LayoutContent,
