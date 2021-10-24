@@ -10,13 +10,13 @@ const permissions1 = {
     "type": "menu",
     "unique": "get,/dashboard"
   }, {
-    "id": 9,
+    "id": 6,
     "pid": 5,
-    "title": "配置管理",
-    "icon": "el-icon-setting",
-    "url": "/system/configs",
+    "title": "用户管理",
+    "icon": "el-icon-user-solid",
+    "url": "/system/users",
     "type": "menu",
-    "unique": "get,/system/configs"
+    "unique": "get,/system/users"
   }, {
     "id": 8,
     "pid": 5,
@@ -34,13 +34,13 @@ const permissions1 = {
     "type": "menu",
     "unique": "get,/system/roles"
   }, {
-    "id": 6,
+    "id": 9,
     "pid": 5,
-    "title": "用户管理",
-    "icon": "el-icon-user-solid",
-    "url": "/system/users",
+    "title": "配置管理",
+    "icon": "el-icon-setting",
+    "url": "/system/configs",
     "type": "menu",
-    "unique": "get,/system/users"
+    "unique": "get,/system/configs"
   }, {
     "id": 5,
     "pid": 0,
