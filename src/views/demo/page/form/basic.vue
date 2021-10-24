@@ -3,9 +3,12 @@
 </template>
 
 <script>
+import {reactive, toRefs} from "vue";
+
 export default {
-  data() {
-    return {
+  name: 'index',
+  setup() {
+    const state = reactive({
       ruleForm: {
         name: '',
         region: '',
@@ -76,22 +79,11 @@ export default {
           },
         ],
       },
+    });
+
+    return {
+      ...toRefs(state)
     }
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
-    },
   },
 }
 </script>
