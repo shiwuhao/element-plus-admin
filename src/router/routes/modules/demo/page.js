@@ -42,8 +42,13 @@ export default [
         children:[
           {
             path: 'basic',
+            meta: {title: '基础表单', menu: true, affix: false},
             component: () => import('@/views/demo/page/form/basic'),
-            meta: {title: '基础表单', menu: true, affix: false}
+          },
+          {
+            path: 'step',
+            meta: {title: '分步表单', menu: true, affix: false},
+            component: () => import('@/views/demo/page/form/step'),
           },
         ]
       },
