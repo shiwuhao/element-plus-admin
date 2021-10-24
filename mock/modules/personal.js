@@ -4,7 +4,7 @@ const permissions1 = {
   "menus": [{
     "id": 1,
     "pid": 0,
-    "title": "仪表盘",
+    "title": "看板",
     "icon": "fa fa-home",
     "url": "/dashboard",
     "type": "menu",
