@@ -4,9 +4,9 @@
       <div>
         <transition :name="getTransitionName(route)" mode="out-in">
           <keep-alive v-if="getOpenKeepAlive" :include="getCachedViews">
-            <component :is="Component" :key="route.fullPath" />
+            <component :is="Component" :key="route.fullPath"/>
           </keep-alive>
-          <component v-else :is="Component" :key="route.fullPath" />
+          <component v-else :is="Component" :key="route.fullPath"/>
         </transition>
       </div>
     </template>
@@ -21,11 +21,11 @@ import {useRootSetting} from "@/composables/setting/useRootSeeting";
 export default {
   name: "Content",
   setup() {
-    const { getters } = useStore();
-    const { getCachedViews } = getters;
+    const {getters} = useStore();
+    const {getCachedViews} = getters;
 
-    const { getEnableTransition, getBasicTransition } = useTransitionSetting();
-    const { getOpenKeepAlive } = useRootSetting();
+    const {getEnableTransition, getBasicTransition} = useTransitionSetting();
+    const {getOpenKeepAlive} = useRootSetting();
 
     function getTransitionName(route) {
       if (!getEnableTransition.value) return null;
