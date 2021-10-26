@@ -35,7 +35,6 @@ import {ProjectConfig} from "@/enums/config";
     await dispatch('app/setProjectConfig', ProjectConfig)
   }
 
-
   app.component('svg-icon', SvgIcon)
   app.mount('#app')
 })();
