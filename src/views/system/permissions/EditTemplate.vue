@@ -1,13 +1,7 @@
 <template>
-  <BasicDrawer
-    :title="!item.id ? '新增权限' : '编辑权限'"
-    direction="rtl"
-    size="50%"
-    :loading="itemLoading"
-    v-model="dialog"
-    @close="cancelItem">
+  <BasicDrawer :title="!item.id ? '新增权限' : '编辑权限'" v-model="dialog" @close="cancelItem">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
+      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px" size="small">
         <el-form-item label="节点类型" prop="type">
           <el-radio-group v-model="item.type" size="mini">
             <el-radio-button label="menu">菜单</el-radio-button>
@@ -53,13 +47,13 @@
         <el-form-item label="菜单图标" v-if="item.type === 'menu'">
           <e-icon-picker v-model="item.icon" size="small"/>
         </el-form-item>
+        <el-form-item>
+          <el-button @click="cancelItem" size="small">取 消</el-button>
+          <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
+            {{ confirmLoading ? '提交中 ...' : '确 定' }}
+          </el-button>
+        </el-form-item>
       </el-form>
-    </template>
-    <template #footer>
-      <el-button @click="cancelItem" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
-        {{ confirmLoading ? '提交中 ...' : '确 定' }}
-      </el-button>
     </template>
   </BasicDrawer>
 </template>

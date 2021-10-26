@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <el-menu-item class="container" index="/">
-      <img :src="logo ? logo : '/src/assets/logo.png'" class="sidebar-logo">
-      <template #title>
-        <span class="sidebar-title">{{ title }} </span>
-      </template>
-    </el-menu-item>
-  </div>
+  <el-menu-item class="container" index="/">
+    <img :src="logo ? logo : '/src/assets/logo.png'" class="sidebar-logo">
+    <template #title>
+      <span class="sidebar-title">{{ title }} </span>
+    </template>
+  </el-menu-item>
 </template>
 
 <script>
@@ -40,7 +38,7 @@ export default {
     font-size: 15px;
     font-weight: bold;
     color: white;
-    padding-left: 10px;
+    padding-left: 5px;
     margin: 0;
   }
 }

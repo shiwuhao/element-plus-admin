@@ -4,7 +4,7 @@
       <el-button type="primary" size="mini" @click="addItem">新增</el-button>
     </template>
     <el-card shadow="none">
-      <BasicQuery v-model="query" :schemas="schemas" :col-props="{span:6}" @submit="getQuery"></BasicQuery>
+      <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>
     </el-card>
     <el-card shadow="none" class="mt-2">
       <BasicTable :columns="columns"

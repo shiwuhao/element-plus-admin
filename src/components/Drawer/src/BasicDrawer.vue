@@ -1,20 +1,16 @@
 <template>
   <div class="drawer-container">
-    <el-drawer
-      v-bind="{...$props,...$attrs}"
-      @close="drawerClose">
+    <el-drawer v-bind="$props" :size="getIsMobile ? '100%' : $props.size" @close="drawerClose">
       <template #title>
-        <div class="drawer__title" ref="headerRef">
-          <slot name="title">{{ $attrs.title }}</slot>
+        <div class="drawer__title">
+          <slot name="title">{{ $props.title }}</slot>
         </div>
       </template>
       <template #default>
-        <el-scrollbar :height="getScrollHeight" v-loading="$attrs.loading">
-          <div class="drawer__content">
-            <slot name="default"></slot>
-          </div>
-        </el-scrollbar>
-        <div class="drawer__footer" ref="footerRef">
+        <div class="drawer__content">
+          <slot name="default"></slot>
+        </div>
+        <div class="drawer__footer">
           <slot name="footer"></slot>
         </div>
       </template>
@@ -23,31 +19,19 @@
 </template>
 
 <script>
-import {ref, onMounted, unref} from "vue";
-import {useElementBounding, useWindowSize} from '@vueuse/core'
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {props} from './props'
 
 export default {
   name: "BasicDrawer",
-
+  props: props,
   setup(props, {emit}) {
-    const headerRef = ref(null);
-    const footerRef = ref(null);
-    let getScrollHeight = ref('');
-
+    const {getIsMobile} = useRootSetting();
     const drawerClose = () => emit('update:modelValue', false);
 
-    onMounted(() => {
-      const {height: windowHeight} = useWindowSize();
-      const {height: headerHeight} = useElementBounding(headerRef);
-      const {height: footerHeight} = useElementBounding(footerRef);
-      getScrollHeight.value = unref(windowHeight) - unref(headerHeight) - unref(footerHeight) + 'px';
-    })
-
     return {
+      getIsMobile,
       drawerClose,
-      headerRef,
-      footerRef,
-      getScrollHeight
     }
   }
 }
@@ -62,16 +46,16 @@ export default {
 
     .el-drawer__header {
       padding: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 0;
       border-bottom: 1px solid #EEEEEF;
     }
 
-    .drawer__content {
-      padding: 0 10px;
-      margin-bottom: 80px;
+    .el-drawer__body {
+      overflow: scroll;
     }
 
-    .drawer__footer {
+
+    .drawer__footer:not(:empty) {
       z-index: 1001;
       background-color: white;
       position: absolute;

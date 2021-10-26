@@ -1,6 +1,6 @@
 <template>
   <el-card shadow="none">
-    <el-tabs v-model="group" tab-position="left">
+    <el-tabs v-model="group" :tab-position="getIsMobile ? 'top' : 'left'">
       <el-tab-pane v-for="(item,index) in getGroups"
                    :key="index"
                    :label="item.label"
@@ -16,6 +16,7 @@
 import {BasicForm} from "@/components/Form";
 import EditGroup from "@/views/system/configs/EditGroup";
 import {useConfig} from "@/composables/config/useConfig";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {ref} from "vue";
 
 export default {
@@ -23,10 +24,12 @@ export default {
   components: {BasicForm, EditGroup},
   setup() {
     const {getGroups} = useConfig();
+    const {getIsMobile} = useRootSetting();
     const group = ref('basic');
 
     return {
       getGroups,
+      getIsMobile,
       group,
     }
   },

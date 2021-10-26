@@ -1,13 +1,7 @@
 <template>
-  <BasicDrawer
-    :title="!item.id ? '新增配置' : '编辑配置'"
-    direction="rtl"
-    size="50%"
-    :loading="itemLoading"
-    v-model="dialog"
-    @close="cancelItem">
+  <BasicDrawer :title="!item.id ? '新增配置' : '编辑配置'" v-model="dialog" @close="cancelItem">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" label-width="80px" size="small">
+      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px" size="small">
         <el-form-item label="配置分组" prop="group">
           <el-select v-model="item.group" clearable placeholder="请选择配置分组" style="width: 100%;">
             <el-option v-for="(item,index) in getGroups" :label="item.label" :value="item.value"
@@ -40,13 +34,13 @@
         <el-form-item label="配置值" prop="value">
           <el-input v-model="item.value" type="textarea" rows="3" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item>
+          <el-button @click="cancelItem" size="small">取 消</el-button>
+          <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
+            {{ confirmLoading ? '提交中 ...' : '确 定' }}
+          </el-button>
+        </el-form-item>
       </el-form>
-    </template>
-    <template #footer>
-      <el-button @click="cancelItem" size="small">取 消</el-button>
-      <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
-        {{ confirmLoading ? '提交中 ...' : '确 定' }}
-      </el-button>
     </template>
   </BasicDrawer>
 </template>
