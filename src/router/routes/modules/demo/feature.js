@@ -1,5 +1,4 @@
 import Layout from "@/layouts";
-import LayoutContent from "@/layouts/content/Content"
 
 export default [
   {

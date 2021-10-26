@@ -10,7 +10,7 @@
 <script>
 import {onMounted, reactive, toRefs, watch} from "vue";
 import {useRouter} from "vue-router";
-import dashboardRoute from '@/router/routes/modules/dashboard';
+// import dashboardRoute from '@/router/routes/modules/demo/bak/dashboard';
 
 export default {
   setup() {
@@ -28,7 +28,7 @@ export default {
     const getBreadcrumb = () => {
       let matched = currentRoute.value.matched.filter(item => item.meta && item.meta['title']);
       if (matched.length >= 1 && !isDashboard(matched[0])) {
-        matched = dashboardRoute.concat(matched);
+        // matched = dashboardRoute.concat(matched);
       }
       state.levelList = matched.filter(item => item.meta && item.meta['title'] && item.meta['breadcrumb'] !== false);
     }

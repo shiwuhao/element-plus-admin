@@ -4,7 +4,7 @@ export default [
   {
     path: '/',
     name: 'Root',
-    redirect: '/dashboard/workplace',
+    redirect: 'dashboard',
     meta: {title: 'Root', menu: false,},
   },
   {

@@ -1,4 +1,4 @@
-import {asyncRoutes, demoRoutes} from '@/router/routes';
+import {asyncRoutes, menuRoutes} from '@/router/routes';
 import {permissions} from "@/api/personal";
 import {listToTree} from "@/utils/utils";
 
@@ -75,8 +75,8 @@ const permission = {
       const {data: {data: permission}} = await permissions();
       const {roles = [], menus = [], actions = []} = permission;
       const backendMenu = listToTree(menus.map(item => ({path: item.url, ...item})));// 后端菜单
-      const frontedMenu = filterMenus(demoRoutes);// 前端菜单,demo展示使用
-      commit('SET_PERMISSIONS', {roles, menus: [...backendMenu, ...frontedMenu], actions});
+      const frontedMenu = filterMenus(menuRoutes);// 前端菜单
+      commit('SET_PERMISSIONS', {roles, menus: [...frontedMenu, ...backendMenu], actions});
       // 按需是否过滤权限路由 @TODO
       const permissionRoutes = filterAsyncRoutes(asyncRoutes, permission);
       return Promise.resolve(permissionRoutes);
