@@ -7,7 +7,7 @@
     :with-header="false"
     :destroy-on-close="true"
     direction="ltr"
-    @closed="handleClose">
+    @closed="setMenuSetting({collapse: true})">
     <LayoutMenu/>
   </el-drawer>
   <LayoutMenu v-else/>
@@ -17,6 +17,7 @@
 import LayoutMenu from '@/layouts/menu/index'
 import {useRootSetting} from "@/composables/setting/useRootSeeting";
 import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
+import {watch} from "vue";
 
 export default {
   name: "LayoutSidebar",
@@ -25,14 +26,14 @@ export default {
     const {getIsMobile} = useRootSetting();
     const {getCollapsed, setMenuSetting} = useMenuSetting();
 
-    function handleClose() {
-      setMenuSetting({collapse: true})
-    }
+    watch(getIsMobile, (val) => {
+      setMenuSetting({collapse: val})
+    })
 
     return {
       getIsMobile,
       getCollapsed,
-      handleClose,
+      setMenuSetting,
     }
   },
 }
