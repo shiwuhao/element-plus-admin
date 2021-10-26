@@ -92,7 +92,7 @@ export default defineComponent({
   },
   emits: ['reset', 'submit', 'toggle-advanced'],
   setup(props, {emit}) {
-    const {modelValue, schemas = [], actionProps = {}, autoWidth} = toRefs(props);
+    const {modelValue, schemas = [], actionProps = {}} = toRefs(props);
     const getSchema = schemas;
     const formModel = modelValue;
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);

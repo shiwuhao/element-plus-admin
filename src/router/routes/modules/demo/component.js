@@ -10,7 +10,6 @@ export default [
     children: [
       {
         path: 'form',
-        name: 'form',
         redirect: '/component/form/basic',
         meta: {title: '表单', menu: true, affix: false, icon: 'el-icon-edit'},
         component: LayoutContent,
