@@ -8,7 +8,7 @@
           </el-badge>
         </div>
       </template>
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName">
         <el-tab-pane label="通知(3)" name="first">
           <div style="height: 300px;width: 300px;">
             通知(3)
