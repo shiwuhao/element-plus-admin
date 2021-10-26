@@ -25,21 +25,18 @@
   </div>
 </template>
 <script>
-import {defineComponent} from 'vue';
+import {defineComponent, ref} from 'vue';
 
 export default defineComponent({
   name: 'Notify',
-  data() {
+  setup() {
+    const visible = ref(false);
+    const activeName = ref('first');
     return {
-      visible: false,
-      activeName: 'first',
-    };
-  },
-  methods: {
-    handleClick() {
-
+      visible,
+      activeName
     }
-  }
+  },
 });
 </script>
 <style lang="scss" scoped>

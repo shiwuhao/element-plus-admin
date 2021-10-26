@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-dropdown size="small" trigger="click">
-      <div :class="theme" class="avatar flex-row align-center">
+      <div class="avatar flex-row align-center">
         <el-avatar :size="30" :src="getUser.avatar">{{ getUser.nickname }}</el-avatar>
         <span class="name" style="width: max-content">{{ getUser.nickname }}</span>
       </div>
@@ -17,14 +17,15 @@
 </template>
 <script>
 import {useUser} from "@/composables/useUser";
+import {useStore} from "vuex";
 
 export default {
-  props: ['theme'],
   setup() {
     const {getUser} = useUser();
+    const {dispatch} = useStore()
 
     const logout = async () => {
-      await this.$store.dispatch('user/logout');
+      await dispatch('user/logout');
       location.reload();
     }
     return {
