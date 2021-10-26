@@ -4,12 +4,12 @@ import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
 import {setupEIconPicker} from './plugins/eIconPicker'
 import {router, setupRouter} from './router'
-import {setupStore} from './store'
+import store, {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
-import {initProjectConfig} from "@/logics/initProjectConfig";
 import SvgIcon from '@/components/SvgIcon/SvgIcon';
 import 'virtual:svg-icons-register';
 import {setupGlobalDirectives} from "@/directives";
+import {ProjectConfig} from "@/enums/config";
 
 (async () => {
   const app = createApp(App);
@@ -22,8 +22,6 @@ import {setupGlobalDirectives} from "@/directives";
 
   setupStore(app);
 
-  initProjectConfig();
-
   setupRouter(app);
 
   setupRouterGuard();
@@ -31,6 +29,13 @@ import {setupGlobalDirectives} from "@/directives";
   setupGlobalDirectives(app);
 
   await router.isReady();
-  app.component('svg-icon',SvgIcon)
+
+  const {getters, dispatch} = store;
+  if (!getters.getProjectConfig) {
+    await dispatch('app/setProjectConfig', ProjectConfig)
+  }
+
+
+  app.component('svg-icon', SvgIcon)
   app.mount('#app')
 })();
