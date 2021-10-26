@@ -11,7 +11,7 @@
       </template>
       <slot></slot>
     </el-table>
-    <div class="mt-2" v-if="Object.keys(paginate).length > 0">
+    <div class="mt-2" v-if="paginate.total >0">
       <el-pagination v-bind="paginate" @current-change="changePage" hide-on-single-page></el-pagination>
     </div>
   </div>
@@ -41,7 +41,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
