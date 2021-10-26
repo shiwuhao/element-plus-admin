@@ -1,5 +1,5 @@
 <template>
-  <el-menu-item class="container" index="/">
+  <el-menu-item class="container" index="/" :route="{path:'/',title:'首页'}">
     <img :src="logo ? logo : '/src/assets/logo.png'" class="sidebar-logo">
     <template #title>
       <span class="sidebar-title">{{ title }} </span>

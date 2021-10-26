@@ -1,10 +1,8 @@
 <template>
-  <!--  <div class="menu-item">-->
   <el-menu-item :index="menu.path" :route="menu">
     <i :class="menu.icon"/>
     <template #title>{{ menu.title }}</template>
   </el-menu-item>
-  <!--  </div>-->
 </template>
 <style lang="scss" scoped>
 .el-menu-item i {
