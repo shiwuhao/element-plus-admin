@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="openSettingDrawer">
     <div class="icon-setting-wrap flex-col center">
-      <i class="el-icon-setting"></i>
+      <i class="iconfont icon-more-vertical"></i>
     </div>
     <SettingDrawer/>
   </div>
