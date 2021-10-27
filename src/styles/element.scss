@@ -9,3 +9,29 @@
     z-index: 5;
   }
 }
+
+.list {
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--el-border-color-lighter);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .title {
+      font-size: var(--el-font-size-base);
+      font-weight: var(--el-font-weight-primary);;
+    }
+
+    .label {
+      margin-top: 10px;
+      font-size: var(--el-font-size-small);
+      color: var(--el-text-color-secondary);
+    }
+  }
+}

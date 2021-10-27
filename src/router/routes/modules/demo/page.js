@@ -26,12 +26,6 @@ export default [
             component: () => import('@/views/demo/page/personal/setting'),
             meta: {title: '个人设置', menu: true, affix: false}
           },
-          {
-            path: 'setting2',
-            name: 'personal-setting2',
-            component: () => import('@/views/demo/page/account/setting'),
-            meta: {title: '个人设置', menu: true, affix: false}
-          },
         ]
       },
       {
@@ -39,7 +33,7 @@ export default [
         name: 'form',
         component: LayoutContent,
         meta: {title: '表单页', menu: true, affix: false},
-        children:[
+        children: [
           {
             path: 'basic',
             meta: {title: '基础表单', menu: true, affix: false},
