@@ -55,6 +55,12 @@ export default [
         meta: {title: '节流', menu: true, affix: false},
         component: () => import('@/views/demo/feature/throttle'),
       },
+      {
+        path: 'flex',
+        name: 'flex',
+        meta: {title: '布局', menu: true, affix: false},
+        component: () => import('@/views/demo/feature/flex'),
+      },
     ]
   }
 ];

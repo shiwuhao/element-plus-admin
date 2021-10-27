@@ -1,5 +1,4 @@
 import basic from "@/router/routes/basic";
-import css from "@/router/routes/modules/demo/css";
 import component from "@/router/routes/modules/demo/component";
 import dashboard from "@/router/routes/modules/demo/dashboard";
 import feature from "@/router/routes/modules/demo/feature";
@@ -13,7 +12,6 @@ const demoRoutes = [
   ...page,
   ...feature,
   ...permission,
-  ...css,
 ];
 
 

@@ -1,4 +1,5 @@
 <template>
+
   <div class="errPage-container">
     <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
       返回
@@ -35,10 +36,14 @@
 </template>
 
 <script>
+
+import err401 from '@/assets/icons/svg/401.svg';
+
 import errGif from '@/assets/401_images/401.gif'
 
 export default {
   name: 'Page401',
+  components:{err401},
   data() {
     return {
       errGif: errGif + '?' + +new Date(),
