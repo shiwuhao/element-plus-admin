@@ -6,7 +6,7 @@ import {setupEIconPicker} from './plugins/eIconPicker'
 import {router, setupRouter} from './router'
 import store, {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
-import SvgIcon from '@/components/SvgIcon/SvgIcon';
+import SvgIcon from '@/components/Icon/src/SvgIcon';
 import 'virtual:svg-icons-register';
 import {setupGlobalDirectives} from "@/directives";
 import {ProjectConfig} from "@/enums/config";

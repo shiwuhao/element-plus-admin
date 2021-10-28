@@ -10,7 +10,7 @@ function pathResolve(dir) {
 
 export default defineConfig(({command}) => {
   return {
-    base: '/element-plus-admin/',
+    base: '/element-plus-admin',
     resolve: {
       alias: {
         '@': pathResolve('src') + '/',
@@ -33,7 +33,6 @@ export default defineConfig(({command}) => {
     plugins: [
       vue(),
       viteSvgIcons({
-        // 配置路劲在你的src里的svg存放文件
         iconDirs: [pathResolve('src/assets/icons/svg')],
         symbolId: 'icon-[dir]-[name]',
       }),

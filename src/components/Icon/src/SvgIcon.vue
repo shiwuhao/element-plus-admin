@@ -10,13 +10,13 @@ import {computed, defineComponent,toRefs} from 'vue';
 export default defineComponent({
   name: 'svg-icon',
   props:{
-    iconClass: {
+    name: {
       type: String,
       required: true,
     },
-    className: {
+    size: {
       type: String,
-      default: '',
+      required: true,
     },
     color: {
       type: String,

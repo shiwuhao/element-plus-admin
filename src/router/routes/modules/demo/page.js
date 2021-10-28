@@ -53,16 +53,22 @@ export default [
         meta: {title: '错误页', menu: true, affix: false},
         children: [
           {
-            path: '401',
-            name: '401',
-            meta: {title: '401', menu: true, affix: false},
-            component: () => import('@/views/demo/page/error/401.vue'),
+            path: '403',
+            name: '403',
+            meta: {title: '403', menu: true, affix: false},
+            component: () => import('@/views/demo/page/error/403.vue'),
           },
           {
-            path: '402',
-            name: '402',
-            meta: {title: '402', menu: true, affix: false},
-            component: () => import('@/views/demo/page/error/401.vue'),
+            path: '404',
+            name: '404',
+            meta: {title: '404', menu: true, affix: false},
+            component: () => import('@/views/demo/page/error/404.vue'),
+          },
+          {
+            path: '500',
+            name: '500',
+            meta: {title: '500', menu: true, affix: false},
+            component: () => import('@/views/demo/page/error/500.vue'),
           }
         ]
       },

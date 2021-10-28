@@ -1,3 +1,9 @@
-import IconPicker from "@/components/Icon/src/IconPicker";
+import SvgIcon from "./src/SvgIcon";
+import Icon from "./src/Icon";
 
-export {IconPicker}
+export {
+  SvgIcon,
+  Icon
+}
+
+export default Icon;
