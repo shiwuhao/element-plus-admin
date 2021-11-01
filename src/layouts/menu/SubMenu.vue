@@ -11,15 +11,6 @@
   </el-sub-menu>
   <item-menu v-else :menu="menu.children && menu.children.length === 1 ? menu.children[0] : menu"/>
 </template>
-<style lang="scss" scoped>
-.el-sub-menu__title i{
-  vertical-align: middle;
-  margin-right: 5px;
-  width: 24px;
-  text-align: center;
-  font-size: 18px;
-}
-</style>
 <script>
 
 import ItemMenu from "@/layouts/menu/ItemMenu";
@@ -46,3 +37,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+//.el-sub-menu__title i{
+//  vertical-align: middle;
+//  margin-right: 5px;
+//  width: 24px;
+//  text-align: center;
+//  font-size: 18px;
+//}
+</style>

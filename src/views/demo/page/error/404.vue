@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import err404 from '@/assets/icons/svg/404.svg'
+import err404 from '@/assets/svg/404.svg'
 export default {
   name: 'Page404',
   computed: {

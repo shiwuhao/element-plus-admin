@@ -37,7 +37,7 @@ export default [
   {
     path: '/401',
     meta: {title: '401', menu: false, cache: false},
-    component: () => import('@/views/demo/page/error/401'),
+    component: () => import('@/views/demo/page/error/403'),
   },
   // {
   //   path: '/profile',

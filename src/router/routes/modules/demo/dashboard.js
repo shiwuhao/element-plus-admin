@@ -5,7 +5,7 @@ export default [
     path: '/dashboard',
     component: Layout,
     redirect: '/dashboard/workplace',
-    meta: {title: '首页', icon: 'el-icon-s-home', menu: true, cache: true},
+    meta: {title: '首页', icon: 'fa fa-home', menu: true, cache: true},
     children: [
       {
         path: 'analysis',

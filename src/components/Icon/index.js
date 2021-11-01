@@ -1,8 +1,8 @@
-import SvgIcon from "./src/SvgIcon";
+import IconSvg from "./src/IconSvg";
 import Icon from "./src/Icon";
 
 export {
-  SvgIcon,
+  IconSvg,
   Icon
 }
 

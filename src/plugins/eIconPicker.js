@@ -7,7 +7,7 @@ import 'element-plus/theme-chalk/el-icon.css'; //element-plus 图标库
 export function setupEIconPicker(app) {
   app.use(eIconPicker, {
     FontAwesome: true,
-    ElementUI: true,
+    // ElementUI: true,
     eIcon: true,//自带的图标，来自阿里妈妈
     eIconSymbol: true,//是否开启彩色图标
     addIconList: [],

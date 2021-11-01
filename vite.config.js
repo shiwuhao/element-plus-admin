@@ -33,7 +33,7 @@ export default defineConfig(({command}) => {
     plugins: [
       vue(),
       viteSvgIcons({
-        iconDirs: [pathResolve('src/assets/icons/svg')],
+        iconDirs: [pathResolve('src/assets/svg')],
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({

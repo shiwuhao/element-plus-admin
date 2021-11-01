@@ -6,10 +6,11 @@ import {setupEIconPicker} from './plugins/eIconPicker'
 import {router, setupRouter} from './router'
 import store, {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
-import SvgIcon from '@/components/Icon/src/SvgIcon';
+import SvgIcon from '@/components/Icon/src/IconSvg';
 import 'virtual:svg-icons-register';
 import {setupGlobalDirectives} from "@/directives";
 import {ProjectConfig} from "@/enums/config";
+import {registerGlobComp} from "@/components/registerGlobComp";
 
 (async () => {
   const app = createApp(App);
@@ -27,6 +28,8 @@ import {ProjectConfig} from "@/enums/config";
   setupRouterGuard();
 
   setupGlobalDirectives(app);
+
+  registerGlobComp(app);
 
   await router.isReady();
 

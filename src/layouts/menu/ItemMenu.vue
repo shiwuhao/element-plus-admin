@@ -4,15 +4,6 @@
     <template #title>{{ menu.title }}</template>
   </el-menu-item>
 </template>
-<style lang="scss" scoped>
-.el-menu-item i {
-  vertical-align: middle;
-  margin-right: 5px;
-  width: 24px;
-  text-align: center;
-  font-size: 18px;
-}
-</style>
 <script>
 export default {
   name: 'ItemMenu',
@@ -28,3 +19,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.el-menu-item i {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+}
+</style>

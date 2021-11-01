@@ -1,5 +1,7 @@
 <template>
-
+  <el-icon :size="20">
+    <edit />
+  </el-icon>
   <div class="errPage-container">
     <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
       返回
@@ -37,7 +39,7 @@
 
 <script>
 
-import err401 from '@/assets/icons/svg/401.svg';
+import err401 from '@/assets/svg/401.svg';
 
 import errGif from '@/assets/401_images/401.gif'
 
