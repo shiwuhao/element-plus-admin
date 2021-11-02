@@ -2,14 +2,25 @@
   <div class="container">
     <el-dropdown size="small" trigger="click">
       <div class="avatar flex-row align-center">
-        <el-avatar :size="30" :src="getUser.avatar">{{ getUser.nickname }}</el-avatar>
-        <span class="name" style="width: max-content">{{ getUser.nickname }}</span>
+        <el-avatar :size="30" :src="getUser['avatar']">{{ getUser['nickname'] }}</el-avatar>
+        <span class="name">
+          {{ getUser['nickname'] }}<icon-svg name="down" class="ml-1" size="12"/>
+        </span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item icon="el-icon-user">个人中心</el-dropdown-item>
-          <el-dropdown-item icon="el-icon-setting">个人设置</el-dropdown-item>
-          <el-dropdown-item icon="el-icon-switch-button" divided @click="logout">退出登录</el-dropdown-item>
+          <el-dropdown-item>
+            <icon-svg name="user" class="mr-1"/>
+            个人中心
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <icon-svg name="setting" class="mr-1"/>
+            个人设置
+          </el-dropdown-item>
+          <el-dropdown-item divided @click="logout">
+            <icon-svg name="logout" class="mr-1"/>
+            退出登录
+          </el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -38,12 +49,10 @@ export default {
 <style lang="scss" scoped>
 .container {
   .avatar {
-    font-size: 12px;
     height: 49px;
-    padding: 0 10px;
 
     .name {
-      color: #303133;
+      color: var(--el-text-color-primary);
       padding-left: 5px;
     }
 

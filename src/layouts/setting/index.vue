@@ -1,8 +1,6 @@
 <template>
-  <div class="container" @click="openSettingDrawer">
-    <div class="icon-setting-wrap flex-col center">
-      <i class="iconfont icon-more-vertical"></i>
-    </div>
+  <div class="flex-col center" @click="openSettingDrawer">
+    <icon-svg name="setting" size="18"/>
     <SettingDrawer/>
   </div>
 </template>
@@ -23,16 +21,3 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.container {
-  .icon-setting-wrap {
-    height: 49px;
-    padding: 0 10px;
-
-    &.dart i {
-      font-weight: bold;
-    }
-  }
-}
-
-</style>

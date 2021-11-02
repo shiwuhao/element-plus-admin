@@ -16,7 +16,8 @@
       <!--  menu end  -->
 
       <!--  right start  -->
-      <div class="header-right flex-row">
+      <div class="header-right flex-row center align-center ">
+        <GitHub class="action-item" />
         <Notify class="action-item"/>
         <FullScreen class="action-item"/>
         <UserDropdown class="action-item"/>
@@ -35,6 +36,7 @@ import Notify from "@/layouts/header/components/Notify";
 import FullScreen from "@/layouts/header/components/FullScreen";
 import UserDropdown from "@/layouts/header/components/UserDropdown";
 import Breadcrumb from "@/layouts/header/components/Breadcrumb";
+import GitHub from "@/layouts/header/components/GitHub";
 import Setting from "@/layouts/setting/index";
 import LayoutMenu from '@/layouts/menu/index';
 import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
@@ -45,7 +47,7 @@ import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
 
 export default {
   name: "LayoutHeader",
-  components: {Logo, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger, TagView},
+  components: {Logo,GitHub, Notify, FullScreen, UserDropdown, Breadcrumb, LayoutMenu, Setting, HeaderTrigger, TagView},
   setup() {
     const {
       getDarkMode,
@@ -91,9 +93,13 @@ export default {
   }
 
   .action-item {
-    :deep(i){
-      font-size: 18px;
+    height: 49px;
+    padding: 0 10px;
+
+    :deep(i) {
+      //font-size: 18px;
     }
+
     cursor: pointer;
   }
 }

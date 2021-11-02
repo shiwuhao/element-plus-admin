@@ -1,12 +1,10 @@
 <template>
-  <div class="container" @click="visible=!visible">
+  <div class="flex-col center align-end" @click="visible=!visible">
     <el-popover width="500" v-model:visible="visible">
       <template #reference>
-        <div class="badge flex-col center">
-          <el-badge type="danger" is-dot>
-            <i class="iconfont icon-notify"></i>
-          </el-badge>
-        </div>
+        <el-badge type="danger" is-dot style="height: 18px;">
+          <icon-svg name="notify" size="18"/>
+        </el-badge>
       </template>
       <el-tabs v-model="activeName">
         <el-tab-pane label="通知(3)" name="first">
@@ -39,9 +37,3 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" scoped>
-.container .badge {
-  height: 49px;
-  padding: 0 10px;
-}
-</style>

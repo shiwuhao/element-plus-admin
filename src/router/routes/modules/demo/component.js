@@ -109,8 +109,8 @@ export default [
       {
         path: 'charts',
         name: 'charts',
-        redirect: '/component/echarts/components/BarChart/index.vue',
-        meta: {title: '图表', menu: true, affix: false,icon: 'el-icon-pie-chart'},
+        redirect: '/component/echarts/bar',
+        meta: {title: '图表', menu: true, affix: false, icon: 'el-icon-pie-chart'},
         component: LayoutContent,
         children: [
           {
@@ -134,16 +134,31 @@ export default [
         ]
       },
       {
+        path: 'icon',
+        name: 'icon',
+        redirect: '/component/icon/iconfont',
+        meta: {title: '图标', menu: true, affix: false},
+        component: LayoutContent,
+        children: [
+          {
+            path: 'iconfont',
+            name: 'iconfont',
+            meta: {title: 'iconfont', menu: true, affix: false},
+            component: () => import('@/views/demo/component/icon'),
+          },
+          {
+            path: 'icon-picker',
+            name: 'icon-picker',
+            meta: {title: '图标选择器', menu: true, affix: false},
+            component: () => import('@/views/demo/component/icon'),
+          },
+        ]
+      },
+      {
         path: 'page-wrapper',
         name: 'page-wrapper',
         meta: {title: '页面包裹', menu: true, affix: false},
         component: () => import('@/views/demo/component/page-wrapper'),
-      },
-      {
-        path: 'icon-picker',
-        name: 'icon-picker',
-        meta: {title: '图标选择器', menu: true, affix: false},
-        component: () => import('@/views/demo/component/icon-picker'),
       },
     ]
   }

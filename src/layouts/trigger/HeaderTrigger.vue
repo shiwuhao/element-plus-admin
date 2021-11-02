@@ -1,6 +1,6 @@
 <template>
   <div class="container flex-col center" @click="toggleCollapsed">
-    <i :class="[getCollapsed ? 'el-icon-s-unfold' : 'el-icon-s-fold']"></i>
+    <icon-svg :name="getCollapsed ? 'indent' : 'outdent'" size="20"/>
   </div>
 </template>
 

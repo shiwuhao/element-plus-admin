@@ -1,6 +1,6 @@
 import {asyncRoutes, menuRoutes} from '@/router/routes';
 import {permissions} from "@/api/personal";
-import {listToTree} from "@/utils/utils";
+import {listToTree} from "@/utils";
 
 /**
  * 判断是否有路由权限

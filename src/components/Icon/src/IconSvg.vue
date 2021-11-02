@@ -19,7 +19,7 @@ export default defineComponent({
       required: true,
     },
     size: {
-      type: String,
+      type: [String, Number],
       required: 16,
     },
     spin: {
@@ -43,10 +43,12 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .icon {
-  width: 1em; height: 1em;
+  width: 1em;
+  height: 1em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
+  color: #666;
 }
 
 .svg-icon-spin {

@@ -2,7 +2,7 @@
   <el-image :src="getAssetsSrc('cover2.jpg')" style="width: 100%;"></el-image>
 </template>
 <script>
-import {getAssetsSrc} from "@/utils/utils";
+import {getAssetsSrc} from "@/utils";
 
 export default {
   name: 'Carousel',

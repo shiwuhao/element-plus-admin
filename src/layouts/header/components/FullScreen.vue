@@ -1,8 +1,6 @@
 <template>
-  <div class="container flex-col center" @click="toggle">
-    <el-tooltip effect="dark" :content="getTitle" placement="bottom">
-      <i class="iconfont" :class="[!isFullscreen ? 'icon-fullscreen' : 'icon-fullscreen-exit']"></i>
-    </el-tooltip>
+  <div class="flex-col center align-center" @click="toggle">
+    <icon-svg :name="!isFullscreen ? 'expend' : 'compress'" size="18"/>
   </div>
 </template>
 <script>
@@ -28,7 +26,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .container {
-  height: 49px;
-  padding: 0 10px;
+  //height: 49px;
+  //padding: 0 10px;
 }
 </style>
