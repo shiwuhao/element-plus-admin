@@ -1,5 +1,10 @@
 <template>
   <page-wrapper :title="$route.meta['title']">
+    <template #content>
+      <div >
+        {{notice}}
+      </div>
+    </template>
     <el-card shadow="none">
       <el-row justify="center">
         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -42,6 +47,7 @@ export default {
     const state = reactive({
       icons: icons,
       query: '',
+      notice: '<icon-svg name="iconName">已注册成全局组件,可直接使用'
     })
 
     const handleSearch = useDebounceFn((value) => {

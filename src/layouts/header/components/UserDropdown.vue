@@ -54,6 +54,7 @@ export default {
     .name {
       color: var(--el-text-color-primary);
       padding-left: 5px;
+      width: max-content;
     }
 
     .el-avatar {
