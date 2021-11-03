@@ -1,10 +1,8 @@
-//@import "./variables.scss";
 @import "./flex.scss";
 @import "./text.scss";
 @import "./margin.scss";
 @import "./element.scss";
 @import "./transition/index.scss";
-@import "//at.alicdn.com/t/font_1804572_o0q4kophytj.css";
 @import "./common.scss";
 
 .iconfont {
@@ -23,7 +21,7 @@
 
 body {
   height: 100%;
-  margin: 0 auto;
+  margin: 0 auto !important;
   overflow: hidden;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
