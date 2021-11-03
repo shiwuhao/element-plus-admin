@@ -5,7 +5,7 @@ export default [
     path: '/feature',
     component: Layout,
     redirect: '/feature',
-    meta: {title: '功能', icon: 'el-icon-set-up', menu: true},
+    meta: {title: '功能', icon: 'ungroup', menu: true},
     children: [
       {
         path: 'context-menu',

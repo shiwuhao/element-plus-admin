@@ -6,12 +6,12 @@ export default [
     path: '/component',
     component: Layout,
     redirect: '/component/table/basic',
-    meta: {title: '组件', icon: 'el-icon-setting', menu: true},
+    meta: {title: '组件', icon: 'component', menu: true},
     children: [
       {
         path: 'form',
         redirect: '/component/form/basic',
-        meta: {title: '表单', menu: true, affix: false, icon: 'el-icon-edit'},
+        meta: {title: '表单', menu: true, affix: false, icon: 'formatpainter'},
         component: LayoutContent,
         children: [
           {
@@ -50,7 +50,7 @@ export default [
         path: 'table',
         name: 'table',
         redirect: '/component/table/basic',
-        meta: {title: '表格', menu: true, affix: false, icon: 'el-icon-table-lamp'},
+        meta: {title: '表格', menu: true, affix: false, icon: 'table'},
         component: LayoutContent,
         children: [
           {
@@ -83,7 +83,7 @@ export default [
         path: 'editor',
         name: 'editor',
         redirect: '/component/editor/code',
-        meta: {title: '编辑器', menu: true, affix: false, icon: 'el-icon-edit-outline'},
+        meta: {title: '编辑器', menu: true, affix: false, icon: 'edit-square'},
         component: LayoutContent,
         children: [
           {
@@ -110,7 +110,7 @@ export default [
         path: 'charts',
         name: 'charts',
         redirect: '/component/echarts/bar',
-        meta: {title: '图表', menu: true, affix: false, icon: 'el-icon-pie-chart'},
+        meta: {title: '图表', menu: true, affix: false, icon: 'piechart'},
         component: LayoutContent,
         children: [
           {
@@ -137,7 +137,7 @@ export default [
         path: 'icon',
         name: 'icon',
         redirect: '/component/icon/iconfont',
-        meta: {title: '图标', menu: true, affix: false},
+        meta: {title: '图标', menu: true, affix: false, icon: 'icon-test'},
         component: LayoutContent,
         children: [
           {

@@ -37,7 +37,7 @@ const permissions1 = {
     "id": 5,
     "pid": 0,
     "title": "系统",
-    "icon": "el-icon-menu",
+    "icon": "windows",
     "url": "/system",
     "type": "menu",
     "unique": "get,/system"

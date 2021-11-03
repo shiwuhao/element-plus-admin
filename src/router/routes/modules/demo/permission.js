@@ -5,7 +5,7 @@ export default [
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',
-    meta: {title: '权限', icon: 'el-icon-s-cooperation', menu: true},
+    meta: {title: '权限', icon: 'lock', menu: true},
     children: [
       {
         path: 'page',
