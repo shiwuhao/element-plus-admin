@@ -26,6 +26,9 @@ export default {
 .container {
   height: 50px;
   line-height: 50px;
+  .el-menu-item *{
+    vertical-align: middle;
+  }
 
   .sidebar-logo {
     width: 30px;
