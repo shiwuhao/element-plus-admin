@@ -141,16 +141,14 @@ export default [
         component: LayoutContent,
         children: [
           {
-            path: 'iconfont',
-            name: 'iconfont',
-            meta: {title: 'iconfont', menu: true, affix: false},
-            component: () => import('@/views/demo/component/icon'),
+            path: 'icon-basic',
+            meta: {title: '基本使用', menu: true, affix: false},
+            component: () => import('@/views/demo/component/icon/index'),
           },
           {
-            path: 'icon-picker',
-            name: 'icon-picker',
-            meta: {title: '图标选择器', menu: true, affix: false},
-            component: () => import('@/views/demo/component/icon'),
+            path: 'iconfont',
+            meta: {title: 'iconfont', menu: true, affix: false},
+            component: () => import('@/views/demo/component/icon/iconfont'),
           },
         ]
       },
