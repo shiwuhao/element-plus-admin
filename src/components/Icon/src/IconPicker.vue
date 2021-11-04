@@ -11,7 +11,7 @@
     <template #reference>
       <el-input
         ref="inputElRef"
-        v-model="query"
+        v-model="selectIcon"
         :placeholder="$props.placeholder"
         :clearable="$props.clearable"
         :disabled="$props.disabled"
@@ -20,7 +20,7 @@
       >
         <template #append>
           <slot name="append">
-            <icon-svg :prefix="$props.prefix" :name="selectIcon ? selectIcon : 'edit'" :size="$props.size"/>
+            <icon-svg :name="selectIcon ? selectIcon : 'el-edit-square'" :size="$props.size"/>
           </slot>
         </template>
       </el-input>
@@ -28,10 +28,10 @@
 
     <el-scrollbar ref="eScrollbar" wrap-class="el-select-dropdown__wrap"
                   view-class="el-select-dropdown__list" style="text-align: center">
-      <ul class="icon-list" v-if="icons && icons.length > 0">
-        <li v-for="(item, index) in icons" :key="index" @click="handleSelectIcon(item)">
+      <ul class="icon-list" v-if="true">
+        <li v-for="(item, index) in icons" :key="index" @click="handleSelect(item)">
           <slot name="icon" v-bind:icon="item">
-            <icon-svg :prefix="$props.prefix" :name="item['font_class']" :size="$props.size"/>
+            <icon-svg :name="item" :size="$props.size"/>
           </slot>
         </li>
       </ul>
@@ -42,11 +42,10 @@
 </template>
 
 <script>
-import IconData from '../data/icons.data'
+import {icons} from '../data/index'
 import {defineComponent, reactive, ref, toRefs, watch} from 'vue';
 import {useDebounceFn, useElementBounding, useVModel} from "@vueuse/core";
 
-const icons = IconData['glyphs'];
 
 export default defineComponent({
   name: 'icon-picker',
@@ -54,10 +53,6 @@ export default defineComponent({
     modelValue: {
       type: String,
       default: '',
-    },
-    prefix: {
-      type: String,
-      default: 'icon',
     },
     size: {
       type: [String, Number],
@@ -87,9 +82,6 @@ export default defineComponent({
   setup(props, {emit}) {
     const state = reactive({
       icons: icons,
-      query: '',
-      disabled: false,
-      visible: false,
     })
 
     const inputElRef = ref()
@@ -97,23 +89,22 @@ export default defineComponent({
 
     const {width: popWrapWidth} = useElementBounding(inputElRef)
 
-    const handleSelectIcon = (item) => {
-      selectIcon.value = item['font_class'];
-      state.query = item['font_class'];
+    const handleSelect = (item) => {
+      selectIcon.value = item;
     }
 
     const handleSearch = useDebounceFn((value) => {
-      state.icons = value ? icons.filter(item => item['font_class'].includes(value)) : icons;
+      state.icons = icons.filter(item => item.includes(value))
     }, 200)
 
 
     return {
       ...toRefs(state),
+      inputElRef,
       selectIcon,
       popWrapWidth,
       handleSearch,
-      handleSelectIcon,
-      inputElRef,
+      handleSelect,
     }
   }
 })

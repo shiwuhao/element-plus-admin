@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col center" @click="openSettingDrawer">
-    <icon-svg name="setting" size="18"/>
+    <icon-svg name="el-setting" size="18"/>
     <SettingDrawer/>
   </div>
 </template>

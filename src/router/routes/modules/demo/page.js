@@ -6,7 +6,7 @@ export default [
     path: '/page',
     component: Layout,
     redirect: '/error-page',
-    meta: {title: '页面', icon: 'compass', menu: true},
+    meta: {title: '页面', icon: 'el-compass', menu: true},
     children: [
       {
         path: 'personal',

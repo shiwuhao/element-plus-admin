@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     prefix: {
       type: String,
-      default: 'icon',
+      default: '',
     },
     name: {
       type: String,
@@ -29,7 +29,7 @@ export default defineComponent({
   },
   setup(props) {
     const {prefix, name, size} = toRefs(props);
-    const symbolId = computed(() => `#${prefix.value}-${name.value}`)
+    const symbolId = computed(() => `#${prefix.value}${name.value}`)
     const getWrapStyle = computed(() => {
       const s = `${size.value}`.replace('px', '') + 'px';
       return {width: s, height: s};

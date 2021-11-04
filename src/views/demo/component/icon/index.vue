@@ -36,8 +36,23 @@
     </el-card>
     <el-card shadow="none" header="iconfont 雪碧图, symbol 引用" class="mt-2">
       <el-row class="mb-2">
-        <el-col v-bind="colProps" v-for="(item,index) in icons" :key="index">
-          <icon-svg :name="item['font_class']" :size="30"/>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-github" :size="30"/>
+        </el-col>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-notify" :size="30"/>
+        </el-col>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-user" :size="30"/>
+        </el-col>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-lock" :size="30"/>
+        </el-col>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-table" :size="30"/>
+        </el-col>
+        <el-col v-bind="colProps">
+          <icon-svg name="el-windows" :size="30"/>
         </el-col>
       </el-row>
       <el-alert type="success" :closable="false">
@@ -57,19 +72,16 @@
 
 <script>
 import {PageWrapper} from '@/components/Page/index'
-import {IconData} from '@/components/Icon'
 import {reactive, ref, toRefs} from "vue";
 import {HelpFilled, Loading, PieChart, TakeawayBox, Sunrise, VideoPause} from '@element-plus/icons'
 import {IconPicker} from '@/components/Icon'
 
-const icons = IconData['glyphs'];
 export default {
   name: "index",
   components: {PageWrapper, IconPicker, HelpFilled, Loading, PieChart, TakeawayBox, Sunrise, VideoPause},
   setup() {
     const state = reactive({
       colProps: {sm: 12, xs: 12, md: 4, lg: 4, xl: 4},
-      icons: icons.splice(0, 6),
       iconPicker: '',
       notice: '<icon-svg> 已注册成全局组件,可直接使用'
     })

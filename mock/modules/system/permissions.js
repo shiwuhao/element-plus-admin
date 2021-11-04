@@ -6,7 +6,7 @@ const lists = [{
   "type": "menu",
   "name": "SystemMange",
   "title": "\u7cfb\u7edf\u7ba1\u7406",
-  "icon": "windows",
+  "icon": "el-windows",
   "method": "get",
   "url": "\/system",
   "sort": 0,

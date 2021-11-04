@@ -4,21 +4,21 @@
       <div class="avatar flex-row align-center">
         <el-avatar :size="30" :src="getUser['avatar']">{{ getUser['nickname'] }}</el-avatar>
         <span class="name">
-          {{ getUser['nickname'] }}<icon-svg name="down" class="ml-1" :size="12"/>
+          {{ getUser['nickname'] }}<icon-svg name="el-down" class="ml-1" :size="12"/>
         </span>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item>
-            <icon-svg name="user" :size="14" class="mr-1"/>
+            <icon-svg name="el-user" :size="14" class="mr-1"/>
             个人中心
           </el-dropdown-item>
           <el-dropdown-item>
-            <icon-svg name="setting" :size="14" class="mr-1"/>
+            <icon-svg name="el-setting" :size="14" class="mr-1"/>
             个人设置
           </el-dropdown-item>
           <el-dropdown-item divided @click="logout">
-            <icon-svg name="logout" :size="14" class="mr-1"/>
+            <icon-svg name="el-logout" :size="14" class="mr-1"/>
             退出登录
           </el-dropdown-item>
         </el-dropdown-menu>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col center align-center">
-    <icon-svg name="github" size="18" @click="openGitHub"/>
+    <icon-svg name="el-github" size="18" @click="openGitHub"/>
   </div>
 </template>
 <script>

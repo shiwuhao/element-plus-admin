@@ -6,12 +6,12 @@ export default [
     path: '/component',
     component: Layout,
     redirect: '/component/table/basic',
-    meta: {title: '组件', icon: 'component', menu: true},
+    meta: {title: '组件', icon: 'el-component', menu: true},
     children: [
       {
         path: 'form',
         redirect: '/component/form/basic',
-        meta: {title: '表单', menu: true, affix: false, icon: 'formatpainter'},
+        meta: {title: '表单', menu: true, affix: false, icon: 'el-form'},
         component: LayoutContent,
         children: [
           {
@@ -50,7 +50,7 @@ export default [
         path: 'table',
         name: 'table',
         redirect: '/component/table/basic',
-        meta: {title: '表格', menu: true, affix: false, icon: 'table'},
+        meta: {title: '表格', menu: true, affix: false, icon: 'el-table'},
         component: LayoutContent,
         children: [
           {
@@ -83,7 +83,7 @@ export default [
         path: 'editor',
         name: 'editor',
         redirect: '/component/editor/code',
-        meta: {title: '编辑器', menu: true, affix: false, icon: 'edit-square'},
+        meta: {title: '编辑器', menu: true, affix: false, icon: 'el-edit-square'},
         component: LayoutContent,
         children: [
           {
@@ -110,7 +110,7 @@ export default [
         path: 'charts',
         name: 'charts',
         redirect: '/component/echarts/bar',
-        meta: {title: '图表', menu: true, affix: false, icon: 'piechart'},
+        meta: {title: '图表', menu: true, affix: false, icon: 'el-piechart'},
         component: LayoutContent,
         children: [
           {
@@ -137,7 +137,7 @@ export default [
         path: 'icon',
         name: 'icon',
         redirect: '/component/icon/iconfont',
-        meta: {title: '图标', menu: true, affix: false, icon: 'icon-test'},
+        meta: {title: '图标', menu: true, affix: false, icon: 'el-icon-test'},
         component: LayoutContent,
         children: [
           {
@@ -146,9 +146,9 @@ export default [
             component: () => import('@/views/demo/component/icon/index'),
           },
           {
-            path: 'iconfont',
-            meta: {title: 'iconfont', menu: true, affix: false},
-            component: () => import('@/views/demo/component/icon/iconfont'),
+            path: 'icon-preview',
+            meta: {title: '图标预览', menu: true, affix: false},
+            component: () => import('@/views/demo/component/icon/preview'),
           },
         ]
       },
