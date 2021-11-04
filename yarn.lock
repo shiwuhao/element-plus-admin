@@ -1010,7 +1010,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@popperjs/core@^2.10.2", "@popperjs/core@^2.4.4", "@popperjs/core@^2.9.2":
+"@popperjs/core@^2.10.2":
   version "2.10.2"
   resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
   integrity sha1-B5jAM1Hw3qGlpMq93yalWny+5ZA=
@@ -2089,11 +2089,6 @@ async-limiter@~1.0.0:
   version "1.0.1"
   resolved "https://registry.nlark.com/async-limiter/download/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha1-3TeelPDbgxCwgpH51kwyCXZmF/0=
-
-async-validator@^3.4.0:
-  version "3.5.2"
-  resolved "https://registry.npmmirror.com/async-validator/download/async-validator-3.5.2.tgz?cache=0&sync_timestamp=1634529532378&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fasync-validator%2Fdownload%2Fasync-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
-  integrity sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA=
 
 async-validator@^4.0.7:
   version "4.0.7"
@@ -3419,7 +3414,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dayjs@1.x, dayjs@^1.10.7:
+dayjs@^1.10.7:
   version "1.10.7"
   resolved "https://registry.nlark.com/dayjs/download/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
   integrity sha1-LPX5Gt0oEWdIRAhmoKHSbzps5Gg=
@@ -3471,11 +3466,6 @@ deep-is@~0.1.3:
   version "0.1.4"
   resolved "https://registry.nlark.com/deep-is/download/deep-is-0.1.4.tgz#a6f2dce612fadd2ef1f519b73551f17e85199831"
   integrity sha1-pvLc5hL63S7x9Rm3NVHxfoUZmDE=
-
-deepmerge@1.3.2:
-  version "1.3.2"
-  resolved "https://registry.nlark.com/deepmerge/download/deepmerge-1.3.2.tgz#1663691629d4dbfe364fa12a2a4f0aa86aa3a050"
-  integrity sha1-FmNpFinU2/42T6EqKk8KqGqjoFA=
 
 deepmerge@^1.5.2:
   version "1.5.2"
@@ -3685,11 +3675,6 @@ domhandler@^4.0.0, domhandler@^4.2.0:
   dependencies:
     domelementtype "^2.2.0"
 
-domready@1.0.8:
-  version "1.0.8"
-  resolved "https://registry.npm.taobao.org/domready/download/domready-1.0.8.tgz#91f252e597b65af77e745ae24dd0185d5e26d58c"
-  integrity sha1-kfJS5Ze2Wvd+dFriTdAYXV4m1Yw=
-
 domutils@^1.5.1, domutils@^1.7.0:
   version "1.7.0"
   resolved "https://registry.nlark.com/domutils/download/domutils-1.7.0.tgz#56ea341e834e06e6748af7a1cb25da67ea9f8c2a"
@@ -3746,17 +3731,6 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-e-icon-picker@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.nlark.com/e-icon-picker/download/e-icon-picker-2.0.6.tgz#cbf9d1907921052b07acfeacf464b5f1011ee60a"
-  integrity sha1-y/nRkHkhBSsHrP6s9GS18QEe5go=
-  dependencies:
-    "@popperjs/core" "^2.9.2"
-    element-plus "^1.0.2-beta.42"
-    font-awesome "^4.7.0"
-    svg-sprite-loader "^6.0.5"
-    vue "^3.0.0"
-
 easy-stack@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/easy-stack/download/easy-stack-1.0.1.tgz#8afe4264626988cabb11f3c704ccd0c835411066"
@@ -3792,20 +3766,6 @@ electron-to-chromium@^1.3.878:
   version "1.3.884"
   resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.884.tgz#0cd8c3a80271fd84a81f284c60fb3c9ecb33c166"
   integrity sha1-DNjDqAJx/YSoHyhMYPs8nsszwWY=
-
-element-plus@^1.0.2-beta.42:
-  version "1.0.2-beta.71"
-  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.0.2-beta.71.tgz#148f16d5a0a800549989f7869bbf4d656c652d36"
-  integrity sha1-FI8W1aCoAFSZifeGm79NZWxlLTY=
-  dependencies:
-    "@element-plus/icons" "^0.0.11"
-    "@popperjs/core" "^2.4.4"
-    async-validator "^3.4.0"
-    dayjs "1.x"
-    lodash "^4.17.20"
-    mitt "^2.1.0"
-    normalize-wheel "^1.0.1"
-    resize-observer-polyfill "^1.5.1"
 
 element-plus@^1.2.0-beta.1:
   version "1.2.0-beta.1"
@@ -4626,11 +4586,6 @@ follow-redirects@^1.0.0, follow-redirects@^1.14.0, follow-redirects@^1.14.4:
   version "1.14.4"
   resolved "https://registry.nlark.com/follow-redirects/download/follow-redirects-1.14.4.tgz?cache=0&sync_timestamp=1631622206750&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffollow-redirects%2Fdownload%2Ffollow-redirects-1.14.4.tgz#838fdf48a8bbdd79e52ee51fb1c94e3ed98b9379"
   integrity sha1-g4/fSKi73XnlLuUfsclOPtmLk3k=
-
-font-awesome@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.npm.taobao.org/font-awesome/download/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
-  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -6382,16 +6337,6 @@ mississippi@^3.0.0:
     stream-each "^1.1.0"
     through2 "^2.0.0"
 
-mitt@1.1.2:
-  version "1.1.2"
-  resolved "https://registry.nlark.com/mitt/download/mitt-1.1.2.tgz#380e61480d6a615b660f07abb60d51e0a4e4bed6"
-  integrity sha1-OA5hSA1qYVtmDwertg1R4KTkvtY=
-
-mitt@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.nlark.com/mitt/download/mitt-2.1.0.tgz#f740577c23176c6205b121b2973514eade1b2230"
-  integrity sha1-90BXfCMXbGIFsSGylzUU6t4bIjA=
-
 mixin-deep@^1.2.0:
   version "1.3.2"
   resolved "https://registry.npm.taobao.org/mixin-deep/download/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
@@ -6638,11 +6583,6 @@ normalize-wheel-es@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmmirror.com/normalize-wheel-es/download/normalize-wheel-es-1.1.0.tgz#db017af1dd5d4c6222c07ae38bc224049d25861e"
   integrity sha1-2wF68d1dTGIiwHrji8IkBJ0lhh4=
-
-normalize-wheel@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npm.taobao.org/normalize-wheel/download/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
-  integrity sha1-rsiGr/2wRQcNhWRH32Ls+GFG7EU=
 
 npm-run-path@^2.0.0:
   version "2.0.2"
@@ -7972,11 +7912,6 @@ requires-port@^1.0.0:
   resolved "https://registry.npm.taobao.org/requires-port/download/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
-resize-observer-polyfill@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.npm.taobao.org/resize-observer-polyfill/download/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
-  integrity sha1-DpAg3T0hAkRY1OvSfiPkAmmBBGQ=
-
 resolve-cwd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/resolve-cwd/download/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
@@ -8790,16 +8725,7 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svg-baker-runtime@^1.4.7:
-  version "1.4.7"
-  resolved "https://registry.npm.taobao.org/svg-baker-runtime/download/svg-baker-runtime-1.4.7.tgz#f4720637f5b6202eef6378d81f1fead0815f8a4e"
-  integrity sha1-9HIGN/W2IC7vY3jYHx/q0IFfik4=
-  dependencies:
-    deepmerge "1.3.2"
-    mitt "1.1.2"
-    svg-baker "^1.7.0"
-
-svg-baker@1.7.0, svg-baker@^1.5.0, svg-baker@^1.7.0:
+svg-baker@1.7.0:
   version "1.7.0"
   resolved "https://registry.npm.taobao.org/svg-baker/download/svg-baker-1.7.0.tgz#8367f78d875550c52fe4756f7303d5c5d7c2e9a7"
   integrity sha1-g2f3jYdVUMUv5HVvcwPVxdfC6ac=
@@ -8817,20 +8743,6 @@ svg-baker@1.7.0, svg-baker@^1.5.0, svg-baker@^1.7.0:
     posthtml-svg-mode "^1.0.3"
     query-string "^4.3.2"
     traverse "^0.6.6"
-
-svg-sprite-loader@^6.0.5:
-  version "6.0.11"
-  resolved "https://registry.npmmirror.com/svg-sprite-loader/download/svg-sprite-loader-6.0.11.tgz?cache=0&sync_timestamp=1635154315723&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsvg-sprite-loader%2Fdownload%2Fsvg-sprite-loader-6.0.11.tgz#a4d60cee3d74232a2c17d31c73a2008295f61220"
-  integrity sha1-pNYM7j10IyosF9Mcc6IAgpX2EiA=
-  dependencies:
-    bluebird "^3.5.0"
-    deepmerge "1.3.2"
-    domready "1.0.8"
-    escape-string-regexp "1.0.5"
-    loader-utils "^1.1.0"
-    svg-baker "^1.5.0"
-    svg-baker-runtime "^1.4.7"
-    url-slug "2.0.0"
 
 svg-tags@^1.0.0:
   version "1.0.0"
@@ -9173,11 +9085,6 @@ unicode-property-aliases-ecmascript@^2.0.0:
   resolved "https://registry.nlark.com/unicode-property-aliases-ecmascript/download/unicode-property-aliases-ecmascript-2.0.0.tgz#0a36cb9a585c4f6abd51ad1deddb285c165297c8"
   integrity sha1-CjbLmlhcT2q9Ua0d7dsoXBZSl8g=
 
-unidecode@0.1.8:
-  version "0.1.8"
-  resolved "https://registry.npm.taobao.org/unidecode/download/unidecode-0.1.8.tgz#efbb301538bc45246a9ac8c559d72f015305053e"
-  integrity sha1-77swFTi8RSRqmsjFWdcvAVMFBT4=
-
 union-value@^1.0.0:
   version "1.0.1"
   resolved "https://registry.nlark.com/union-value/download/union-value-1.0.1.tgz#0b6fe7b835aecda61c6ea4d4f02c14221e109847"
@@ -9309,13 +9216,6 @@ url-parse@^1.4.3, url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
-
-url-slug@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.nlark.com/url-slug/download/url-slug-2.0.0.tgz#a789d5aed4995c0d95af33377ad1d5c68d4d7027"
-  integrity sha1-p4nVrtSZXA2VrzM3etHVxo1NcCc=
-  dependencies:
-    unidecode "0.1.8"
 
 url@^0.11.0:
   version "0.11.0"
