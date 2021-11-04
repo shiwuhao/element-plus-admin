@@ -17,8 +17,10 @@
                   :tree-props="{children: 'children', hasChildren: 'children_count'}"
                   @change-page="changePage">
         <template #title="scope">
-          <span :class="scope.row.icon"></span>
-          <span style="margin-left: 5px;">{{ scope.row.title }}</span>
+          <div class="flex-row align-center">
+            <icon-svg :name="scope.row.icon" :size="14" />
+            <span style="margin-left: 5px;">{{ scope.row.title }}</span>
+          </div>
         </template>
         <el-table-column label="操作" width="120">
           <template #default="scope">

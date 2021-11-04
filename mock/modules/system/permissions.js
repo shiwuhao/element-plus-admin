@@ -1,62 +1,12 @@
 import {responsePageSuccess, responseSuccess} from "../../_utils.js";
 
 const lists = [{
-  "id": 1,
-  "pid": 0,
-  "type": "menu",
-  "name": "Dashboard",
-  "title": "Dashboard",
-  "icon": "fa fa-home",
-  "method": "get",
-  "url": "\/dashboard",
-  "sort": 0,
-  "created_at": "2021-09-24 07:32:54",
-  "children_count": 3,
-  "type_label": "\u83dc\u5355",
-  "children": [{
-    "id": 2,
-    "pid": 1,
-    "type": "menu",
-    "name": "workplace",
-    "title": "\u5de5\u4f5c\u53f0",
-    "icon": "fa fa-dashboard",
-    "method": "get",
-    "url": "\/dashboard\/workplace",
-    "sort": 0,
-    "created_at": "2021-09-24 07:32:54",
-    "type_label": "\u83dc\u5355"
-  }, {
-    "id": 3,
-    "pid": 1,
-    "type": "menu",
-    "name": "el-icon-monitor",
-    "title": "\u76d1\u63a7\u9875",
-    "icon": "el-icon-monitor",
-    "method": "get",
-    "url": "\/dashboard\/monitor",
-    "sort": 0,
-    "created_at": "2021-09-24 07:32:54",
-    "type_label": "\u83dc\u5355"
-  }, {
-    "id": 4,
-    "pid": 1,
-    "type": "menu",
-    "name": "analysis",
-    "title": "\u5206\u6790\u9875",
-    "icon": "el-icon-data-analysis",
-    "method": "get",
-    "url": "\/dashboard\/analysis",
-    "sort": 0,
-    "created_at": "2021-09-24 07:32:54",
-    "type_label": "\u83dc\u5355"
-  }]
-}, {
   "id": 5,
   "pid": 0,
   "type": "menu",
   "name": "SystemMange",
   "title": "\u7cfb\u7edf\u7ba1\u7406",
-  "icon": "el-icon-menu",
+  "icon": "windows",
   "method": "get",
   "url": "\/system",
   "sort": 0,

@@ -2,7 +2,6 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
-import {setupEIconPicker} from './plugins/eIconPicker'
 import {router, setupRouter} from './router'
 import store, {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
@@ -18,8 +17,6 @@ import {registerGlobComp} from "@/components/registerGlobComp";
   setupElementPlus(app);
 
   setupContentment(app);
-
-  setupEIconPicker(app);
 
   setupStore(app);
 

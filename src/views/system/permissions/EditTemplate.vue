@@ -45,7 +45,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="菜单图标" v-if="item.type === 'menu'">
-          <e-icon-picker v-model="item.icon" size="small"/>
+          <icon-picker v-model="item.icon"/>
         </el-form-item>
         <el-form-item>
           <el-button @click="cancelItem" size="small">取 消</el-button>
@@ -63,10 +63,11 @@ import {BasicDrawer} from "@/components/Drawer";
 import {toRefs, shallowReactive, inject} from "vue";
 import {useConfig} from "@/composables/config/useConfig";
 import {childrenListApi} from "@/api/permissions";
+import {IconPicker} from '@/components/Icon'
 
 export default {
   name: "editTemplate",
-  components: {BasicDrawer},
+  components: {BasicDrawer, IconPicker},
   setup() {
     const state = shallowReactive({
       rules: {

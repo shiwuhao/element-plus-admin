@@ -1,10 +1,5 @@
 <template>
   <page-wrapper :title="$route.meta['title']">
-    <template #content>
-      <div>
-        {{ notice }}
-      </div>
-    </template>
     <el-card shadow="none" header="Element-Plus Icon使用">
       <el-row>
         <el-col v-bind="colProps">
@@ -39,18 +34,21 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-card shadow="none" header="iconfont 雪碧图" class="mt-2">
-      <el-alert type="error" :closable="false">{{ notice }}</el-alert>
-      <el-row class="mt-2">
+    <el-card shadow="none" header="iconfont 雪碧图, symbol 引用" class="mt-2">
+      <el-row class="mb-2">
         <el-col v-bind="colProps" v-for="(item,index) in icons" :key="index">
           <icon-svg :name="item['font_class']" :size="30"/>
         </el-col>
       </el-row>
+      <el-alert type="success" :closable="false">
+        <p>icon-svg 已注册成全局组件,可直接使用</p>
+        <p>如需使用自己的图标库，iconfont官网创建自己的项目后，生成symbol连接，main.js 中引入即可使用</p>
+      </el-alert>
     </el-card>
     <el-card shadow="none" header="图标选择器" class="mt-2">
       <el-row>
-        <el-col v-bind="colProps">
-          <icon-picker v-model="icon"/>
+        <el-col>
+          <icon-picker v-model="iconPicker"/>
         </el-col>
       </el-row>
     </el-card>
@@ -72,7 +70,7 @@ export default {
     const state = reactive({
       colProps: {sm: 12, xs: 12, md: 4, lg: 4, xl: 4},
       icons: icons.splice(0, 6),
-      icon: '',
+      iconPicker: '',
       notice: '<icon-svg> 已注册成全局组件,可直接使用'
     })
 
