@@ -1,5 +1,5 @@
 <template>
-  <icon-svg v-if="$props.mode === 'svg'" :name="$props.name" :size="$props.size"/>
+  <icon-svg v-if="$props.mode === 'svg'" :prefix="$props.prefix" :name="$props.name" :size="$props.size"/>
   <!--  <span ref="elRef" :style="getWrapStyle"></span>-->
 </template>
 
@@ -13,7 +13,11 @@ export default {
   props: {
     mode: {
       type: String,
-      default:'svg',
+      default: 'svg',
+    },
+    prefix: {
+      type: String,
+      default: '',
     },
     name: String,
     color: String,

@@ -1,7 +1,5 @@
 <template>
-  <el-icon :size="20">
-    <edit />
-  </el-icon>
+  <icon name="icon-403" size="50" />
   <div class="errPage-container">
     <el-button icon="el-icon-arrow-left" class="pan-back-btn" @click="back">
       返回

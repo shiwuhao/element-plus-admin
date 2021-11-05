@@ -1,7 +1,7 @@
 <template>
   <el-popover
     ref="popover"
-    placement="bottom"
+    :placement="placement"
     popper-class="icon-popper"
     show-arrow
     trigger="click"
@@ -57,6 +57,10 @@ export default defineComponent({
     size: {
       type: [String, Number],
       default: 18,
+    },
+    placement: {
+      type: String,
+      default: 'bottom',
     },
     placeholder: {
       type: String,
