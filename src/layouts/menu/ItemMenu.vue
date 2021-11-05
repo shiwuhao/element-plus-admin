@@ -1,6 +1,6 @@
 <template>
   <el-menu-item :index="menu.path" :route="menu">
-    <icon-svg v-if="menu.icon" :name="menu.icon" :size="18" />
+    <icon v-if="menu.icon" :name="menu.icon" :size="18" />
     <template #title>{{ menu.title }}</template>
   </el-menu-item>
 </template>

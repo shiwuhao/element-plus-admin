@@ -1,7 +1,7 @@
-import {IconSvg} from '@/components/Icon'
+import Icon from '@/components/Icon'
 
 
-const compList = [IconSvg];
+const compList = [Icon];
 
 export function registerGlobComp(app) {
   compList.forEach(item => {

@@ -37,26 +37,26 @@
     <el-card shadow="none" header="iconfont 雪碧图, symbol 引用" class="mt-2">
       <el-row class="mb-2">
         <el-col v-bind="colProps">
-          <icon-svg name="el-github" :size="30"/>
+          <icon name="el-github" :size="30"/>
         </el-col>
         <el-col v-bind="colProps">
-          <icon-svg name="el-notify" :size="30"/>
+          <icon name="el-notify" :size="30"/>
         </el-col>
         <el-col v-bind="colProps">
-          <icon-svg name="el-user" :size="30"/>
+          <icon name="el-user" :size="30"/>
         </el-col>
         <el-col v-bind="colProps">
-          <icon-svg name="el-lock" :size="30"/>
+          <icon name="el-lock" :size="30"/>
         </el-col>
         <el-col v-bind="colProps">
-          <icon-svg name="el-table" :size="30"/>
+          <icon name="el-table" :size="30"/>
         </el-col>
         <el-col v-bind="colProps">
-          <icon-svg name="el-windows" :size="30"/>
+          <icon name="el-windows" :size="30"/>
         </el-col>
       </el-row>
       <el-alert type="success" :closable="false">
-        <p>icon-svg 已注册成全局组件,可直接使用</p>
+        <p>icon 已注册成全局组件,可直接使用</p>
         <p>如需使用自己的图标库，iconfont官网创建自己的项目后，生成symbol连接，main.js 中引入即可使用</p>
       </el-alert>
     </el-card>
@@ -83,7 +83,7 @@ export default {
     const state = reactive({
       colProps: {sm: 12, xs: 12, md: 4, lg: 4, xl: 4},
       iconPicker: '',
-      notice: '<icon-svg> 已注册成全局组件,可直接使用'
+      notice: '<icon> 已注册成全局组件,可直接使用'
     })
 
 

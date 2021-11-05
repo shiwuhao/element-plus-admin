@@ -18,7 +18,7 @@
                   @change-page="changePage">
         <template #title="scope">
           <div class="flex-row align-center">
-            <icon-svg :name="scope.row.icon" :size="14" />
+            <icon :name="scope.row.icon" :size="14" />
             <span style="margin-left: 5px;">{{ scope.row.title }}</span>
           </div>
         </template>

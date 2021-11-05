@@ -1,7 +1,7 @@
 <template>
   <el-sub-menu :index="menu.path" v-if="menu.children && menu.children.length >= 1" popper-append-to-body>
     <template #title>
-      <icon-svg v-if="menu.icon" :name="menu.icon" :size="18" class="mr-1" />
+      <icon v-if="menu.icon" :name="menu.icon" :size="18" class="mr-1" />
       <span>{{ menu.title }}</span>
     </template>
     <template v-for="child in menu.children">

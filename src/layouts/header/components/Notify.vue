@@ -3,7 +3,7 @@
     <el-popover width="500" v-model:visible="visible">
       <template #reference>
         <el-badge type="danger" is-dot style="height: 18px;">
-          <icon-svg name="el-notify" size="18"/>
+          <icon name="el-notify" size="18"/>
         </el-badge>
       </template>
       <el-tabs v-model="activeName">

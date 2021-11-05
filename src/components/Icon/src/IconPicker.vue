@@ -20,7 +20,7 @@
       >
         <template #append>
           <slot name="append">
-            <icon-svg :name="selectIcon ? selectIcon : 'el-edit-square'" :size="$props.size"/>
+            <icon :name="selectIcon ? selectIcon : 'el-edit-square'" :size="$props.size"/>
           </slot>
         </template>
       </el-input>
@@ -31,7 +31,7 @@
       <ul class="icon-list" v-if="true">
         <li v-for="(item, index) in icons" :key="index" @click="handleSelect(item)">
           <slot name="icon" v-bind:icon="item">
-            <icon-svg :name="item" :size="$props.size"/>
+            <icon :name="item" :size="$props.size"/>
           </slot>
         </li>
       </ul>

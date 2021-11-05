@@ -1,14 +1,21 @@
 <template>
-  <span ref="elRef" :style="getWrapStyle"></span>
+  <icon-svg v-if="$props.mode === 'svg'" :name="$props.name" :size="$props.size"/>
+  <!--  <span ref="elRef" :style="getWrapStyle"></span>-->
 </template>
 
 <script>
+import IconSvg from "./IconSvg";
 import {computed, ref} from "vue";
 
 export default {
   name: "Icon",
+  components: {IconSvg},
   props: {
-    icon: String,
+    mode: {
+      type: String,
+      default:'svg',
+    },
+    name: String,
     color: String,
     size: {
       type: [String, Number],
@@ -17,17 +24,17 @@ export default {
     spin: Boolean,
   },
   setup(props) {
-    const elRef = ref(null);
-    const getWrapStyle = computed(() => {
-      const {size, color} = props;
-      const _size = parseInt(size, 10);
-
-      return {fotSize: `${_size}px`, color: color, display: 'inline-flex'}
-    })
+    // const elRef = ref(null);
+    // const getWrapStyle = computed(() => {
+    //   const {size, color} = props;
+    //   const _size = parseInt(size, 10);
+    //
+    //   return {fotSize: `${_size}px`, color: color, display: 'inline-flex'}
+    // })
 
     return {
-      elRef,
-      getWrapStyle
+      // elRef,
+      // getWrapStyle
     }
   }
 }

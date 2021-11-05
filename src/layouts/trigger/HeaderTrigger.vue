@@ -1,6 +1,6 @@
 <template>
   <div class="container flex-col center" @click="toggleCollapsed">
-    <icon-svg :name="getCollapsed ? 'el-zhankai' : 'el-shouqi'" size="20"/>
+    <icon :name="getCollapsed ? 'el-zhankai' : 'el-shouqi'" size="20"/>
   </div>
 </template>
 
