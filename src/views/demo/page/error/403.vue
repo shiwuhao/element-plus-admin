@@ -37,13 +37,12 @@
 
 <script>
 
-import err401 from '@/assets/svg/401.svg';
 
 import errGif from '@/assets/401_images/401.gif'
 
 export default {
   name: 'Page401',
-  components:{err401},
+  components:{},
   data() {
     return {
       errGif: errGif + '?' + +new Date(),

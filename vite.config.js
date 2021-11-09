@@ -14,7 +14,7 @@ export default defineConfig(({command}) => {
     resolve: {
       alias: {
         '@': pathResolve('src') + '/',
-        "~/": pathResolve('src') + '/',
+        "~": pathResolve('src') + '/',
       },
       extensions: ['.vue', '.js'],
     },
@@ -26,7 +26,7 @@ export default defineConfig(({command}) => {
     css: {
       preprocessorOptions: {
         scss: {
-          // additionalData: `@use "~/styles/index.scss" as *;`,
+          additionalData: `@use "~/styles/index.scss" as *;`,
         },
       },
     },
