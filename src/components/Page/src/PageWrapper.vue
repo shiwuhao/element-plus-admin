@@ -1,6 +1,6 @@
 <template>
-  <div class="page-wrapper">
-    <div class="page-header">
+  <div class="page-wrapper" :class="$props.class">
+    <div class="page-header" v-if="title || subTitle">
       <div class="flex-row between">
         <div class="page-header-wrap flex-row start align-end">
           <div class="page-header-title text-xl">
@@ -54,6 +54,10 @@ export default {
     contentFullHeight: {
       type: Boolean,
       default: false,
+    },
+    class:{
+      type: String,
+      default: '',
     }
   },
   setup() {

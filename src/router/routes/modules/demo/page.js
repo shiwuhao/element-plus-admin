@@ -64,12 +64,6 @@ export default [
             meta: {title: '404', menu: true, affix: false},
             component: () => import('@/views/demo/page/error/404.vue'),
           },
-          {
-            path: '500',
-            name: '500',
-            meta: {title: '500', menu: true, affix: false},
-            component: () => import('@/views/demo/page/error/500.vue'),
-          }
         ]
       },
     ]
