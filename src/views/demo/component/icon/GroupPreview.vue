@@ -4,7 +4,7 @@
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <el-input v-model="query" @input="handleSearch" placeholder="输入图标名称进行搜索">
           <template #prefix>
-            <icon name="el-search" :size="16"/>
+            <icon name="el-search" :size="18"/>
           </template>
         </el-input>
       </el-col>
