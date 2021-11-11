@@ -55,7 +55,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    class:{
+    class: {
       type: String,
       default: '',
     }

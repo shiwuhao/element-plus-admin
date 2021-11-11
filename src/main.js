@@ -14,6 +14,11 @@ import {registerGlobComp} from "@/components/registerGlobComp";
 (async () => {
   const app = createApp(App);
 
+  const {getters, dispatch} = store;
+  if (!getters.getProjectConfig) {
+    await dispatch('app/setProjectConfig', ProjectConfig)
+  }
+
   setupElementPlus(app);
 
   setupContentment(app);
@@ -29,11 +34,6 @@ import {registerGlobComp} from "@/components/registerGlobComp";
   registerGlobComp(app);
 
   await router.isReady();
-
-  const {getters, dispatch} = store;
-  if (!getters.getProjectConfig) {
-    await dispatch('app/setProjectConfig', ProjectConfig)
-  }
 
   app.component('svg-icon', SvgIcon)
   app.mount('#app')

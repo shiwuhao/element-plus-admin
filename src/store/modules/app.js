@@ -17,8 +17,8 @@ const app = {
     setPageLoading({commit}, loading) {
       commit('setPageLoading', loading);
     },
-    setDarkMode(mode) {
-      this.darkMode = mode;
+    setDarkMode({commit},mode) {
+      commit('darkMode', mode);
     },
     setProjectConfig({commit}, projectConfig) {
       commit('setProjectConfig', projectConfig);
