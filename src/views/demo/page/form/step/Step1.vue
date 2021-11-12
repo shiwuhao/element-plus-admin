@@ -1,49 +1,76 @@
 <template>
-  <el-form ref="form" :model="form" label-width="120px">
-    <el-form-item label="付款账户">
-      <el-input v-model="form.name"></el-input>
+  <el-form ref="formElRef" :model="form" :rules="rules" label-width="120px"
+           :label-position="getIsMobile ? 'top' : 'right'">
+    <el-form-item label="付款账户" prop="payment_account">
+      <el-select v-model="form.payment_account" class="w-full">
+        <el-option label="element-plus-admin@alipay.com" value="element-plus-admin@alipay.com"></el-option>
+      </el-select>
     </el-form-item>
-    <el-form-item label="收款账户">
-      <el-input v-model="form.name">
+    <el-form-item label="收款账户" prop="collection_account">
+      <el-input v-model="form.collection_account">
         <template #prepend>
-          <el-select v-model="form.pay_method" style="width: 100px;">
+          <el-select v-model="form.payment_method" style="width: 100px;">
             <el-option label="支付宝" value="alipay"></el-option>
             <el-option label="微信" value="wxpay"></el-option>
           </el-select>
         </template>
       </el-input>
     </el-form-item>
-    <el-form-item label="收款人姓名">
-      <el-input v-model="form.desc"></el-input>
+    <el-form-item label="收款人姓名" prop="payee">
+      <el-input v-model="form.payee"></el-input>
     </el-form-item>
-    <el-form-item label="转账金额">
-      <el-input v-model="form.desc"></el-input>
+    <el-form-item label="转账金额" prop="amount">
+      <el-input v-model="form.amount"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="handleNext">下一步</el-button>
     </el-form-item>
   </el-form>
+  <el-divider/>
 </template>
 
 <script>
-import {reactive, toRefs} from "vue";
+import {reactive, ref, toRefs} from "vue";
+import {useRootSetting} from "@/composables/setting/useRootSeeting";
 
 export default {
   name: "Step1",
-  setup() {
+  emits: ['next'],
+  setup(_, {emit}) {
+    const formElRef = ref(null);
+    const {getIsMobile} = useRootSetting();
     const state = reactive({
       form: {
-        pay_method: 'alipay',
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: '',
+        payment_account: 'element-plus-admin@alipay.com',
+        collection_account: 'test@example.com',
+        payment_method: 'alipay',
+        payee: 'shiwuhao',
+        amount: 500,
       },
+      rules: {
+        payment_account: [{required: true, trigger: 'change'}],
+        collection_account: [{required: true, trigger: 'blue'}],
+        payment_method: [{required: true, trigger: 'change'}],
+        payee: [{required: true, trigger: 'blue'}],
+        amount: [{required: true, trigger: 'blue'}],
+      }
     })
+
+    const methods = {
+      handleNext: () => {
+        formElRef.value.validate(valid => {
+          if (valid) {
+            emit('next', state.form)
+          }
+        })
+      }
+    }
 
     return {
       ...toRefs(state),
+      ...methods,
+      getIsMobile,
+      formElRef,
     }
   }
 }
