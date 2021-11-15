@@ -29,8 +29,9 @@
 
 <script>
 
-import {onMounted, ref} from "vue";
-import {useWindowSize} from '@vueuse/core'
+import {onMounted, ref, computed} from "vue";
+import {useWindowSize,} from '@vueuse/core'
+import {useRouter} from "vue-router";
 
 export default {
   name: "PageWrapper",
@@ -62,11 +63,15 @@ export default {
   },
   setup() {
     const contentRef = ref(null);
-    let contentHeight = ref(null);
+    const contentHeight = ref(null);
 
-    onMounted(() => {
+    const resizeHeight = () => {
       const {height} = useWindowSize();
       contentHeight.value = height.value - contentRef.value.offsetTop - 22;
+    }
+
+    onMounted(() => {
+      resizeHeight();
     })
 
     return {
