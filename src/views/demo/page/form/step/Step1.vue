@@ -2,7 +2,7 @@
   <el-form ref="formElRef" :model="form" :rules="rules" label-width="120px"
            :label-position="getIsMobile ? 'top' : 'right'">
     <el-form-item label="付款账户" prop="payment_account">
-      <el-select v-model="form.payment_account" class="w-full">
+      <el-select v-model="form.payment_account" placeholder="请选择付款账户" class="w-full">
         <el-option label="element-plus-admin@alipay.com" value="element-plus-admin@alipay.com"></el-option>
       </el-select>
     </el-form-item>
@@ -22,11 +22,10 @@
     <el-form-item label="转账金额" prop="amount">
       <el-input v-model="form.amount"></el-input>
     </el-form-item>
-    <el-form-item>
+    <div class="flex-row center">
       <el-button type="primary" @click="handleNext">下一步</el-button>
-    </el-form-item>
+    </div>
   </el-form>
-  <el-divider/>
 </template>
 
 <script>
@@ -41,18 +40,18 @@ export default {
     const {getIsMobile} = useRootSetting();
     const state = reactive({
       form: {
-        payment_account: 'element-plus-admin@alipay.com',
+        payment_account: '',
         collection_account: 'test@example.com',
         payment_method: 'alipay',
         payee: 'shiwuhao',
         amount: 500,
       },
       rules: {
-        payment_account: [{required: true, trigger: 'change'}],
-        collection_account: [{required: true, trigger: 'blue'}],
-        payment_method: [{required: true, trigger: 'change'}],
-        payee: [{required: true, trigger: 'blue'}],
-        amount: [{required: true, trigger: 'blue'}],
+        payment_account: [{required: true, trigger: 'change', message: '请选择付款账户'}],
+        collection_account: [{required: true, trigger: 'blur', message: '请输入收款账户'}],
+        payment_method: [{required: true, trigger: 'change', message: '请选择付款方式'}],
+        payee: [{required: true, trigger: 'blue', message: '请输入收款人姓名'}],
+        amount: [{required: true, trigger: 'blue', message: '请输入收款金额'}],
       }
     })
 
@@ -75,7 +74,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

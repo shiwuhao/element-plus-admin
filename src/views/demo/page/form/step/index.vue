@@ -6,29 +6,32 @@
     <div class="p-5">
       <el-row justify="center">
         <el-col :xs="24" :sm="24" :md="24" :lg="22" :xl="22">
-          <el-steps :active="active" finish-status="success" align-center>
+          <el-steps :active="active" finish-status="success" process-status="process" align-center>
             <el-step v-for="(item,index) in steps"
                      :key="index"
                      :title="item.name"
-                     :status="item.status"
                      :description="item.description"
             ></el-step>
           </el-steps>
         </el-col>
         <el-col :xs="24" :sm="22" :md="20" :lg="16" :xl="12">
           <div class="mt-5">
-            {{ active }} {{active === 0}}
-            <Step1 v-show="active === 0" @next="handleStepNext"/>
-            <Step2 v-show="false" @next="handleStepNext" :preview-info="step2Info"/>
-            <Step3 v-show="active === 2" @next="handleStepNext"/>
+            <Step1 v-if="active === 0" @next="handleStepNext"/>
+            <Step2 v-if="active === 1" @next="handleStepNext" @prev="handleStepPrev" :preview-info="previewInfo"/>
+            <Step3 v-if="active === 2" @redo="handleRedo" :preview-info="previewInfo"/>
           </div>
-          <!--          <el-row class="m-6" style="justify-content: center">-->
-          <!--            <el-button type="primary" v-show="active!==0" @click="nextStep(-1)">上一步</el-button>-->
-          <!--            <el-button type="primary" v-if="active===steps.length" @click="completeStep">完成</el-button>-->
-          <!--            <el-button type="primary" @click="nextStep(1)" v-else>下一步</el-button>-->
-          <!--          </el-row>-->
         </el-col>
       </el-row>
+    </div>
+
+    <div class="notice" v-show="active === 0">
+      <el-divider content-position="left">说明</el-divider>
+      <div class="desc">
+        <h4>转账到支付宝账户</h4>
+        <p>如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。</p>
+        <h4>转账到银行卡</h4>
+        <p>如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。</p>
+      </div>
     </div>
   </page-wrapper>
 </template>
@@ -50,7 +53,7 @@ export default {
         {name: '确认信息', description: '', status: 'wait'},
         {name: '完成', description: '', status: 'wait'},
       ],
-      step2Info: {},
+      previewInfo: {},
       active: 0,
     })
 
@@ -58,13 +61,13 @@ export default {
     const methods = {
       handleStepNext: (form) => {
         state.active++;
-        state.step2Info = form;
+        state.previewInfo = form;
       },
       handleStepPrev: () => {
         state.active--;
       },
-      completeStep: () => {
-
+      handleRedo: () => {
+        state.active = 0;
       }
     }
 
@@ -78,4 +81,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.notice {
+  padding-top: 30px;
+  padding-bottom: 20px;
+
+  .desc {
+    padding: 0 30px;
+    color: var(--el-text-color-regular);
+    font-size: var(--el-font-size-base);
+  }
+}
 </style>
