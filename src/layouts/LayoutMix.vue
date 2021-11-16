@@ -49,7 +49,6 @@ export default {
   padding: 0 0;
 
   .main {
-    padding-top: 10px;
     height: 100vh;
     padding-bottom: 50px;
   }
