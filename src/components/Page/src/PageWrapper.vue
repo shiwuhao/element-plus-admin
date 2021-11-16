@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper" :class="$props.class">
-    <div class="page-header" v-if="title || subTitle">
+    <div class="page-header" v-if="title || subTitle || slotTitle || slotSubTitle">
       <div class="flex-row between">
         <div class="page-header-wrap flex-row start align-end">
           <div class="page-header-title text-xl">
@@ -31,7 +31,7 @@
 
 import {onMounted, ref, computed} from "vue";
 import {useWindowSize,} from '@vueuse/core'
-import {useRouter} from "vue-router";
+import {useSlots} from "vue";
 
 export default {
   name: "PageWrapper",
@@ -64,6 +64,8 @@ export default {
   setup() {
     const contentRef = ref(null);
     const contentHeight = ref(null);
+    const slotTitle = !!useSlots().title;
+    const slotSubTitle = !!useSlots().subTitle;
 
     const resizeHeight = () => {
       const {height} = useWindowSize();
@@ -77,6 +79,8 @@ export default {
     return {
       contentRef,
       contentHeight,
+      slotTitle,
+      slotSubTitle
     }
   }
 }
