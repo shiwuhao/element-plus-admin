@@ -16,18 +16,18 @@
                   :load="loadChildren"
                   :tree-props="{children: 'children', hasChildren: 'children_count'}"
                   @change-page="changePage">
-        <template #title="scope">
+        <template #title="{row:{icon,title}}">
           <div class="flex-row align-center">
-            <icon :name="scope.row.icon" :size="14" />
-            <span style="margin-left: 5px;">{{ scope.row.title }}</span>
+            <icon v-if="icon" :name="icon" :size="14"/>
+            <span style="margin-left: 5px;">{{ title }}</span>
           </div>
         </template>
         <el-table-column label="操作" width="120">
-          <template #default="scope">
-            <el-button type="text" size="small" @click="editItem(scope.row)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
+          <template #default="{row}">
+            <el-button type="text" size="small" @click="editItem(row)">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
               <template #reference>
-                <el-button type="text" size="small" :disabled="scope.row.name === 'Administrator'">删除</el-button>
+                <el-button type="text" size="small" :disabled="row.name === 'Administrator'">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
