@@ -14,14 +14,16 @@
           <div class="setting-group">
             <h3 class="setting-title">导航栏模式</h3>
             <div class="flex-row">
-              <template v-for="(item,index) in navbarModes" :key="index">
-                <el-tooltip effect="dark" :content="item.title" placement="top-start">
-                  <div class="setting-item" @click="toggleNavbarMode(item.type)">
-                    <img :src="item.img"/>
-                    <i class="el-icon-check" v-if="item.type === getNavbarMode"/>
-                  </div>
-                </el-tooltip>
-              </template>
+              <el-tooltip v-for="(item,index) in navbarModes"
+                          :key="index"
+                          effect="dark"
+                          :content="item.title"
+                          placement="top-start">
+                <div class="setting-item" @click="toggleNavbarMode(item.type)">
+                  <img :src="item.img"/>
+                  <i class="el-icon-check" v-if="item.type === getNavbarMode"/>
+                </div>
+              </el-tooltip>
             </div>
           </div>
           <el-divider/>
@@ -50,6 +52,16 @@
               <div class="drawer-item">
                 <span>面包屑导航</span>
                 <el-switch :model-value="getShowBreadcrumb" class="drawer-switch" @change="toggleBreadcrumb"/>
+              </div>
+              <div class="drawer-item">
+                <span>布局大小</span>
+                <el-select :model-value="getGlobalSize" size="mini" style="width: 120px"
+                           @change="toggleElementSize($event)">
+                  <el-option v-for="item in getElementSizeOptions"
+                             :key="item.value"
+                             :label="item.label"
+                             :value="item.value"></el-option>
+                </el-select>
               </div>
             </div>
           </div>
@@ -91,8 +103,10 @@ import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
 import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
 import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting";
 import {useDark, useToggle} from '@vueuse/core'
-import {routerTransitionOptions} from '@/enums/appEnum'
+import {elementSizeOptions, routerTransitionOptions} from '@/enums/appEnum'
 import {ref} from "vue";
+import {getCurrentInstance} from "vue";
+import {useRouter} from "vue-router";
 
 export default {
   name: 'setting',
@@ -134,10 +148,12 @@ export default {
       getShowSettingDrawer,
       getDarkMode,
       getNavbarMode,
+      getGlobalSize,
       closedSettingDrawer,
       toggleLogo,
       toggleBreadcrumb,
       toggleNavbarMode,
+      toggleElementSize: changeSize,
     } = useRootSetting();
 
     const {getHeaderFixed, toggleHeaderFixed} = useHeaderSetting();
@@ -152,16 +168,29 @@ export default {
       getBasicTransition,
     } = useTransitionSetting();
 
+    const {appContext} = getCurrentInstance()
+    const {replace, currentRoute} = useRouter()
+    const {fullPath} = currentRoute.value;
+
+    const toggleElementSize = (size) => {
+      appContext.config.globalProperties.$ELEMENT.size = size
+      changeSize(size)
+
+      replace({path: '/redirect/' + fullPath})
+    }
+
     const {getEnableTagView, toggleEnableTagView} = useTagViewSetting();
     const getRouterTransitionOptions = ref(routerTransitionOptions);
-
+    const getElementSizeOptions = ref(elementSizeOptions);
     return {
       getShowLogo,
       getShowBreadcrumb,
       getShowSettingDrawer,
       getDarkMode,
       getNavbarMode,
+      getGlobalSize,
       closedSettingDrawer,
+      toggleElementSize,
       toggleLogo,
       toggleBreadcrumb,
       toggleNavbarMode,
@@ -177,6 +206,7 @@ export default {
       getEnableTagView,
       toggleEnableTagView,
       getRouterTransitionOptions,
+      getElementSizeOptions,
       setBasicTransition,
       getBasicTransition
     }

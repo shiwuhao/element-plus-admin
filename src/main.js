@@ -19,15 +19,15 @@ import {registerGlobComp} from "@/components/registerGlobComp";
     await dispatch('app/setProjectConfig', ProjectConfig)
   }
 
-  setupElementPlus(app);
-
-  setupContentment(app);
-
   setupStore(app);
 
   setupRouter(app);
 
   setupRouterGuard();
+
+  setupElementPlus(app);
+
+  setupContentment(app);
 
   setupGlobalDirectives(app);
 

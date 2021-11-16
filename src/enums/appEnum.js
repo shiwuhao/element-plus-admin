@@ -7,6 +7,17 @@ export const routerTransitionEnum = Object.freeze({
   fadeScale: 'fade-scale'
 });
 
+export const elementSizeEnum = Object.freeze({
+  default: 'default',
+  medium: 'medium',
+  small: 'small',
+  mini: 'mini',
+});
+
 export const routerTransitionOptions = Object.values(routerTransitionEnum).map(item => {
+  return {label: item, value: item};
+})
+
+export const elementSizeOptions = Object.values(elementSizeEnum).map(item => {
   return {label: item, value: item};
 })

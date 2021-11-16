@@ -1,4 +1,5 @@
 import Layout from "@/layouts";
+import LayoutContent from "@/layouts/content/Content"
 
 export default [
   {
@@ -9,12 +10,12 @@ export default [
   },
   {
     path: '/redirect',
-    component: Layout,
+    component: LayoutContent,
     meta: {title: 'redirect', menu: false, cache: false},
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect')
+        component: () => import('@/views/redirect/index.vue')
       }
     ]
   },

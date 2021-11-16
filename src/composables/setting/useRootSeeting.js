@@ -33,6 +33,7 @@ export function useRootSetting() {
   const getShowSidebarLogo = computed(() => getIsSidebarMode.value && getShowLogo.value);
   const getShowTagView = computed(() => unref(getEnableTagView) && (unref(getIsTopMenuMode) || unref(getIsSidebarMode)) && !unref(getIsMobile));
   const getShowHeaderTrigger = computed(() => !unref(getIsTopMenuMode));
+  const getGlobalSize = computed(() => unref(getProjectConfig).size);
 
   // 动画
   const getNavbarMode = computed(() => unref(getProjectConfig).navbarMode);
@@ -92,6 +93,15 @@ export function useRootSetting() {
     await setMenuSetting({mode: menuMode});
   }
 
+  /**
+   * 切换布局大小
+   * @param size
+   * @returns {Promise<void>}
+   */
+  async function toggleElementSize(size) {
+    await setRootSetting({size: size});
+  }
+
 
   return {
     toggleLogo,
@@ -99,6 +109,7 @@ export function useRootSetting() {
     toggleNavbarMode,
     openSettingDrawer,
     closedSettingDrawer,
+    toggleElementSize,
     getDarkMode,
     getNavbarMode,
     getShowLogo,
@@ -114,5 +125,6 @@ export function useRootSetting() {
     getIsMobile,
     getPageLoading,
     getOpenKeepAlive,
+    getGlobalSize,
   };
 }

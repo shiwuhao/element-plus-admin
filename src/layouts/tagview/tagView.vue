@@ -11,7 +11,6 @@
           :type="viewIsActive(item) ? '' : 'info'"
           :closable="!(item.meta && item.meta.affix)"
           :effect="viewIsActive(item) ? 'dark' : 'light'"
-          size="small"
           @close="closeView(item)"
           @click="goView(item)"
           @contextmenu.prevent="getSelectView = item"
@@ -46,13 +45,13 @@ export default {
 <style lang="scss" scoped>
 .tag-view {
   background: white;
-  border-bottom: 1px solid #E4E7ED;
-  height: 30px;
+  border-bottom: 1px solid var(--el-border-color-light);
+  //height: 30px;
   text-align: left;
-  padding: 0 10px;
+  padding: 2px 10px;
 
   .scroll-container {
-    height: 30px;
+    //height: 30px;
     background: white;
     line-height: 27px;
 
