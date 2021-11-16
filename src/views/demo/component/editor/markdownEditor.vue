@@ -1,29 +1,26 @@
 <template>
-  <PageWrapper :title="$route.meta.title">
-    <el-radio-group v-model="editorMode" size="small" @change="handleChangeTheme">
-      <el-radio-button label="dark">dark</el-radio-button>
-      <el-radio-button label="classic">classic</el-radio-button>
-    </el-radio-group>
+  <page-wrapper :title="$route.meta['title']" content-full-height content-background>
     <div class="mt-2">
       <Markdown ref="markdownRef" v-model="codeData" :options="options"></Markdown>
     </div>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>
 import {PageWrapper} from "@/components/Page";
 import {Markdown} from '@/components/Markdown'
 import {markdownData} from "./codeData.js";
+import {reactive, toRefs} from "vue";
 
 export default {
   name: "json",
   components: {Markdown, PageWrapper},
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       editorMode: 'classic',
       codeData: markdownData,
       options: {
-        height: 600,
+        height: '100%',
         upload: {
           url: 'https://security-company.runhub.cn/backend/uploads',
           format: (files, responseText) => {
@@ -33,12 +30,10 @@ export default {
           },
         }
       }
-    }
-  },
-  methods: {
-    handleChangeTheme(v) {
-      const instance = this.$refs['markdownRef'].getInstance();
-      instance.setTheme(v)
+    })
+
+    return {
+      ...toRefs(state)
     }
   }
 }
