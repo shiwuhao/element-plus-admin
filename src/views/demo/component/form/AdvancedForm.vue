@@ -6,7 +6,6 @@
       <BasicForm v-model="form"
                  :schemas="schemas"
                  :action-props="actionProps"
-                 size="small"
                  label-width="80px"
                  auto-width
                  label-position="right"></BasicForm>
@@ -15,7 +14,6 @@
       <BasicForm v-model="form2"
                  :schemas="schemas"
                  :action-props="actionProps2"
-                 size="small"
                  auto-width
                  label-width="80px"
                  label-position="right"></BasicForm>
@@ -24,7 +22,6 @@
       <BasicForm v-model="form3"
                  :schemas="schemas"
                  :action-props="actionProps3"
-                 size="small"
                  auto-width
                  label-width="80px"
                  label-position="right"></BasicForm>
@@ -34,7 +31,7 @@
                  :schemas="schemas2"
                  :action-props="actionProps4"
                  auto-width
-                 size="small"></BasicForm>
+      ></BasicForm>
     </el-card>
   </PageWrapper>
 </template>

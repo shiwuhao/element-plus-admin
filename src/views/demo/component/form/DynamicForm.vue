@@ -26,7 +26,6 @@
                  :schemas="schemas"
                  @reset="handleReset"
                  @submit="handleSubmit"
-                 size="small"
                  :auto-width="autoWidth"
                  label-width="90px"
                  label-position="right">

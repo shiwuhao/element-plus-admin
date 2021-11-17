@@ -9,7 +9,6 @@
                :schemas="schemas"
                @reset="handleReset"
                @submit="handleSubmit"
-               size="small"
                auto-width
                label-width="150px"
                :label-position="getIsMobile ? 'top' : 'right'">

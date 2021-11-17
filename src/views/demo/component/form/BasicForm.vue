@@ -8,7 +8,6 @@
         :schemas="schemas"
         @reset="handleReset"
         @submit="handleSubmit"
-        size="small"
         label-width="150px"
         :label-position="getIsMobile ? 'top' : 'right'"></BasicForm>
     </el-card>
