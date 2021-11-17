@@ -170,12 +170,11 @@ export default {
 
     const {appContext} = getCurrentInstance()
     const {replace, currentRoute} = useRouter()
-    const {fullPath} = currentRoute.value;
 
     const toggleElementSize = (size) => {
       appContext.config.globalProperties.$ELEMENT.size = size
       changeSize(size)
-
+      const {fullPath} = currentRoute.value;
       replace({path: '/redirect/' + fullPath})
     }
 
