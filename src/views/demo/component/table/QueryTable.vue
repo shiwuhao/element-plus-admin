@@ -1,21 +1,19 @@
 <template>
-  <PageWrapper
+  <page-wrapper
     :title="$route['meta']['title']"
     :sub-title="$route['meta']['title']">
     <el-card shadow="none">
-      <BasicQuery :schemas="schemas" :col-props="{span:6}" advanced @submit="handleSearch"></BasicQuery>
+      <basic-query :schemas="schemas" :col-props="{span:6}" advanced @submit="handleSearch"></basic-query>
     </el-card>
     <el-card shadow="none" class="mt-2">
-      <BasicTable :data="tableData" :columns="tableColumns" border size="small">
-        <el-table-column label="操作" width="150" fixed="right">
-          <template #default="scope">
-            <el-button type="text" size="mini" @click="handleEdit(scope)">编辑</el-button>
-            <el-button type="text" size="mini" style="color: red" @click="handleDelete(scope)">删除</el-button>
-          </template>
-        </el-table-column>
-      </BasicTable>
+      <basic-table :data="tableData" :columns="tableColumns" border>
+        <template #action="scope">
+          <el-button type="text" @click="handleEdit(scope)">编辑</el-button>
+          <el-button type="text" style="color: red" @click="handleDelete(scope)">删除</el-button>
+        </template>
+      </basic-table>
     </el-card>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>

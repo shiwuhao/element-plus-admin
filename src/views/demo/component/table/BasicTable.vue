@@ -11,12 +11,12 @@
       <el-button type="primary" size="mini">操作2</el-button>
     </template>
     <el-card shadow="none">
-      <BasicTable :data="tableData" :columns="tableColumns" border size="small">
+      <basic-table :data="tableData" :columns="tableColumns" border>
         <template #action>
-          <el-button type="text" size="mini">编辑</el-button>
-          <el-button type="text" size="mini" style="color: red">删除</el-button>
+          <el-button type="text">编辑</el-button>
+          <el-button type="text" style="color: red">删除</el-button>
         </template>
-      </BasicTable>
+      </basic-table>
     </el-card>
   </page-wrapper>
 </template>

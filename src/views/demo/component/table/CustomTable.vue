@@ -1,24 +1,24 @@
 <template>
-  <PageWrapper
+  <page-wrapper
     :title="$route['meta']['title']"
     :sub-title="$route['meta']['title']"
     content-background>
     <el-card shadow="none">
-      <BasicTable :data="tableData" :columns="tableColumns" border size="small">
+      <basic-table :data="tableData" :columns="tableColumns" border size="small">
         <template #name="{row:{name}}">
-          <el-button type="text" size="mini">{{ name }}</el-button>
+          <el-button type="text">{{ name }}</el-button>
         </template>
         <template #action="{row,$index}">
-          <el-button type="text" size="mini" @click="handleEdit(row,$index)">编辑</el-button>
+          <el-button type="text" @click="handleEdit(row,$index)">编辑</el-button>
           <el-popconfirm title="确定要删除吗?">
             <template #reference>
-              <el-button type="text" size="mini" style="color: red" @click="handleDelete(row,$index)">删除</el-button>
+              <el-button type="text" style="color: red" @click="handleDelete(row,$index)">删除</el-button>
             </template>
           </el-popconfirm>
         </template>
-      </BasicTable>
+      </basic-table>
     </el-card>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>

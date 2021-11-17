@@ -1,17 +1,17 @@
 <template>
-  <PageWrapper
+  <page-wrapper
     :title="$route['meta']['title']"
     :sub-title="$route['meta']['title']"
     content-background>
     <el-card shadow="none">
-      <BasicTable :data="tableData" :columns="tableColumns" row-key="id" size="small">
+      <basic-table :data="tableData" :columns="tableColumns" row-key="id">
         <template #action>
-          <el-button type="text" size="mini">编辑</el-button>
-          <el-button type="text" size="mini" style="color: red">删除</el-button>
+          <el-button type="text">编辑</el-button>
+          <el-button type="text" style="color: red">删除</el-button>
         </template>
-      </BasicTable>
+      </basic-table>
     </el-card>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>
