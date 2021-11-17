@@ -6,7 +6,7 @@
           <div class="page-header-title text-xl">
             <slot name="title">{{ title }}</slot>
           </div>
-          <div class="text-secondary text-xs ml-2">
+          <div class="page-header-sub-title text-secondary text-xs ml-2">
             <slot name="sub-title">{{ subTitle }}</slot>
           </div>
         </div>

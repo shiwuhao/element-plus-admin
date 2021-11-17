@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper
+  <page-wrapper
     :title="$route['meta']['title']"
     :sub-title="$route['meta']['title']"
     content-background>
@@ -18,7 +18,7 @@
         </template>
       </BasicTable>
     </el-card>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>
