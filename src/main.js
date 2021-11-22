@@ -1,12 +1,10 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-import {setupElementPlus} from './plugins/element'
+// import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu'
 import {router, setupRouter} from './router'
 import store, {setupStore} from './store'
 import {setupRouterGuard} from "@/router/guard";
-import SvgIcon from '@/components/Icon/src/IconSvg';
-import 'virtual:svg-icons-register';
 import {setupGlobalDirectives} from "@/directives";
 import {ProjectConfig} from "@/enums/config";
 import {registerGlobComp} from "@/components/registerGlobComp";
@@ -25,7 +23,7 @@ import {registerGlobComp} from "@/components/registerGlobComp";
 
   setupRouterGuard();
 
-  setupElementPlus(app);
+  // setupElementPlus(app);
 
   setupContentment(app);
 
@@ -35,6 +33,5 @@ import {registerGlobComp} from "@/components/registerGlobComp";
 
   await router.isReady();
 
-  app.component('svg-icon', SvgIcon)
   app.mount('#app')
 })();

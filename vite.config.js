@@ -3,6 +3,8 @@ import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
 import {viteMockServe} from "vite-plugin-mock";
 import viteSvgIcons from 'vite-plugin-svg-icons';
+import Components from 'unplugin-vue-components/vite'
+import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 
 function pathResolve(dir) {
   return resolve(process.cwd(), '.', dir)
@@ -16,7 +18,7 @@ export default defineConfig(({command}) => {
         '@': pathResolve('src') + '/',
         "~": pathResolve('src') + '/',
       },
-      extensions: ['.vue', '.js'],
+      extensions: ['.vue', '.js', '.mjs'],
     },
     define: {
       'process.env': {},
@@ -35,6 +37,9 @@ export default defineConfig(({command}) => {
       viteSvgIcons({
         iconDirs: [pathResolve('src/assets/svg')],
         symbolId: 'icon-[dir]-[name]',
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
       }),
       viteMockServe({
         mockPath: 'mock',

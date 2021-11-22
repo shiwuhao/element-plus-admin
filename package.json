@@ -53,8 +53,8 @@
     "process": "^0.11.10",
     "sass": "~1.32.6",
     "sass-loader": "^10.0.4",
-    "unplugin-vue-components": "^0.15.4",
-    "vite": "^2.5.10",
+    "unplugin-vue-components": "^0.17.2",
+    "vite": "2.6.0",
     "vite-plugin-mock": "2",
     "vue-cli-plugin-element-plus": "~0.0.13",
     "vuex-persist": "^3.1.3"
