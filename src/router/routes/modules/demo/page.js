@@ -17,13 +17,13 @@ export default [
           {
             path: 'center',
             name: 'personal-center',
-            component: () => import('@/views/demo/page/personal/center'),
+            component: () => import('@/views/demo/page/personal/center/index.vue'),
             meta: {title: '个人中心', menu: true, affix: false}
           },
           {
             path: 'setting',
             name: 'personal-setting',
-            component: () => import('@/views/demo/page/personal/setting'),
+            component: () => import('@/views/demo/page/personal/setting/index.vue'),
             meta: {title: '个人设置', menu: true, affix: false}
           },
         ]
