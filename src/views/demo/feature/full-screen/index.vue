@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useFullscreen} from '@vueuse/core'
 import {ref} from "vue";
 

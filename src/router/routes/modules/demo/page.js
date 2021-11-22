@@ -1,4 +1,4 @@
-import Layout from "@/layouts";
+import Layout from "@/layouts/index.vue";
 import LayoutContent from "@/layouts/content/Content.vue"
 
 export default [

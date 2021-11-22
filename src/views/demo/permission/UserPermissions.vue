@@ -32,8 +32,8 @@
 }
 </style>
 <script>
-import Menu from '@/layouts/menu';
-import {PageWrapper} from "@/components/Page"
+import Menu from '@/layouts/menu/index.vue';
+import {PageWrapper} from "@/components/Page/index.js"
 import {defineComponent, toRefs, reactive, computed} from "vue";
 import {usePermission} from "@/composables/usePermission.js";
 import {useUser} from "@/composables/useUser.js";
@@ -68,8 +68,8 @@ export default defineComponent({
 
     return {
       ...toRefs(state),
-      ...toRefs(permissions),
-      ...toRefs(user),
+      ...permissions,
+      ...user,
       currentUser,
       changeUser,
     }

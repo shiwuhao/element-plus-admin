@@ -1,13 +1,13 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 // import {setupElementPlus} from './plugins/element'
-import {setupContentment} from './plugins/contextmenu'
-import {router, setupRouter} from './router'
-import store, {setupStore} from './store'
-import {setupRouterGuard} from "@/router/guard";
-import {setupGlobalDirectives} from "@/directives";
-import {ProjectConfig} from "@/enums/config";
-import {registerGlobComp} from "@/components/registerGlobComp";
+import {setupContentment} from './plugins/contextmenu.js'
+import {router, setupRouter} from './router/index.js'
+import store, {setupStore} from './store/index.js'
+import {setupRouterGuard} from "@/router/guard/index.js";
+import {setupGlobalDirectives} from "@/directives/index.js";
+import {ProjectConfig} from "@/enums/config.js";
+import {registerGlobComp} from "@/components/registerGlobComp.js";
 
 (async () => {
   const app = createApp(App);

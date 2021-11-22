@@ -1,5 +1,5 @@
 import path from "path";
-import store from "@/store";
+import store from "@/store/index.js";
 import {useRouter} from "vue-router";
 import {computed, nextTick, onMounted, ref, unref, watch} from 'vue';
 

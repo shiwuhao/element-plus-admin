@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-import {useTagView} from "@/layouts/tagview/useTagView";
+import {useTagView} from "@/layouts/tagview/useTagView.js";
 import {toRefs} from "vue";
 
 export default {

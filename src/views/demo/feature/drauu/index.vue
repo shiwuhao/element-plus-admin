@@ -8,7 +8,7 @@
   </page-wrapper>
 </template>
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useDrauu} from '@vueuse/integrations/useDrauu'
 import {ref,toRefs} from "vue";
 

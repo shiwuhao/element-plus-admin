@@ -70,7 +70,7 @@
 
 </style>
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {onClickOutside} from '@vueuse/core'
 import {ref} from "vue";
 

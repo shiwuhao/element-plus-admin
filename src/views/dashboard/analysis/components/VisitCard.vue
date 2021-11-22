@@ -17,7 +17,7 @@
 
 <script>
 import {ref} from "vue";
-import Sale from "@/views/dashboard/analysis/components/Sale";
+import Sale from "@/views/dashboard/analysis/components/Sale.vue";
 
 export default {
   name: "VisitCard",

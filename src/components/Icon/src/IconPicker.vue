@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import {icons} from '../data/index'
+import {icons} from '../data/index.js'
 import {defineComponent, reactive, ref, toRefs, watch} from 'vue';
 import {useDebounceFn, useElementBounding, useVModel} from "@vueuse/core";
 

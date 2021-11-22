@@ -5,11 +5,11 @@
   </el-menu>
 </template>
 <script>
-import SubMenu from "@/layouts/menu/SubMenu";
-import SidebarLogo from "@/layouts/menu/SidebarLogo";
-import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus";
+import SubMenu from "@/layouts/menu/SubMenu.vue";
+import SidebarLogo from "@/layouts/menu/SidebarLogo.vue";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting.js";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {useLayoutMenus} from "@/layouts/menu/useLayoutMenus.js";
 import {computed} from "vue";
 import {useRouter} from 'vue-router';
 

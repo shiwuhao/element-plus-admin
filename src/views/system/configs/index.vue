@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import {PageWrapper} from "@/components/Page";
-import TableList from "@/views/system/configs/TableList";
-import GroupList from "@/views/system/configs/GroupList";
+import {PageWrapper} from "@/components/Page/index.js";
+import TableList from "@/views/system/configs/TableList.vue";
+import GroupList from "@/views/system/configs/GroupList.vue";
 import {ref} from "vue";
 
 export default {

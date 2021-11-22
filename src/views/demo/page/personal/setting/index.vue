@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
-import BaseSetting from "./BasicSetting";
-import SecureSetting from "./SecureSetting";
-import AccountBind from "./AccountBind";
-import MsgNotify from "./MsgNotify";
+import {PageWrapper} from '@/components/Page/index.js'
+import BaseSetting from "./BasicSetting.vue";
+import SecureSetting from "./SecureSetting.vue";
+import AccountBind from "./AccountBind.vue";
+import MsgNotify from "./MsgNotify.vue";
 import {reactive, toRefs} from "vue";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: "index",

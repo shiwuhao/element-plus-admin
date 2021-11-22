@@ -44,9 +44,9 @@ const colProps = {
   xl: {span: 8},
 }
 
-import {BasicForm} from "@/components/Form";
+import {BasicForm} from "@/components/Form/index.js";
 import {selectOptions, cascaderOptions} from './formData.js'
-import {PageWrapper} from '@/components/Page';
+import {PageWrapper} from '@/components/Page/index.js';
 
 export default {
   name: 'AdvancedForm',

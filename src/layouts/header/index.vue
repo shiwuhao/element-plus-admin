@@ -31,19 +31,19 @@
 </template>
 
 <script>
-import Logo from "@/layouts/header/components/Logo";
-import Notify from "@/layouts/header/components/Notify";
-import FullScreen from "@/layouts/header/components/FullScreen";
-import UserDropdown from "@/layouts/header/components/UserDropdown";
-import Breadcrumb from "@/layouts/header/components/Breadcrumb";
-import GitHub from "@/layouts/header/components/GitHub";
-import Setting from "@/layouts/setting/index";
-import LayoutMenu from '@/layouts/menu/index';
-import HeaderTrigger from "@/layouts/trigger/HeaderTrigger";
-import TagView from "@/layouts/tagview/tagView";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
-import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
+import Logo from "@/layouts/header/components/Logo.vue";
+import Notify from "@/layouts/header/components/Notify.vue";
+import FullScreen from "@/layouts/header/components/FullScreen.vue";
+import UserDropdown from "@/layouts/header/components/UserDropdown.vue";
+import Breadcrumb from "@/layouts/header/components/Breadcrumb.vue";
+import GitHub from "@/layouts/header/components/GitHub.vue";
+import Setting from "@/layouts/setting/index.vue";
+import LayoutMenu from '@/layouts/menu/index.vue';
+import HeaderTrigger from "@/layouts/trigger/HeaderTrigger.vue";
+import TagView from "@/layouts/tagview/tagView.vue";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting.js";
+import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting.js";
 
 export default {
   name: "LayoutHeader",

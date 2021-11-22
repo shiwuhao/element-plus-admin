@@ -67,8 +67,8 @@
 </template>
 
 <script>
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {PageWrapper} from '@/components/Page';
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {PageWrapper} from '@/components/Page/index.js';
 import {reactive, ref, toRefs} from "vue";
 
 export default {

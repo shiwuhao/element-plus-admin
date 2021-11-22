@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {props} from './props'
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {props} from './props.js'
 
 export default {
   name: "BasicDrawer",

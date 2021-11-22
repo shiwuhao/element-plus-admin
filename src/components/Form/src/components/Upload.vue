@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {BasicUpload} from '@/components/Upload'
+import {BasicUpload} from '@/components/Upload/index.js'
 import {toRefs} from 'vue'
 import {ElMessage} from 'element-plus'
 

@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import {BasicForm} from '@/components/Form'
+import {BasicForm} from '@/components/Form/index.js'
 import {reactive, ref, toRefs} from "vue";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {useUser} from "@/composables/useUser";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {useUser} from "@/composables/useUser.js";
 
 export default {
   name: "BasicSetting",

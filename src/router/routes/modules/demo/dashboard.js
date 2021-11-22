@@ -1,4 +1,4 @@
-import Layout from "@/layouts";
+import Layout from "@/layouts/index.vue";
 
 export default [
   {
@@ -11,19 +11,19 @@ export default [
         path: 'analysis',
         name: 'analysis',
         meta: {title: '分析页', menu: true, cache: true, affix: true},
-        component: () => import('@/views/dashboard/analysis'),
+        component: () => import('@/views/dashboard/analysis/index.vue'),
       },
       {
         path: 'workplace',
         name: 'workplace',
         meta: {title: '工作台', menu: true, cache: true, affix: false},
-        component: () => import('@/views/dashboard/workplace'),
+        component: () => import('@/views/dashboard/workplace/index.vue'),
       },
       {
         path: 'monitor',
         name: 'monitor',
         meta: {title: '监控页', menu: true, cache: true, affix: false},
-        component: () => import('@/views/dashboard/monitor'),
+        component: () => import('@/views/dashboard/monitor/index.vue'),
       },
     ]
   },

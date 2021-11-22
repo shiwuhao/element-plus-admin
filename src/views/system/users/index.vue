@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import {PageWrapper} from "@/components/Page"
-import {BasicTable, BasicQuery} from "@/components/Table"
-import EditTemplate from "./EditTemplate";
-import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/users";
-import {useResourceApi} from "@/composables/useResourceApi";
+import {PageWrapper} from "@/components/Page/index.js"
+import {BasicTable, BasicQuery} from "@/components/Table/index.js"
+import EditTemplate from "./EditTemplate.vue";
+import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/users.js";
+import {useResourceApi} from "@/composables/useResourceApi.js";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
 
 export default defineComponent({

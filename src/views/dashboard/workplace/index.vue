@@ -17,16 +17,16 @@
   </PageWrapper>
 </template>
 <script>
-import {PageWrapper} from '@/components/Page'
-import UserInfo from "@/views/dashboard/workplace/components/UserInfo";
-import Project from "@/views/dashboard/workplace/components/Project";
-import Dynamic from "@/views/dashboard/workplace/components/Dynamic";
-import QuickNav from "@/views/dashboard/workplace/components/QuickNav";
-import Carousel from "@/views/dashboard/workplace/components/Carousel";
-import ProjectStatistic from "@/views/dashboard/workplace/components/ProjectStatistic";
+import {PageWrapper} from '@/components/Page/index.js'
+import UserInfo from "@/views/dashboard/workplace/components/UserInfo.vue";
+import Project from "@/views/dashboard/workplace/components/Project.vue";
+import Dynamic from "@/views/dashboard/workplace/components/Dynamic.vue";
+import QuickNav from "@/views/dashboard/workplace/components/QuickNav.vue";
+import Carousel from "@/views/dashboard/workplace/components/Carousel.vue";
+import ProjectStatistic from "@/views/dashboard/workplace/components/ProjectStatistic.vue";
 
 import {defineComponent} from 'vue';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default defineComponent({
   components: {PageWrapper, UserInfo, Project, Dynamic, QuickNav, Carousel, ProjectStatistic},

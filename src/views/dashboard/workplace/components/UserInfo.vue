@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import {useUser} from "@/composables/useUser";
+import {useUser} from "@/composables/useUser.js";
 
 export default {
   name: "UserInfo",

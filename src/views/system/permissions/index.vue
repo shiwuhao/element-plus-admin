@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import {PageWrapper} from "@/components/Page"
-import {BasicTable, BasicQuery} from "@/components/Table"
-import EditTemplate from "./EditTemplate";
-import {childrenListApi, listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions";
+import {PageWrapper} from "@/components/Page/index.js"
+import {BasicTable, BasicQuery} from "@/components/Table/index.js"
+import EditTemplate from "./EditTemplate.vue";
+import {childrenListApi, listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions.js";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
-import {useResourceApi} from "@/composables/useResourceApi";
+import {useResourceApi} from "@/composables/useResourceApi.js";
 
 export default defineComponent({
   name: "index",

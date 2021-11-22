@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import {BasicForm} from "@/components/Form";
-import EditGroup from "@/views/system/configs/EditGroup";
-import {useConfig} from "@/composables/config/useConfig";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {BasicForm} from "@/components/Form/index.js";
+import EditGroup from "@/views/system/configs/EditGroup.vue";
+import {useConfig} from "@/composables/config/useConfig.js";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 import {ref} from "vue";
 
 export default {

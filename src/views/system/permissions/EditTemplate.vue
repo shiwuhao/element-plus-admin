@@ -59,11 +59,11 @@
 </template>
 
 <script>
-import {BasicDrawer} from "@/components/Drawer";
+import {BasicDrawer} from "@/components/Drawer/index.js";
 import {toRefs, shallowReactive, inject} from "vue";
-import {useConfig} from "@/composables/config/useConfig";
-import {childrenListApi} from "@/api/permissions";
-import {IconPicker} from '@/components/Icon'
+import {useConfig} from "@/composables/config/useConfig.js";
+import {childrenListApi} from "@/api/permissions.js";
+import {IconPicker} from '@/components/Icon/index.js'
 
 export default {
   name: "editTemplate",

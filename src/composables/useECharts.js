@@ -1,4 +1,4 @@
-import echarts from "@/utils/lib/echarts";
+import echarts from "@/utils/lib/echarts.js";
 import {nextTick, ref} from "vue";
 import {tryOnUnmounted, useDebounceFn, useTimeoutFn} from "@vueuse/core";
 import {useEventListener} from '@vueuse/core';

@@ -1,7 +1,7 @@
 import {computed, reactive, shallowReactive, toRaw} from 'vue'
-import store from "@/store";
+import store from "@/store/index.js";
 import {useRouter} from "vue-router";
-import {listToTree} from "@/utils";
+import {listToTree} from "@/utils/index.js";
 
 export function useConfig() {
   const getGroups = computed(() => store.getters.getConfigs.groups);

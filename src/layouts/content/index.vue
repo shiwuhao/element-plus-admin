@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import Content from "@/layouts/content/Content";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting.js";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import Content from "@/layouts/content/Content.vue";
 
 export default {
   name: "LayoutContent",

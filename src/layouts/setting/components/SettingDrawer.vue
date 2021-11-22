@@ -98,12 +98,12 @@
   </div>
 </template>
 <script>
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting";
-import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
-import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {useHeaderSetting} from "@/composables/setting/useHeaderSeeting.js";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting.js";
+import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting.js";
 import {useDark, useToggle} from '@vueuse/core'
-import {elementSizeOptions, routerTransitionOptions} from '@/enums/appEnum'
+import {elementSizeOptions, routerTransitionOptions} from '@/enums/appEnum.js'
 import {ref} from "vue";
 import {getCurrentInstance} from "vue";
 import {useRouter} from "vue-router";

@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import LayoutMenu from '@/layouts/menu/index'
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
+import LayoutMenu from '@/layouts/menu/index.vue'
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting.js";
 import {watch} from "vue";
 
 export default {

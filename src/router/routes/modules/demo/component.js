@@ -1,5 +1,5 @@
-import Layout from "@/layouts";
-import LayoutContent from "@/layouts/content/Content"
+import Layout from "@/layouts/index.vue";
+import LayoutContent from "@/layouts/content/Content.vue"
 
 export default [
   {
@@ -18,31 +18,31 @@ export default [
             path: 'basicForm',
             name: 'basicForm',
             meta: {title: '基础表单', menu: true, affix: false},
-            component: () => import('@/views/demo/component/form/BasicForm'),
+            component: () => import('@/views/demo/component/form/BasicForm.vue'),
           },
           {
             path: 'advancedForm',
             name: 'advancedForm',
             meta: {title: '收缩表单', menu: true, affix: false},
-            component: () => import('@/views/demo/component/form/AdvancedForm'),
+            component: () => import('@/views/demo/component/form/AdvancedForm.vue'),
           },
           {
             path: 'dynamicForm',
             name: 'dynamicForm',
             meta: {title: '动态表单', menu: true, affix: false},
-            component: () => import('@/views/demo/component/form/DynamicForm'),
+            component: () => import('@/views/demo/component/form/DynamicForm.vue'),
           },
           {
             path: 'ruleForm',
             name: 'ruleForm',
             meta: {title: '表单验证', menu: true, affix: false},
-            component: () => import('@/views/demo/component/form/RuleForm'),
+            component: () => import('@/views/demo/component/form/RuleForm.vue'),
           },
           {
             path: 'customForm',
             name: 'customForm',
             meta: {title: '自定义组件', menu: true, affix: false},
-            component: () => import('@/views/demo/component/form/CustomForm'),
+            component: () => import('@/views/demo/component/form/CustomForm.vue'),
           },
         ],
       },
@@ -90,19 +90,19 @@ export default [
             path: 'code',
             name: 'code',
             meta: {title: '代码编辑器', menu: true, affix: false},
-            component: () => import('@/views/demo/component/editor/codeEditor'),
+            component: () => import('@/views/demo/component/editor/codeEditor.vue'),
           },
           {
             path: 'markdown',
             name: 'markdown',
             meta: {title: 'markdown编辑器', menu: true, affix: false},
-            component: () => import('@/views/demo/component/editor/markdownEditor'),
+            component: () => import('@/views/demo/component/editor/markdownEditor.vue'),
           },
           {
             path: 'rich',
             name: 'rich',
             meta: {title: '富文本编辑器', menu: true, affix: false},
-            component: () => import('@/views/demo/component/editor/richEditor'),
+            component: () => import('@/views/demo/component/editor/richEditor.vue'),
           },
         ],
       },
@@ -143,12 +143,12 @@ export default [
           {
             path: 'icon-basic',
             meta: {title: '基本使用', menu: true, affix: false},
-            component: () => import('@/views/demo/component/icon/index'),
+            component: () => import('@/views/demo/component/icon/index.vue'),
           },
           {
             path: 'icon-preview',
             meta: {title: '图标预览', menu: true, affix: false},
-            component: () => import('@/views/demo/component/icon/preview'),
+            component: () => import('@/views/demo/component/icon/preview.vue'),
           },
         ]
       },
@@ -156,7 +156,7 @@ export default [
         path: 'page-wrapper',
         name: 'page-wrapper',
         meta: {title: '页面包裹', menu: true, affix: false},
-        component: () => import('@/views/demo/component/page-wrapper'),
+        component: () => import('@/views/demo/component/page-wrapper/index.vue'),
       },
     ]
   }

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useThrottle} from '@vueuse/core'
 import {ref, watch} from "vue";
 

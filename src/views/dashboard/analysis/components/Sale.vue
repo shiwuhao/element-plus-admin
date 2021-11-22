@@ -11,8 +11,8 @@
 <script>
 import {onMounted, shallowReactive, toRefs} from 'vue';
 import {getVisitData, rankColumn, rankData} from '../data.js';
-import {BasicTable} from "@/components/Table";
-import {useECharts} from "@/composables/useECharts";
+import {BasicTable} from "@/components/Table/index.js";
+import {useECharts} from "@/composables/useECharts.js";
 
 export default {
   name: "Sale",

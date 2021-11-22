@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 
 export default {
   name: "index",

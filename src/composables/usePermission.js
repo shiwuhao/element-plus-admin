@@ -1,6 +1,6 @@
 import {computed, isRef} from "vue";
-import store from "@/store";
-import {isString} from "@/utils/is";
+import store from "@/store/index.js";
+import {isString} from "@/utils/is.js";
 
 export function usePermission() {
   const {getters} = store;

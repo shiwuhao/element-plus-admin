@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
-import Notice from "@/views/demo/component/echarts/Notice";
-import {useECharts} from "@/composables/useECharts";
+import {PageWrapper} from '@/components/Page/index.js'
+import Notice from "@/views/demo/component/echarts/Notice.vue";
+import {useECharts} from "@/composables/useECharts.js";
 import {onMounted} from "vue";
-import {getPieOption1, getPieOption2, getPieOption3} from "@/views/demo/component/echarts/chartData";
+import {getPieOption1, getPieOption2, getPieOption3} from "@/views/demo/component/echarts/chartData.js";
 
 export default {
   name: "bar",

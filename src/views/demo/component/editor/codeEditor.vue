@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import {PageWrapper} from "@/components/Page";
-import {CodeEditor} from '@/components/CodeEditor'
+import {PageWrapper} from "@/components/Page/index.js";
+import {CodeEditor} from '@/components/CodeEditor/index.js'
 import {jsonData, htmlData, javascriptData} from "./codeData.js";
 
 export default {

@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import {BasicForm} from "@/components/Form";
+import {BasicForm} from "@/components/Form/index.js";
 import {ElInput} from 'element-plus';
-import {PageWrapper} from '@/components/Page';
+import {PageWrapper} from '@/components/Page/index.js';
 import {reactive, ref, toRefs} from "vue";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: 'CustomForm',

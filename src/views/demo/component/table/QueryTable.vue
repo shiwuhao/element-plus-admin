@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page';
-import {BasicTable, BasicQuery} from "@/components/Table";
+import {PageWrapper} from '@/components/Page/index.js';
+import {BasicTable, BasicQuery} from "@/components/Table/index.js";
 import {getBasicColumns, getBasicData} from './tableData.js';
 import {cascaderOptions, selectOptions} from "@/views/demo/component/form/formData.js";
 import {reactive, toRefs} from "vue";

@@ -17,9 +17,9 @@
 <script>
 import {useTransition} from '@vueuse/core'
 import {onMounted, ref} from "vue";
-import {useECharts} from "@/composables/useECharts";
-import {getGrowData} from "@/views/dashboard/analysis/data";
-import {BasicCard} from '@/components/Card'
+import {useECharts} from "@/composables/useECharts.js";
+import {getGrowData} from "@/views/dashboard/analysis/data.js";
+import {BasicCard} from '@/components/Card/index.js'
 
 export default {
   name: "GrowCard",

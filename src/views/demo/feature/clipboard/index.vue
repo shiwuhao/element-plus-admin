@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useClipboard, usePermission} from '@vueuse/core'
 import {ref} from "vue";
 

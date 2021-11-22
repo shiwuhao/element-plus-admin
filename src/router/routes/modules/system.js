@@ -11,25 +11,25 @@ export default [
         path: 'users',
         name: 'users',
         meta: {title: '用户管理', menu: true, affix: false},
-        component: () => import('@/views/system/users/index'),
+        component: () => import('@/views/system/users/index.vue'),
       },
       {
         path: 'roles',
         name: 'roles',
         meta: {title: '角色管理', menu: true, affix: false},
-        component: () => import('@/views/system/roles/index'),
+        component: () => import('@/views/system/roles/index.vue'),
       },
       {
         path: 'menus',
         name: 'menus',
         meta: {title: '菜单管理', menu: true, affix: false},
-        component: () => import('@/views/system/permissions/index'),
+        component: () => import('@/views/system/permissions/index.vue'),
       },
       {
         path: 'configs',
         name: 'config',
         meta: {title: '站点配置', menu: true, affix: false},
-        component: () => import('@/views/system/configs/index'),
+        component: () => import('@/views/system/configs/index.vue'),
       }
     ]
   },

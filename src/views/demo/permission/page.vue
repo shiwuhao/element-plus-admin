@@ -20,7 +20,7 @@
 
 <script>
 import UserPermissions from "@/views/demo/permission/UserPermissions.vue";
-import {PageWrapper} from "@/components/Page"
+import {PageWrapper} from "@/components/Page/index.js"
 import {defineComponent} from "vue";
 
 

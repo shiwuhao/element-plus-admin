@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page';
-import {Tinymce} from "@/components/Tinymce";
+import {PageWrapper} from '@/components/Page/index.js';
+import {Tinymce} from "@/components/Tinymce/index.js";
 
 export default {
   name: "richEditor",

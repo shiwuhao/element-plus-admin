@@ -1,5 +1,5 @@
-import Layout from "@/layouts";
-import LayoutContent from "@/layouts/content/Content"
+import Layout from "@/layouts/index.vue";
+import LayoutContent from "@/layouts/content/Content.vue"
 
 export default [
   {
@@ -23,22 +23,22 @@ export default [
     path: '/login',
     name: 'login',
     meta: {title: 'login', menu: false, cache: false},
-    component: () => import('@/views/login'),
+    component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/auth-redirect',
     meta: {title: 'auth-redirect', menu: false, cache: false},
-    component: () => import('@/views/login/auth-redirect'),
+    component: () => import('@/views/login/auth-redirect.vue'),
   },
   {
     path: '/404',
     meta: {title: '404', menu: false, cache: false},
-    component: () => import('@/views/demo/page/error/404'),
+    component: () => import('@/views/demo/page/error/404.vue'),
   },
   {
     path: '/401',
     meta: {title: '401', menu: false, cache: false},
-    component: () => import('@/views/demo/page/error/403'),
+    component: () => import('@/views/demo/page/error/403.vue'),
   },
   // {
   //   path: '/profile',

@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import Article from "@/views/demo/page/personal/center/Article";
-import Task from "@/views/demo/page/personal/center/Task";
-import UserInfo from "@/views/demo/page/personal/center/UserInfo";
-import Project from "./Project";
+import Article from "@/views/demo/page/personal/center/Article.vue";
+import Task from "@/views/demo/page/personal/center/Task.vue";
+import UserInfo from "@/views/demo/page/personal/center/UserInfo.vue";
+import Project from "./Project.vue";
 import {ref} from "vue";
 
 export default {

@@ -37,12 +37,11 @@
 </template>
 
 <script>
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
-import {PageWrapper} from '@/components/Page';
+import {PageWrapper} from '@/components/Page/index.js';
 import {computed, reactive, ref, toRefs} from "vue";
-import Step1 from "@/views/demo/page/form/step/Step1";
-import Step2 from "@/views/demo/page/form/step/Step2";
-import Step3 from "@/views/demo/page/form/step/Step3";
+import Step1 from "@/views/demo/page/form/step/Step1.vue";
+import Step2 from "@/views/demo/page/form/step/Step2.vue";
+import Step3 from "@/views/demo/page/form/step/Step3.vue";
 
 export default {
   components: {PageWrapper, Step1, Step2, Step3},

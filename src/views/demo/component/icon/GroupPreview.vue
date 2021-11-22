@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page/index'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useDebounceFn, useClipboard} from "@vueuse/core";
 import {reactive, ref, toRefs} from "vue";
 import {ElMessage} from 'element-plus'

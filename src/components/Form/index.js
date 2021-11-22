@@ -1,3 +1,3 @@
-import BasicForm from "./src/Form";
+import BasicForm from "./src/Form.vue";
 
 export {BasicForm};

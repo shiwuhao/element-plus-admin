@@ -1,9 +1,9 @@
-import basic from "@/router/routes/basic";
-import component from "@/router/routes/modules/demo/component";
-import dashboard from "@/router/routes/modules/demo/dashboard";
-import feature from "@/router/routes/modules/demo/feature";
-import page from "@/router/routes/modules/demo/page";
-import permission from "@/router/routes/modules/demo/permission";
+import basic from "@/router/routes/basic.js";
+import component from "@/router/routes/modules/demo/component.js";
+import dashboard from "@/router/routes/modules/demo/dashboard.js";
+import feature from "@/router/routes/modules/demo/feature.js";
+import page from "@/router/routes/modules/demo/page.js";
+import permission from "@/router/routes/modules/demo/permission.js";
 
 // demo中生成菜单
 const demoRoutes = [

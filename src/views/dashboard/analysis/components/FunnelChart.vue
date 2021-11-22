@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import {BasicCard} from '@/components/Card'
-import {useECharts} from "@/composables/useECharts";
-import {getFunnelData} from '../data'
+import {BasicCard} from '@/components/Card/index.js'
+import {useECharts} from "@/composables/useECharts.js";
+import {getFunnelData} from '../data.js'
 import {onMounted} from "vue";
 
 export default {

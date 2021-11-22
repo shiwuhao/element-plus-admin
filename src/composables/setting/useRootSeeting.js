@@ -1,8 +1,8 @@
 import {computed, unref} from 'vue'
-import store from "@/store";
-import {useMenuSetting} from "@/composables/setting/useMenuSeeting";
+import store from "@/store/index.js";
+import {useMenuSetting} from "@/composables/setting/useMenuSeeting.js";
 import {useWindowSize} from "@vueuse/core";
-import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting";
+import {useTagViewSetting} from "@/composables/setting/useTagViewSeeting.js";
 
 
 export function useRootSetting() {

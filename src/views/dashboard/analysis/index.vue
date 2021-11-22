@@ -18,11 +18,11 @@
 
 <script>
 
-import GrowCard from './components/GrowCard'
-import VisitCard from "./components/VisitCard";
-import AreaStackGradientChart from "./components/AreaStackGradientChart";
-import BarPolarStackChart from "./components/BarPolarStackChart";
-import FunnelChart from "./components/FunnelChart";
+import GrowCard from './components/GrowCard.vue'
+import VisitCard from "./components/VisitCard.vue";
+import AreaStackGradientChart from "./components/AreaStackGradientChart.vue";
+import BarPolarStackChart from "./components/BarPolarStackChart.vue";
+import FunnelChart from "./components/FunnelChart.vue";
 
 export default {
   name: "index",

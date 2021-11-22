@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import {BasicTable, BasicQuery} from "@/components/Table"
-import EditTemplate from "@/views/system/configs/EditTemplate";
-import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/configs";
-import {useResourceApi} from "@/composables/useResourceApi";
+import {BasicTable, BasicQuery} from "@/components/Table/index.js"
+import EditTemplate from "@/views/system/configs/EditTemplate.vue";
+import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/configs.js";
+import {useResourceApi} from "@/composables/useResourceApi.js";
 import {defineComponent, reactive, toRefs, provide} from "vue";
 
 export default defineComponent({

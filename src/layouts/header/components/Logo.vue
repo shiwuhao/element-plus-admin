@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import {useGlobalSetting} from "@/composables/setting/useGlobalSeeting";
+import {useGlobalSetting} from "@/composables/setting/useGlobalSeeting.js";
 
 export default {
   setup() {

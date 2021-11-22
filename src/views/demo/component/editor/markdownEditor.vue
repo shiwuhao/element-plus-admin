@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import {PageWrapper} from "@/components/Page";
-import {Markdown} from '@/components/Markdown'
+import {PageWrapper} from "@/components/Page/index.js";
+import {Markdown} from '@/components/Markdown/index.js'
 import {markdownData} from "./codeData.js";
 import {reactive, toRefs} from "vue";
 

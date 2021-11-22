@@ -14,7 +14,7 @@
   </page-wrapper>
 </template>
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useQRCode} from '@vueuse/integrations/useQRCode'
 import {ref} from "vue";
 

@@ -459,7 +459,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {reactive, toRefs} from "vue";
 
 export default {

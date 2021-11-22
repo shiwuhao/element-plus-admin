@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import FormItem from "./components/FormItem";
-import FormAction from "./components/FormAction";
+import FormItem from "./components/FormItem.vue";
+import FormAction from "./components/FormAction.vue";
 import {defineComponent, toRefs, unref, watch, provide, ref, computed} from "vue";
 
 export default defineComponent({

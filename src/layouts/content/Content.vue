@@ -15,8 +15,8 @@
 
 <script>
 import {useStore} from 'vuex';
-import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useTransitionSetting} from "@/composables/setting/useTransitionSeeting.js";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: "Content",

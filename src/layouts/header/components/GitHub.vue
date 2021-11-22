@@ -5,7 +5,7 @@
 </template>
 <script>
 import {defineComponent, computed, unref} from 'vue';
-import {openWindow} from "@/utils";
+import {openWindow} from "@/utils/index.js";
 
 export default defineComponent({
   name: 'GitHub',

@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page/index'
-import {groups} from '@/components/Icon/data'
+import {PageWrapper} from '@/components/Page/index.js'
+import {groups} from '@/components/Icon/data/index.js'
 import {ref, shallowRef} from "vue";
-import GroupPreview from './GroupPreview'
+import GroupPreview from './GroupPreview.vue'
 
 export default {
   name: "index",

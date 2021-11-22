@@ -13,8 +13,8 @@
 
 <script>
 import {computed, toRefs, unref, ref, watch, inject, h} from 'vue'
-import {isFunction, isBoolean} from "@/utils/is";
-import {componentMap} from '../componentMap'
+import {isFunction, isBoolean} from "@/utils/is.js";
+import {componentMap} from '../componentMap.js'
 
 export default {
   name: "BasicFormItem",

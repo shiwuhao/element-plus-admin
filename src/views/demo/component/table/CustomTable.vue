@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import {BasicTable} from "@/components/Table";
-import {PageWrapper} from '@/components/Page';
+import {BasicTable} from "@/components/Table/index.js";
+import {PageWrapper} from '@/components/Page/index.js';
 
 import {getCustomColumns, getBasicData} from './tableData.js';
 import {reactive, toRefs} from "vue";

@@ -3,10 +3,10 @@
 </template>
 <script>
 
-import LayoutMix from "@/layouts/LayoutMix";
-import LayoutAside from "@/layouts/LayoutAside";
-import LayoutTopMenu from "@/layouts/LayoutTopMenu";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import LayoutMix from "@/layouts/LayoutMix.vue";
+import LayoutAside from "@/layouts/LayoutAside.vue";
+import LayoutTopMenu from "@/layouts/LayoutTopMenu.vue";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 import {computed} from "vue";
 
 export default {

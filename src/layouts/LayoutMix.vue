@@ -20,11 +20,11 @@
 </template>
 <script>
 
-import LayoutHeader from './header/index';
-import LayoutContent from './content/index';
-import LayoutSidebar from "@/layouts/sidebar";
-import LayoutMenu from '@/layouts/menu';
-import TagView from '@/layouts/tagview/tagView';
+import LayoutHeader from './header/index.vue';
+import LayoutContent from './content/index.vue';
+import LayoutSidebar from "@/layouts/sidebar/index.vue";
+import LayoutMenu from '@/layouts/menu/index.vue';
+import TagView from '@/layouts/tagview/tagView.vue';
 
 export default {
   name: 'Layout1',

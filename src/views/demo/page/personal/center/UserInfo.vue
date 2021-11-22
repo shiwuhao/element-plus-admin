@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import {useUser} from "@/composables/useUser";
+import {useUser} from "@/composables/useUser.js";
 import {shallowReactive, toRefs} from "vue";
-import {getTeamData, getTagData} from "@/views/demo/page/personal/center/data";
+import {getTeamData, getTagData} from "@/views/demo/page/personal/center/data.js";
 
 export default {
   name: "UserInfo",

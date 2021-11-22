@@ -14,11 +14,11 @@
   </div>
 </template>
 <script>
-import Information from "@/views/dashboard/monitor/components/Information";
-import ServerStatus from "@/views/dashboard/monitor/components/ServerStatus";
-import QueueStatus from "@/views/dashboard/monitor/components/QueueStatus";
-import FailedJobs from "@/views/dashboard/monitor/components/FailedJobs";
-import Throughput from "@/views/dashboard/monitor/components/Throughput";
+import Information from "@/views/dashboard/monitor/components/Information.vue";
+import ServerStatus from "@/views/dashboard/monitor/components/ServerStatus.vue";
+import QueueStatus from "@/views/dashboard/monitor/components/QueueStatus.vue";
+import FailedJobs from "@/views/dashboard/monitor/components/FailedJobs.vue";
+import Throughput from "@/views/dashboard/monitor/components/Throughput.vue";
 import {defineComponent} from 'vue';
 
 

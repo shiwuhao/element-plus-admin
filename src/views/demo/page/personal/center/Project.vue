@@ -19,7 +19,7 @@
 </template>
 <script>
 import {defineComponent, shallowReactive, toRefs} from 'vue';
-import {getProjectData} from "./data";
+import {getProjectData} from "./data.js";
 
 export default defineComponent({
   setup() {

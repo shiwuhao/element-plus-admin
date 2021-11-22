@@ -10,16 +10,16 @@ import {
   ElSlider,
   ElTimeSelect,
 } from 'element-plus'
-import Select from "./components/Select";
-import Textarea from "./components/Textarea";
-import TimePicker from "./components/TimePicker";
-import DatePicker from "./components/DatePicker";
-import DateTimePicker from "./components/DateTimePicker";
-import RadioGroup from "./components/RadioGroup";
-import RadioButtonGroup from "./components/RadioButtonGroup";
-import CheckboxGroup from "./components/CheckboxGroup";
-import CheckboxButtonGroup from "./components/CheckboxButtonGroup";
-import Upload from './components/Upload'
+import Select from "./components/Select.vue";
+import Textarea from "./components/Textarea.vue";
+import TimePicker from "./components/TimePicker.vue";
+import DatePicker from "./components/DatePicker.vue";
+import DateTimePicker from "./components/DateTimePicker.vue";
+import RadioGroup from "./components/RadioGroup.vue";
+import RadioButtonGroup from "./components/RadioButtonGroup.vue";
+import CheckboxGroup from "./components/CheckboxGroup.vue";
+import CheckboxButtonGroup from "./components/CheckboxButtonGroup.vue";
+import Upload from './components/Upload.vue'
 
 const componentMap = new Map;
 componentMap.set('Input', ElInput);

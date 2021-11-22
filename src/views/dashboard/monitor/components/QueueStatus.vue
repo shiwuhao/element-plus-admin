@@ -21,11 +21,9 @@
 </template>
 
 <script>
-import {BasicTable} from '@/components/Table'
-import {BasicCard} from '@/components/Card'
-import {useECharts} from "@/composables/useECharts";
-import {getServerStatusData, getDiskStatusData} from "../data";
-import {onMounted, shallowReactive, toRefs} from "vue";
+import {BasicTable} from '@/components/Table/index.js'
+import {BasicCard} from '@/components/Card/index.js'
+import {shallowReactive, toRefs} from "vue";
 
 export default {
   name: "ServerStatus",

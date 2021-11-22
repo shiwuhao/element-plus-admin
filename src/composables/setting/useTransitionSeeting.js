@@ -1,5 +1,5 @@
 import {computed, unref} from 'vue'
-import store from "@/store";
+import store from "@/store/index.js";
 
 /**
  * 动画设置

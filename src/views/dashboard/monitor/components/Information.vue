@@ -45,10 +45,7 @@
 </template>
 
 <script>
-import {BasicCard} from '@/components/Card'
-import {useECharts} from "@/composables/useECharts";
-import {getThroughputData} from "../data";
-import {onMounted} from "vue";
+import {BasicCard} from '@/components/Card/index.js'
 
 export default {
   name: "ServerStatus",

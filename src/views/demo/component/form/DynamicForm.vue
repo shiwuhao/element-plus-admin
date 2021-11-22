@@ -36,10 +36,10 @@
 
 <script>
 import {getDynamicFormData} from "@/views/demo/component/form/formData.js";
-import {BasicForm} from "@/components/Form";
-import {PageWrapper} from '@/components/Page';
+import {BasicForm} from "@/components/Form/index.js";
+import {PageWrapper} from '@/components/Page/index.js';
 import {reactive, ref, toRefs} from "vue";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 import {ElInput} from "element-plus";
 
 export default {

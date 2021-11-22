@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import IconSvg from "./IconSvg";
+import IconSvg from "./IconSvg.vue";
 import {computed, ref} from "vue";
 
 export default {

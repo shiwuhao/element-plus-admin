@@ -30,7 +30,7 @@
 
 <script>
 import {reactive, ref, toRefs} from "vue";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: "Step1",

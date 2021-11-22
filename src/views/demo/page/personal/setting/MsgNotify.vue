@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {BasicForm} from '@/components/Form'
+import {BasicForm} from '@/components/Form/index.js'
 import {reactive, toRefs} from "vue";
 
 export default {

@@ -14,7 +14,7 @@
 </template>
 <script>
 import {defineComponent} from 'vue';
-import {usePermission} from "@/composables/usePermission";
+import {usePermission} from "@/composables/usePermission.js";
 
 export default defineComponent({
   name: 'QuickNav',

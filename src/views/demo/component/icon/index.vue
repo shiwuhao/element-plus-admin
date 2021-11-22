@@ -97,10 +97,10 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page/index'
+import {PageWrapper} from '@/components/Page/index.js'
 import {reactive, toRefs} from "vue";
 import {HelpFilled, Loading, PieChart, TakeawayBox, Sunrise, VideoPause} from '@element-plus/icons'
-import {IconPicker} from '@/components/Icon'
+import {IconPicker} from '@/components/Icon/index.js'
 
 export default {
   name: "index",

@@ -15,7 +15,7 @@
 
 <script>
 import {reactive, toRefs, unref} from 'vue';
-import {basicProps} from "./props";
+import {basicProps} from "./props.js";
 
 export default {
   name: "BasicUpload",

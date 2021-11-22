@@ -1,3 +1,3 @@
-import BasicUpload from "@/components/Upload/src/BasicUpload";
+import BasicUpload from "@/components/Upload/src/BasicUpload.vue";
 
 export {BasicUpload}

@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page';
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import {PageWrapper} from '@/components/Page/index.js';
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: "index",

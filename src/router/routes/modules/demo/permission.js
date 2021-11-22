@@ -1,4 +1,4 @@
-import Layout from "@/layouts";
+import Layout from "@/layouts/index.vue";
 
 export default [
   {
@@ -11,13 +11,13 @@ export default [
         path: 'page',
         name: 'permission-page',
         meta: {title: '页面权限', menu: true, affix: false},
-        component: () => import('@/views/demo/permission/page'),
+        component: () => import('@/views/demo/permission/page.vue'),
       },
       {
         path: 'button',
         name: 'permission-button',
         meta: {title: '按钮权限', menu: true, affix: false},
-        component: () => import('@/views/demo/permission/button'),
+        component: () => import('@/views/demo/permission/button.vue'),
       },
     ]
   },

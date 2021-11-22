@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import {BasicTable} from '@/components/Table'
-import {BasicCard} from '@/components/Card'
+import {BasicTable} from '@/components/Table/index.js'
+import {BasicCard} from '@/components/Card/index.js'
 import {Refresh} from '@element-plus/icons'
 import {shallowReactive, toRefs} from "vue";
 

@@ -5,8 +5,8 @@
   </div>
 </template>
 <script>
-import SettingDrawer from "@/layouts/setting/components/SettingDrawer";
-import {useRootSetting} from "@/composables/setting/useRootSeeting";
+import SettingDrawer from "@/layouts/setting/components/SettingDrawer.vue";
+import {useRootSetting} from "@/composables/setting/useRootSeeting.js";
 
 export default {
   name: 'setting',

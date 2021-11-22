@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {PageWrapper} from '@/components/Page'
+import {PageWrapper} from '@/components/Page/index.js'
 import {useRouter} from "vue-router";
 
 export default {

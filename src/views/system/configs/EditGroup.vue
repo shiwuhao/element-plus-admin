@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import {BasicForm} from "@/components/Form";
-import {groupListApi, groupUpdateApi} from "@/api/configs"
-import {useResourceApi} from "@/composables/useResourceApi";
+import {BasicForm} from "@/components/Form/index.js";
+import {groupListApi, groupUpdateApi} from "@/api/configs.js"
+import {useResourceApi} from "@/composables/useResourceApi.js";
 import {ref, watch} from "vue";
 
 export default {

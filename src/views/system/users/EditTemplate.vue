@@ -40,9 +40,9 @@
 </template>
 
 <script>
-import {BasicDrawer} from "@/components/Drawer";
+import {BasicDrawer} from "@/components/Drawer/index.js";
 import {toRefs, shallowReactive, inject, ref} from "vue";
-import {useConfig} from "@/composables/config/useConfig";
+import {useConfig} from "@/composables/config/useConfig.js";
 
 export default {
   name: "editTemplate",
