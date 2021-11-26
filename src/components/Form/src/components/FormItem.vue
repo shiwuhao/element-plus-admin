@@ -1,7 +1,10 @@
 <template>
   <el-col v-bind="colProps" v-show="getIsShow">
     <el-form-item v-bind="getFormProps">
-      <component v-if="!schema.slot" :is="getComponent" v-model="VModel" v-bind="getComponentProps"
+      <component v-if="!schema.slot"
+                 :is="getComponent"
+                 v-model="VModel"
+                 v-bind="getComponentProps"
                  class="w-full"></component>
       <slot v-else :name="schema.slot" v-bind="{schema:$props['schema']}"></slot>
       <template #[item]="data" v-for="item in Object.keys($slots)">

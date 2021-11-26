@@ -1,20 +1,21 @@
 <template>
-  <PageWrapper
-    :title="$route['meta']['title']"
-    content-full-height>
+  <page-wrapper :title="$route['meta']['title']" content-full-height>
     <el-card shadow="none">
-      <BasicForm
-        v-model="form"
-        :schemas="schemas"
-        @reset="handleReset"
-        @submit="handleSubmit"
-        label-width="150px"
-        :label-position="getIsMobile ? 'top' : 'right'"></BasicForm>
+<!--      <el-slider></el-slider>-->
+      <component :is="getComponent" v-model="form.slider" class="w-full" style="height: 30px;"></component>
+<!--      <basic-form-->
+<!--        v-model="form"-->
+<!--        :schemas="schemas"-->
+<!--        @reset="handleReset"-->
+<!--        @submit="handleSubmit"-->
+<!--        label-width="150px"-->
+<!--        :label-position="getIsMobile ? 'top' : 'right'"></basic-form>-->
     </el-card>
-  </PageWrapper>
+  </page-wrapper>
 </template>
 
 <script>
+import {componentMap} from '@/components/Form/src/componentMap.js'
 import {getFormData} from "@/views/demo/component/form/formData.js";
 import {BasicForm} from "@/components/Form/index.js";
 import {PageWrapper} from '@/components/Page/index.js';
@@ -56,7 +57,9 @@ export default {
       });
     };
 
+    const getComponent =  componentMap.get('Slider');
     return {
+      getComponent,
       ...toRefs(state),
       formRef,
       getIsMobile,

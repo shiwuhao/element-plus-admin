@@ -1,6 +1,6 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-// import {setupElementPlus} from './plugins/element'
+import {setupElementPlus} from './plugins/element'
 import {setupContentment} from './plugins/contextmenu.js'
 import {router, setupRouter} from './router/index.js'
 import store, {setupStore} from './store/index.js'
@@ -23,7 +23,7 @@ import {registerGlobComp} from "@/components/registerGlobComp.js";
 
   setupRouterGuard();
 
-  // setupElementPlus(app);
+  setupElementPlus(app);
 
   setupContentment(app);
 

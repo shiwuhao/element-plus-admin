@@ -1,5 +1,5 @@
 //图标地址 https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.d9df05512&cid=19238
-import '//at.alicdn.com/t/font_2915337_b0wn8zcpm25.js';
+import 'https://at.alicdn.com/t/font_2915337_b0wn8zcpm25.js';
 
 export default {
   "id": "2915337",

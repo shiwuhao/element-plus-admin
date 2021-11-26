@@ -1,4 +1,4 @@
-import '//at.alicdn.com/t/font_2915553_2xnkr1mdevd.js';
+import 'https://at.alicdn.com/t/font_2915553_2xnkr1mdevd.js';
 
 export default {
   "id": "2915553",

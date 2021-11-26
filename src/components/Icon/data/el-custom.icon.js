@@ -1,4 +1,4 @@
-import '//at.alicdn.com/t/font_1804572_162pxjij64s.js';
+import 'https://at.alicdn.com/t/font_1804572_162pxjij64s.js';
 
 export default
 

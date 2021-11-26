@@ -18,7 +18,6 @@ export default defineConfig(({command}) => {
         '@': pathResolve('src') + '/',
         "~": pathResolve('src') + '/',
       },
-      // extensions: ['.vue', '.js', '.mjs'],
     },
     define: {
       'process.env': {},

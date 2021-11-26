@@ -2,8 +2,8 @@
   <el-form ref="elForm" :model="formModel" v-bind="{...$props,...$attrs}">
     <el-row :gutter="30" v-if="getSchema.length > 0">
       <FormItem v-for="(schema,index) in getSchema"
-                :schema="schema"
                 :key="index"
+                :schema="schema"
                 v-model="formModel[schema['field']]"
                 v-show="showAdvancedButton ? index < showAdvancedLength || getIsAdvanced : true">
         <template #[item]="data" v-for="item in Object.keys($slots)">
