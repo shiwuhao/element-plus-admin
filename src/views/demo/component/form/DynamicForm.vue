@@ -3,19 +3,19 @@
     <el-card shadow="none" class="mb-2">
       <el-row :gutter="10">
         <el-col :xs="24" :sm="12" :md="8" :lg="4" :xl="3" class="my-1">
-          <el-button size="mini" @click="changFieldLabel(0)" class="w-full">更改字段1Label</el-button>
+          <el-button @click="changFieldLabel(0)" class="w-full">更改字段1Label</el-button>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="4" :xl="3" class="my-1">
-          <el-button size="mini" @click="changFieldValue('input')" class="w-full">更改字段1Value</el-button>
+          <el-button @click="changFieldValue('input')" class="w-full">更改字段1Value</el-button>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="4" :xl="3" class="my-1">
-          <el-button size="mini" @click="appendSchema" class="w-full">向最后追加一个字段</el-button>
+          <el-button @click="appendSchema" class="w-full">向最后追加一个字段</el-button>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="4" :xl="3" class="my-1">
-          <el-button size="mini" @click="deleteLastSchema" class="w-full">删除最后一个字段</el-button>
+          <el-button @click="deleteLastSchema" class="w-full">删除最后一个字段</el-button>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="4" :xl="3" class="my-1">
-          <el-button size="mini" @click="autoWidth=!autoWidth" class="w-full">自动宽度{{ autoWidth }}</el-button>
+          <el-button @click="autoWidth=!autoWidth" class="w-full">自动宽度{{ autoWidth }}</el-button>
         </el-col>
       </el-row>
     </el-card>

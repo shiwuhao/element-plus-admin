@@ -97,6 +97,12 @@ const basicProps = {
   },
   icon: {
     type: String
+  },
+  style: {
+    type: Object
+  },
+  class: {
+    type: String
   }
 };
 

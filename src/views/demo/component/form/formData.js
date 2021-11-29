@@ -71,9 +71,6 @@ export function getFormData() {
         placeholder: '这是一个Cascader',
         collapseTags: true,
         options: cascaderOptions,
-        change: () => {
-          console.log(111);
-        }
       },
     },
     {

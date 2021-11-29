@@ -159,6 +159,8 @@ export function useTagView() {
 
         const containerWidth = parseInt(scrollbarRef.value.$el.offsetWidth);
         const scrollWrapper = scrollbarRef.value.$refs.wrap;
+        console.log(scrollbarRef.value.$refs);
+        console.log(scrollWrapper);
 
         if (afterNextTagOffsetLeft > scrollWrapper.scrollLeft + containerWidth) {
           offsetLeft = afterNextTagOffsetLeft - containerWidth;

@@ -8,7 +8,7 @@ export const routerTransitionEnum = Object.freeze({
 });
 
 export const elementSizeEnum = Object.freeze({
-  default: 'default',
+  '': 'default',
   medium: 'medium',
   small: 'small',
   mini: 'mini',

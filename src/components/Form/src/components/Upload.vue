@@ -1,5 +1,5 @@
 <template>
-  <BasicUpload :on-success="handleSuccess" :on-remove="handleRemove" :on-exceed="handleExceed"></BasicUpload>
+  <basic-upload :on-success="handleSuccess" :on-remove="handleRemove" :on-exceed="handleExceed"></basic-upload>
 </template>
 
 <script>
