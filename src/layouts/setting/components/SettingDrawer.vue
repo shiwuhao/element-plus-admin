@@ -172,7 +172,6 @@ export default {
     const {replace, currentRoute} = useRouter()
 
     const toggleElementSize = (size) => {
-      console.log(appContext.config)
       appContext.config.globalProperties.$ELEMENT.size = size
       changeSize(size)
       const {fullPath} = currentRoute.value;

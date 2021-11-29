@@ -11,6 +11,7 @@ const setupProjectConfig = async () => {
 
 export async function setupElementPlus(app) {
   await setupProjectConfig();
-  const size = store.getters.getProjectConfig.size;
+  const size = store.getters.getProjectConfig.size ?? 'small';
+  console.log(size);
   app.config.globalProperties.$ELEMENT = {size: size, zIndex: 3000}
 }
