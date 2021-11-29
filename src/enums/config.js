@@ -59,5 +59,5 @@ export const ProjectConfig = {
   showBreadcrumb: true,
   showSettingDrawer: false,
   openKeepAlive: false,
-  size: 'large',
+  size: 'medium',
 }
