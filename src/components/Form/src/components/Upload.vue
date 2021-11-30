@@ -9,6 +9,7 @@ import {ElMessage} from 'element-plus'
 
 export default {
   name: "Upload",
+  emits:['update:modelValue'],
   components: {BasicUpload},
   props: {
     modelValue: {

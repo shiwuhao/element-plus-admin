@@ -10,25 +10,18 @@
 
 <script>
 import {ref, toRefs, watch} from 'vue'
+import {useVModel} from "@vueuse/core";
 
 export default {
   name: "BasicCheckboxGroup",
+  emits:['update:modelValue'],
   props: {
     modelValue: {
       type: [Array, Number, String],
     }
   },
   setup(props, {emit}) {
-    const {modelValue} = toRefs(props);
-    const VModel = modelValue;
-
-    watch(() => modelValue.value, (newVal) => {
-      VModel.value = newVal;
-    })
-
-    watch(() => VModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    })
+    const VModel = useVModel(props, 'modelValue', emit);
     return {
       VModel,
     }

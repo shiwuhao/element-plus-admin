@@ -1,7 +1,6 @@
 <template>
   <page-wrapper :title="$route['meta']['title']" content-full-height>
     <el-card shadow="none">
-<!--      <el-slider v-show="false"></el-slider>-->
       <basic-form
         v-model="form"
         :schemas="schemas"

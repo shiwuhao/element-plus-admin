@@ -4,23 +4,18 @@
 </template>
 
 <script>
-import {toRefs, watch} from 'vue'
+import {useVModel} from "@vueuse/core";
 
 export default {
   name: "BasicSelect",
+  emits:['update:modelValue'],
   props: {
     modelValue: {
       type: [Number, String, Array, Object],
     }
   },
   setup(props, {emit}) {
-    const {modelValue} = toRefs(props);
-    const VModel = modelValue;
-
-    watch(() => VModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    })
-
+    const VModel = useVModel(props, 'modelValue', emit);
     return {
       VModel,
     }

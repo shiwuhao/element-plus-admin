@@ -7,26 +7,18 @@
 </template>
 
 <script>
-import {toRefs, watch} from 'vue'
+import {useVModel} from "@vueuse/core";
 
 export default {
   name: "BasicRadioGroup",
+  emits:['update:modelValue'],
   props: {
     modelValue: {
       type: [Number, String],
     }
   },
   setup(props, {emit}) {
-    const {modelValue} = toRefs(props);
-    const VModel = modelValue;
-
-    watch(() => modelValue.value, (newVal) => {
-      VModel.value = newVal;
-    })
-
-    watch(() => VModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    })
+    const VModel = useVModel(props, 'modelValue', emit);
     return {
       VModel,
     }

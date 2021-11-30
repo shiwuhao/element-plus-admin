@@ -83,7 +83,7 @@ export default {
     const handleReset = inject('handleReset');
     const handleSubmit = inject('handleSubmit');
 
-    function toggleAdvanced() {
+    const toggleAdvanced = () => {
       emit('toggle-advanced');
     }
 

@@ -18,12 +18,13 @@
 import {computed, toRefs, unref, ref, watch, inject, h} from 'vue'
 import {isFunction, isBoolean} from "@/utils/is.js";
 import {componentMap} from '../componentMap.js'
+import {useVModel} from "@vueuse/core";
 
 export default {
   name: "BasicFormItem",
   props: {
     modelValue: {
-      type: [String, Array, Number, Object],
+      type: [String, Array, Number, Object, Boolean],
       default: '',
     },
     schema: {
@@ -56,15 +57,8 @@ export default {
     });
 
     const getComponent = isFunction(render) ? render(h, modelValue, schema) : componentMap.get(component);
-    const VModel = ref(modelValue.value);
 
-    watch(() => modelValue.value, (newVal) => {
-      VModel.value = newVal;
-    })
-
-    watch(() => VModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    })
+    const VModel = useVModel(props, 'modelValue', emit);
 
     const getIsShow = computed(() => {
       const {show, isAdvanced} = unref(schema);

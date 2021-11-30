@@ -24,6 +24,7 @@
 import FormItem from "./components/FormItem.vue";
 import FormAction from "./components/FormAction.vue";
 import {defineComponent, toRefs, unref, watch, provide, ref, computed} from "vue";
+import {useVModel} from "@vueuse/core";
 
 export default defineComponent({
   name: "BasicForm",
@@ -90,11 +91,12 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  emits: ['reset', 'submit', 'toggle-advanced'],
+  emits: ['update:modelValue', 'reset', 'submit', 'toggle-advanced'],
   setup(props, {emit}) {
     const {modelValue, schemas = [], actionProps = {}} = toRefs(props);
     const getSchema = schemas;
-    const formModel = modelValue;
+    // const formModel = modelValue;
+    const formModel = useVModel(props, 'modelValue', emit);
     const {showAdvancedButton = false, showAdvancedLength = 3} = unref(actionProps);
     const elForm = ref(null);
 
@@ -103,13 +105,14 @@ export default defineComponent({
       return {isAdvanced: getIsAdvanced.value, ...unref(actionProps)};
     });
 
-    watch(() => modelValue.value, (newVal) => {
-      formModel.value = Object.assign(newVal);
-    }, {deep: true})
 
-    watch(() => formModel.value, (newVal) => {
-      emit('update:modelValue', newVal);
-    }, {deep: true})
+    // watch(() => modelValue.value, (newVal) => {
+    //   formModel.value = Object.assign(newVal);
+    // }, {deep: true})
+    //
+    // watch(() => formModel.value, (newVal) => {
+    //   emit('update:modelValue', newVal);
+    // }, {deep: true})
 
     const toggleAdvanced = () => {
       getIsAdvanced.value = !getIsAdvanced.value;
