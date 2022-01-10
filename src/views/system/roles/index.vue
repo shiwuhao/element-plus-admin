@@ -45,14 +45,14 @@ export default defineComponent({
     const state = shallowReactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
-        {prop: 'title', label: '角色名称', minWidth: 100},
+        {prop: 'label', label: '角色名称', minWidth: 100},
         {prop: 'name', label: '角色标识', minWidth: 100},
         {prop: 'status_label', label: '状态', minWidth: 100},
         {prop: 'created_at', label: '创建时间', minWidth: 100},
       ],
       schemas: [
         {field: 'id', placeholder: '角色ID', component: 'Input'},
-        {field: 'title', placeholder: '角色名称', component: 'Input'},
+        {field: 'label', placeholder: '角色名称', component: 'Input'},
         {field: 'name', placeholder: '角色标识', component: 'Input'},
       ],
     })

@@ -923,12 +923,22 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
+"@ctrl/tinycolor@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.npm.taobao.org/@ctrl/tinycolor/download/@ctrl/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
+  integrity sha1-w8WuVDyJfKqcKmhjC+01W+X5mQ8=
+
 "@drauu/core@0.2.1":
   version "0.2.1"
   resolved "https://registry.npmmirror.com/@drauu/core/download/@drauu/core-0.2.1.tgz#7259a0fe877a9f600286632a1654ca03f85674a0"
   integrity sha1-clmg/od6n2AChmMqFlTKA/hWdKA=
   dependencies:
     perfect-freehand "^1.0.4"
+
+"@element-plus/icons-vue@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.npmmirror.com/@element-plus/icons-vue/download/@element-plus/icons-vue-0.2.4.tgz#dadcf72f0cea53dc83b7b7db80e1418716d7b02c"
+  integrity sha512-RsJNyL58rwxtsjeMy34o8txkL6UlME1stWsUlRpTac6UE9Bx9gdJvnDXbIKhOJqBLX17fBjmposdrn6VTqim2w==
 
 "@element-plus/icons@^0.0.11":
   version "0.0.11"
@@ -1652,12 +1662,12 @@
     "@vueuse/shared" "6.7.6"
     vue-demi "*"
 
-"@vueuse/core@^7.0.0":
-  version "7.1.2"
-  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-7.1.2.tgz#61ab2698c725ccaf168676f34cf6f41f76f8df34"
-  integrity sha512-SLoOPfhZdNRNUkZfx+wrHj6WycWdSw2RmNS8E4ngQ2kmBoJjRarGy51/GkGdjqHQqmhuwuFoNO2WaU0yBn3ffg==
+"@vueuse/core@^7.3.0":
+  version "7.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-7.5.3.tgz#7e8ea430a293670f12e5052a5285cb4ef8e9c758"
+  integrity sha512-D9j5ymHFMFRXQqCp0yZJkf/bvBGiz0MrKUa364p+L8dMyd5zyq2K1JmHyvoBd4xbTFRfmQ1h878u6YE5LCkDVQ==
   dependencies:
-    "@vueuse/shared" "7.1.2"
+    "@vueuse/shared" "7.5.3"
     vue-demi "*"
 
 "@vueuse/integrations@^6.5.3":
@@ -1685,10 +1695,10 @@
   dependencies:
     vue-demi "*"
 
-"@vueuse/shared@7.1.2":
-  version "7.1.2"
-  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-7.1.2.tgz#caee72d0669ecdb2b845349e8fea9431e50c09d6"
-  integrity sha512-AjYh4y9S5FMOoHDsysqcXY/1mpqNTrnWUD50yaaiyf+5kGWQVIpAkkjKZlYSC/NHKxxCRn0cLR4nWMzceUWewQ==
+"@vueuse/shared@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/shared/download/@vueuse/shared-7.5.3.tgz#2a844f38e45b1002e14d8f0ab5b41221c4fb9b09"
+  integrity sha512-BJ71cxHN5VByW1S58Gl85NFJaQu93F7Vs7K/MuAKsIIuHm9PBbkR5Vxkg9ko9cBdiKVt+FNoo13BhdbA+Vwycg==
   dependencies:
     vue-demi "*"
 
@@ -3768,14 +3778,15 @@ electron-to-chromium@^1.3.886:
   resolved "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.889.tgz?cache=0&sync_timestamp=1636052773081&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Felectron-to-chromium%2Fdownload%2Felectron-to-chromium-1.3.889.tgz#0b7c6f7628559592d5406deda281788f37107790"
   integrity sha1-C3xvdihVlZLVQG3tooF4jzcQd5A=
 
-element-plus@^1.2.0-beta.4:
-  version "1.2.0-beta.4"
-  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.2.0-beta.4.tgz#970c7c6307ef7433a84691720cdd4c979116677b"
-  integrity sha512-wYOwa/Zop5xMqhqkS7jOd32FF0Y2IpquIu8JLMbmvwlWvRUVetE5RO5lvxiF6etZgq8urRVttisXnOzJ9YOItQ==
+element-plus@^1.3.0-beta.2:
+  version "1.3.0-beta.2"
+  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.3.0-beta.2.tgz#18770ee73a47f35f99834306377017bfd70d3884"
+  integrity sha512-8FWS8soDPCUHNIid60gzvLCbb9NC3rXAPgaRik73OQ0wO6M1KcdO/Lc7zQY76JHxWsZWo7ne9Jfz6dXQJooDuQ==
   dependencies:
-    "@element-plus/icons" "^0.0.11"
+    "@ctrl/tinycolor" "^3.4.0"
+    "@element-plus/icons-vue" "^0.2.4"
     "@popperjs/core" "^2.10.2"
-    "@vueuse/core" "^7.0.0"
+    "@vueuse/core" "^7.3.0"
     async-validator "^4.0.7"
     dayjs "^1.10.7"
     lodash "^4.17.21"

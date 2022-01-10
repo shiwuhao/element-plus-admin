@@ -1,5 +1,6 @@
 import axios from "@/utils/axios";
 
+const allApi = (query = {}) => axios.get('/permissions/all', {params: query});
 const listApi = (query = {}) => axios.get('/permissions', {params: query});
 const childrenListApi = (pid = {}) => axios.get('/permissions', {params: {pid: pid}});
 const itemApi = (item = {}) => axios.get(`/permissions/${item.id}`);
@@ -26,6 +27,7 @@ const deleteApi = (item = {}) => axios.delete(`/permissions/${item.id}`);
 const autoGenerateApi = (item = {}) => axios.post(`/permissions/auto`);
 
 export {
+  allApi,
   listApi,
   itemApi,
   updateApi,
