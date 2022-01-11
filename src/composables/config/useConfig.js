@@ -4,14 +4,12 @@ import {useRouter} from "vue-router";
 import {listToTree} from "@/utils/index.js";
 
 export function useConfig() {
-  const getGroups = computed(() => store.getters.getConfigs.groups);
-  const getTypes = computed(() => store.getters.getConfigs.types);
-  const getComponents = computed(() => store.getters.getConfigs.components);
-  const getPermissions = computed(() => store.getters.getConfigs.permissions);
-  const getTreePermissions = computed(() => {
-    const children = listToTree(toRaw(store.getters.getConfigs.permissions));
-    return [{id: 0, pid: 0, title: '根节点', children: children}];
-  });
+  const getConfigGroups = computed(() => store.getters.getConfigs['config_groups']);
+  const getConfigTypes = computed(() => store.getters.getConfigs['config_types']);
+  const getConfigComponents = computed(() => store.getters.getConfigs['config_components']);
+
+  const getMenuTypes = computed(() => store.getters.getConfigs['menu_types']);
+  const getPermissions = computed(() => store.getters.getConfigs['permissions']);
 
 
   const getRoles = computed(() => store.getters.getConfigs.roles);
@@ -19,11 +17,11 @@ export function useConfig() {
   const getPermissionRoutes = shallowReactive(useRouter().getRoutes().filter(item => item.meta.menu));
 
   return {
-    getGroups,
-    getTypes,
-    getComponents,
+    getConfigGroups,
+    getConfigTypes,
+    getConfigComponents,
+    getMenuTypes,
     getPermissions,
-    getTreePermissions,
     getRoles,
     getPermissionRoutes,
   }

@@ -23,14 +23,14 @@
           </el-select>
         </el-form-item>
         <el-form-item label="用户状态" prop="status">
-          <el-radio-group v-model="item.status" size="mini">
+          <el-radio-group v-model="item.status">
             <el-radio-button :label="1">启用</el-radio-button>
             <el-radio-button :label="0">禁用</el-radio-button>
           </el-radio-group>
         </el-form-item>
         <el-form-item>
-          <el-button @click="cancelItem" size="small">取 消</el-button>
-          <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
+          <el-button @click="cancelItem">取 消</el-button>
+          <el-button type="primary" @click="confirmItem" :loading="confirmLoading">
             {{ confirmLoading ? '提交中 ...' : '确 定' }}
           </el-button>
         </el-form-item>

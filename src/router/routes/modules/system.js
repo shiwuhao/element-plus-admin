@@ -23,6 +23,12 @@ export default [
         path: 'menus',
         name: 'menus',
         meta: {title: '菜单管理', menu: true, affix: false},
+        component: () => import('@/views/system/menus/index.vue'),
+      },
+      {
+        path: 'permissions',
+        name: 'permissions',
+        meta: {title: '权限管理', menu: true, affix: false},
         component: () => import('@/views/system/permissions/index.vue'),
       },
       {

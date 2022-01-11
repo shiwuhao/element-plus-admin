@@ -1,22 +1,22 @@
 <template>
   <BasicDrawer :title="!item.id ? '新增配置' : '编辑配置'" v-model="dialog" @close="cancelItem">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px" size="small">
+      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px">
         <el-form-item label="配置分组" prop="group">
           <el-select v-model="item.group" clearable placeholder="请选择配置分组" style="width: 100%;">
-            <el-option v-for="(item,index) in getGroups" :label="item.label" :value="item.value"
+            <el-option v-for="(item,index) in getConfigGroups" :label="item.label" :value="item.value"
                        :key="index"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="配置类型" prop="type">
           <el-select v-model="item.type" clearable placeholder="请选择配置类型" style="width: 100%;">
-            <el-option v-for="(item,index) in getTypes" :label="item.label" :value="item.value"
+            <el-option v-for="(item,index) in getConfigTypes" :label="item.label" :value="item.value"
                        :key="index"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渲染组件" prop="component">
           <el-select v-model="item.component" clearable placeholder="请选择渲染组件" style="width: 100%;">
-            <el-option v-for="(item,index) in getComponents" :label="item.label" :value="item.value"
+            <el-option v-for="(item,index) in getConfigComponents" :label="item.label" :value="item.value"
                        :key="index"></el-option>
           </el-select>
         </el-form-item>
@@ -66,14 +66,14 @@ export default {
       }
     })
 
-    const {getGroups, getTypes, getComponents} = useConfig();
+    const {getConfigGroups, getConfigTypes, getConfigComponents} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
 
     return {
       ...toRefs(state),
-      getGroups,
-      getTypes,
-      getComponents,
+      getConfigGroups,
+      getConfigTypes,
+      getConfigComponents,
       formRef,
       item,
       dialog,

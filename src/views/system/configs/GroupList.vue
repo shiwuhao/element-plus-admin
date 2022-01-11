@@ -1,7 +1,7 @@
 <template>
   <el-card shadow="none">
     <el-tabs v-model="group" :tab-position="getIsMobile ? 'top' : 'left'">
-      <el-tab-pane v-for="(item,index) in getGroups"
+      <el-tab-pane v-for="(item,index) in getConfigGroups"
                    :key="index"
                    :label="item.label"
                    :name="item.value"
@@ -23,12 +23,12 @@ export default {
   name: "GroupList",
   components: {BasicForm, EditGroup},
   setup() {
-    const {getGroups} = useConfig();
+    const {getConfigGroups} = useConfig();
     const {getIsMobile} = useRootSetting();
     const group = ref('basic');
 
     return {
-      getGroups,
+      getConfigGroups,
       getIsMobile,
       group,
     }

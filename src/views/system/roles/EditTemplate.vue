@@ -5,7 +5,7 @@
     v-model="dialog"
     @close="cancelItem">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px" size="small">
+      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px">
         <el-form-item label="英文标识" prop="name">
           <el-input v-model="item.name" autocomplete="off"></el-input>
         </el-form-item>
@@ -35,8 +35,8 @@
           </el-tree>
         </el-form-item>
         <el-form-item>
-          <el-button @click="cancelItem" size="small">取 消</el-button>
-          <el-button type="primary" size="small" @click="confirmItem" :loading="confirmLoading">
+          <el-button @click="cancelItem">取 消</el-button>
+          <el-button type="primary" @click="confirmItem" :loading="confirmLoading">
             {{ confirmLoading ? '提交中 ...' : '确 定' }}
           </el-button>
         </el-form-item>
