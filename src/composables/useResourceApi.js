@@ -11,6 +11,7 @@ export function useResourceApi({
                                  item = {},
                                  paginate = {},
                                  uniqueId = 'id',
+                                 autoloadListApi = true,// 自动加载列表api
                                  refreshAfterConfirm = true,// 确认提交后刷新
                                }) {
   const formRef = ref(null);
@@ -29,6 +30,7 @@ export function useResourceApi({
     listLoading: false,
     itemLoading: false,
     confirmLoading: false,
+    autoloadListApi: autoloadListApi,
     refreshAfterConfirm: refreshAfterConfirm,
   });
 
@@ -65,6 +67,7 @@ export function useResourceApi({
 
   // 添加项
   const addItem = () => {
+    state.item = defaultItem;
     state.dialog = true;
   }
 
@@ -127,7 +130,7 @@ export function useResourceApi({
   }
 
   onMounted(async () => {
-    await getList();
+    state.autoloadListApi && await getList();
   })
 
   return {

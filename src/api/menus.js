@@ -26,30 +26,6 @@ const storeApi = (item = {}) => axios.post(`/menus`, {
 });
 const deleteApi = (item = {}) => axios.delete(`/menus/${item.id}`);
 
-const resourceApi = useResourceApi({
-  listApi,
-  itemApi,
-  updateApi,
-  storeApi,
-  deleteApi,
-  item: {type: 'route'},
-  refreshAfterConfirm: false,
-});
-
-export function useFetchMenus() {
-  const state = reactive({
-    menus: [],
-    treeMenus: [],
-  })
-
-  const fetchAll = () => {
-    allApi().then(({data: {data}}) => {
-      state.menus = data;
-      state.treeMenus = [{id: 0, pid: 0, children: listToTree(data)}]
-    })
-  }
-}
-
 export {
   allApi,
   listApi,
@@ -57,4 +33,5 @@ export {
   updateApi,
   storeApi,
   deleteApi,
+
 }

@@ -1,7 +1,7 @@
 <template>
   <page-wrapper :title="$route.meta['title']">
     <template #extra>
-      <el-button type="primary" size="mini" @click="addItem">新增</el-button>
+      <el-button type="primary" @click="addItem">新增</el-button>
     </template>
     <el-card shadow="none">
       <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>
@@ -12,13 +12,12 @@
                   :data="lists"
                   :paginate="paginate"
                   :loading="listLoading"
-                  :load="loadChildren"
                   :tree-props="{children: 'children', hasChildren: 'children_count'}"
                   @change-page="changePage">
         <template #label="{row:{icon,label}}">
           <div class="flex-row align-center">
-            <icon v-if="icon" :name="icon" :size="14"/>
-            <span style="margin-left: 5px;">{{ label }}</span>
+            <span style="width: 14px;"><icon v-if="icon" :name="icon" :size="14"/></span>
+            <span class="ml-1">{{ label }}</span>
           </div>
         </template>
         <el-table-column label="操作" width="120">
@@ -26,7 +25,7 @@
             <el-button type="text" size="small" @click="editItem(row)">编辑</el-button>
             <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
               <template #reference>
-                <el-button type="text" size="small" :disabled="row.name === 'Administrator'">删除</el-button>
+                <el-button type="text" size="small">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -41,9 +40,8 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
-import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/menus.js";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
-import {useResourceApi} from "@/composables/useResourceApi.js";
+import {useFetchResource} from '@/api/useFetchMenus.js';
 
 export default defineComponent({
   name: "index",
@@ -65,46 +63,12 @@ export default defineComponent({
       ],
     })
 
-    let resourceApi = useResourceApi({
-      listApi,
-      itemApi,
-      updateApi,
-      storeApi,
-      deleteApi,
-      item: {type: 'route'},
-      refreshAfterConfirm: false,
-    });
-
-    const maps = new Map();
-    const {confirmItem, deleteItem, getList, item} = resourceApi;
-
-    const loadChildren = async (tree, treeNode, resolve) => {
-      // maps.set(tree.id, {tree, treeNode, resolve});
-      // const {data: {data}} = await childrenListApi(tree.id);
-      // resolve(data);
-    }
-
-    const _confirmItem = async () => {
-      const {tree, treeNode, resolve} = {...maps.get(item.value.pid)};
-      await confirmItem();
-      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
-    }
-
-    const _deleteItem = async (item) => {
-      const {tree, treeNode, resolve} = {...maps.get(item.pid)};
-      await deleteItem(item);
-      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
-    }
-
-    resourceApi = {...resourceApi, ...{confirmItem: _confirmItem, deleteItem: _deleteItem}}
-    provide('resourceApi', resourceApi);
-    // provide('childrenListApi', childrenListApi);
+    const fetchResource = useFetchResource({item: {type: 'route'}});
+    provide('fetchResource', fetchResource);
 
     return {
       ...toRefs(state),
-      ...toRefs(resourceApi),
-      // autoGenerateApi,
-      loadChildren,
+      ...toRefs(fetchResource),
     }
   },
 })

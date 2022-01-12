@@ -10,7 +10,7 @@
         <el-form-item label="父级节点" prop="pid">
           <el-cascader
             v-model="item.pid"
-            :show-all-levels="false"
+            :show-all-levels="true"
             :props="{checkStrictly:true,value:'id',label:'label',emitPath:false}"
             :options="menuOptions"
             clearable
@@ -24,7 +24,12 @@
           <el-input v-model="item.label" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="目标地址" prop="url">
-          <el-select v-if="item.type === 'route'" v-model="item.url" placeholder="请选择路由页面" filterable clearable class="w-full">
+          <el-select v-if="item.type === 'route'"
+                     v-model="item.url"
+                     placeholder="请选择路由页面"
+                     filterable
+                     clearable
+                     class="w-full">
             <el-option v-for="(item,index) in getPermissionRoutes" :key="index" :value="item.path">
               <span style="float: left">{{ item.path }}</span>
               <span style="float: right">{{ item.meta.title }}</span>
@@ -33,7 +38,7 @@
           <el-input v-else v-model="item.url" placeholder="请输入地址"></el-input>
         </el-form-item>
         <el-form-item label="菜单图标">
-          <icon-picker v-model="item.icon"/>
+          <icon-picker v-model="item.icon" clearable/>
         </el-form-item>
         <el-form-item>
           <el-button @click="cancelItem">取 消</el-button>
@@ -50,9 +55,9 @@
 import {BasicDrawer} from "@/components/Drawer/index.js";
 import {toRefs, shallowReactive, inject, watch} from "vue";
 import {useConfig} from "@/composables/config/useConfig.js";
-import {allApi} from "@/api/menus.js";
 import {IconPicker} from '@/components/Icon/index.js'
 import {menuTypeEnum} from "@/enums/appEnum.js";
+import {useFetchTreeList} from '@/api/useFetchMenus.js';
 import {listToTree} from "@/utils";
 
 export default {
@@ -69,35 +74,20 @@ export default {
         url: [{required: true, message: '请输入后端url地址', trigger: 'blur'}],
       },
       menuTypes: menuTypeEnum,
-      menuOptions: [],
     })
 
     const {getPermissionRoutes} = useConfig();
-    const childrenListApi = inject('childrenListApi');
-    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
-
-    // 获取所有权限节点
-    const fetchAllMenus = async () => {
-      await allApi().then(({data: {data}}) => {
-        data.unshift({id: 0, pid: 0, name: 'root', label: '顶级菜单'})
-        state.menuOptions = listToTree(data);
-      })
-    }
+    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
+    const {lists: menuOptions, fetch: fetchTree} = useFetchTreeList();
 
     // 监控编辑事件
-    watch(dialog, async () => dialog.value && await fetchAllMenus());
-
-    const lazyLoad = async ({level, data}, resolve) => {
-      if (level === 0) {
-        resolve([{id: 0, pid: 0, title: '根节点', children: []}]);
-      } else {
-        const {data: {data: lists}} = await childrenListApi(data.id);
-        resolve(lists)
-      }
-    }
+    watch(dialog, () => {
+      dialog.value && fetchTree();
+    });
 
     return {
       ...toRefs(state),
+      menuOptions,
       formRef,
       item,
       dialog,
@@ -106,7 +96,6 @@ export default {
       cancelItem,
       confirmItem,
       getPermissionRoutes,
-      lazyLoad
     }
   }
 }
