@@ -3,6 +3,7 @@
     ref="popover"
     :placement="placement"
     popper-class="icon-popper"
+    v-model:visible="visible"
     show-arrow
     trigger="click"
     :disabled="disabled"
@@ -17,6 +18,8 @@
         :disabled="$props.disabled"
         :readonly="$props.readonly"
         @input="handleSearch"
+        @focus="handleFocus"
+        @blur="handleBlur"
       >
         <template #append>
           <slot name="append">
@@ -86,6 +89,7 @@ export default defineComponent({
   setup(props, {emit}) {
     const state = reactive({
       icons: icons,
+      visible: false,
     })
 
     const inputElRef = ref()
@@ -101,6 +105,9 @@ export default defineComponent({
       state.icons = icons.filter(item => item.includes(value))
     }, 200)
 
+    const handleFocus = () => state.visible = true;
+    const handleBlur = () => state.visible = false;
+
 
     return {
       ...toRefs(state),
@@ -109,6 +116,8 @@ export default defineComponent({
       popWrapWidth,
       handleSearch,
       handleSelect,
+      handleFocus,
+      handleBlur,
     }
   }
 })

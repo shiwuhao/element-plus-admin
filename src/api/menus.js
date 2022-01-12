@@ -51,6 +51,7 @@ export function useFetchMenus() {
 }
 
 export {
+  allApi,
   listApi,
   itemApi,
   updateApi,
