@@ -58,7 +58,6 @@ import {useConfig} from "@/composables/config/useConfig.js";
 import {IconPicker} from '@/components/Icon/index.js'
 import {menuTypeEnum} from "@/enums/appEnum.js";
 import {useFetchTreeList} from '@/api/useFetchMenus.js';
-import {listToTree} from "@/utils";
 
 export default {
   name: "editTemplate",
@@ -81,9 +80,7 @@ export default {
     const {lists: menuOptions, fetch: fetchTree} = useFetchTreeList();
 
     // 监控编辑事件
-    watch(dialog, () => {
-      dialog.value && fetchTree();
-    });
+    watch(dialog, () => dialog.value && fetchTree());
 
     return {
       ...toRefs(state),
