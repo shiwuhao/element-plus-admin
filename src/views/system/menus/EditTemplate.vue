@@ -79,7 +79,6 @@ export default {
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
     const {lists: menuOptions, fetch: fetchTree} = useFetchTreeList();
 
-    // 监控编辑事件
     watch(dialog, () => dialog.value && fetchTree());
 
     return {
