@@ -33,6 +33,7 @@ export const useFetchTreeList = () => {
   const fetch = () => {
     fetchAll().then(({data: {data}}) => {
       data.unshift({id: 0, pid: 0, name: 'root', label: '顶级菜单'})
+      lists.value = [];
       lists.value = listToTree(data);
     });
   }
