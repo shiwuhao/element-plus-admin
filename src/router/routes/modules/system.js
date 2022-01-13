@@ -26,6 +26,12 @@ export default [
         component: () => import('@/views/system/menus/index.vue'),
       },
       {
+        path: 'actions',
+        name: 'actions',
+        meta: {title: '动作管理', menu: true, affix: false},
+        component: () => import('@/views/system/actions/index.vue'),
+      },
+      {
         path: 'permissions',
         name: 'permissions',
         meta: {title: '权限管理', menu: true, affix: false},

@@ -41,7 +41,7 @@ import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
-import {useFetchResource} from '@/api/useFetchMenus.js';
+import {useFetchResource} from '@/api/useFetchActions.js';
 
 export default defineComponent({
   name: "index",
@@ -50,16 +50,15 @@ export default defineComponent({
     const state = shallowReactive({
       columns: [
         {prop: 'id', label: 'ID', width: 100},
-        {prop: 'label', label: '菜单名称', minWidth: 120, slot: 'label'},
+        {prop: 'label', label: '显示名称', minWidth: 120},
         {prop: 'name', label: '英文标识', minWidth: 120},
-        {prop: 'type_label', label: '菜单类型', minWidth: 80},
-        {prop: 'url', label: '目标地址', minWidth: 150},
+        {prop: 'method', label: '请求方式', minWidth: 80},
+        {prop: 'uri', label: '请求地址', minWidth: 150},
         {prop: 'created_at', label: '创建时间', minWidth: 135},
       ],
       schemas: [
-        {field: 'id', placeholder: '菜单ID', component: 'Input'},
-        {field: 'title', placeholder: '菜单名称', component: 'Input'},
-        {field: 'name', placeholder: '菜单标识', component: 'Input'},
+        {field: 'label', placeholder: '显示名称', component: 'Input'},
+        {field: 'name', placeholder: '英文标识', component: 'Input'},
       ],
     })
 

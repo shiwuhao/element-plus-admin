@@ -21,6 +21,14 @@ export const menuTypeEnum = Object.freeze({
   iframe: '内嵌',
 });
 
+// 请求方式枚举
+export const methodEnum = Object.freeze({
+  get: 'get',
+  post: 'post',
+  put: 'put',
+  delete: 'delete',
+});
+
 
 export const routerTransitionOptions = Object.values(routerTransitionEnum).map(item => {
   return {label: item, value: item};

@@ -8,31 +8,40 @@
       <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>
     </el-card>
     <el-card shadow="none" class="mt-2">
-      <BasicTable row-key="id" lazy
-                  :columns="columns"
-                  :data="lists"
-                  :paginate="paginate"
-                  :loading="listLoading"
-                  :load="loadChildren"
-                  :tree-props="{children: 'children', hasChildren: 'children_count'}"
-                  @change-page="changePage">
-        <template #title="{row:{icon,title}}">
-          <div class="flex-row align-center">
-            <icon v-if="icon" :name="icon" :size="14"/>
-            <span style="margin-left: 5px;">{{ title }}</span>
-          </div>
-        </template>
-        <el-table-column label="操作" width="120">
-          <template #default="{row}">
-            <el-button type="text" size="small" @click="editItem(row)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
-              <template #reference>
-                <el-button type="text" size="small" :disabled="row.name === 'Administrator'">删除</el-button>
-              </template>
-            </el-popconfirm>
-          </template>
-        </el-table-column>
-      </BasicTable>
+      <el-tabs tab-position="left">
+        <el-tab-pane label="菜单">
+          <el-tree :data="lists" :props="{children: 'children',label: renderPermissionTreeLabel}" @node-click="handleNodeClick" />
+        </el-tab-pane>
+        <el-tab-pane label="动作">动作</el-tab-pane>
+      </el-tabs>
+    </el-card>
+    <el-card shadow="none" class="mt-2">
+<!--      <BasicTable row-key="id" lazy-->
+<!--                  :columns="columns"-->
+<!--                  :data="lists"-->
+<!--                  :paginate="paginate"-->
+<!--                  :loading="listLoading"-->
+<!--                  :load="loadChildren"-->
+<!--                  :tree-props="{children: 'children', hasChildren: 'children_count'}"-->
+<!--                  @change-page="changePage">-->
+<!--        <template #title="{row:{icon,title}}">-->
+<!--          <div class="flex-row align-center">-->
+<!--            <icon v-if="icon" :name="icon" :size="14"/>-->
+<!--            <span style="margin-left: 5px;">{{ title }}</span>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--        <el-table-column label="操作" width="120">-->
+<!--          <template #default="{row}">-->
+<!--            <el-button type="text" size="small" @click="editItem(row)">编辑</el-button>-->
+<!--            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">-->
+<!--              <template #reference>-->
+<!--                <el-button type="text" size="small" :disabled="row.name === 'Administrator'">删除</el-button>-->
+<!--              </template>-->
+<!--            </el-popconfirm>-->
+<!--          </template>-->
+<!--        </el-table-column>-->
+<!--      </BasicTable>-->
+<!--      <el-tree :data="lists" :props="{children: 'children',label: renderPermissionTreeLabel}" @node-click="handleNodeClick" />-->
       <EditTemplate ref="editTemplateRef" v-model="dialog"/>
     </el-card>
   </page-wrapper>
@@ -102,11 +111,22 @@ export default defineComponent({
     provide('resourceApi', resourceApi);
     provide('childrenListApi', childrenListApi);
 
+    const handleNodeClick = (data) => {
+      console.log(data)
+    }
+
+    // 渲染权限树节点label
+    const renderPermissionTreeLabel = (data, {level, data: {permissible}}) => {
+      return  permissible['label'];
+    }
+
     return {
       ...toRefs(state),
       ...toRefs(resourceApi),
+      renderPermissionTreeLabel,
       autoGenerateApi,
       loadChildren,
+      handleNodeClick
     }
   },
 })
