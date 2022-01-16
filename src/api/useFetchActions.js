@@ -20,6 +20,8 @@ export const fetchStore = (item = {}) => axios.post(`/actions`, {
 });
 export const fetchDelete = (item = {}) => axios.delete(`/actions/${item.id}`);
 
+const autoGenerateApi = (item = {}) => axios.post(`/permissions/auto`);
+
 // 树形列表
 export const useFetchTreeList = () => {
   const lists = ref([]);

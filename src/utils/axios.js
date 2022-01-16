@@ -39,11 +39,9 @@ instance.interceptors.request.use(function (config) {
 // 响应拦截
 instance.interceptors.response.use((response) => {
 
-
   return response;
 }, (err) => {
   const {response: {status, data: {message}}, config: {url}} = err;
-
   let noticeConfig = {};
   let _message = message;
 
@@ -66,9 +64,11 @@ instance.interceptors.response.use((response) => {
       noticeConfig = {title: '', desc: message.join('<br/>')};
       break;
     default:
-      noticeConfig = {title: message};
+      _message = message;
   }
+
   if (_message) {
+    console.log(status,_message)
     ElMessage.error(_message)
   }
 

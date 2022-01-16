@@ -1,49 +1,41 @@
 <template>
-  <page-wrapper :title="$route.meta['title']">
+  <page-wrapper :title="$route.meta['title']" content-full-height>
     <template #extra>
-      <el-button type="primary" size="mini" @click="autoGenerateApi">自动生成权限节点</el-button>
-      <el-button type="primary" size="mini" @click="addItem">新增</el-button>
+      <el-button type="primary" @click="defaultExpandAll = !defaultExpandAll">toggle</el-button>
+      <el-button type="primary" @click="initSort">初始化排序</el-button>
     </template>
-    <el-card shadow="none">
-      <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>
-    </el-card>
-    <el-card shadow="none" class="mt-2">
-      <el-tabs tab-position="left">
-        <el-tab-pane label="菜单">
-          <el-tree :data="lists" :props="{children: 'children',label: renderPermissionTreeLabel}" @node-click="handleNodeClick" />
-        </el-tab-pane>
-        <el-tab-pane label="动作">动作</el-tab-pane>
-      </el-tabs>
-    </el-card>
-    <el-card shadow="none" class="mt-2">
-<!--      <BasicTable row-key="id" lazy-->
-<!--                  :columns="columns"-->
-<!--                  :data="lists"-->
-<!--                  :paginate="paginate"-->
-<!--                  :loading="listLoading"-->
-<!--                  :load="loadChildren"-->
-<!--                  :tree-props="{children: 'children', hasChildren: 'children_count'}"-->
-<!--                  @change-page="changePage">-->
-<!--        <template #title="{row:{icon,title}}">-->
-<!--          <div class="flex-row align-center">-->
-<!--            <icon v-if="icon" :name="icon" :size="14"/>-->
-<!--            <span style="margin-left: 5px;">{{ title }}</span>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--        <el-table-column label="操作" width="120">-->
-<!--          <template #default="{row}">-->
-<!--            <el-button type="text" size="small" @click="editItem(row)">编辑</el-button>-->
-<!--            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">-->
-<!--              <template #reference>-->
-<!--                <el-button type="text" size="small" :disabled="row.name === 'Administrator'">删除</el-button>-->
-<!--              </template>-->
-<!--            </el-popconfirm>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--      </BasicTable>-->
-<!--      <el-tree :data="lists" :props="{children: 'children',label: renderPermissionTreeLabel}" @node-click="handleNodeClick" />-->
-      <EditTemplate ref="editTemplateRef" v-model="dialog"/>
-    </el-card>
+    <el-row :gutter="10">
+      <el-col :span="4">
+        <el-card shadow="none" class="mt-2" style="height: 100%;">
+          <el-tree default-expand-all
+                   highlight-current
+                   node-key="type"
+                   :expand-on-click-node="false"
+                   current-node-key="all"
+                   :data="types"
+                   :props="{children: 'children',label:'label'}"
+                   @node-click="handleSelectType"></el-tree>
+        </el-card>
+      </el-col>
+      <el-col :span="20">
+        <el-card shadow="none" class="mt-2" style="height: 100%;width: 100%;">
+          {{defaultExpandAll}}
+          <el-tree :default-expand-all="defaultExpandAll"
+                   :props="{children: 'children'}"
+                   @node-click="handleNodeClick"
+                   :data="lists"
+                   draggable
+                   @node-drop="handleDrop">
+            <template #default="{ node:{data: {id,permissible,permissible_type,permissible_type_label}} }">
+              <span class="mr-1">{{ permissible.label }} - {{ id }}</span>
+              <el-tag size="small" :type="permissible_type === 'menus' ? 'warning' : ''">
+                {{ permissible_type_label }}
+              </el-tag>
+            </template>
+          </el-tree>
+        </el-card>
+      </el-col>
+    </el-row>
   </page-wrapper>
 </template>
 
@@ -51,9 +43,10 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
-import {childrenListApi, listApi, itemApi, updateApi, storeApi, deleteApi, autoGenerateApi} from "@/api/permissions.js";
-import {defineComponent, toRefs, provide, shallowReactive} from "vue";
-import {useResourceApi} from "@/composables/useResourceApi.js";
+import {defineComponent, toRefs, shallowReactive, onMounted} from "vue";
+import {useFetchTreeList, fetchUpdate, fetchInitSort} from '@/api/useFetchPermissions.js'
+
+import {ElMessage,ElNotification} from "element-plus";
 
 export default defineComponent({
   name: "index",
@@ -74,59 +67,53 @@ export default defineComponent({
         {field: 'title', placeholder: '权限名称', component: 'Input'},
         {field: 'name', placeholder: '权限标识', component: 'Input'},
       ],
-    })
-
-    let resourceApi = useResourceApi({
-      listApi,
-      itemApi,
-      updateApi,
-      storeApi,
-      deleteApi,
-      item: {type: 'menu'},
-      refreshAfterConfirm: false,
+      defaultExpandAll: true,
+      types: [
+        {
+          type: 'all', label: '全部节点', children: [
+            {type: 'menus', label: '菜单节点'},
+            {type: 'actions', label: '动作节点'}
+          ]
+        },
+      ],
     });
 
-    const maps = new Map();
-    const {confirmItem, deleteItem, getList, item} = resourceApi;
+    const {lists, fetch} = useFetchTreeList();
+    const getPermissionTagType = ({permissible_type}) => permissible_type === 'actions' ? 'info' : 'warning' && console.log(permissible_type);
 
-    const loadChildren = async (tree, treeNode, resolve) => {
-      maps.set(tree.id, {tree, treeNode, resolve});
-      const {data: {data}} = await childrenListApi(tree.id);
-      resolve(data);
+    const handleSelectType = ({type}) => {
+      fetch({type});
     }
-
-    const _confirmItem = async () => {
-      const {tree, treeNode, resolve} = {...maps.get(item.value.pid)};
-      await confirmItem();
-      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
-    }
-
-    const _deleteItem = async (item) => {
-      const {tree, treeNode, resolve} = {...maps.get(item.pid)};
-      await deleteItem(item);
-      tree ? await loadChildren(tree, treeNode, resolve) : await getList();
-    }
-
-    resourceApi = {...resourceApi, ...{confirmItem: _confirmItem, deleteItem: _deleteItem}}
-    provide('resourceApi', resourceApi);
-    provide('childrenListApi', childrenListApi);
 
     const handleNodeClick = (data) => {
       console.log(data)
     }
 
-    // 渲染权限树节点label
-    const renderPermissionTreeLabel = (data, {level, data: {permissible}}) => {
-      return  permissible['label'];
+    const handleDrop = ({data: {id: draggingId}}, {data: {id: dropId}}, dropType, ev) => {
+      fetchUpdate({id: draggingId, dropId, dropType})
+      console.log(draggingId, dropId, dropType, ev)
+      console.log(ev);
     }
+    const initSort = () => {
+      console.log(111);
+      ElMessage('this is a message.')
+
+      ElMessage.error('1231');
+      // fetchInitSort();
+    }
+
+    onMounted(() => {
+      fetch();
+    })
 
     return {
       ...toRefs(state),
-      ...toRefs(resourceApi),
-      renderPermissionTreeLabel,
-      autoGenerateApi,
-      loadChildren,
-      handleNodeClick
+      lists,
+      handleSelectType,
+      handleDrop,
+      getPermissionTagType,
+      handleNodeClick,
+      initSort,
     }
   },
 })
