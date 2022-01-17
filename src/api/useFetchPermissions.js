@@ -4,7 +4,6 @@ import {listToTree} from "@/utils";
 import {ref} from "vue";
 
 export const fetchList = (query = {}) => axios.get('/permissions', {params: query});
-export const fetchInitSort = () => axios.post('/permissions/init-sort');
 export const fetchUpdate = (item = {}) => axios.put(`/permissions/${item.id}`, {
   drop_id: item.dropId,
   drop_type: item.dropType,

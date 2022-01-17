@@ -4,8 +4,9 @@
       <div class="avatar flex-row align-center">
         <el-avatar :size="30" :src="getUser['avatar']">{{ getUser['nickname'] }}</el-avatar>
         <span class="name">
-          {{ getUser['nickname'] }}<icon name="el-down" class="ml-1" :size="12"/>
+          {{ getUser['nickname'] }}
         </span>
+        <icon name="el-down" class="ml-1" :size="12"/>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
@@ -55,6 +56,8 @@ export default {
       color: var(--el-text-color-primary);
       padding-left: 5px;
       width: max-content;
+      max-width: 80px;
+      @extend .text-overflow-1;
     }
 
     .el-avatar {

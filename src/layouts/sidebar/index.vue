@@ -8,11 +8,11 @@
     :destroy-on-close="true"
     direction="ltr"
     @closed="setMenuSetting({collapse: true})">
-    <el-scrollbar>
+    <el-scrollbar view-class="scrollbar">
       <LayoutMenu/>
     </el-scrollbar>
   </el-drawer>
-  <el-scrollbar v-else>
+  <el-scrollbar v-else view-class="scrollbar">
     <LayoutMenu/>
   </el-scrollbar>
 </template>
@@ -43,12 +43,15 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-:deep(.el-scrollbar__view) {
+<style lang="scss">
+.scrollbar{
   height: 100%;
+  padding: 0;
 }
 
-.drawer-menu .el-drawer__body {
-  padding: 0 !important;
+.drawer-menu {
+  .el-drawer__body {
+    padding: 0 !important;
+  }
 }
 </style>

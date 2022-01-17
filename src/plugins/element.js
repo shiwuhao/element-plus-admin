@@ -1,5 +1,6 @@
 import 'element-plus/es/components/slider/style/css'
 import 'element-plus/es/components/cascader/style/css'
+import 'element-plus/es/components/message/style/css'
 import store from '@/store/index.js'
 import {ProjectConfig} from "@/enums/config.js";
 

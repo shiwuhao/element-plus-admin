@@ -1,12 +1,11 @@
 <template>
   <page-wrapper :title="$route.meta['title']" content-full-height>
     <template #extra>
-      <el-button type="primary" @click="defaultExpandAll = !defaultExpandAll">toggle</el-button>
-      <el-button type="primary" @click="initSort">初始化排序</el-button>
+      <el-button @click="permissionTreeToggleExpand">{{ !expandAll ? '节点展开' : '节点收起' }}</el-button>
     </template>
     <el-row :gutter="10">
-      <el-col :span="4">
-        <el-card shadow="none" class="mt-2" style="height: 100%;">
+      <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4" class="mb-2">
+        <el-card shadow="none">
           <el-tree default-expand-all
                    highlight-current
                    node-key="type"
@@ -14,21 +13,20 @@
                    current-node-key="all"
                    :data="types"
                    :props="{children: 'children',label:'label'}"
-                   @node-click="handleSelectType"></el-tree>
+                   @node-click="nodeSelectType"></el-tree>
         </el-card>
       </el-col>
-      <el-col :span="20">
-        <el-card shadow="none" class="mt-2" style="height: 100%;width: 100%;">
-          {{defaultExpandAll}}
-          <el-tree :default-expand-all="defaultExpandAll"
+      <el-col :xs="24" :sm="24" :md="18" :lg="20" :xl="20" class="mb-2">
+        <el-card shadow="none">
+          <el-tree ref="permissionTreeElRef"
+                   :default-expand-all="expandAll"
                    :props="{children: 'children'}"
-                   @node-click="handleNodeClick"
-                   :data="lists"
+                   :data="permissionTrees"
                    draggable
-                   @node-drop="handleDrop">
-            <template #default="{ node:{data: {id,permissible,permissible_type,permissible_type_label}} }">
-              <span class="mr-1">{{ permissible.label }} - {{ id }}</span>
-              <el-tag size="small" :type="permissible_type === 'menus' ? 'warning' : ''">
+                   @node-drop="nodeDrop">
+            <template #default="{ node:{data: {permissible,permissible_type,permissible_type_label}} }">
+              <span class="mr-1">{{ permissible.label }}</span>
+              <el-tag size="small" effect="plain" :type="permissible_type === 'menus' ? 'warning' : ''">
                 {{ permissible_type_label }}
               </el-tag>
             </template>
@@ -43,10 +41,8 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
-import {defineComponent, toRefs, shallowReactive, onMounted} from "vue";
-import {useFetchTreeList, fetchUpdate, fetchInitSort} from '@/api/useFetchPermissions.js'
-
-import {ElMessage,ElNotification} from "element-plus";
+import {defineComponent, toRefs, shallowReactive, onMounted, ref} from "vue";
+import {useFetchTreeList, fetchUpdate} from '@/api/useFetchPermissions.js'
 
 export default defineComponent({
   name: "index",
@@ -67,10 +63,12 @@ export default defineComponent({
         {field: 'title', placeholder: '权限名称', component: 'Input'},
         {field: 'name', placeholder: '权限标识', component: 'Input'},
       ],
-      defaultExpandAll: true,
+      expandAll: true,
       types: [
         {
-          type: 'all', label: '全部节点', children: [
+          type: 'all',
+          label: '全部节点',
+          children: [
             {type: 'menus', label: '菜单节点'},
             {type: 'actions', label: '动作节点'}
           ]
@@ -78,43 +76,34 @@ export default defineComponent({
       ],
     });
 
-    const {lists, fetch} = useFetchTreeList();
-    const getPermissionTagType = ({permissible_type}) => permissible_type === 'actions' ? 'info' : 'warning' && console.log(permissible_type);
+    const permissionTreeElRef = ref(null);
+    const {lists: permissionTrees, fetch: fetchTree} = useFetchTreeList();
 
-    const handleSelectType = ({type}) => {
-      fetch({type});
-    }
-
-    const handleNodeClick = (data) => {
-      console.log(data)
-    }
-
-    const handleDrop = ({data: {id: draggingId}}, {data: {id: dropId}}, dropType, ev) => {
-      fetchUpdate({id: draggingId, dropId, dropType})
-      console.log(draggingId, dropId, dropType, ev)
-      console.log(ev);
-    }
-    const initSort = () => {
-      console.log(111);
-      ElMessage('this is a message.')
-      console.log(222);
-
-      // ElMessage.error('1231');
-      // fetchInitSort();
-    }
+    const methods = {
+      // 权限树展开收起
+      permissionTreeToggleExpand: () => {
+        state.expandAll = !state.expandAll;
+        Object.keys(permissionTreeElRef.value.store.nodesMap).forEach(key => permissionTreeElRef.value.store.nodesMap[key].expanded = state.expandAll);
+      },
+      // 拖拽成功完事件
+      nodeDrop: ({data: {id: draggingId}}, {data: {id: dropId}}, dropType) => {
+        fetchUpdate({id: draggingId, dropId, dropType})
+      },
+      // 节点类型选择事件
+      nodeSelectType: ({type}) => {
+        fetchTree({type});
+      }
+    };
 
     onMounted(() => {
-      fetch();
+      fetchTree();
     })
 
     return {
       ...toRefs(state),
-      lists,
-      handleSelectType,
-      handleDrop,
-      getPermissionTagType,
-      handleNodeClick,
-      initSort,
+      ...methods,
+      permissionTrees,
+      permissionTreeElRef,
     }
   },
 })

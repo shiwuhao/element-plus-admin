@@ -34,7 +34,7 @@ export default [
       {
         path: 'permissions',
         name: 'permissions',
-        meta: {title: '权限管理', menu: true, affix: false},
+        meta: {title: '权限节点', menu: true, affix: false},
         component: () => import('@/views/system/permissions/index.vue'),
       },
       {
