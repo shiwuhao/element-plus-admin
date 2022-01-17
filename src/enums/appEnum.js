@@ -9,9 +9,8 @@ export const routerTransitionEnum = Object.freeze({
 
 export const elementSizeEnum = Object.freeze({
   large: 'large',
-  medium: 'medium',
+  default: 'default',
   small: 'small',
-  mini: 'mini',
 });
 
 // 菜单类型
@@ -28,12 +27,3 @@ export const methodEnum = Object.freeze({
   put: 'put',
   delete: 'delete',
 });
-
-
-export const routerTransitionOptions = Object.values(routerTransitionEnum).map(item => {
-  return {label: item, value: item};
-})
-
-export const elementSizeOptions = Object.values(elementSizeEnum).map(item => {
-  return {label: item, value: item};
-})

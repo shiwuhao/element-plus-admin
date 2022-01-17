@@ -4,6 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import {viteMockServe} from "vite-plugin-mock";
 import viteSvgIcons from 'vite-plugin-svg-icons';
 import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
 import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 
 function pathResolve(dir) {
@@ -36,6 +37,9 @@ export default defineConfig(({command}) => {
       viteSvgIcons({
         iconDirs: [pathResolve('src/assets/svg')],
         symbolId: 'icon-[dir]-[name]',
+      }),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
       }),
       Components({
         resolvers: [ElementPlusResolver()],

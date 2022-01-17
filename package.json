@@ -54,6 +54,7 @@
     "sass": "~1.32.6",
     "sass-loader": "^10.0.4",
     "unplugin-vue-components": "^0.17.2",
+    "unplugin-auto-import": "^0.5.11",
     "vite": "2.6.0",
     "vite-plugin-mock": "2",
     "vue-cli-plugin-element-plus": "~0.0.13",

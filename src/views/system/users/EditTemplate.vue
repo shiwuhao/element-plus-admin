@@ -4,7 +4,7 @@
     v-model="dialog"
     @close="cancelItem">
     <template #default>
-      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px" size="small"
+      <el-form ref="formRef" :model="item" :rules="rules" v-loading="itemLoading" label-width="80px"
                autocomplete="off">
         <el-form-item label="用户标识" prop="username">
           <el-input v-model="item.username" placeholder="用户名、手机号、邮箱等唯一标识"></el-input>

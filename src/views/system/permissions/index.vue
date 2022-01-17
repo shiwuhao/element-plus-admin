@@ -97,8 +97,9 @@ export default defineComponent({
     const initSort = () => {
       console.log(111);
       ElMessage('this is a message.')
+      console.log(222);
 
-      ElMessage.error('1231');
+      // ElMessage.error('1231');
       // fetchInitSort();
     }
 
