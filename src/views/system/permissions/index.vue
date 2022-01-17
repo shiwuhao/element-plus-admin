@@ -5,7 +5,7 @@
     </template>
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4" class="mb-2">
-        <el-card shadow="none">
+        <el-card shadow="none" style="height: 100%;">
           <el-tree default-expand-all
                    highlight-current
                    node-key="type"
