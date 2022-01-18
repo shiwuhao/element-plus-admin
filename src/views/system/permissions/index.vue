@@ -4,6 +4,7 @@
       <el-button @click="permissionTreeToggleExpand">{{ !expandAll ? '节点展开' : '节点收起' }}</el-button>
     </template>
     <el-row :gutter="10">
+      {{data}}
       <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4" class="mb-2">
         <el-card shadow="none" style="height: 100%;">
           <el-tree default-expand-all
@@ -43,6 +44,7 @@ import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
 import {defineComponent, toRefs, shallowReactive, onMounted, ref} from "vue";
 import {useFetchTreeList, fetchUpdate} from '@/api/useFetchPermissions.js'
+import {useFetchList} from "@/api/useFetchPermissions.js";
 
 export default defineComponent({
   name: "index",
@@ -95,11 +97,14 @@ export default defineComponent({
       }
     };
 
+    const {data} = useFetchList({initialData:{aa:111}});
+
     onMounted(() => {
       fetchTree();
     })
 
     return {
+      data,
       ...toRefs(state),
       ...methods,
       permissionTrees,

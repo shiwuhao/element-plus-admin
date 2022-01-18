@@ -1,7 +1,7 @@
 import axios from "@/utils/axios";
-import {useResourceApi} from "@/composables/useResourceApi.js";
 import {listToTree} from "@/utils";
 import {ref} from "vue";
+import useFetch from "@/composables/useFetch.js";
 
 export const fetchList = (query = {}) => axios.get('/permissions', {params: query});
 export const fetchUpdate = (item = {}) => axios.put(`/permissions/${item.id}`, {
@@ -9,6 +9,8 @@ export const fetchUpdate = (item = {}) => axios.put(`/permissions/${item.id}`, {
   drop_type: item.dropType,
 });
 
+export const useFetchList = ({initialData}) => useFetch('/permissions', {initialData}).get();
+export const useFetchUpdate = (payload) => useFetch(`/permissions/${payload.id}`).put(payload);
 
 // 树形列表
 export const useFetchTreeList = () => {
