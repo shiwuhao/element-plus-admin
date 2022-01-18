@@ -1669,7 +1669,16 @@
   resolved "https://registry.nlark.com/@vue/web-component-wrapper/download/@vue/web-component-wrapper-1.3.0.tgz#b6b40a7625429d2bd7c2281ddba601ed05dc7f1a"
   integrity sha1-trQKdiVCnSvXwigd26YB7QXcfxo=
 
-"@vueuse/core@6.7.6", "@vueuse/core@^6.5.3":
+"@vueuse/components@^7.5.3":
+  version "7.5.3"
+  resolved "https://registry.npmmirror.com/@vueuse/components/download/@vueuse/components-7.5.3.tgz#ec1eb2a764f1202831f7a6909df6538ff134a05e"
+  integrity sha512-skJRZmKOHgLWKYl+maAkuGZYhLYNtbUnS+utvMYGln+l6qKrHpzXGeyf4LA4Yg2Vk7kWEMzb7jsxpQqnLLm2eQ==
+  dependencies:
+    "@vueuse/core" "7.5.3"
+    "@vueuse/shared" "7.5.3"
+    vue-demi "*"
+
+"@vueuse/core@6.7.6":
   version "6.7.6"
   resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-6.7.6.tgz#4eb402a60bf5c40e04ebab3f183f0486faa140e9"
   integrity sha1-TrQCpgv1xA4E66s/GD8EhvqhQOk=
@@ -1677,7 +1686,7 @@
     "@vueuse/shared" "6.7.6"
     vue-demi "*"
 
-"@vueuse/core@^7.3.0":
+"@vueuse/core@7.5.3", "@vueuse/core@^7.3.0", "@vueuse/core@^7.5.3":
   version "7.5.3"
   resolved "https://registry.npmmirror.com/@vueuse/core/download/@vueuse/core-7.5.3.tgz#7e8ea430a293670f12e5052a5285cb4ef8e9c758"
   integrity sha512-D9j5ymHFMFRXQqCp0yZJkf/bvBGiz0MrKUa364p+L8dMyd5zyq2K1JmHyvoBd4xbTFRfmQ1h878u6YE5LCkDVQ==
