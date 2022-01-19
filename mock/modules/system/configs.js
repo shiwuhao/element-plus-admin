@@ -607,9 +607,7 @@ export default [
     method: 'get',
     response: ({query}) => {
       const {id} = query;
-      console.log(id);
       const item = lists.find(item => item.id === (id | 0));
-      console.log(item);
       return responseSuccess(item)
     }
   },

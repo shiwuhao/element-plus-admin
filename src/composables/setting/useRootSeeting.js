@@ -99,7 +99,6 @@ export function useRootSetting() {
    * @returns {Promise<void>}
    */
   async function toggleElementSize(size) {
-    console.log(size)
     await setRootSetting({size: size});
   }
 

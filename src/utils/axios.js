@@ -68,7 +68,6 @@ instance.interceptors.response.use((response) => {
   }
 
   if (_message) {
-    console.log(status,_message)
     ElMessage.error(_message)
   }
 
