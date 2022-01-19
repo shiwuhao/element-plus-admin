@@ -4,7 +4,6 @@
       <el-button @click="permissionTreeToggleExpand">{{ !expandAll ? '节点展开' : '节点收起' }}</el-button>
     </template>
     <el-row :gutter="10">
-      {{data}}
       <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4" class="mb-2">
         <el-card shadow="none" style="height: 100%;">
           <el-tree default-expand-all
@@ -41,14 +40,12 @@
 <script>
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
-import EditTemplate from "./EditTemplate.vue";
 import {defineComponent, toRefs, shallowReactive, onMounted, ref} from "vue";
-import {useFetchTreeList, fetchUpdate} from '@/api/useFetchPermissions.js'
-import {useFetchList} from "@/api/useFetchPermissions.js";
+import {fetchUpdate, useFetchListToTree} from '@/api/permissions.js'
 
 export default defineComponent({
   name: "index",
-  components: {BasicQuery, BasicTable, EditTemplate, PageWrapper},
+  components: {BasicQuery, BasicTable, PageWrapper},
   setup() {
     const state = shallowReactive({
       columns: [
@@ -65,6 +62,7 @@ export default defineComponent({
         {field: 'title', placeholder: '权限名称', component: 'Input'},
         {field: 'name', placeholder: '权限标识', component: 'Input'},
       ],
+      query: {},
       expandAll: true,
       types: [
         {
@@ -79,7 +77,7 @@ export default defineComponent({
     });
 
     const permissionTreeElRef = ref(null);
-    const {lists: permissionTrees, fetch: fetchTree} = useFetchTreeList();
+    const {lists: permissionTrees, fetch: fetchTree} = useFetchListToTree();
 
     const methods = {
       // 权限树展开收起
@@ -97,14 +95,11 @@ export default defineComponent({
       }
     };
 
-    const {data} = useFetchList({initialData:{aa:111}});
-
     onMounted(() => {
       fetchTree();
     })
 
     return {
-      data,
       ...toRefs(state),
       ...methods,
       permissionTrees,

@@ -1,38 +1,25 @@
 import axios from "@/utils/axios";
+import {listToTree} from "@/utils";
+import {ref} from "vue";
 
-const allApi = (query = {}) => axios.get('/permissions/all', {params: query});
-const listApi = (query = {}) => axios.get('/permissions', {params: query});
-const childrenListApi = (pid = {}) => axios.get('/permissions', {params: {pid: pid}});
-const itemApi = (item = {}) => axios.get(`/permissions/${item.id}`);
-const updateApi = (item = {}) => axios.put(`/permissions/${item.id}`, {
-  pid: item.pid,
-  type: item.type,
-  name: item.name,
-  title: item.title,
-  url: item.url,
-  icon: item.icon,
-  status: item.status,
+export const fetchList = (query = {}) => axios.get('/permissions', {params: query});
+export const fetchUpdate = (item = {}) => axios.put(`/permissions/${item.id}`, {
+  drop_id: item.dropId,
+  drop_type: item.dropType,
 });
-const storeApi = (item = {}) => axios.post(`/permissions`, {
-  pid: item.pid,
-  type: item.type,
-  name: item.name,
-  title: item.title,
-  url: item.url,
-  icon: item.icon,
-  status: item.status,
-});
-const deleteApi = (item = {}) => axios.delete(`/permissions/${item.id}`);
 
-const autoGenerateApi = (item = {}) => axios.post(`/permissions/auto`);
 
-export {
-  allApi,
-  listApi,
-  itemApi,
-  updateApi,
-  storeApi,
-  deleteApi,
-  childrenListApi,
-  autoGenerateApi,
+// 树形列表
+export const useFetchListToTree = () => {
+  const lists = ref([]);
+  const fetch = (query = {}) => {
+    fetchList(query).then(({data: {data}}) => {
+      lists.value = listToTree(data);
+    });
+  }
+
+  return {
+    lists,
+    fetch,
+  };
 }

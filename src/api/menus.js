@@ -1,12 +1,12 @@
 import axios from "@/utils/axios";
-import {reactive} from "vue";
-import {listToTree} from "@/utils";
 import {useResourceApi} from "@/composables/useResourceApi.js";
+import {listToTree} from "@/utils";
+import { ref} from "vue";
 
-const allApi = (query = {}) => axios.get('/menus/all', {params: query});
-const listApi = (query = {}) => axios.get('/menus', {params: query});
-const itemApi = (item = {}) => axios.get(`/menus/${item.id}`);
-const updateApi = (item = {}) => axios.put(`/menus/${item.id}`, {
+export const fetchAll = (query = {}) => axios.get('/menus/all', {params: query});
+export const fetchList = (query = {}) => axios.get('/menus', {params: query});
+export const fetchItem = (item = {}) => axios.get(`/menus/${item.id}`);
+export const fetchUpdate = (item = {}) => axios.put(`/menus/${item.id}`, {
   pid: item.pid,
   type: item.type,
   name: item.name,
@@ -15,7 +15,7 @@ const updateApi = (item = {}) => axios.put(`/menus/${item.id}`, {
   icon: item.icon,
   status: item.status,
 });
-const storeApi = (item = {}) => axios.post(`/menus`, {
+export const fetchStore = (item = {}) => axios.post(`/menus`, {
   pid: item.pid,
   type: item.type,
   name: item.name,
@@ -24,14 +24,30 @@ const storeApi = (item = {}) => axios.post(`/menus`, {
   icon: item.icon,
   status: item.status,
 });
-const deleteApi = (item = {}) => axios.delete(`/menus/${item.id}`);
+export const fetchDelete = (item = {}) => axios.delete(`/menus/${item.id}`);
 
-export {
-  allApi,
-  listApi,
-  itemApi,
-  updateApi,
-  storeApi,
-  deleteApi,
+// 树形列表
+export const useFetchListToTree = () => {
+  const lists = ref([]);
 
+  const fetch = (query) => {
+    fetchAll(query).then(({data: {data}}) => {
+      data.unshift({id: 0, pid: 0, name: 'root', label: 'Root'})
+      lists.value = listToTree(data);
+    });
+  }
+
+  return {
+    lists,
+    fetch,
+  };
 }
+
+export const useFetchResource = (options = {}) => useResourceApi({
+  listApi: fetchList,
+  itemApi: fetchItem,
+  updateApi: fetchUpdate,
+  storeApi: fetchStore,
+  deleteApi: fetchDelete,
+  ...options
+});

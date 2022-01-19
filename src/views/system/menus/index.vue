@@ -41,7 +41,7 @@ import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
-import {useFetchResource} from '@/api/useFetchMenus.js';
+import {useFetchResource} from '@/api/menus.js';
 
 export default defineComponent({
   name: "index",

@@ -57,7 +57,7 @@ import {toRefs, shallowReactive, inject, watch} from "vue";
 import {useConfig} from "@/composables/config/useConfig.js";
 import {IconPicker} from '@/components/Icon/index.js'
 import {menuTypeEnum} from "@/enums/appEnum.js";
-import {useFetchTreeList} from '@/api/useFetchMenus.js';
+import {useFetchListToTree} from '@/api/menus.js';
 
 export default {
   name: "editTemplate",
@@ -77,7 +77,7 @@ export default {
 
     const {getPermissionRoutes} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
-    const {lists: menuOptions, fetch: fetchTree} = useFetchTreeList();
+    const {lists: menuOptions, fetch: fetchTree} = useFetchListToTree();
 
     watch(dialog, () => dialog.value && fetchTree());
 
