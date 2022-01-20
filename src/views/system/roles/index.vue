@@ -34,9 +34,8 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
-import {listApi, itemApi, updateApi, storeApi, deleteApi} from "@/api/roles.js";
-import {useResourceApi} from "@/composables/useResourceApi.js";
 import {defineComponent, toRefs, provide, shallowReactive} from "vue";
+import {useFetchResource} from "@/api/roles.js";
 
 export default defineComponent({
   name: "index",
@@ -57,19 +56,12 @@ export default defineComponent({
       ],
     })
 
-    const resourceApi = useResourceApi({
-      listApi,
-      itemApi,
-      updateApi,
-      storeApi,
-      deleteApi,
-    });
-
-    provide('resourceApi', resourceApi);
+    const fetchResource = useFetchResource();
+    provide('fetchResource', fetchResource);
 
     return {
       ...toRefs(state),
-      ...toRefs(resourceApi),
+      ...toRefs(fetchResource),
     }
   },
 })

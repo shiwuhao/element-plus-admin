@@ -3,7 +3,6 @@ import {useResourceApi} from "@/composables/useResourceApi.js";
 import {listToTree} from "@/utils";
 import { ref} from "vue";
 
-export const fetchAll = (query = {}) => axios.get('/menus/all', {params: query});
 export const fetchList = (query = {}) => axios.get('/menus', {params: query});
 export const fetchItem = (item = {}) => axios.get(`/menus/${item.id}`);
 export const fetchUpdate = (item = {}) => axios.put(`/menus/${item.id}`, {
@@ -31,7 +30,7 @@ export const useFetchListToTree = () => {
   const lists = ref([]);
 
   const fetch = (query) => {
-    fetchAll(query).then(({data: {data}}) => {
+    fetchList({...query,...{page:'all'}}).then(({data: {data}}) => {
       data.unshift({id: 0, pid: 0, name: 'root', label: 'Root'})
       lists.value = listToTree(data);
     });

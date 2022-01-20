@@ -28,6 +28,7 @@
             :props="{ children: 'children',label: renderPermissionTreeLabel}"
             :default-expanded-keys="[0]"
             :default-checked-keys="defaultCheckedKeys"
+            :check-strictly="true"
             node-key="id"
             show-checkbox
             style="height:100%;"
@@ -66,14 +67,14 @@ export default {
       }
     })
 
-    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
+    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
 
     // 初始化默认节点
     const initDefaultCheckedKeys = () => state.defaultCheckedKeys = item.value.permission_ids;
 
     // 获取所有权限节点
     const fetchAllPermissions = async () => {
-      await fetchList().then(({data: {data}}) => {
+      await fetchList({page:'all'}).then(({data: {data}}) => {
         state.permissions = [{id: 0, pid: 0, children: listToTree(data)}];
         initDefaultCheckedKeys();
       })

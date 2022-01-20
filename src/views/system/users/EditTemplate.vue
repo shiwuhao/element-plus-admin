@@ -18,7 +18,7 @@
         </el-form-item>
         <el-form-item label="用户角色">
           <el-select v-model="item.role_ids" multiple placeholder="请选择用户角色" style="width: 100%;">
-            <el-option v-for="item in getRoles" :key="item.id" :label="item.title" :value="item.id">
+            <el-option v-for="item in roles" :key="item.id" :label="item.label" :value="item.id">
             </el-option>
           </el-select>
         </el-form-item>
@@ -41,8 +41,8 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer/index.js";
-import {toRefs, shallowReactive, inject, ref} from "vue";
-import {useConfig} from "@/composables/config/useConfig.js";
+import {toRefs, shallowReactive, inject, ref, watch} from "vue";
+import {fetchList} from "@/api/roles.js";
 
 export default {
   name: "editTemplate",
@@ -54,16 +54,24 @@ export default {
         nickname: [{required: true, message: '请选择配置类型', trigger: 'change'}],
         password: [{required: true, pattern: /^(\w|:|.){3,50}$/, message: '请选择渲染组件', trigger: 'change'}],
         status: [{required: true}],
-      }
+      },
+      roles: [],
     })
 
-    const {getRoles} = useConfig();
-    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('resourceApi');
+    const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
     const loading = ref(true)
+
+    // 获取所有权限节点
+    const fetchAllRoles = async () => {
+      await fetchList({page: 'all'}).then(({data: {data}}) => {
+        state.roles = data;
+      })
+    }
+
+    watch(dialog, async () => dialog.value && await fetchAllRoles());
 
     return {
       ...toRefs(state),
-      getRoles,
       formRef,
       item,
       dialog,
