@@ -48,7 +48,7 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer/index.js";
 import {toRefs, shallowReactive, inject, watch} from "vue";
-import {allApi} from "@/api/permissions.js";
+import {fetchList} from "@/api/permissions.js";
 import {listToTree} from "@/utils";
 
 export default {
@@ -73,7 +73,7 @@ export default {
 
     // 获取所有权限节点
     const fetchAllPermissions = async () => {
-      await allApi().then(({data: {data}}) => {
+      await fetchList().then(({data: {data}}) => {
         state.permissions = [{id: 0, pid: 0, children: listToTree(data)}];
         initDefaultCheckedKeys();
       })
