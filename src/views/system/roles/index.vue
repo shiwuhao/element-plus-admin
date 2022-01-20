@@ -1,7 +1,7 @@
 <template>
   <page-wrapper :title="$route.meta['title']">
     <template #extra>
-      <el-button type="primary" size="mini" @click="addItem">新增</el-button>
+      <el-button type="primary" @click="addItem">新增</el-button>
     </template>
     <el-card shadow="none">
       <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>

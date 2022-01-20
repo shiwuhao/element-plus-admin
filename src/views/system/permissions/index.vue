@@ -3,6 +3,7 @@
     <template #extra>
       <el-button @click="permissionTreeToggleExpand">{{ !expandAll ? '节点展开' : '节点收起' }}</el-button>
     </template>
+    <template #sub-title>拖拽可进行排序，更改父子级关系</template>
     <el-row :gutter="10">
       <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4" class="mb-2">
         <el-card shadow="none" style="height: 100%;">
