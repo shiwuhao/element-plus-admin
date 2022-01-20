@@ -43,7 +43,7 @@ export default {
   setup() {
     const state = reactive({
       title: import.meta.env.VITE_TITLE,
-      form: {username: 'admin', password: 'password'},
+      form: {username: 'admin', password: '111111'},
       rules: {
         username: [{required: true, trigger: 'blur'}],
         password: [{required: true, trigger: 'blur'}]
