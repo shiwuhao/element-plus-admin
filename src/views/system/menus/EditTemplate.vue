@@ -12,7 +12,7 @@
             v-model="item.pid"
             :show-all-levels="true"
             :props="{checkStrictly:true,value:'id',label:'label',emitPath:false}"
-            :options="menuOptions"
+            :options="menus"
             clearable
             placeholder="请选择父级菜单"
           ></el-cascader>
@@ -57,7 +57,7 @@ import {toRefs, shallowReactive, inject, watch} from "vue";
 import {useConfig} from "@/composables/config/useConfig.js";
 import {IconPicker} from '@/components/Icon/index.js'
 import {menuTypeEnum} from "@/enums/appEnum.js";
-import {useFetchListToTree} from '@/api/menus.js';
+import {useFetchAllMenus} from '@/api/all.js';
 
 export default {
   name: "editTemplate",
@@ -77,13 +77,13 @@ export default {
 
     const {getPermissionRoutes} = useConfig();
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
-    const {lists: menuOptions, fetch: fetchTree} = useFetchListToTree();
+    const {lists: menus, fetch: fetchTree} = useFetchAllMenus();
 
     watch(dialog, () => dialog.value && fetchTree());
 
     return {
       ...toRefs(state),
-      menuOptions,
+      menus,
       formRef,
       item,
       dialog,

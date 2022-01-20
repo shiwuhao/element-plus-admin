@@ -25,10 +25,15 @@
                    draggable
                    @node-drop="nodeDrop">
             <template #default="{ node:{data: {permissible,permissible_type,permissible_type_label}} }">
-              <span class="mr-1">{{ permissible.label }}</span>
-              <el-tag size="small" effect="plain" :type="permissible_type === 'menus' ? 'warning' : ''">
-                {{ permissible_type_label }}
-              </el-tag>
+              <span class="custom-tree-node">
+                <span>{{ permissible?.label }}</span>
+                <span>
+                  <span class="mr-2">{{ permissible?.name }}</span>
+                  <el-tag size="small"
+                          effect="plain"
+                          :type="permissible_type==='actions'?'success':'danger'">{{ permissible_type_label }}</el-tag>
+                </span>
+              </span>
             </template>
           </el-tree>
         </el-card>
@@ -41,7 +46,8 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import {defineComponent, toRefs, shallowReactive, onMounted, ref} from "vue";
-import {fetchUpdate, useFetchListToTree} from '@/api/permissions.js'
+import {fetchUpdate} from '@/api/permissions.js'
+import {useFetchAllPermissions} from "@/api/all.js";
 
 export default defineComponent({
   name: "index",
@@ -77,7 +83,7 @@ export default defineComponent({
     });
 
     const permissionTreeElRef = ref(null);
-    const {lists: permissionTrees, fetch: fetchTree} = useFetchListToTree();
+    const {lists: permissionTrees, fetch: fetchTree} = useFetchAllPermissions();
 
     const methods = {
       // 权限树展开收起
@@ -109,3 +115,13 @@ export default defineComponent({
 })
 </script>
 
+<style lang="scss" scoped>
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
+}
+</style>

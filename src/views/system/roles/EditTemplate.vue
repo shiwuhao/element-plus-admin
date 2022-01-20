@@ -25,14 +25,21 @@
           <el-tree
             v-if="dialog"
             :data="permissions"
-            :props="{ children: 'children',label: renderPermissionTreeLabel}"
+            :props="{ children: 'children'}"
             :default-expanded-keys="[0]"
             :default-checked-keys="defaultCheckedKeys"
             :check-strictly="true"
             node-key="id"
             show-checkbox
-            style="height:100%;"
+            class="w-full"
             @check="handlePermissionCheck">
+            <template #default="{ node:{data: {permissible,permissible_type,permissible_type_label}} }">
+              <span class="custom-tree-node">
+                <span>{{ permissible?.label }}</span>
+                <el-tag size="small" effect="plain"
+                        :type="permissible_type==='actions'?'success':'danger'">{{ permissible_type_label }}</el-tag>
+              </span>
+            </template>
           </el-tree>
         </el-form-item>
         <el-form-item>
@@ -48,16 +55,14 @@
 
 <script>
 import {BasicDrawer} from "@/components/Drawer/index.js";
-import {toRefs, shallowReactive, inject, watch} from "vue";
-import {fetchList} from "@/api/permissions.js";
-import {listToTree} from "@/utils";
+import {toRefs, shallowReactive, inject, watch, nextTick} from "vue";
+import {useFetchAllPermissions} from "@/api/all.js";
 
 export default {
   name: "editTemplate",
   components: {BasicDrawer},
   setup() {
     const state = shallowReactive({
-      permissions: [],
       defaultCheckedKeys: [],
       rules: {
         name: [{required: true, pattern: /^(\w|:){3,50}$/, message: '标识为必填项，3-50个英文字符', trigger: 'blur'}],
@@ -72,27 +77,22 @@ export default {
     // 初始化默认节点
     const initDefaultCheckedKeys = () => state.defaultCheckedKeys = item.value.permission_ids;
 
-    // 获取所有权限节点
-    const fetchAllPermissions = async () => {
-      await fetchList({page:'all'}).then(({data: {data}}) => {
-        state.permissions = [{id: 0, pid: 0, children: listToTree(data)}];
-        initDefaultCheckedKeys();
-      })
-    }
-
-    // 渲染权限树节点label
-    const renderPermissionTreeLabel = (data, {level, data: {permissible}}) => {
-      return level === 1 ? '根节点' : permissible['label'];
-    }
+    const {lists: permissions, fetch: fetchAllPermissions} = useFetchAllPermissions();
 
     // 设置勾选的节点
     const handlePermissionCheck = (checkedData, {checkedKeys}) => item.value.permission_ids = checkedKeys;
 
     // 监控编辑事件
-    watch(dialog, async () => dialog.value && await fetchAllPermissions());
+    watch(dialog, async () => {
+      if (dialog.value) {
+        await fetchAllPermissions();
+        await nextTick(() => initDefaultCheckedKeys())
+      }
+    });
 
     return {
       ...toRefs(state),
+      permissions,
       formRef,
       item,
       dialog,
@@ -100,9 +100,18 @@ export default {
       confirmLoading,
       cancelItem,
       confirmItem,
-      renderPermissionTreeLabel,
       handlePermissionCheck,
     }
   }
 }
 </script>
+<style lang="scss">
+.custom-tree-node {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding-right: 8px;
+}
+</style>

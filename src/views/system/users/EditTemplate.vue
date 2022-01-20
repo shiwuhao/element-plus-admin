@@ -42,7 +42,7 @@
 <script>
 import {BasicDrawer} from "@/components/Drawer/index.js";
 import {toRefs, shallowReactive, inject, ref, watch} from "vue";
-import {fetchList} from "@/api/roles.js";
+import {useFetchAllRoles} from "@/api/all.js";
 
 export default {
   name: "editTemplate",
@@ -55,23 +55,18 @@ export default {
         password: [{required: true, pattern: /^(\w|:|.){3,50}$/, message: '请选择渲染组件', trigger: 'change'}],
         status: [{required: true}],
       },
-      roles: [],
     })
 
     const {formRef, item, dialog, itemLoading, confirmLoading, cancelItem, confirmItem} = inject('fetchResource');
     const loading = ref(true)
 
-    // 获取所有权限节点
-    const fetchAllRoles = async () => {
-      await fetchList({page: 'all'}).then(({data: {data}}) => {
-        state.roles = data;
-      })
-    }
+    const {lists: roles, fetch: fetchAllRoles} = useFetchAllRoles();
 
-    watch(dialog, async () => dialog.value && await fetchAllRoles());
+    watch(dialog, async () => dialog.value && fetchAllRoles());
 
     return {
       ...toRefs(state),
+      roles,
       formRef,
       item,
       dialog,
