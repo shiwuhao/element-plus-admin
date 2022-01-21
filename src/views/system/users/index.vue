@@ -4,31 +4,30 @@
       <el-button type="primary" size="mini" @click="addItem">新增</el-button>
     </template>
     <el-card shadow="none">
-      <BasicQuery v-model="query" :schemas="schemas" @submit="getQuery"></BasicQuery>
+      <basic-query v-model="query" :schemas="schemas" @submit="getQuery"></basic-query>
     </el-card>
     <el-card shadow="none" class="mt-2">
-      <BasicTable :columns="columns"
+      <basic-table :columns="columns"
                   :data="lists"
                   :paginate="paginate"
                   :loading="listLoading"
                   @change-page="changePage">
 
-        <template #roles="scope">
-          <el-tag class="mr-2" v-for="(item,index) in scope.row.roles" :key="index" size="mini">{{ item.label }}
-          </el-tag>
+        <template #roles="{row:{roles}}">
+          <el-tag class="mr-2" v-for="(item,index) in roles" :key="index" size="mini">{{ item.label }}</el-tag>
         </template>
         <el-table-column label="操作" width="120">
-          <template #default="scope">
-            <el-button type="text" size="small" @click="editItem(scope.row)">编辑</el-button>
-            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(scope.row)">
+          <template #default="{row}">
+            <el-button type="text" @click="editItem(row)">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
               <template #reference>
-                <el-button type="text" size="small">删除</el-button>
+                <el-button type="text" class="danger">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
         </el-table-column>
-      </BasicTable>
-      <EditTemplate ref="editTemplateRef" v-model="dialog"/>
+      </basic-table>
+      <edit-template ref="editTemplateRef" v-model="dialog"/>
     </el-card>
   </page-wrapper>
 </template>
