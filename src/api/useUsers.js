@@ -36,8 +36,12 @@ const ApiEnum = {
   delete: {url: '/users/:id', method: 'delete'},
 }
 
-export const useFetchList = (body) => {
-  const {url, ...options} = ApiEnum.list;
-  console.log({...options, body})
-  return useFetch(url, {...options, body});
-}
+export const useFetchList = (opt => {
+  const {url, ...options} = {...ApiEnum.list, ...opt};
+  return useFetch(url, options).json();
+});
+
+export const useFetchItem = (opt => {
+  const {url, ...options} = {...ApiEnum.item, ...opt};
+  return useFetch(url, options).json();
+})
