@@ -1,5 +1,6 @@
 import axios from "@/utils/axios";
 import useFetch from "@/composables/useFetch.js";
+import {reactive} from "vue";
 
 const listApi = (query = {}) => axios.get('/users', {params: query});
 const itemApi = (item = {}) => axios.get(`/users/${item.id}`);
@@ -36,12 +37,30 @@ const ApiEnum = {
   delete: {url: '/users/:id', method: 'delete'},
 }
 
-export const useFetchList = (opt => {
-  const {url, ...options} = {...ApiEnum.list, ...opt};
+export const useFetchList = (query = {}) => {
+  const payload = reactive({aa: 11})
+  return useFetch(ApiEnum.list.url).post(payload).json();
+};
+
+export const useFetchStore = (fetchOptions = {}, options = {}) => {
+  return useFetch(ApiEnum.store.url, fetchOptions, options).json();
+};
+
+export const useFetchItem = ((opt = {}) => {
+  const {url, ...options} = {...ApiEnum.item, ...opt};
   return useFetch(url, options).json();
 });
 
-export const useFetchItem = (opt => {
-  const {url, ...options} = {...ApiEnum.item, ...opt};
-  return useFetch(url, options).json();
-})
+export const useFetchUpdate = ((opt = {}) => {
+  const {url, ...options} = {...ApiEnum.store, ...opt};
+  return useFetch(ApiEnum.update.url, options).json();
+});
+
+export const useFetchDelete = ((opt = {}) => {
+  const {url, ...options} = {...ApiEnum.store, ...opt};
+  return useFetch(ApiEnum.update.url, options).json();
+});
+
+export const useFetchResource = () => {
+
+}

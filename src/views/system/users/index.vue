@@ -6,29 +6,30 @@
     <el-card shadow="none">
       <basic-query v-model="query" :schemas="schemas" @submit="getQuery"></basic-query>
     </el-card>
-        <el-card shadow="none" class="mt-2">
-          <basic-table :columns="columns"
-                      :data="data?.data"
-                      :paginate="data?.meta"
-                      :loading="listLoading"
-                      @change-page="changePage">
+    {{ data }}
+    <el-card shadow="none" class="mt-2">
+      <basic-table :columns="columns"
+                   :data="data?.data"
+                   :paginate="data?.meta"
+                   :loading="listLoading"
+                   @change-page="changePage">
 
-            <template #roles="{row:{roles}}">
-              <el-tag class="mr-2" v-for="(item,index) in roles" :key="index" size="mini">{{ item.label }}</el-tag>
-            </template>
-            <el-table-column label="操作" width="120">
-              <template #default="{row}">
-                <el-button type="text" @click="editItem(row)">编辑</el-button>
-                <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
-                  <template #reference>
-                    <el-button type="text" class="danger">删除</el-button>
-                  </template>
-                </el-popconfirm>
+        <template #roles="{row:{roles}}">
+          <el-tag class="mr-2" v-for="(item,index) in roles" :key="index" size="mini">{{ item.label }}</el-tag>
+        </template>
+        <el-table-column label="操作" width="120">
+          <template #default="{row}">
+            <el-button type="text" @click="editItem(row)">编辑</el-button>
+            <el-popconfirm title="删除你是认真的吗？" iconColor="red" @confirm="deleteItem(row)">
+              <template #reference>
+                <el-button type="text" class="danger">删除</el-button>
               </template>
-            </el-table-column>
-          </basic-table>
-    <!--      <edit-template ref="editTemplateRef" v-model="dialog"/>-->
-        </el-card>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
+      </basic-table>
+      <!--      <edit-template ref="editTemplateRef" v-model="dialog"/>-->
+    </el-card>
   </page-wrapper>
 </template>
 
@@ -36,8 +37,10 @@
 import {PageWrapper} from "@/components/Page/index.js"
 import {BasicTable, BasicQuery} from "@/components/Table/index.js"
 import EditTemplate from "./EditTemplate.vue";
-import {defineComponent, toRefs, provide, shallowReactive, computed} from "vue";
+import {defineComponent, toRefs, provide, shallowReactive, computed, onMounted, reactive} from "vue";
 import {useFetchItem, useFetchList} from "@/api/useUsers.js";
+import { useFetch } from '@vueuse/core'
+import {useAxios} from '@vueuse/integrations'
 
 export default defineComponent({
   name: "index",
@@ -59,16 +62,17 @@ export default defineComponent({
       ],
     })
 
-    const payload = {id: '1'};
-    const {data} = useFetchItem({payload});
-    // const lists = computed(() => data.value?.data);
-    // const paginate = computed(() => data.value?.meta);
+    const url = 'http://element-plus-admin.local/backend/users';
+    const headers = {Authorization: 'Bearer 3|cxtQL5IoHano3ItEKBF2TnPIoNo01mw7OKKIkBHb'};
+    const body = new URLSearchParams('aa=bb');
 
+    const payload = reactive({aa:11})
+    const {data} = useFetch(url,{headers}).get().json();
+
+    useAxios()
     return {
       ...toRefs(state),
       data,
-      // lists,
-      // paginate
     }
   },
 })
